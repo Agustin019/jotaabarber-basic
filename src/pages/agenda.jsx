@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import TurnosDeHoy from '../components/turnosDeHoy'
+import TurnosDeOtrosDias from '../components/turnosDeOtrosDias'
+import { ClipLoader } from 'react-spinners'
 
 function Agenda() {
 
     const [ button, setButton ] = useState(false)
+    const [ loading, setLoading ] = useState(false)
 
   return (
     <main>
@@ -24,8 +27,9 @@ function Agenda() {
             />
         </section>
         <section>
+            
             { 
-                !button ? <TurnosDeHoy/> : <p>Seleccionar dia de turnos</p>
+                !button ? <TurnosDeHoy loading={loading} setLoading={setLoading}/> : <TurnosDeOtrosDias/>
             }
         </section>
     </main>
