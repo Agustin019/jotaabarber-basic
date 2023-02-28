@@ -21,25 +21,23 @@ import { maxDate3, shouldDisableDate, obtenerHorasDisponibles } from '../utils/c
 
 
 export default function Calendar({ 
-    horarios,
     setHorarios,
     value,
     setValue,
-    loading,
-    setLoading,
-    hora,
-    setHora
+    setLoading
     }) {
 
     const [selectedDate, handleDateChange] = React.useState(moment())
     
 
     async function handleChange(date) {
+        setLoading(true)
         const fecha = date.format('DD-MM');
         setValue(fecha)
 
         const timePickerFecha = moment(fecha, 'DD-MM');
         handleDateChange(timePickerFecha);
+        setLoading(false)
     }
     async function generarDocumentoPorCadaDiaDisponible() {
         for (let i = 0; i < diasDisponibles.length; i++) {
@@ -74,7 +72,6 @@ export default function Calendar({
     }
     generarDocumentoPorCadaDiaDisponible()
     generarDocumentoPorCadaDiaDeTrunos()
-    const horasDisponibles = obtenerHorasDisponibles(horarios)
     
     useEffect(() => {
         setLoading(true)
@@ -107,31 +104,7 @@ export default function Calendar({
                     shouldDisableDate={shouldDisableDate}
                 />
             </LocalizationProvider>
-            
-            { 
-                
-                !loading ?
-                    (
-                        <>
-                            <p className={`text-sm font-medium ${horasDisponibles.length < 4 ? 'text-yellow-400' : 'text-green-500'}`}>{horasDisponibles.length < 4 ? '¡Ultimos Lugares!' : 'Hay lugares'}</p>
-                            <select
-                                id="hora"
-                                name='hora'
-                                value={hora}
-                                onChange={e => setHora(e.target.value)}
-                                className='py-3 px-5 border border-slate-300 '
-                            >
-                                <option value="">Selecciona la hora</option>
-                                {
-                                    horasDisponibles.map(hora => (
-                                        <option key={hora} value={hora}>{hora}</option>
-                                    ))
-                                }
-                            </select>
-                        </>
-                    ) : ''
 
-            }
         </>
     );
 }

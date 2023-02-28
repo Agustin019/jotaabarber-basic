@@ -26,7 +26,7 @@ export default function TurnosDeHoy({ loading, setLoading }) {
         obtenerTurnosDelDiaActual()
     }, [])
     return (
-        <div className='mt-20'>
+        <article className='mt-20'>
             {!turnos.length ?
                 <h2 className='text-center text-xl text-teal-500 font-medium'>¡No hay turnos para este dia!</h2>
                 :
@@ -38,6 +38,6 @@ export default function TurnosDeHoy({ loading, setLoading }) {
             <div className='w-full flex justify-center mt-10'>
                 <ClipLoader loading={loading} />
             </div>
-        </div>
+        </article>
     )
 }

@@ -5,6 +5,7 @@ import moment from 'moment';
 import { getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '../utils/firebaseconfig'
 import { ClipLoader } from 'react-spinners';
+import { obtenerHorasDisponibles } from '../utils/calendarFunctions';
 import Error from '../components/error';
 
 
@@ -18,7 +19,7 @@ export default function Turnos() {
   const [value, setValue] = useState(diaDeHoy)
   let [loading, setLoading] = useState(true);
 
-
+  const horasDisponibles = obtenerHorasDisponibles(horarios)
   useEffect(() => {
     const unsub = onSnapshot(doc(db, "horarios", value), (doc) => {
       const newData = doc.data().horariosLaborales
@@ -55,17 +56,17 @@ export default function Turnos() {
     const turnoFirebase = await getDoc(turno)
     const turnos = turnoFirebase.data()
     turnos.turnos.push({
-        hora:hora,
-        cliente:'Lionel Messi',
-        servicio: 'Corte y barba'
+      hora: hora,
+      cliente: 'Lionel Messi',
+      servicio: 'Corte y barba'
     })
-  
-    
+
+
     await updateDoc(horaSeleccionada, horas)
     await updateDoc(turno, turnos)
 
 
-    
+
     setLoading(false)
     console.log('Turno reservado')
   }
@@ -75,12 +76,9 @@ export default function Turnos() {
     <div >
       <h2 className='text-center mt-20 font-semibold text-xl text-teal-400 '>Solicita tu turno ahora!</h2>
       <form
-        //method='PUT'
         className='flex flex-col items-center justify-between p-4 gap-y-10 w-1/3 mx-auto'
         onSubmit={handleSubmit}
       >
-
-
         <div className='flex flex-col gap-y-7 items-center'>
           <Calendar
             horarios={horarios}
@@ -94,16 +92,35 @@ export default function Turnos() {
           />
         </div>
         <ClipLoader loading={loading} />
-        {!loading ?
-          <input
-            type="submit"
-            value="¡Confirmar turno!"
-            className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
-          />
-          : ""
+        {
+          !loading ?
+            (
+              <>
+                <p className={`text-sm font-medium ${horasDisponibles.length < 4 ? 'text-yellow-400' : 'text-green-500'}`}>{horasDisponibles.length < 4 ? '¡Ultimos Lugares!' : 'Hay lugares'}</p>
+                <select
+                  id="hora"
+                  name='hora'
+                  value={hora}
+                  onChange={e => setHora(e.target.value)}
+                  className='py-3 px-5 border border-slate-300 '
+                >
+                  <option value="">Selecciona la hora</option>
+                  {
+                    horasDisponibles.map(hora => (
+                      <option key={hora} value={hora}>{hora}</option>
+                    ))
+                  }
+                </select>
+                <input
+                  type="submit"
+                  value="¡Confirmar turno!"
+                  className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
+                />
+              </>
+            ) : ''
+
         }
         {/*errores && Object.keys(errores).length > 0 && <Error>{Object.values(errores)}</Error>*/}
-
       </form>
     </div>
   )
