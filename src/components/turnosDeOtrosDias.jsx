@@ -34,7 +34,7 @@ export default function TurnosDeOtrosDias({ loading, setLoading }) {
 
    console.log(turnosDiaSeleccionado)
     return (
-        <article className=''>
+        <article>
             <div className='w-full flex flex-col justify-center items-center'>
                 <h2 className='font-bold text-xl text-teal-500 py-8'>Seleccionar dia</h2>
                  <LocalizationProvider dateAdapter={AdapterDayjs}>

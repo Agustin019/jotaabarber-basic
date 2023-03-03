@@ -52,8 +52,8 @@ export default function Turnos() {
     }
 
     // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
-    const turno = doc(db, 'Turnos', value)
-    const turnoFirebase = await getDoc(turno)
+    const docref = doc(db, 'Turnos', value)
+    const turnoFirebase = await getDoc(docref)
     const turnos = turnoFirebase.data()
     turnos.turnos.push({
       hora: hora,
@@ -63,7 +63,7 @@ export default function Turnos() {
 
 
     await updateDoc(horaSeleccionada, horas)
-    await updateDoc(turno, turnos)
+    await updateDoc(docref, turnos)
 
 
 
