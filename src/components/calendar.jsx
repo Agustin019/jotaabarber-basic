@@ -54,8 +54,10 @@ export default function Calendar({
 
         }
     }
+
+    // Genera un documento con un arreglo vacio llamado "turnos" por cada dia de turnos disponible
     let turnos = [] 
-    async function generarDocumentoPorCadaDiaDeTrunos() {
+    async function generarDocumentoPorCadaDiaDeTurnos() {
         for (let i = 0; i < diasDisponibles.length; i++) {
             const fecha = diasDisponibles[i];
             const docRef = doc(db, 'Turnos', fecha);
@@ -71,7 +73,7 @@ export default function Calendar({
         }
     }
     generarDocumentoPorCadaDiaDisponible()
-    generarDocumentoPorCadaDiaDeTrunos()
+    generarDocumentoPorCadaDiaDeTurnos()
     
     useEffect(() => {
         setLoading(true)

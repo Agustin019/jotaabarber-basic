@@ -16,24 +16,25 @@ export default function TurnosDeHoy({ loading, setLoading }) {
     useEffect(() => {
         async function obtenerTurnosDelDiaActual() {
             setLoading(true)
-            const docRef = doc(db, 'Turnos', '11-03')
+            const docRef = doc(db, 'Turnos', diaActual)
             const docSnap = await getDoc(docRef)
             const nuevaConsulta = docSnap.data().turnos
-            console.log(nuevaConsulta)
-            setLoading(false)
             setTurnos(nuevaConsulta)
+            setLoading(false)
         }
         obtenerTurnosDelDiaActual()
     }, [])
     return (
-        <article className='mt-20'>
-            {!turnos.length ?
-                <h2 className='text-center text-xl text-teal-500 font-medium'>¡No hay turnos para este dia!</h2>
-                :
-                <div className='  flex flex-col gap-y-5 items-center'>
-                    <h2 className='text-center text-xl text-teal-500 font-medium'>Turnos del dia de hoy</h2>
-                    {turnos.map(turno => <Turno key={turno.hora} turno={turno} />)}
-                </div>
+        <article >
+            {!turnos.length
+                ? <h2 className='text-center text-xl text-teal-500 font-medium py-8'>¡No hay turnos para este dia!</h2>
+                : (
+                    <>
+                     <h2 className='text-center text-xl text-teal-500 font-medium py-8'>Turnos del dia de hoy</h2>
+                     {turnos.map(turno => <Turno key={turno.hora} turno={turno} />)}
+                    </>
+                )
+
             }
             <div className='w-full flex justify-center mt-10'>
                 <ClipLoader loading={loading} />

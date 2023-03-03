@@ -1,7 +1,7 @@
 import moment from 'moment'; // importa la librería moment.js
 
 const MAX_DIAS = 14; // define el máximo de días para crear documentos
-const fechaActual = moment(); // obtén la fecha actual
+const fechaActual = moment(); //  fecha actual
 
 // crea un arreglo con las fechas futuras a partir de la fecha actual, solo los días jueves, viernes y sábado
 export const diasDisponibles = Array.from({
@@ -15,7 +15,4 @@ export const diasDisponibles = Array.from({
     return null;
 }).filter(fecha => fecha !== null);
 
-console.log(diasDisponibles)
-
- 
-// ahora puedes utilizar el arreglo diasDisponibles para crear los documentos en Firebase
+console.log(diasDisponibles[1])

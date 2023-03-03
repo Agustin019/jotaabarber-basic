@@ -6,6 +6,7 @@ import Layout from './components/layout'
 import Nosotros from './pages/nosotros'
 import Turnos from './pages/turnos'
 import Agenda from './pages/agenda'
+import AdministrarTurnos from './pages/administrarTurnos'
 
 
 
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/admin/administrarturnos',
-        element: <h2 className='text-xl font-bold text-teal-600 text-center mt-20'>Administrar turnos</h2>
+        element: <AdministrarTurnos/>
       },
     ]
   }
