@@ -35,7 +35,7 @@ export default function TurnosDeOtrosDias({ loading, setLoading }) {
    console.log(turnosDiaSeleccionado)
     return (
         <article>
-            <div className='w-full flex flex-col justify-center items-center'>
+            <div className='w-full flex flex-col justify-center items-center my-10'>
                 <h2 className='font-bold text-xl text-teal-500 py-8'>Seleccionar dia</h2>
                  <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
@@ -54,6 +54,9 @@ export default function TurnosDeOtrosDias({ loading, setLoading }) {
                         shouldDisableDate={shouldDisableDate}
                     />
                 </LocalizationProvider>
+            </div>
+            <div className='w-full flex justify-center'> 
+                <ClipLoader loading={loading}/>                            
             </div>
             {
             !turnosDiaSeleccionado.length

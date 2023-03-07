@@ -7,6 +7,7 @@ import { db } from '../utils/firebaseconfig'
 import { ClipLoader } from 'react-spinners';
 import { obtenerHorasDisponibles } from '../utils/calendarFunctions';
 import Error from '../components/error';
+import HoraTurno from '../components/horaTurno';
 
 
 export default function Turnos() {
@@ -73,7 +74,7 @@ export default function Turnos() {
 
 
   return (
-    <div >
+    <main className='w-[90%] mx-auto'>
       <h2 className='text-center mt-20 font-semibold text-xl text-teal-400 '>Solicita tu turno ahora!</h2>
       <form
         className='flex flex-col items-center justify-between p-4 gap-y-10 w-1/3 mx-auto'
@@ -97,20 +98,25 @@ export default function Turnos() {
             (
               <>
                 <p className={`text-sm font-medium ${horasDisponibles.length < 4 ? 'text-yellow-400' : 'text-green-500'}`}>{horasDisponibles.length < 4 ? '¡Ultimos Lugares!' : 'Hay lugares'}</p>
-                <select
+                {/* <select
                   id="hora"
                   name='hora'
                   value={hora}
                   onChange={e => setHora(e.target.value)}
                   className='py-3 px-5 border border-slate-300 '
-                >
+                > */}
                   <option value="">Selecciona la hora</option>
-                  {
-                    horasDisponibles.map(hora => (
-                      <option key={hora} value={hora}>{hora}</option>
-                    ))
-                  }
-                </select>
+                 <div className='w-full flex flex-col gap-y-4'>
+                    {
+                      horarios.length 
+                        ? horarios.map(horaTurno => (
+                          <HoraTurno key={horaTurno.hora} horaTurno={horaTurno} setHora={setHora}/>
+                         ))
+
+                        : <p>No hay turnos para este dia</p> 
+                    }
+                 </div>
+               {/* </select>*/}
                 <input
                   type="submit"
                   value="¡Confirmar turno!"
@@ -122,6 +128,6 @@ export default function Turnos() {
         }
         {/*errores && Object.keys(errores).length > 0 && <Error>{Object.values(errores)}</Error>*/}
       </form>
-    </div>
+    </main>
   )
 }
