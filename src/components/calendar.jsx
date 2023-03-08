@@ -18,25 +18,20 @@ import { db } from '../utils/firebaseconfig';
 import { maxDate3, shouldDisableDate, obtenerHorasDisponibles } from '../utils/calendarFunctions';
 
 
-export default function Calendar({ 
-    setHorarios,
-    fecha,
-    setFecha,
-    setLoading
-    }) {
-
-    const [selectedDate, handleDateChange] = React.useState(moment())
+export default function Calendar({ selectedDate, handleDateChange }) {
+// , setHorarios, fecha, setFecha, setLoading
+    //const [selectedDate, handleDateChange] = React.useState(moment())
     
 
-    async function handleChange(date) {
-        setLoading(true)
-        const fechaSeleccionada = date.format('DD-MM');
-        setFecha(fechaSeleccionada)
+    // async function handleChange(date) {
+    //     setLoading(true)
+    //     const fechaSeleccionada = date.format('DD-MM');
+    //     setFecha(fechaSeleccionada)
 
-        const timePickerFecha = moment(fechaSeleccionada, 'DD-MM');
-        handleDateChange(timePickerFecha);
-        setLoading(false)
-    }
+    //     const timePickerFecha = moment(fechaSeleccionada, 'DD-MM');
+    //     handleDateChange(timePickerFecha);
+    //     setLoading(false)
+    // }
     async function generarDocumentoPorCadaDiaDisponible() {
         for (let i = 0; i < diasDisponibles.length; i++) {
             const fecha = diasDisponibles[i];
@@ -73,17 +68,17 @@ export default function Calendar({
     generarDocumentoPorCadaDiaDisponible()
     generarDocumentoPorCadaDiaDeTurnos()
     
-    useEffect(() => {
-        setLoading(true)
-        const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
-            const newData =  doc.data().horariosLaborales
-            setHorarios(newData)
-          });
-          setLoading(false)
-        return () => {
-            unsub();
-        };
-    }, [selectedDate])
+    // useEffect(() => {
+    //     setLoading(true)
+    //     const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
+    //         const newData =  doc.data().horariosLaborales
+    //         setHorarios(newData)
+    //       });
+    //       setLoading(false)
+    //     return () => {
+    //         unsub();
+    //     };
+    // }, [selectedDate])
    
     return (
         <>
@@ -98,7 +93,7 @@ export default function Calendar({
                             shrink: true,
                         }} />}
                     value={selectedDate}
-                    onChange={date => handleChange(date)}
+                    onChange={date => handleDateChange(date)}
                     minDate={moment()}
                     maxDate={maxDate3(13)}
                     shouldDisableDate={shouldDisableDate}

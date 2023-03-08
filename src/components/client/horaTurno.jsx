@@ -10,10 +10,10 @@ export default function HoraTurno({ horaTurno, setHora, scrollToElement }) {
                 <ion-icon name="time-outline"></ion-icon>
                 <p className='font-medium'>{hora}</p>
             </div>
-            <Link to="elemento-id" smooth={true} duration={500}>
+            <Link to={disponible ? 'elemento-id' : ''} smooth={true} duration={500}>
                 <input
                     type="button"
-                    value="¡Reservar!"
+                    value={disponible ? 'Reservar' : 'Reservado'}
                     onClick={disponible ? () => { setHora(hora), scrollToElement } : null}
                     className={`${disponible ? 'bg-green-500 cursor-pointer' : 'bg-slate-400'} py-1 px-2 font-semibold text-base text-white rounded-md`}
                 />

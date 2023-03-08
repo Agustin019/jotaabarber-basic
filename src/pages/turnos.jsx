@@ -10,47 +10,36 @@ import Horarios from '../components/client/horarios';
 import TurnosDeHoy from '../components/client/turnosDeHoy';
 import TurnosDeMañana from '../components/client/turnosDeMañana';
 import TurnosDeOtrosDias from '../components/client/turnosDeOtrosDias';
-
+import { dias } from '../utils/helpers';
 
 export default function Turnos() {
 
-  
+
   const fechaActual = moment()
   const diaDeHoy = fechaActual.format('DD-MM')
 
-  const [horarios, setHorarios] = useState([])
   const [hora, setHora] = useState('')
   const [fecha, setFecha] = useState(diaDeHoy)
   const [loading, setLoading] = useState(true);
-  const [ button, setButton ] = useState('hoy')
+  const [button, setButton] = useState('Hoy')
 
   const mostrarComponente = () => {
     switch (button) {
       case 'Hoy':
-        return <TurnosDeHoy/>;
+        return <TurnosDeHoy loading={loading} setLoading={setLoading} setHora={setHora}/>;
 
       case 'Mañana':
-        return <TurnosDeMañana/>;
+        return <TurnosDeMañana loading={loading} setLoading={setLoading} hora={hora} setHora={setHora} />;
 
       case 'Otro dia':
-        return <TurnosDeOtrosDias/>;
+        return <TurnosDeOtrosDias loading={loading} setLoading={setLoading} fecha={fecha} setFecha={setFecha} setHora={setHora}/>;
 
-      default: return <TurnosDeHoy/>
+      default: return <TurnosDeHoy loading={loading} setLoading={setLoading} setHora={setHora}/>
     }
   }
 
- // const horasDisponibles = obtenerHorasDisponibles(horarios)
-  useEffect(() => {
-    const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
-      const newData = doc.data().horariosLaborales
-      setHorarios(newData)
-      setLoading(false)
-    });
-
-    return () => {
-      unsub();
-    };
-  }, [])
+  // const horasDisponibles = obtenerHorasDisponibles(horarios)
+ 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -87,30 +76,39 @@ export default function Turnos() {
     console.log('Turno reservado')
   }
 
+
   return (
     <main className='w-full md:w-[90%] mx-auto '>
       <h2 className='text-center mt-20 font-semibold text-xl text-teal-400 '>Solicita tu turno ahora!</h2>
+
+      <section className='w-full flex justify-center gap-x-10 my-16'>
+        {
+          dias.map(dia =>
+            <input
+              key={dia.id}
+              type="button"
+              value={dia.name}
+              className={`
+                p-3 uppercase cursor-pointer shadow font-semibold rounded transition-colors duration-500 
+                ${button === dia.name 
+                  ? 'bg-blue-600 text-white' 
+                  : 'bg-white text-blue-600'}
+                `}
+              onClick={() => setButton(dia.name)}
+            />
+          )
+        }
+      </section>
+
       <form
         className='flex flex-col items-center justify-between p-4 gap-y-10 w-full md:w-2/3 mx-auto'
         onSubmit={handleSubmit}
       >
         <div className='flex flex-col gap-y-7 items-center '>
-
           {mostrarComponente()}
 
-          <Calendar
-            horarios={horarios}
-            setHorarios={setHorarios}
-            fecha={fecha}
-            setFecha={setFecha}
-            hora={hora}
-            setHora={setHora}
-            loading={loading}
-            setLoading={setLoading}
-          />
-          { /*!loading && <p className={`text-sm font-medium ${horasDisponibles.length < 4 ? 'text-yellow-400' : 'text-green-500'}`}>{horasDisponibles.length < 4 ? '¡Ultimos Lugares!' : 'Hay lugares'}</p> */}
           <ClipLoader loading={loading} />
-         {!loading && <Horarios horarios={horarios} setHora={setHora}/>}
+         
         </div>
         {
           !loading ?
