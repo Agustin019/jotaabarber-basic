@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getDoc, doc } from 'firebase/firestore'
-import { db } from '../utils/firebaseconfig'
+import { db } from '../../utils/firebaseconfig'
 import moment from 'moment'
 import Turno from './turno'
 import { ClipLoader } from 'react-spinners'

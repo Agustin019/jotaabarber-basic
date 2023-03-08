@@ -18,12 +18,10 @@ import { db } from '../utils/firebaseconfig';
 import { maxDate3, shouldDisableDate, obtenerHorasDisponibles } from '../utils/calendarFunctions';
 
 
-
-
 export default function Calendar({ 
     setHorarios,
-    value,
-    setValue,
+    fecha,
+    setFecha,
     setLoading
     }) {
 
@@ -32,10 +30,10 @@ export default function Calendar({
 
     async function handleChange(date) {
         setLoading(true)
-        const fecha = date.format('DD-MM');
-        setValue(fecha)
+        const fechaSeleccionada = date.format('DD-MM');
+        setFecha(fechaSeleccionada)
 
-        const timePickerFecha = moment(fecha, 'DD-MM');
+        const timePickerFecha = moment(fechaSeleccionada, 'DD-MM');
         handleDateChange(timePickerFecha);
         setLoading(false)
     }
@@ -59,15 +57,15 @@ export default function Calendar({
     let turnos = [] 
     async function generarDocumentoPorCadaDiaDeTurnos() {
         for (let i = 0; i < diasDisponibles.length; i++) {
-            const fecha = diasDisponibles[i];
-            const docRef = doc(db, 'Turnos', fecha);
+            const fechaDoc = diasDisponibles[i];
+            const docRef = doc(db, 'Turnos', fechaDoc);
             try {
                 const documento = await getDoc(docRef)
                 if (!documento.exists()) {
                     await setDoc(docRef, { turnos })
                 }
             } catch (e) {
-                console.log(`Error en la fecha ${fecha}`, e)
+                console.log(`Error en la fechaDoc ${fechaDoc}`, e)
             }
 
         }
@@ -77,7 +75,7 @@ export default function Calendar({
     
     useEffect(() => {
         setLoading(true)
-        const unsub = onSnapshot(doc(db, "horarios", value), (doc) => {
+        const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
             const newData =  doc.data().horariosLaborales
             setHorarios(newData)
           });

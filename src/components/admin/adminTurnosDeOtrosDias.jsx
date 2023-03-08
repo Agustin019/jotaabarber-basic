@@ -1,8 +1,8 @@
 import React ,{ useEffect, useState } from 'react'
 import Turno from './turno'
-import { maxDate3, shouldDisableDate } from '../utils/calendarFunctions'
+import { maxDate3, shouldDisableDate } from '../../utils/calendarFunctions'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../utils/firebaseconfig'
+import { db } from '../../utils/firebaseconfig'
 import { ClipLoader } from 'react-spinners'
 import moment from 'moment';
 import 'moment/locale/es'

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { doc, getDoc, updateDoc, onSnapshot } from 'firebase/firestore'
 import { db } from '../utils/firebaseconfig'
 import { useEffect } from 'react'
-import AdministrarTurno from '../components/administrarTurno'
+import AdministrarTurno from '../components/admin/administrarTurno'
 import { maxDate3, shouldDisableDate } from '../utils/calendarFunctions'
 import moment from 'moment';
 import 'moment/locale/es'

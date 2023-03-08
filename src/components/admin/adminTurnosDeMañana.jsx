@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { diasDisponibles } from "../utils/maxDiasLaborales";
+import { diasDisponibles } from "../../utils/maxDiasLaborales";
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from "../utils/firebaseconfig";
+import { db } from "../../utils/firebaseconfig";
 import { ClipLoader } from "react-spinners";
 import Turno from "./turno";
 
