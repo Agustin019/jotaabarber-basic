@@ -7,17 +7,37 @@ import { db } from '../utils/firebaseconfig'
 import { ClipLoader } from 'react-spinners';
 import { obtenerHorasDisponibles } from '../utils/calendarFunctions';
 import Horarios from '../components/client/horarios';
+import TurnosDeHoy from '../components/client/turnosDeHoy';
+import TurnosDeMañana from '../components/client/turnosDeMañana';
+import TurnosDeOtrosDias from '../components/client/turnosDeOtrosDias';
 
 
 export default function Turnos() {
 
+  
   const fechaActual = moment()
   const diaDeHoy = fechaActual.format('DD-MM')
 
   const [horarios, setHorarios] = useState([])
   const [hora, setHora] = useState('')
   const [fecha, setFecha] = useState(diaDeHoy)
-  let [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [ button, setButton ] = useState('hoy')
+
+  const mostrarComponente = () => {
+    switch (button) {
+      case 'Hoy':
+        return <TurnosDeHoy/>;
+
+      case 'Mañana':
+        return <TurnosDeMañana/>;
+
+      case 'Otro dia':
+        return <TurnosDeOtrosDias/>;
+
+      default: return <TurnosDeHoy/>
+    }
+  }
 
  // const horasDisponibles = obtenerHorasDisponibles(horarios)
   useEffect(() => {
@@ -75,6 +95,9 @@ export default function Turnos() {
         onSubmit={handleSubmit}
       >
         <div className='flex flex-col gap-y-7 items-center '>
+
+          {mostrarComponente()}
+
           <Calendar
             horarios={horarios}
             setHorarios={setHorarios}

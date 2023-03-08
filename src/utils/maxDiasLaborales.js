@@ -1,6 +1,7 @@
-import moment from 'moment'; // importa la librería moment.js
+import moment from 'moment'; 
 
-const MAX_DIAS = 14; // define el máximo de días para crear documentos
+const MAX_DIAS = 14; // máximo de días para crear documentos
+const HOY_Y_MAÑANA = 2 // dia actual y dia siguiente para consultar por turnos
 const fechaActual = moment(); //  fecha actual
 
 // crea un arreglo con las fechas futuras a partir de la fecha actual, solo los días jueves, viernes y sábado
@@ -15,4 +16,11 @@ export const diasDisponibles = Array.from({
     return null;
 }).filter(fecha => fecha !== null);
 
-console.log(diasDisponibles[1])
+
+// Arreglo para acceder a los dias de hoy y mañana
+export const dias_Hoy_Y_Mañana = Array.from({
+    length: HOY_Y_MAÑANA
+}, (_, index) => {
+    const fecha = moment(fechaActual).add(index, 'day');   
+    return fecha.format('DD-MM');
+})
