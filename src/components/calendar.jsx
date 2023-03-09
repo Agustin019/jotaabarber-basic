@@ -18,7 +18,7 @@ import { db } from '../utils/firebaseconfig';
 import { maxDate3, shouldDisableDate, obtenerHorasDisponibles } from '../utils/calendarFunctions';
 
 
-export default function Calendar({ selectedDate, handleDateChange }) {
+export default function Calendar({ selectedDate, handleDateChange, setFecha }) {
 // , setHorarios, fecha, setFecha, setLoading
     //const [selectedDate, handleDateChange] = React.useState(moment())
     
@@ -79,6 +79,11 @@ export default function Calendar({ selectedDate, handleDateChange }) {
     //         unsub();
     //     };
     // }, [selectedDate])
+
+    const handleChange = (date) => {
+        setFecha(date.format('DD-MM'))
+        handleDateChange(date)
+    }
    
     return (
         <>
@@ -93,7 +98,7 @@ export default function Calendar({ selectedDate, handleDateChange }) {
                             shrink: true,
                         }} />}
                     value={selectedDate}
-                    onChange={date => handleDateChange(date)}
+                    onChange={date => handleChange(date)}
                     minDate={moment()}
                     maxDate={maxDate3(13)}
                     shouldDisableDate={shouldDisableDate}

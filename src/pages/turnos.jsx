@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import Calendar from '../components/calendar'
+import { useState } from 'react';
 import moment from 'moment';
-import { getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore'
+import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../utils/firebaseconfig'
 import { ClipLoader } from 'react-spinners';
-import { obtenerHorasDisponibles } from '../utils/calendarFunctions';
-import Horarios from '../components/client/horarios';
+
 import TurnosDeHoy from '../components/client/turnosDeHoy';
 import TurnosDeMañana from '../components/client/turnosDeMañana';
 import TurnosDeOtrosDias from '../components/client/turnosDeOtrosDias';
@@ -19,6 +17,7 @@ export default function Turnos() {
   const diaDeHoy = fechaActual.format('DD-MM')
 
   const [hora, setHora] = useState('')
+  const [selectedDate, handleDateChange] = useState(moment())
   const [fecha, setFecha] = useState(diaDeHoy)
   const [loading, setLoading] = useState(true);
   const [button, setButton] = useState('Hoy')
@@ -29,10 +28,10 @@ export default function Turnos() {
         return <TurnosDeHoy loading={loading} setLoading={setLoading} setHora={setHora}/>;
 
       case 'Mañana':
-        return <TurnosDeMañana loading={loading} setLoading={setLoading} hora={hora} setHora={setHora} />;
+        return <TurnosDeMañana fecha={fecha} setFecha={setFecha} loading={loading} setLoading={setLoading} hora={hora} setHora={setHora} />;
 
       case 'Otro dia':
-        return <TurnosDeOtrosDias loading={loading} setLoading={setLoading} fecha={fecha} setFecha={setFecha} setHora={setHora}/>;
+        return <TurnosDeOtrosDias selectedDate={selectedDate} handleDateChange={handleDateChange} loading={loading} setLoading={setLoading} fecha={fecha} setFecha={setFecha} setHora={setHora}/>;
 
       default: return <TurnosDeHoy loading={loading} setLoading={setLoading} setHora={setHora}/>
     }
@@ -49,9 +48,12 @@ export default function Turnos() {
       return
     }
     // Actualizar la disponibilidad de la hora 
-    const horaSeleccionada = doc(db, 'horarios', fecha)
+    const fechaFormateada = selectedDate.format('DD-MM');
+    const horaSeleccionada = doc(db, 'horarios', fechaFormateada)
     const horaFirebase = await getDoc(horaSeleccionada)
     const horas = horaFirebase.data()
+    console.log(fechaFormateada)
+    console.log(horas)
     const encontrarHora = horas.horariosLaborales.findIndex(obj => obj.hora === hora)
     if (encontrarHora !== -1) {
       horas.horariosLaborales[encontrarHora] = {
@@ -64,9 +66,10 @@ export default function Turnos() {
     const docref = doc(db, 'Turnos', fecha)
     const turnoFirebase = await getDoc(docref)
     const turnos = turnoFirebase.data()
+    console.log(turnos)
     turnos.turnos.push({
       hora: hora,
-      cliente: 'Lionel Messi',
+      cliente: 'Miguel Borja',
       servicio: 'Corte y barba'
     })
 
@@ -101,7 +104,7 @@ export default function Turnos() {
       </section>
 
       <form
-        className='flex flex-col items-center justify-between p-4 gap-y-10 w-full md:w-2/3 mx-auto'
+        className='flex flex-col items-center justify-between p-4 gap-y-10 w-full md:w-2/3 mx-auto '
         onSubmit={handleSubmit}
       >
         <div className='flex flex-col gap-y-7 items-center '>

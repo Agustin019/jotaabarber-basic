@@ -3,13 +3,14 @@ import { db } from '../../utils/firebaseconfig'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { dias_Hoy_Y_Mañana } from '../../utils/maxDiasLaborales'
 import Horarios from './horarios'
-export default function TurnosDeMañana({ loading, setHora, setLoading }) {
+export default function TurnosDeMañana({ loading, setHora, setLoading, fecha, setFecha }) {
 
   const [ horarios, setHorarios ] = useState([])
   const diaDeMañana = dias_Hoy_Y_Mañana[1]
   useEffect(() => {
     setLoading(true)
-    const unsub = onSnapshot(doc(db, "horarios", diaDeMañana), (doc) => {
+    setFecha(diaDeMañana)
+    const unsub = onSnapshot(doc(db, "horarios",fecha), (doc) => {
       const newData = doc.data().horariosLaborales
       setHorarios(newData)
     });
