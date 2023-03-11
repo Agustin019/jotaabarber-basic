@@ -8,29 +8,18 @@ import moment from "moment"
 export default function TurnosDeOtrosDias({
   fecha,
   setFecha,
-  loading,
   setLoading,
-  setHora,
-  selectedDate,
-  handleDateChange
 }) {
-
   
-  const [horarios, setHorarios] = useState([])
+  //const [horarios, setHorarios] = useState([])
+  const [selectedDate, handleDateChange] = useState(moment())
 
   useEffect(() => {
-   // const fechaFormateada = selectedDate.format('DD-MM');
     setLoading(true)
-      //const unsub = onSnapshot(doc(db, "horarios", fechaFormateada), (doc) => {
-      const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
-        const newData = doc.data().horariosLaborales
-        setHorarios(newData)
-      });
-      setLoading(false)
-      return () => {
-        unsub();
-      };
-  }, [selectedDate])
+    const fechaFormateada = selectedDate.format('DD-MM');
+    setFecha(fechaFormateada)
+    setLoading(false)    
+  }, [])
  
   return (
     <article>
@@ -39,13 +28,11 @@ export default function TurnosDeOtrosDias({
         <Calendar
           selectedDate={selectedDate}
           handleDateChange={handleDateChange}
-          setHorarios={setHorarios}
-          fecha={fecha}
           setFecha={setFecha}
-          setLoading={setLoading}
         />
-        <h2 className='text-center text-xl text-teal-500 font-medium py-3'>Turnos del dia: {selectedDate.format('DD [/] MM [/] YYYY')}</h2>
-        {!loading && <Horarios horarios={horarios} setHora={setHora} />}
+        <h2 className='text-center text-xl text-teal-500 font-medium py-3'>Turnos del dia: {selectedDate.format('DD [/] MMMM')}</h2>
+        {/*!loading && <Horarios horarios={horarios} setHora={setHora} />*/}
+        {/* { horarios !== null && <Horarios horarios={horarios} setHora={setHora} />}  */}
       </div>
     </article>
   )

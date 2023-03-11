@@ -11,16 +11,16 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-import { setDoc, doc, getDoc, onSnapshot } from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 
 import { horariosLaborales } from '../utils/horariosLaborales';
 import { db } from '../utils/firebaseconfig';
-import { maxDate3, shouldDisableDate, obtenerHorasDisponibles } from '../utils/calendarFunctions';
+import { maxDate3, shouldDisableDate } from '../utils/calendarFunctions';
 
 
 export default function Calendar({ selectedDate, handleDateChange, setFecha }) {
 // , setHorarios, fecha, setFecha, setLoading
-    //const [selectedDate, handleDateChange] = React.useState(moment())
+    
     
 
     // async function handleChange(date) {
@@ -68,17 +68,7 @@ export default function Calendar({ selectedDate, handleDateChange, setFecha }) {
     generarDocumentoPorCadaDiaDisponible()
     generarDocumentoPorCadaDiaDeTurnos()
     
-    // useEffect(() => {
-    //     setLoading(true)
-    //     const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
-    //         const newData =  doc.data().horariosLaborales
-    //         setHorarios(newData)
-    //       });
-    //       setLoading(false)
-    //     return () => {
-    //         unsub();
-    //     };
-    // }, [selectedDate])
+  
 
     const handleChange = (date) => {
         setFecha(date.format('DD-MM'))
@@ -87,7 +77,7 @@ export default function Calendar({ selectedDate, handleDateChange, setFecha }) {
    
     return (
         <>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <LocalizationProvider dateAdapter={AdapterDayjs} >
                 <DatePicker
                     name='fecha'
                     id='fecha'
