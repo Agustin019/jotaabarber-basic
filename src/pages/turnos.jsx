@@ -1,54 +1,42 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import moment from 'moment';
-import { getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore'
+import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../utils/firebaseconfig'
-import { ClipLoader } from 'react-spinners';
 
-import TurnosDeHoy from '../components/client/turnosDeHoy';
-import TurnosDeMañana from '../components/client/turnosDeMañana';
-import TurnosDeOtrosDias from '../components/client/turnosDeOtrosDias';
-import Horarios from '../components/client/horarios';
+import TurnosCont from '../components/client/turnosCont';
 import Servicios from '../components/client/servicios';
-import { dias } from '../utils/helpers';
+
 
 export default function Turnos() {
-
-
   const fechaActual = moment()
   const diaDeHoy = fechaActual.format('DD-MM')
-
-  const [horarios, setHorarios] = useState([])
-  const [hora, setHora] = useState('')
   const [fecha, setFecha] = useState(diaDeHoy)
+
+  const [servicioSeleccionado, setServicioSeleccionado] = useState('')
+  const [hora, setHora] = useState('')
   const [loading, setLoading] = useState(false);
-  const [button, setButton] = useState('Hoy')
+  const [ step, setStep ] = useState(1)
 
-  const mostrarComponente = () => {
-    switch (button) {
-      case 'Hoy':
-        return <TurnosDeHoy setFecha={setFecha} setLoading={setLoading} />;
 
-      case 'Mañana':
-        return <TurnosDeMañana fecha={fecha} setFecha={setFecha} loading={loading} setLoading={setLoading} hora={hora} setHora={setHora} />;
-
-      case 'Otro dia':
-        return <TurnosDeOtrosDias loading={loading} setLoading={setLoading} fecha={fecha} setFecha={setFecha} setHora={setHora} />;
-
-      default: return <TurnosDeHoy setFecha={setFecha} setLoading={setLoading} />
-    }
+  const nextStep = () => {
+    setStep(step+1)
   }
 
-
-  useEffect(() => {
-    setLoading(true)
-    const unsubscribe = onSnapshot(doc(db, 'horarios', fecha), (doc) => {
-      setHorarios(doc.data()?.horariosLaborales ?? []);
-    });
-    setLoading(false)
-    return () => unsubscribe();
-  }, [fecha]);
-
-
+  const prevStep = () => {
+    setStep(step-1)
+  } 
+  const formularioStepToStep = () => {
+  switch (step) {
+    case 1:
+      return <Servicios step={step} setStep={setStep} nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+    case 2:
+      return <TurnosCont nextStep={nextStep} prevStep={prevStep} fecha={fecha} setFecha={setFecha} hora={hora} setHora={setHora} loading={loading} setLoading={setLoading} />
+    case 3:
+      return console.log('seccion3')
+    default:
+      return <Servicios nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+  }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
     // Comprobar si se rellenaron los campos
@@ -69,7 +57,6 @@ export default function Turnos() {
         disponible: false
       };
     }
-
     // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
     const docref = doc(db, 'Turnos', fecha)
     const turnoFirebase = await getDoc(docref)
@@ -77,8 +64,8 @@ export default function Turnos() {
     console.log(turnos)
     turnos.turnos.push({
       hora: hora,
-      cliente: 'Miguel Borja',
-      servicio: 'Corte y barba'
+      cliente: 'Lucas Beltran',
+      servicio: servicioSeleccionado
     })
 
     await updateDoc(horaSeleccionada, horas)
@@ -87,55 +74,22 @@ export default function Turnos() {
     console.log('Turno reservado')
   }
 
-
   return (
-    <main className='w-full md:w-[90%] mx-auto  block overflow-hidden'>
-      <section className='h-screen overflow-hidden'>
-      <h2 className='text-center mt-20 font-normal text-2xl text-gray-900 pb-2 uppercase'>¡Selecciona el servicio!</h2>
-        {/* <ServiciosPrueva/> */}
-      <Servicios />
-      </section>
-      <section className='w-full flex justify-center gap-x-10 my-16'>
-        {
-          dias.map(dia =>
-            <input
-              key={dia.id}
-              type="button"
-              value={dia.name}
-              className={`
-                p-3 uppercase cursor-pointer shadow font-semibold rounded transition-colors duration-500 
-                ${button === dia.name
-                  ? 'bg-blue-600 text-white '
-                  : 'bg-white text-blue-600 cursor-pointer'}
-                `}
-              onClick={() => setButton(dia.name)}
-            />
-          )
-        }
-      </section>
-
+    <main className='w-full min-h-screen mx-auto '>
       <form
-        className='flex flex-col items-center justify-between p-4 gap-y-10 w-full md:w-2/3 mx-auto '
+        className='flex flex-col justify-between p-4 gap-y-10 w-full mx-auto '
         onSubmit={handleSubmit}
       >
-        <div className='flex flex-col gap-y-7 items-center '>
-          {mostrarComponente()}
-          <ClipLoader loading={loading} />
-          {!loading ? <Horarios horarios={horarios} setHora={setHora} /> : ''}
-
-        </div>
-
-        <div id='elemento-id' className=''>
-          
-          <input
-            type="submit"
-            value="¡Confirmar turno!"
-            className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
-          />
-        </div>
-
+      
+        { formularioStepToStep() }
+ 
+        <input
+          type="submit"
+          value="¡Confirmar turno!"
+          className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
+        />
         {/*errores && Object.keys(errores).length > 0 && <Error>{Object.values(errores)}</Error>*/}
       </form>
-    </main>
+    </main >
   )
 }
