@@ -90,8 +90,11 @@ export default function Turnos() {
 
   return (
     <main className='w-full md:w-[90%] mx-auto  block overflow-hidden'>
-      <h2 className='text-center mt-20 font-semibold text-xl text-teal-400 '>Solicita tu turno ahora!</h2>
-
+      <section className='h-screen overflow-hidden'>
+      <h2 className='text-center mt-20 font-normal text-2xl text-gray-900 pb-2 uppercase'>¡Selecciona el servicio!</h2>
+        {/* <ServiciosPrueva/> */}
+      <Servicios />
+      </section>
       <section className='w-full flex justify-center gap-x-10 my-16'>
         {
           dias.map(dia =>
@@ -123,7 +126,7 @@ export default function Turnos() {
         </div>
 
         <div id='elemento-id' className=''>
-          <Servicios />
+          
           <input
             type="submit"
             value="¡Confirmar turno!"
