@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { SERVICIOS } from "../../utils/servicios";
 
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+import Button from "../button";
 
 
 export default function Servicios({ nextStep, servicioSeleccionado, setServicioSeleccionado }) {
@@ -14,15 +16,16 @@ export default function Servicios({ nextStep, servicioSeleccionado, setServicioS
   const handleServicio = (servicio) => {
     console.log('Seleccionaste este servicio')
     setServicioSeleccionado(servicio)
-    // setTimeout( () => {
-    //   nextStep()
-    // },300)
+    setTimeout( () => {
+      nextStep()
+    },300)
   }
 
   return (
 
-    <div className='w-[70%] sm:w-[90%] mx-auto py-10 overflow-x-hidden'>
-      <h2 className='text-center mt-20 font-normal text-2xl text-gray-900 pb-2 uppercase'>
+    <div className='w-[70%] sm:w-[90%] mx-auto overflow-x-hidden '>
+      
+      <h2 className='text-center  font-normal text-2xl text-gray-900 pb-2 uppercase'>
         ¡Selecciona el servicio!
       </h2>
       <div className='swiper-button-prev swiper-button'></div>

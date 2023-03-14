@@ -5,7 +5,7 @@ import { Link } from 'react-scroll';
 export default function HoraTurno({ horaTurno, setHora }) {
     const { hora, disponible } = horaTurno;
     return (
-        <div className='flex justify-between py-2 px-2 bg-white shadow-md rounded-md' >
+        <div className='flex justify-between py-2 px-2 bg-white shadow-md rounded-md ' >
             <div className={`${disponible ? 'text-green-600' : 'text-gray-400'} flex items-center gap-x-1 px-2`}>
                 <ion-icon name="time-outline"></ion-icon>
                 <p className='font-medium'>{hora}</p>

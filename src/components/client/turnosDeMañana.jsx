@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
-import { db } from '../../utils/firebaseconfig'
-import { doc, onSnapshot } from 'firebase/firestore'
+import { useEffect } from 'react'
 import { dias_Hoy_Y_Mañana } from '../../utils/maxDiasLaborales'
-import Horarios from './horarios'
+import { ClipLoader } from 'react-spinners'
+
 export default function TurnosDeMañana({  setLoading,  setFecha,  }) {
 
   // const [ horarios, setHorarios ] = useState()
@@ -15,9 +14,8 @@ export default function TurnosDeMañana({  setLoading,  setFecha,  }) {
   }, [])
   return (
     <div>
-      <h2 className='text-teal-400 text-xl text-center font-semibold py-4'>Turnos de Mañana</h2>
-      {/* { horarios !== null && <Horarios horarios={horarios} setHora={setHora} />}  */}
-      {/*!loading ? <Horarios horarios={horarios} setHora={setHora} /> : ''*/}
+      <h2 className='text-slate-800 text-lg text-center font-medium py-1 uppercase'>¡Turnos de Mañana!</h2>
+      {/*<ClipLoader/>*/}
     </div>
   )
 }

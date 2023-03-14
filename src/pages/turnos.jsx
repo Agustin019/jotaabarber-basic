@@ -6,6 +6,7 @@ import { db } from '../utils/firebaseconfig'
 import TurnosCont from '../components/client/turnosCont';
 import Servicios from '../components/client/servicios';
 
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 export default function Turnos() {
   const fechaActual = moment()
@@ -15,27 +16,26 @@ export default function Turnos() {
   const [servicioSeleccionado, setServicioSeleccionado] = useState('')
   const [hora, setHora] = useState('')
   const [loading, setLoading] = useState(false);
-  const [ step, setStep ] = useState(1)
-
-
+  const [step, setStep] = useState(1)
+  
   const nextStep = () => {
-    setStep(step+1)
+    setStep(step + 1)
   }
 
   const prevStep = () => {
-    setStep(step-1)
-  } 
-  const formularioStepToStep = () => {
-  switch (step) {
-    case 1:
-      return <Servicios step={step} setStep={setStep} nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
-    case 2:
-      return <TurnosCont nextStep={nextStep} prevStep={prevStep} fecha={fecha} setFecha={setFecha} hora={hora} setHora={setHora} loading={loading} setLoading={setLoading} />
-    case 3:
-      return console.log('seccion3')
-    default:
-      return <Servicios nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+    setStep(step - 1)
   }
+  const formularioStepToStep = () => {
+    switch (step) {
+      case 1:
+        return <Servicios step={step} setStep={setStep} nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+      case 2:
+        return <TurnosCont step={step} nextStep={nextStep} prevStep={prevStep} fecha={fecha} setFecha={setFecha} hora={hora} setHora={setHora} loading={loading} setLoading={setLoading} />
+      case 3:
+        return console.log('seccion3')
+      default:
+        return <Servicios nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+    }
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -75,19 +75,32 @@ export default function Turnos() {
   }
 
   return (
-    <main className='w-full min-h-screen mx-auto '>
+    <main className='w-full min-h-screen mx-auto h-screen'>
       <form
-        className='flex flex-col justify-between p-4 gap-y-10 w-full mx-auto '
+        className='flex flex-col justify-between p-4 gap-y-10 h-full mx-auto '
         onSubmit={handleSubmit}
       >
-      
-        { formularioStepToStep() }
- 
-        <input
+
+        <TransitionGroup>
+          <CSSTransition
+            key={step}
+            timeout={500}
+            classNames={{
+              enter:'fade-enter',
+              enterActive:'fade-enter-active',
+              exit:'fade-exit',
+              exitActive:'fade-exit-active'
+            }}
+          >
+  
+            {formularioStepToStep()}
+          </CSSTransition>
+        </TransitionGroup>
+        {/* <input
           type="submit"
           value="¡Confirmar turno!"
           className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
-        />
+        /> */}
         {/*errores && Object.keys(errores).length > 0 && <Error>{Object.values(errores)}</Error>*/}
       </form>
     </main >
