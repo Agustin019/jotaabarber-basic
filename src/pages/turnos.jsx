@@ -7,17 +7,22 @@ import TurnosCont from '../components/client/turnosCont';
 import Servicios from '../components/client/servicios';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Modal from '../components/client/modal';
 
 export default function Turnos() {
   const fechaActual = moment()
   const diaDeHoy = fechaActual.format('DD-MM')
-  const [fecha, setFecha] = useState(diaDeHoy)
 
+  const [fecha, setFecha] = useState(diaDeHoy)
   const [servicioSeleccionado, setServicioSeleccionado] = useState('')
   const [hora, setHora] = useState('')
-  const [loading, setLoading] = useState(false);
   const [step, setStep] = useState(1)
-  
+
+  const [loading, setLoading] = useState(false);
+
+  const [modal, setModal] = useState(false)
+
+
   const nextStep = () => {
     setStep(step + 1)
   }
@@ -30,15 +35,15 @@ export default function Turnos() {
       case 1:
         return <Servicios step={step} setStep={setStep} nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
       case 2:
-        return <TurnosCont step={step} nextStep={nextStep} prevStep={prevStep} fecha={fecha} setFecha={setFecha} hora={hora} setHora={setHora} loading={loading} setLoading={setLoading} />
+        return <TurnosCont setModal={setModal} step={step} nextStep={nextStep} prevStep={prevStep} fecha={fecha} setFecha={setFecha} hora={hora} setHora={setHora} loading={loading} setLoading={setLoading} />
       case 3:
         return console.log('seccion3')
       default:
         return <Servicios nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
     }
   }
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const handleSubmit = async () => {
+    
     // Comprobar si se rellenaron los campos
     if (hora === '') {
       console.log('Rellena los campos')
@@ -76,23 +81,34 @@ export default function Turnos() {
 
   return (
     <main className='w-full min-h-screen mx-auto h-screen'>
+
       <form
         className='flex flex-col justify-between p-4 gap-y-10 h-full mx-auto '
         onSubmit={handleSubmit}
-      >
+        >
+        {
+          modal && 
+              <Modal
+                setModal={setModal}
+                fecha={fecha}
+                hora={hora}
+                servicioSeleccionado={servicioSeleccionado}
+                handleSubmit={handleSubmit}
+              />
+        }
 
         <TransitionGroup>
           <CSSTransition
             key={step}
             timeout={500}
             classNames={{
-              enter:'fade-enter',
-              enterActive:'fade-enter-active',
-              exit:'fade-exit',
-              exitActive:'fade-exit-active'
+              enter: 'fade-enter',
+              enterActive: 'fade-enter-active',
+              exit: 'fade-exit',
+              exitActive: 'fade-exit-active'
             }}
           >
-  
+
             {formularioStepToStep()}
           </CSSTransition>
         </TransitionGroup>

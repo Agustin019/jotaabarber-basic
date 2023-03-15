@@ -1,13 +1,5 @@
 export const horariosLaborales = [
     {
-        hora:'9:00',
-        disponible:true
-    },
-    {
-        hora:'9:30',
-        disponible:true
-    },
-    {
         hora:'10:00',
         disponible:true
     },
@@ -21,30 +13,6 @@ export const horariosLaborales = [
     },
     {
         hora:'11:30',
-        disponible:true
-    },
-    {
-        hora:'12:00',
-        disponible:true
-    },
-    {
-        hora:'12:30',
-        disponible:true
-    },
-    {
-        hora:'13:00',
-        disponible:true
-    },
-    {
-        hora:'13:30',
-        disponible:true
-    },
-    {
-        hora:'14:00',
-        disponible:true
-    },
-    {
-        hora:'14:30',
         disponible:true
     },
     {

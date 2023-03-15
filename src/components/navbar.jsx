@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import Logo from '../../public/assests/barberpool.png'
+import Logo from '../assests/barberpool.png'
 
 export default function Navbar() {
 

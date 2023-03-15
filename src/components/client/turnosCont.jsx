@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import moment from 'moment';
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { dias } from '../../utils/helpers'
@@ -9,7 +8,6 @@ import TurnosDeHoy from './turnosDeHoy';
 import TurnosDeMañana from './turnosDeMañana';
 import TurnosDeOtrosDias from './turnosDeOtrosDias';
 import { ClipLoader } from 'react-spinners';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import Horarios from './horarios';
 
@@ -23,6 +21,7 @@ export default function TurnosCont({
     loading,
     setLoading,
     step,
+    setModal,
     prevStep
 }) {
 
@@ -56,7 +55,7 @@ export default function TurnosCont({
     }
     return (
         <section className='w-[90%] md:w-[80%] mx-auto min-h-screen relative'>
-            <div className="absolute right-0 top-40 ">
+            <div className="absolute left-0 top-32 sm:top-40 ">
                 <div
                  className='
                  flex justify-center items-center gap-x-1 p-2 
@@ -82,7 +81,7 @@ export default function TurnosCont({
             <div className='flex flex-col gap-y-7 '>
                 {mostrarComponente()}
                 <ClipLoader loading={loading} />
-                {!loading ? <Horarios horarios={horarios} setHora={setHora} /> : ''}
+                {!loading ? <Horarios setModal={setModal} horarios={horarios} setHora={setHora} /> : ''}
 
             </div>
 
