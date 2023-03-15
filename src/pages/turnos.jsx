@@ -112,12 +112,7 @@ export default function Turnos() {
             {formularioStepToStep()}
           </CSSTransition>
         </TransitionGroup>
-        {/* <input
-          type="submit"
-          value="¡Confirmar turno!"
-          className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
-        /> */}
-        {/*errores && Object.keys(errores).length > 0 && <Error>{Object.values(errores)}</Error>*/}
+       
       </form>
     </main >
   )

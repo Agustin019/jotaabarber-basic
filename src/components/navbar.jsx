@@ -7,7 +7,7 @@ export default function Navbar() {
   const location = useLocation()
 
   return (
-    <div className='flex justify-around items-center bg-gray-900'>
+    <div className='flex justify-around items-center bg-black'>
       <div className='flex gap-x-2 items-center'>
         <img className='w-[5rem]' src='https://i.ibb.co/XX7rF46/image.png' alt="Logo" />
   
