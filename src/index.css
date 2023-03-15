@@ -1,3 +1,62 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+swiper {
+  @apply w-full h-full
+}
+
+.swiper-slide {
+  @apply text-center text-lg bg-transparent flex justify-center items-center
+}
+
+.swiper-slide img {
+  @apply block w-full object-cover
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply absolute z-10 bg-[#e7e4e4] p-8 rounded-[50%] shadow-md shadow-gray-400
+}
+
+@media screen and (min-width: 480px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 780px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    padding: 1.5rem;
+  }
+}
+.swiper-button-next {
+  right: 10px;
+}
+
+.swiper-button-prev {
+  left: 10px;
+}
+
+
+
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-out;
+}

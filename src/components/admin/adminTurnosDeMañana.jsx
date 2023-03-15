@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { diasDisponibles } from "../../utils/maxDiasLaborales";
+import { dias_Hoy_Y_Mañana } from "../../utils/maxDiasLaborales";
 import { doc, getDoc } from 'firebase/firestore'
 import { db } from "../../utils/firebaseconfig";
 import { ClipLoader } from "react-spinners";
@@ -8,8 +8,9 @@ import Turno from "./turno";
 export default function TurnosDeMañana({ loading, setLoading }) {
 
     const [turnos, setTurnos] = useState([])
-    const diaDeMañana = diasDisponibles[1]
+    const diaDeMañana = dias_Hoy_Y_Mañana[1]
     console.log(diaDeMañana)
+    
 
     useEffect(() => {
         const obtenerTurnosDelDiaSiguiente = async () => {

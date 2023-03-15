@@ -1,39 +1,49 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import Calendar from '../components/calendar'
+import { useState } from 'react';
 import moment from 'moment';
-import { getDoc, doc, updateDoc, onSnapshot } from 'firebase/firestore'
+import { getDoc, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../utils/firebaseconfig'
-import { ClipLoader } from 'react-spinners';
-import { obtenerHorasDisponibles } from '../utils/calendarFunctions';
-import Horarios from '../components/client/horarios';
 
+import TurnosCont from '../components/client/turnosCont';
+import Servicios from '../components/client/servicios';
+
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Modal from '../components/client/modal';
 
 export default function Turnos() {
-
   const fechaActual = moment()
   const diaDeHoy = fechaActual.format('DD-MM')
 
-  const [horarios, setHorarios] = useState([])
-  const [hora, setHora] = useState('')
   const [fecha, setFecha] = useState(diaDeHoy)
-  let [loading, setLoading] = useState(true);
+  const [servicioSeleccionado, setServicioSeleccionado] = useState('')
+  const [hora, setHora] = useState('')
+  const [step, setStep] = useState(1)
 
- // const horasDisponibles = obtenerHorasDisponibles(horarios)
-  useEffect(() => {
-    const unsub = onSnapshot(doc(db, "horarios", fecha), (doc) => {
-      const newData = doc.data().horariosLaborales
-      setHorarios(newData)
-      setLoading(false)
-    });
+  const [loading, setLoading] = useState(false);
 
-    return () => {
-      unsub();
-    };
-  }, [])
+  const [modal, setModal] = useState(false)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+
+  const nextStep = () => {
+    setStep(step + 1)
+  }
+
+  const prevStep = () => {
+    setStep(step - 1)
+  }
+  const formularioStepToStep = () => {
+    switch (step) {
+      case 1:
+        return <Servicios step={step} setStep={setStep} nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+      case 2:
+        return <TurnosCont setModal={setModal} step={step} nextStep={nextStep} prevStep={prevStep} fecha={fecha} setFecha={setFecha} hora={hora} setHora={setHora} loading={loading} setLoading={setLoading} />
+      case 3:
+        return console.log('seccion3')
+      default:
+        return <Servicios nextStep={nextStep} prevStep={prevStep} servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+    }
+  }
+  const handleSubmit = async () => {
+    
     // Comprobar si se rellenaron los campos
     if (hora === '') {
       console.log('Rellena los campos')
@@ -43,6 +53,8 @@ export default function Turnos() {
     const horaSeleccionada = doc(db, 'horarios', fecha)
     const horaFirebase = await getDoc(horaSeleccionada)
     const horas = horaFirebase.data()
+    console.log(fecha)
+    console.log(horas)
     const encontrarHora = horas.horariosLaborales.findIndex(obj => obj.hora === hora)
     if (encontrarHora !== -1) {
       horas.horariosLaborales[encontrarHora] = {
@@ -50,15 +62,15 @@ export default function Turnos() {
         disponible: false
       };
     }
-
     // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
     const docref = doc(db, 'Turnos', fecha)
     const turnoFirebase = await getDoc(docref)
     const turnos = turnoFirebase.data()
+    console.log(turnos)
     turnos.turnos.push({
       hora: hora,
-      cliente: 'Lionel Messi',
-      servicio: 'Corte y barba'
+      cliente: 'Lucas Beltran',
+      servicio: servicioSeleccionado
     })
 
     await updateDoc(horaSeleccionada, horas)
@@ -68,45 +80,45 @@ export default function Turnos() {
   }
 
   return (
-    <main className='w-full md:w-[90%] mx-auto '>
-      <h2 className='text-center mt-20 font-semibold text-xl text-teal-400 '>Solicita tu turno ahora!</h2>
-      <form
-        className='flex flex-col items-center justify-between p-4 gap-y-10 w-full md:w-2/3 mx-auto'
-        onSubmit={handleSubmit}
-      >
-        <div className='flex flex-col gap-y-7 items-center '>
-          <Calendar
-            horarios={horarios}
-            setHorarios={setHorarios}
-            fecha={fecha}
-            setFecha={setFecha}
-            hora={hora}
-            setHora={setHora}
-            loading={loading}
-            setLoading={setLoading}
-          />
-          { /*!loading && <p className={`text-sm font-medium ${horasDisponibles.length < 4 ? 'text-yellow-400' : 'text-green-500'}`}>{horasDisponibles.length < 4 ? '¡Ultimos Lugares!' : 'Hay lugares'}</p> */}
-          <ClipLoader loading={loading} />
-         {!loading && <Horarios horarios={horarios} setHora={setHora}/>}
-        </div>
-        {
-          !loading ?
-            (
-              <>
-                <div id='elemento-id' className='h-screen'>
-                  <p className='text-center mt-20 text-xl font-bold'>Seleccionar servicio</p>
-                </div>
+    <main className='w-full min-h-screen mx-auto h-screen'>
 
-                <input
-                  type="submit"
-                  value="¡Confirmar turno!"
-                  className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
-                />
-              </>
-            ) : ''
+      <form
+        className='flex flex-col justify-between p-4 gap-y-10 h-full mx-auto '
+        onSubmit={handleSubmit}
+        >
+        {
+          modal && 
+              <Modal
+                setModal={setModal}
+                fecha={fecha}
+                hora={hora}
+                servicioSeleccionado={servicioSeleccionado}
+                handleSubmit={handleSubmit}
+              />
         }
+
+        <TransitionGroup>
+          <CSSTransition
+            key={step}
+            timeout={500}
+            classNames={{
+              enter: 'fade-enter',
+              enterActive: 'fade-enter-active',
+              exit: 'fade-exit',
+              exitActive: 'fade-exit-active'
+            }}
+          >
+
+            {formularioStepToStep()}
+          </CSSTransition>
+        </TransitionGroup>
+        {/* <input
+          type="submit"
+          value="¡Confirmar turno!"
+          className='py-2 px-3 bg-slate-800 text-white font-semibold shadow hover:bg-slate-900 transition-all duration-300'
+        /> */}
         {/*errores && Object.keys(errores).length > 0 && <Error>{Object.values(errores)}</Error>*/}
       </form>
-    </main>
+    </main >
   )
 }
