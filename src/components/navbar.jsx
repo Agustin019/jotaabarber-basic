@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import Logo from '../assests/barberpool.png'
+//import Logo from ''
 
 export default function Navbar() {
 
   const location = useLocation()
 
   return (
-    <div className='flex justify-around items-center'>
+    <div className='flex justify-around items-center bg-gray-900'>
       <div className='flex gap-x-2 items-center'>
-        <img className='h-12 w-8' src={Logo} alt="Logo" />
-        <p className='text-xl font-bold uppercase'>Jota Barber</p>
+        <img className='w-[5rem]' src='https://i.ibb.co/XX7rF46/image.png' alt="Logo" />
+  
       </div>
-      <nav className='flex gap-x-3'>
+      <nav className='flex gap-x-3 text-white font-semibold'>
         {
           location.pathname === '/' || location.pathname === '/turnos' || location.pathname === '/usuario' || location.pathname === '/nosotros'
             ? (

@@ -7,7 +7,7 @@ export default function Horarios({ horarios, setHora, setModal }) {
    
 
     return (
-        <div className='w-full grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-5'>
+        <div className='w-full grid grid-cols-2 sm:grid-cols-3 gap-1 sm:gap-5'>
             {
         horarios?.length
                 ? horarios.map(horaTurno => (

@@ -16,7 +16,7 @@ swiper {
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply absolute z-10 bg-[#e7e4e4] p-8 rounded-[50%] shadow-md shadow-gray-400
+  @apply absolute z-10 bg-white p-8 rounded-[50%] shadow-md shadow-gray-400 
 }
 
 @media screen and (min-width: 480px) {
