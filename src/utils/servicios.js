@@ -1,4 +1,3 @@
-import image from '../assests/corte.jpg'
 export const SERVICIOS = [
     {
         id:1,

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Carousel servicios */
 swiper {
   @apply w-full h-full
 }
@@ -40,9 +42,7 @@ swiper {
   left: 10px;
 }
 
-
-
-
+/*Transicion de componentes en turnos*/
 .fade-enter {
   opacity: 0;
 }
@@ -59,4 +59,27 @@ swiper {
 .fade-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-out;
+}
+
+/*Menu Hamburguesa Animado*/
+
+.bars__menu{
+  @apply w-[30px] h-[30px] cursor-pointer  
+}
+
+.bars__menu span{
+  @apply block w-full h-[2px] bg-yellow-300 shadow-sm shadow-yellow-300 mt-[6px] origin-bottom-left  transition-all duration-500
+} 
+.bars__menu .line1__bars-menu{
+  @apply rotate-45 translate-x-[-2px] translate-y-[-3px]   
+} 
+.bars__menu .line2__bars-menu{
+  @apply ml-[-30px] opacity-0
+} 
+.bars__menu .line3__bars-menu{
+  @apply rotate-[-45deg] translate-x-[-2px] translate-y-[2px]
+}  
+ 
+.icons__menu {
+  @apply flex justify-center items-center  rounded-full shadow-lg shadow-yellow-400 text-yellow-400 text-2xl  h-12 w-12  cursor-pointer  ease-in duration-300 hover:bg-yellow-400 hover:text-black hover:shadow-black
 }
