@@ -54,7 +54,7 @@ export default function TurnosCont({
         }
     }
     return (
-        <section className='w-[90%] md:w-[80%] mx-auto min-h-screen relative'>
+        <section className='w-full md:w-[80%] mx-auto min-h-screen relative'>
             <div className="absolute left-0 top-32 sm:top-40 ">
                 <div
                  className='

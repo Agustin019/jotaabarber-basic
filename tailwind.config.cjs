@@ -5,7 +5,12 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+    
+      backgroundImage:{
+        'inicio':'url(https://i.ibb.co/NZ461Hn/nathon-oski-EW-rqo-Sd-Des-unsplash.jpg)'
+      },
+    },
   },
   plugins: [],
 }

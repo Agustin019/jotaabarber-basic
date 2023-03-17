@@ -12,7 +12,7 @@ export default function HoraTurno({ horaTurno, setHora, setModal }) {
                     type="button"
                     value={disponible ? '¡Reservar!' : 'Reservado'}
                     onClick={disponible ? () =>  {setHora(hora), setModal(true) }  : null}
-                    className={`py-1 px-1 sm:px-2 font-medium text-base text-white rounded-md
+                    className={`py-1 px-[2px] sm:px-2 font-medium text-base text-white rounded-md
                     ${disponible 
                     ? 'bg-green-500 cursor-pointer' 
                     : 'bg-slate-400'}`}

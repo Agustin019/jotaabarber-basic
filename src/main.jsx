@@ -7,6 +7,7 @@ import Nosotros from './pages/nosotros'
 import Turnos from './pages/turnos'
 import Agenda from './pages/agenda'
 import AdministrarTurnos from './pages/administrarTurnos'
+import Inicio from './pages/inicio'
 
 
 
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         index:true,
-        element: <h1>Inicio con outlet</h1>
+        element: <Inicio/>
       },
       {
         path: '/nosotros',

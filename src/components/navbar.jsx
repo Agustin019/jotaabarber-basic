@@ -63,12 +63,12 @@ export default function Navbar() {
           />
         </div>
       </div>
-      <div className={nav ? 'md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-500 bg-black/70 z-20' : 'z-20'}>
+      <div className={nav ? 'md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-300 bg-black/70 z-20' : 'z-30'}>
         <div
           className={
             nav
               ? 'fixed left-0 top-0 w-[75%] sm:w-[65%] md:w-[45%] h-screen bg-[#111111] p-10 ease-in duration-500 z-20'
-              : 'fixed left-[-100%] top-0 p-10 ease-in transition-all duration-500'
+              : 'fixed left-[-100%] top-0 p-10 ease-in transition-all duration-500 z-20' 
           }
         >
           <div >
@@ -80,7 +80,7 @@ export default function Navbar() {
             </div>
           </div>
           <div className='py-4 dlex flex-col'>
-            <ul className='uppercase '>
+            <ul className='uppercase ' onClick={handleNav}>
               <Link to={'/'}> <li className='py-4 text-sm text-white'>Inicio</li> </Link>
               <Link to={'/turnos'}> <li className='py-4 text-sm text-white'>Nuevo Turno</li> </Link>
               <Link to={'/nosotros'}> <li className='py-4 text-sm text-white'>Nosotros</li> </Link>

@@ -22,7 +22,6 @@ export default function Turnos() {
 
   const [modal, setModal] = useState(false)
 
-
   const nextStep = () => {
     setStep(step + 1)
   }

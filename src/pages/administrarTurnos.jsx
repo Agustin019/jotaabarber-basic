@@ -92,7 +92,7 @@ export default function AdministrarTurnos() {
           </div>
         </article>
         <article className='py-10'>
-          <h2 className='py-8 text-center text-teal-400 text-xl font-bold'>Turnos del dia: $fecha</h2>
+          <h2 className='py-8 text-center text-teal-400 text-xl font-bold'>Turnos del dia: <span>{selectedDate.format('DD[/]MM')}</span></h2>
           {
             horarios.map(hora =>
               <AdministrarTurno key={hora.hora} horas={hora} cambiarEstadoDeTurno={cambiarEstadoDeTurno} />
