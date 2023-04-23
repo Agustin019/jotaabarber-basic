@@ -92,7 +92,7 @@
 }
 
 .bars__menu span{
-  @apply block w-full h-[2px] bg-yellow-300 shadow-sm shadow-yellow-300 mt-[6px] origin-bottom-left  transition-all duration-500
+  @apply block w-full h-[2px] bg-[#FDFFFC]  mt-[6px] origin-bottom-left  transition-all duration-500
 } 
 .bars__menu .line1__bars-menu{
   @apply rotate-45 translate-x-[-2px] translate-y-[-3px]   

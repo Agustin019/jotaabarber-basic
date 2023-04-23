@@ -8,6 +8,7 @@ import Turnos from './pages/turnos'
 import Agenda from './pages/agenda'
 import AdministrarTurnos from './pages/administrarTurnos'
 import Inicio from './pages/inicio'
+import InicioAdmin from './pages/inicioAdmin'
 
 
 
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        element: <h2 className='text-xl font-semibold text-center mt-20 text-teal-700 '>Inicio admin</h2>
+        element: <InicioAdmin/>
       },
       {
         path:'/admin/agenda',
