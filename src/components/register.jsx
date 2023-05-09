@@ -1,8 +1,11 @@
 import React from 'react'
 
-export default function Register({ setEmailRegister, setPasswordRegister }) {
+export default function Register({ setEmailRegister, setPasswordRegister, handleRegister }) {
+
     return (
-        <form>
+        <form 
+            onSubmit={handleRegister}
+        >
             <div className='mb-4'>
                 <input
                     type="text"
