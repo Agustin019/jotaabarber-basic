@@ -12,6 +12,7 @@ import InicioAdmin from './pages/inicioAdmin'
 
 import { AuthProvider } from './context/authContext'
 import MiCuenta from './pages/miCuenta'
+import Usuario from './pages/client/usuario'
 
 
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path:'/micuenta',
         element:<MiCuenta/>
+      },
+      {
+        path:'/usuario',
+        element:<Usuario/>
       }
     ]
   },

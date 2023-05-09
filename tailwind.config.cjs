@@ -10,6 +10,9 @@ module.exports = {
       backgroundImage:{
         'inicio':'url(https://i.ibb.co/NZ461Hn/nathon-oski-EW-rqo-Sd-Des-unsplash.jpg)'
       },
+      fontFamily:{
+        monsterrat:[ 'Montserrat', 'sans-serif']
+      },
     },
   },
   plugins: [],
