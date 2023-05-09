@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import Login from '../components/login'
 import Register from '../components/register'
 import { useAuth } from '../context/authContext'
-import { subMonths } from 'date-fns'
 
 export default function MiCuenta() {
   // Hooks Registro
@@ -34,6 +33,10 @@ export default function MiCuenta() {
     auth.loginWithGoogle()
   }
 
+  const handleLogOut = () => {
+    auth.logOut()
+  }
+
   return (
     <main className='w-[90%] mx-auto'>
       <section className='w-full mt-20'>
@@ -47,9 +50,10 @@ export default function MiCuenta() {
           <button onClick={hanldeGoogle} className='w-full bg-white border border-zinc-800 rounded-md p-2 my-5'>Iniciar sesion con Google</button>
           {
             form === 'login'
-              ? <Login setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin}/>
-              : <Register setEmailRegister={setEmailRegister} setPasswordRegister={setPasswordRegister} handleRegister={handleRegister} />
+            ? <Login setEmail={setEmail} setPassword={setPassword} handleLogin={handleLogin}/>
+            : <Register setEmailRegister={setEmailRegister} setPasswordRegister={setPasswordRegister} handleRegister={handleRegister} />
           }
+          <button onClick={handleLogOut} className='w-full bg-white border border-zinc-800 rounded-md p-2 my-5'>Log Out</button>
         </article>
       </section>
     </main>
