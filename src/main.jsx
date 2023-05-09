@@ -10,51 +10,60 @@ import AdministrarTurnos from './pages/administrarTurnos'
 import Inicio from './pages/inicio'
 import InicioAdmin from './pages/inicioAdmin'
 
+import { AuthProvider } from './context/authContext'
+import MiCuenta from './pages/miCuenta'
+
 
 
 const router = createBrowserRouter([
 
   {
     path: '/',
-    element: <Layout/>,
+    element: <Layout />,
     children: [
       {
-        index:true,
-        element: <Inicio/>
+        index: true,
+        element: <Inicio />
       },
       {
         path: '/nosotros',
-        element: <Nosotros/>
+        element: <Nosotros />
       },
       {
         path: '/turnos',
-        element: <Turnos/>
+        element: <Turnos />
+      },
+      {
+        path:'/micuenta',
+        element:<MiCuenta/>
       }
     ]
   },
   {
-    path:'/admin',
-    element:<Layout/>,
-    children:[
+    path: '/admin',
+    element: <Layout />,
+    children: [
       {
-        index:true,
-        element: <InicioAdmin/>
+        index: true,
+        element: <InicioAdmin />
       },
       {
-        path:'/admin/agenda',
-        element: <Agenda/>
+        path: '/admin/agenda',
+        element: <Agenda />
       },
       {
-        path:'/admin/administrarturnos',
-        element: <AdministrarTurnos/>
+        path: '/admin/administrarturnos',
+        element: <AdministrarTurnos />
       },
     ]
   }
-  
+
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>,
 )
