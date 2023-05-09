@@ -1,34 +1,47 @@
+import { GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../utils/firebaseconfig";
-import { useContext, createContext } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import { createContext, useContext } from "react";
 
 const authContext = createContext()
 
-export const useAuth = () => {
+export const useAuth = () =>{
     const context = useContext(authContext)
-    if (!context) {
-        console.log('Error with auth context')
+
+    if(!context){
+        console.log('Error en el contexto de autenticacion')
     }
     return context
-}
+} 
 
 export const AuthProvider = ({ children }) => {
 
-    const register = async (email,password) => {
-        const response = await createUserWithEmailAndPassword(email,password)
-        console.log(response)
-    }
     const login = async (email,password) => {
-        const response = await signInWithEmailAndPassword(email,password)
+        const response = await signInWithEmailAndPassword(auth, email, password) 
         console.log(response)
     }
-    return (
+
+    const register = async (email,password) => {
+        const response = createUserWithEmailAndPassword(auth, email, password)
+        console.log(response)
+    }
+
+    const loginWithGoogle = async () => {
+        const responseGoogle = new GoogleAuthProvider()
+        return await signInWithPopup(auth, responseGoogle)
+    }
+
+    const logOut = async () => {
+        const response = await signOut(auth)
+        console.log(response)
+    }
+    return(
         <authContext.Provider
             value={{
-                register,
                 login,
-                
-            }}
+                register,
+                loginWithGoogle,
+                logOut
+            }}    
         >
             {children}
         </authContext.Provider>

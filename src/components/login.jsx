@@ -1,12 +1,15 @@
 import React from 'react'
 
-export default function Login() {
+export default function Login({ setEmail, setPassword ,handleLogin }) {
     return (
-        <form>
+        <form
+            onSubmit={handleLogin}
+        >
             <div className='mb-4'>
                 <input
                     type="text"
                     placeholder='E-mail'
+                    onChange={e => setEmail(e.target.value)}
                     className='p-2 w-full bg-slate-200'
                 />
             </div>
@@ -14,6 +17,7 @@ export default function Login() {
                 <input
                     type="password"
                     placeholder='Contraseña'
+                    onChange={e => setPassword(e.target.value)}
                     className='p-2 w-full  bg-slate-200'
                 />
             </div>
