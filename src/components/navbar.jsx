@@ -56,11 +56,11 @@ export default function Navbar() {
             <span className={nav ? 'line2__bars-menu' : ''}></span>
             <span className={nav ? 'line3__bars-menu' : ''}></span>
           </div>
-          <input
-            type="button"
-            value="Iniciar sesion"
-            className='py-1 px-2 rounded-xl bg-yellow-400 font-semibold hidden md:block'
-          />
+          <Link
+            to='/micuenta'
+            className='py-1 px-2 rounded-xl bg-yellow-400 font-semibold hidden md:block cursor-pointer'
+          >Mi Cuenta
+          </Link>
         </div>
       </div>
       <div className={nav ? 'md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-300 bg-black/70 z-20' : 'z-30'}>
@@ -85,11 +85,11 @@ export default function Navbar() {
               <Link to={'/turnos'}> <li className='py-4 text-sm text-white'>Nuevo Turno</li> </Link>
               <Link to={'/nosotros'}> <li className='py-4 text-sm text-white'>Nosotros</li> </Link>
             </ul>
-            <input
-              type="button"
-              value="Iniciar sesion"
-              className='py-1 px-2 rounded-xl bg-yellow-400 font-semibold md:hidden '
-            />
+            <Link
+            to='/micuenta'
+            className='py-1 px-2 rounded-xl bg-yellow-400 font-semibold hidden md:block cursor-pointer'
+          >Mi Cuenta
+          </Link>
             <div className="pt-12">
               <p className='text-sm sm:text-lg uppercase tracking-widest text-yellow-200'>¡Sigamos conectados!</p>
               <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
