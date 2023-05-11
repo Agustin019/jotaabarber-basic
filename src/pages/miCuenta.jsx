@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Login from '../components/login'
 import Register from '../components/register'
 import { useAuth } from '../context/authContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function MiCuenta() {
   // Hooks Registro
@@ -16,21 +17,26 @@ export default function MiCuenta() {
   const [form, setForm] = useState('login')
 
   const auth = useAuth()
+  console.log(auth)
+  const navigate = useNavigate()
   const { displayName } = auth.user
 
   console.log(displayName)
 
-  const handleLogin = e => {
+  const handleLogin = async e => {
     e.preventDefault()
-    auth.login(email, password)
+    await auth.login(email, password)
+    navigate('/usuario')
   }
-  const handleRegister = e => {
+  const handleRegister = async e => {
     e.preventDefault()
-    auth.register(emailRegister, passwordRegister)
+    await auth.register(emailRegister, passwordRegister)
+    navigate('/usuario')
   }
-  const hanldeGoogle = (e) => {
+  const hanldeGoogle = async (e) => {
     e.preventDefault()
-    auth.loginWithGoogle()
+     await auth.loginWithGoogle()
+    navigate('/usuario')
   }
 
   const handleLogOut = () => {
