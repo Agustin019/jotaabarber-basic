@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import moment from 'moment';
 import 'moment/locale/es'
-import { diasDisponibles } from '../utils/maxDiasLaborales'
+import { diasDisponibles } from '../../utils/maxDiasLaborales'
 
 
 import TextField from '@mui/material/TextField';
@@ -13,9 +13,9 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 
-import { horariosLaborales } from '../utils/horariosLaborales';
-import { db } from '../utils/firebaseconfig';
-import { maxDate3, shouldDisableDate } from '../utils/calendarFunctions';
+import { horariosLaborales } from '../../utils/horariosLaborales';
+import { db } from '../../utils/firebaseconfig';
+import { maxDate3, shouldDisableDate } from '../../utils/calendarFunctions';
 
 
 export default function Calendar({ selectedDate, handleDateChange, setFecha }) {

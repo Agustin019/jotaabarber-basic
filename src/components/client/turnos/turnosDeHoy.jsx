@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { dias_Hoy_Y_Mañana } from '../../utils/maxDiasLaborales'
+import { dias_Hoy_Y_Mañana } from '../../../utils/maxDiasLaborales'
 
 export default function TurnosDeHoy({  setLoading, setFecha, }) {
   const diaActual = dias_Hoy_Y_Mañana[0]

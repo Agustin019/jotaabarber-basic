@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { doc, onSnapshot } from 'firebase/firestore'
-import { db } from '../../utils/firebaseconfig'
-import { dias } from '../../utils/helpers'
-import Button from '../button';
+import { db } from '../../../utils/firebaseconfig'
+import { dias } from '../../../utils/helpers'
+import Button from '../../utils/button';
 
 import TurnosDeHoy from './turnosDeHoy';
 import TurnosDeMañana from './turnosDeMañana';

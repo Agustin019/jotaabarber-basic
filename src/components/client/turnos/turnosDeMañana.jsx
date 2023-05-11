@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { dias_Hoy_Y_Mañana } from '../../utils/maxDiasLaborales'
+import { dias_Hoy_Y_Mañana } from '../../../utils/maxDiasLaborales'
 import { ClipLoader } from 'react-spinners'
 
 export default function TurnosDeMañana({  setLoading,  setFecha,  }) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import Calendar from "../calendar"
+import Calendar from "../../utils/calendar"
 import moment from "moment"
 
 export default function TurnosDeOtrosDias({
