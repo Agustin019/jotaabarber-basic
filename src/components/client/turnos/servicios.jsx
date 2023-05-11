@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { SERVICIOS } from "../../utils/servicios";
+import { SERVICIOS } from "../../../utils/servicios";
 
 
 // Import Swiper React components
@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
-import Button from "../button";
+import Button from "../../utils/button";
 
 
 export default function Servicios({ nextStep, servicioSeleccionado, setServicioSeleccionado }) {
