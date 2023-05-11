@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/layout'
 import Nosotros from './pages/nosotros'
 import Turnos from './pages/turnos'
@@ -16,7 +16,7 @@ import Usuario from './pages/client/usuario'
 
 function App(){
 
-    const router = createBrowserRouter([
+  /*  const router = createBrowserRouter([
         
         {
             path: '/',
@@ -63,14 +63,24 @@ function App(){
             ]
         }
 
-    ])
+    ])*/
 
     return (
-        <React.StrictMode>
-            <AuthProvider>
-                <RouterProvider router={router} />
-            </AuthProvider>
-        </React.StrictMode>
+        <BrowserRouter>
+            <Layout/>
+            <Routes>
+                //Cliente
+                <Route path='/' element={<Inicio/>}/>
+                <Route path='/turnos' element={<Turnos/>}/>
+                <Route path='/micuenta' element={<MiCuenta/>}/>
+                <Route path='/usuario' element={<Usuario/>}/>
+
+                //Admin
+                <Route path='/admin' element={<InicioAdmin/>}/>
+                <Route path='/admin/agenda' element={<Agenda/>}/>
+                <Route path='/admin/administrarturnos' element={<AdministrarTurnos/>}/>
+            </Routes>
+        </BrowserRouter>
   )
 }
 
