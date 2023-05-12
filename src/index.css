@@ -85,6 +85,50 @@
   transition: opacity 500ms ease-out;
 }
 
+/* Enlaces del navbar */
+.navegacion .link{
+  @apply text-white inline-block p-2 relative text-lg
+}
+.navegacion .link:hover{
+  @apply text-yellow-500 duration-300
+}
+
+.navegacion .link::after {
+  width: 0;
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #F7B32B;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+} 
+
+.navegacion .link:hover::after {
+  @apply w-full left-0 
+}
+
+.navegacion .activo {
+  @apply inline-block py-2 px-[10px] relative text-yellow-500
+}
+
+.navegacion .activo::after {
+  background: none repeat scroll 0 0 transparent;
+  color:#F7B32B;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 0;
+  position: absolute;
+  background: #F7B32B;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 100%;
+}
+
+
 /*Menu Hamburguesa Animado*/
 
 .bars__menu{

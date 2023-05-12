@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Login from '../components/client/cuenta/login'
-import Register from '../components/client/cuenta/register'
-import { useAuth } from '../context/authContext'
+import Login from '../../components/client/cuenta/login'
+import Register from '../../components/client/cuenta/register'
+import { useAuth } from '../../context/authContext'
 import { useNavigate } from 'react-router-dom'
 
 export default function MiCuenta() {

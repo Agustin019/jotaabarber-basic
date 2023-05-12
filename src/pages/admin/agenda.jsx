@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import TurnosDeHoy from '../components/admin/adminTurnosDeHoy'
-import TurnosDeOtrosDias from '../components/admin/adminTurnosDeOtrosDias'
+import TurnosDeHoy from '../../components/admin/adminTurnosDeHoy'
+import TurnosDeOtrosDias from '../../components/admin/adminTurnosDeOtrosDias'
 import { ClipLoader } from 'react-spinners'
-import TurnosDeMañana from '../components/admin/adminTurnosDeMañana'
-import { dias } from '../utils/helpers'
+import TurnosDeMañana from '../../components/admin/adminTurnosDeMañana'
+import { dias } from '../../utils/helpers'
 
 function Agenda() {
 
