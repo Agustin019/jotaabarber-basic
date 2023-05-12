@@ -1,108 +1,91 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import NavbarLinks from './navBarLinks'
+import MenuHamburguesa from './menuHamburguesa'
+import { useAuth } from '../../context/authContext'
+
 
 export default function Navbar() {
 
-  const [nav, setNav] = useState(false)
-  const location = useLocation()
+  const [nav, setNav] = useState(false);
+  const [scroll, setScroll] = useState(false);
+  const auth = useAuth()
+  const { user } = auth
+
 
   const handleNav = () => {
-    setNav(!nav)
-  }
+    setNav(!nav);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleScroll = () => {
+    const scrollTop = window.pageYOffset;
+    if (scrollTop > 0) {
+      setScroll(true);
+    } else {
+      setScroll(false);
+    }
+  };
+
   return (
     <>
-      <div className='flex px-5 md:px-2  justify-between md:justify-around items-center bg-[#111111] '>
-        <img className='w-[3.9rem]' src='https://i.ibb.co/XX7rF46/image.png' alt="Logo" />
-
-        <div className='hidden md:flex justify-center items-center'>
-          <ul className='flex gap-x-7 uppercase text-white font-normal'>
-            {
-              location.pathname === '/' || location.pathname === '/turnos' || location.pathname === '/usuario' || location.pathname === '/nosotros'
-                ? (
-                  <>
-                    <Link to={'/'}>
-                      <li className='py-4 text-sm text-white'>Inicio</li>
-                    </Link>
-                    <Link to={'/turnos'}>
-                      <li className='py-4 text-sm text-white'>Nuevo Turno</li>
-                    </Link>
-                    <Link to={'/nosotros'}>
-                      <li className='py-4 text-sm text-white'>Nosotros</li>
-                    </Link>
-
-                  </>
-                )
-                :
-                (
-                  <>
-                    <Link to={'/admin'}>
-                      <li className='py-4 text-sm text-white'>Inicio</li>
-                    </Link>
-                    <Link to={'/admin/agenda'}>
-                      <li className='py-4 text-sm text-white'>Agenda</li>
-                    </Link>
-                    <Link to={'/admin/administrarturnos'}>
-                      <li className='py-4 text-sm text-white'>Admninistrar Turnos</li>
-                    </Link>
-                  </>
-                )
-            }
-          </ul>
+      <nav className={`
+        flex flex-row w-full justify-between items-center px-4  md:p-4 lg:p-[43px] 
+        fixed z-20  h-[72px]   top-0 transition-colors duration-300 ease-out
+        ${scroll ? 'bg-zinc-900 duration-300' : ''}  
+          `}>
+        <Link to="./">
+          <img className='w-[3.9rem]' src='https://i.ibb.co/XX7rF46/image.png' alt="Logo" />
+        </Link>
+        <div className="hidden md:flex">
+          <NavbarLinks flexDirection={'flex-row'} />
         </div>
-        <div className='relative py-5'>
-          <div onClick={handleNav} className='bars__menu absolute top-1 right-5 z-50 md:hidden'>
-            <span className={nav ? 'line1__bars-menu' : ''}></span>
-            <span className={nav ? 'line2__bars-menu' : ''}></span>
-            <span className={nav ? 'line3__bars-menu' : ''}></span>
+        <div className='flex flex-row items-center  text-white font-normal leading-5 text-[18px] z-50 '>
+          <div className="hidden md:flex  items-center gap-x-1 text-xl ">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <Link to={user ? '/usuario' : '/micuenta'}>
+              {user ? user.displayName.split(' ')[0] : 'Ingresar'}
+            </Link>
+
           </div>
-          <Link
-            to='/micuenta'
-            className='py-1 px-2 rounded-xl bg-yellow-400 font-semibold hidden md:block cursor-pointer'
-          >Mi Cuenta
-          </Link>
+
+          <MenuHamburguesa handleNav={handleNav} nav={nav} />
         </div>
-      </div>
-      <div className={nav ? 'md:hidden fixed left-0 top-0 w-full h-screen transition-colors duration-300 bg-black/70 z-20' : 'z-30'}>
+
+
+        {/* Navbar responsive */}
+
+      </nav>
+
+      <div
+        className={
+          nav
+            ? `md:hidden fixed  top-0 w-full h-screen transition-colors duration-300 bg-black/40 z-10`
+            : "transition-colors duration-300"
+        }
+      >
+
         <div
           className={
             nav
-              ? 'fixed left-0 top-0 w-[75%] sm:w-[65%] md:w-[45%] h-screen bg-[#111111] p-10 ease-in duration-500 z-20'
-              : 'fixed left-[-100%] top-0 p-10 ease-in transition-all duration-500 z-20' 
+              ? "fixed  top-0 w-screen h-[50%]  mt-12 ease-out duration-300 z-20"
+              : "fixed top-[-100%] w-full p-10 ease-out transition-all duration-300 "
           }
         >
-          <div >
-            <div className='flex justify-center items-center  w-full'>
-              <img className='w-[10rem]' src='https://i.ibb.co/XX7rF46/image.png' alt="Logo" />
-            </div>
-            <div className='border-b w-full border-gray-300 my-2 text-center'>
-              <p className='w-[75%] md:w-[90%] py-2 mx-auto text-white tracking-widest'>MDPCUTS 2022</p>
-            </div>
-          </div>
-          <div className='py-4 dlex flex-col'>
-            <ul className='uppercase ' onClick={handleNav}>
-              <Link to={'/'}> <li className='py-4 text-sm text-white'>Inicio</li> </Link>
-              <Link to={'/turnos'}> <li className='py-4 text-sm text-white'>Nuevo Turno</li> </Link>
-              <Link to={'/nosotros'}> <li className='py-4 text-sm text-white'>Nosotros</li> </Link>
-            </ul>
-            <Link
-            to='/micuenta'
-            className='py-1 px-2 rounded-xl bg-yellow-400 font-semibold hidden md:block cursor-pointer'
-          >Mi Cuenta
-          </Link>
-            <div className="pt-12">
-              <p className='text-sm sm:text-lg uppercase tracking-widest text-yellow-200'>¡Sigamos conectados!</p>
-              <div className='flex items-center justify-between my-4 w-full sm:w-[80%]'>
-                <div className='icons__menu'>
-                  <ion-icon name="logo-whatsapp"></ion-icon>
-                </div>
-                <div className='icons__menu'>
-                  <ion-icon name="logo-instagram"></ion-icon>
-                </div>
-                <div className='icons__menu'>
-                  <ion-icon name="mail-outline"></ion-icon>
-                </div>
-              </div>
+          <div className={` mt-6 py-4 flex flex-col items-center ease-out ${scroll ? 'bg-zinc-800 duration-300' : 'bg-zinc-900 duration-300'}  `}>
+            <NavbarLinks flexDirection={'flex-col'} />
+
+            <div className="md:hidden flex text-white items-center gap-x-1 mt-5 text-xl">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <Link to={'/micuenta'} >
+                Ingresar
+              </Link>
             </div>
           </div>
         </div>

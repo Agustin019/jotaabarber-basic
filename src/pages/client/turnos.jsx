@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import moment from 'moment';
 import { getDoc, doc, updateDoc } from 'firebase/firestore'
-import { db } from '../utils/firebaseconfig'
+import { db } from '../../utils/firebaseconfig'
 
-import TurnosCont from '../components/client/turnos/turnosCont';
-import Servicios from '../components/client/turnos/servicios';
+import TurnosCont from '../../components/client/turnos/turnosCont';
+import Servicios from '../../components/client/turnos/servicios';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import Modal from '../components/utils/modal';
+import Modal from '../../components/utils/modal';
 
 export default function Turnos() {
   const fechaActual = moment()
