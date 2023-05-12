@@ -50,7 +50,7 @@ export default function Navbar() {
           <div className="hidden md:flex  items-center gap-x-1 text-xl ">
             <ion-icon name="person-circle-outline"></ion-icon>
             <Link to={user ? '/usuario' : '/micuenta'}>
-              {user ? user.displayName.split(' ')[0] : 'Ingresar'}
+              {user.displayName ? user.displayName.split(' ')[0] : 'Ingresar'}
             </Link>
 
           </div>
