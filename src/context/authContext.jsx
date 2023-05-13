@@ -1,6 +1,5 @@
 import { auth, db } from "../utils/firebaseconfig";
 import { createContext, useContext, useEffect } from 'react'
-
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
@@ -16,7 +15,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-
+    
     const [user, setUser] = useState('')
     const [datosUsuarioActual, setDatosUsuarioActual] = useState({})
 
@@ -67,7 +66,7 @@ export const AuthProvider = ({ children }) => {
     const logOut = async () => {
         const response = await signOut(auth)
         console.log(response)
-        setUser('')
+        setDatosUsuarioActual({})
     }
     return (
         <authContext.Provider
