@@ -1,11 +1,19 @@
 import React from 'react'
 
-export default function Register({ setEmailRegister, setPasswordRegister, handleRegister }) {
+export default function Register({ setFullname, setEmailRegister, setPasswordRegister, handleRegister }) {
 
     return (
         <form 
             onSubmit={handleRegister}
         >
+            <div className='mb-4'>
+                <input
+                    type="text"
+                    placeholder='Nombre completo'
+                    className='p-2 w-full bg-slate-200'
+                    onChange={(e) => setFullname(e.target.value) }
+                />
+            </div>
             <div className='mb-4'>
                 <input
                     type="text"

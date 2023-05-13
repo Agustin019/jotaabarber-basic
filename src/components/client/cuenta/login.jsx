@@ -1,6 +1,17 @@
-import React from 'react'
+import {useState} from 'react'
 
-export default function Login({ setEmail, setPassword ,handleLogin }) {
+
+export default function Login({login, navigate}) {
+    // Hooks Log In
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleLogin = async e => {
+        e.preventDefault()
+        await login(email, password)
+        navigate('/usuario')
+    }
+
     return (
         <form
             onSubmit={handleLogin}
