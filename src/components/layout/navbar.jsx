@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import NavbarLinks from './navBarLinks'
 import MenuHamburguesa from './menuHamburguesa'
 import { useAuth } from '../../context/authContext'
+import NavbarDropdown from './navbarDropdown'
 
 
 export default function Navbar() {
@@ -11,8 +12,13 @@ export default function Navbar() {
   const [nav, setNav] = useState(false);
   const [scroll, setScroll] = useState(false);
   const auth = useAuth()
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const { datosUsuarioActual, setDatosUsuarioActual, traerDatosDeUsuarioActual, user } = auth
 
+  function handleDropdownToggle() {
+    setShowDropdown(!showDropdown);
+  }
 
   const handleNav = () => {
     setNav(!nav);
@@ -56,9 +62,10 @@ export default function Navbar() {
         <div className='flex flex-row items-center  text-white font-normal leading-5 text-[18px] z-50 '>
           <div className="hidden md:flex  items-center gap-x-1 text-xl ">
             <ion-icon name="person-circle-outline"></ion-icon>
-            <Link to={datosUsuarioActual ? '/usuario' : '/micuenta'}>
-              {datosUsuarioActual?.fullName ? datosUsuarioActual.fullName.split(' ')[0] : 'Ingresar'}
-            </Link>
+            {datosUsuarioActual?.fullName
+              ? <NavbarDropdown showDropdown={showDropdown} handleDropdownToggle={handleDropdownToggle} />
+              : <Link to='/micuenta'>Ingresar</Link>
+            }
 
           </div>
 

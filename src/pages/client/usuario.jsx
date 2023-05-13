@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Usuario() {
     const auth = useAuth()
-    const { displayName } = auth.user
+    const { datosUsuarioActual } = auth
     return (
         <main>
             <section>
@@ -12,7 +12,7 @@ export default function Usuario() {
                     <img 
                         className='w-20'
                         src="https://i.ibb.co/HCC2RSv/imgUser.png" alt="" />
-                    <h2 className='text-2xl font-bold text-center text-white'>Hola, <span className='text-green-600'>{displayName}</span></h2>
+                    <h2 className='text-2xl font-bold text-center text-white'>Hola, <span className='text-green-600'>{datosUsuarioActual?.fullName?.split(' ')[0]}</span></h2>
                     <p className='font-bold text-white text-xl'>¿Que te gustaria hacerte?</p>
                     <Link className='p-2 rounded-md bg-green-500 font-semibold text-white text-lg' to='/turnos'>Nuevo turno</Link>
                 </article>

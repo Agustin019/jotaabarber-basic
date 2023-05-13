@@ -22,12 +22,32 @@ export default function MiCuenta() {
 
   console.log(datosUsuarioActual)
   useEffect(() => {
-    async function updateDocument() {
+    const updateDocument = async () => {
       await crearDocumentoDeUsuario();
     }
+    const redireccionarUsuario = () => {
+      if (Object.keys(datosUsuarioActual).length !== 0) {
+        console.log('Tiene algo pero no se por qu no funciona')
+        console.log(datosUsuarioActual)
+        if(datosUsuarioActual.role === 'cliente'){
+          navigate('/usuario')
+        }else{
+          navigate('/admin')
+        }
+       
+      }
+    }
+    setTimeout(() => {
+      redireccionarUsuario()
+      // if(datosUsuarioActual.role === 'cliente'){
+      //   navigate('/usuario')
+      // }else{
+      //   navigate('/admin')
+      // }
+    }, 2000);
     updateDocument();
   }, [datosUsuarioActual]);
-  
+
   const crearDocumentoDeUsuario = async () => {
     if (user?.uid) {
       const docRef = doc(db, 'usuarios', user.uid)
@@ -45,7 +65,7 @@ export default function MiCuenta() {
       }
     }
   }
- 
+
 
   // FUnciones para registrarse y logiearse
 
@@ -57,7 +77,7 @@ export default function MiCuenta() {
   const hanldeGoogle = async (e) => {
     e.preventDefault()
     await loginWithGoogle()
-    await crearDocumentoDeUsuario()
+    // await crearDocumentoDeUsuario()
     // navigate('/usuario')
   }
 
