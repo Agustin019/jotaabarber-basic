@@ -1,7 +1,7 @@
 import {useState} from 'react'
 
 
-export default function Login({login, navigate}) {
+export default function Login({login, setIsLoading}) {
     // Hooks Log In
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -9,7 +9,7 @@ export default function Login({login, navigate}) {
     const handleLogin = async e => {
         e.preventDefault()
         await login(email, password)
-        navigate('/usuario')
+        setIsLoading(true)
     }
 
     return (
