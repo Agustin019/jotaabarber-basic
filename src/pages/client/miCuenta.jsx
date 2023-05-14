@@ -5,13 +5,15 @@ import { useAuth } from '../../context/authContext'
 import { useNavigate } from 'react-router-dom'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
+import PantallaCargando from '../../components/utils/PantallaCargando'
 
 export default function MiCuenta() {
   // Hooks Registro
   const [fullName, setFullname] = useState('')
   const [emailRegister, setEmailRegister] = useState("")
   const [passwordRegister, setPasswordRegister] = useState("")
-
+  const [isLoading, setIsLoading] = useState(false);
+ 
 
   // Hook para el formulario
   const [form, setForm] = useState('login')
@@ -22,6 +24,7 @@ export default function MiCuenta() {
 
   console.log(datosUsuarioActual)
   useEffect(() => {
+    
     const updateDocument = async () => {
       await crearDocumentoDeUsuario();
     }
@@ -38,12 +41,8 @@ export default function MiCuenta() {
       }
     }
     setTimeout(() => {
+      setIsLoading(false)
       redireccionarUsuario()
-      // if(datosUsuarioActual.role === 'cliente'){
-      //   navigate('/usuario')
-      // }else{
-      //   navigate('/admin')
-      // }
     }, 2000);
     updateDocument();
   }, [datosUsuarioActual]);
@@ -72,19 +71,16 @@ export default function MiCuenta() {
   const handleRegister = async e => {
     e.preventDefault()
     await register(emailRegister, passwordRegister)
+    setIsLoading(true)
     //navigate('/usuario')
   }
   const hanldeGoogle = async (e) => {
     e.preventDefault()
     await loginWithGoogle()
+    setIsLoading(true)
     // await crearDocumentoDeUsuario()
     // navigate('/usuario')
   }
-
-  const handleLogOut = () => {
-    logOut()
-  }
-
   return (
     <main className='w-[90%] mx-auto'>
       <section className='w-full mt-20'>
@@ -98,10 +94,11 @@ export default function MiCuenta() {
           <button onClick={hanldeGoogle} className='w-full bg-white border border-zinc-800 rounded-md p-2 my-5'>Iniciar sesion con Google</button>
           {
             form === 'login'
-              ? <Login login={login} navigate={navigate} />
+              ? <Login setIsLoading={setIsLoading} login={login}  />
               : <Register setFullname={setFullname} setEmailRegister={setEmailRegister} setPasswordRegister={setPasswordRegister} handleRegister={handleRegister} />
           }
-          <button onClick={handleLogOut} className='w-full bg-white border border-zinc-800 rounded-md p-2 my-5'>Log Out</button>
+          <PantallaCargando isLoading={isLoading} />
+          
         </article>
       </section>
     </main>
