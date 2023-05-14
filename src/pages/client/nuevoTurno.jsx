@@ -8,16 +8,16 @@ import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 
 export default function NuevoTurno() {
     const [step, setStep] = useState(0)
-    const navigate = useNavigate() 
+    const navigate = useNavigate()
     const pasoActual = () => {
         switch (step) {
             case 0:
                 return <StepDatosPersonales step={step} setStep={setStep} />
 
             case 1:
-                return <StepProfesional step={step} setStep={setStep} />
-            case 2:
                 return <StepServicios step={step} setStep={setStep} />
+            case 2:
+                return <StepProfesional step={step} setStep={setStep} />
             case 3:
                 return <StepfechaYHora step={step} setStep={setStep} />
             default:
@@ -33,10 +33,10 @@ export default function NuevoTurno() {
                     onClick={step === 0 ? () => navigate(- 1) : () => setStep(step - 1)}
                 >
                     <ion-icon name="arrow-back-sharp"></ion-icon>
-                    <p>{step === 0 ? 'volver' : 'paso anterior'}</p>
+                    <p>{step === 0 ? 'volver' : 'Paso anterior'}</p>
                 </article>
 
-                <BarraProgresiva />
+                <BarraProgresiva step={step} />
             </section>
             {/* Aside con la informacion actualizada del turno */}
             <aside className='col-span-1 row-span-2 bg-stone-800'>
