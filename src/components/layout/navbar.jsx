@@ -59,7 +59,8 @@ export default function Navbar() {
         <div className="hidden md:flex">
           <NavbarLinks flexDirection={'flex-row'} />
         </div>
-        <div className='flex flex-row items-center  text-white font-normal leading-5 text-[18px] z-50 '>
+        <div className='flex flex-row  gap-x-2 items-center  text-white font-normal leading-5 text-[18px] z-50 '>
+          <Link to='/nuevoturno' className='p-2 bg-yellow-500'>+ Nuevo Turno</Link>
           <div className="hidden md:flex  items-center gap-x-1 text-xl ">
             <ion-icon name="person-circle-outline"></ion-icon>
             {datosUsuarioActual?.fullName
