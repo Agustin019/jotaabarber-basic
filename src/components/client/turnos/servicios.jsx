@@ -62,12 +62,12 @@ export default function Servicios({ nextStep, servicioSeleccionado, setServicioS
           <SwiperSlide key={servicio.id}>
             
               <div
-                onClick={() => handleServicio(servicio.name)}
+                //onClick={() => handleServicio(servicio.name)}
                 className={`
                 flex flex-col my-10 mx-2 cursor-pointer shadow-xl rounded-md 
-                ${servicioSeleccionado === servicio.name ? 'outline outline-blue-500' : ''}
                 `
-                }
+              }
+            
               >
                 <img src={servicio.img} alt={servicio.name} />
                 <div className='w-full flex flex-col py-2 my-2 justify-center '>
