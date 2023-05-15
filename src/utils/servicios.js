@@ -16,7 +16,7 @@ export const SERVICIOS = [
     {
         id:3,
         img:'https://i.ibb.co/PxBzMp4/corte.png',
-        name:'Claritos / Reflejos',
+        name:'Claritos',
         description:'incluye corte de pelo',
         price:'4500'
     },

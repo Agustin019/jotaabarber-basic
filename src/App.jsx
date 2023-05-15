@@ -1,9 +1,11 @@
 import React from 'react'
 import './index.css'
 import {  BrowserRouter, Route, Routes } from 'react-router-dom'
-import PrivateRoute from './components/utils/privateRoute'
+import { useAuth } from './context/authContext'
+
 import Layout from './components/layout/layout'
 import Turnos from './pages/client/turnos'
+import NuevoTurno from './pages/client/nuevoTurno'
 import Agenda from './pages/admin/agenda'
 import AdministrarTurnos from './pages/admin/administrarTurnos'
 import Inicio from './pages/client/inicio'
@@ -11,7 +13,6 @@ import InicioAdmin from './pages/admin/inicioAdmin'
 
 import MiCuenta from './pages/client/miCuenta'
 import Usuario from './pages/client/usuario'
-import { useAuth } from './context/authContext'
 
 function App(){
 
@@ -25,6 +26,7 @@ const { user } = useAuth()
                 //Cliente
                 <Route path='/' element={<Inicio/>}/>
                 <Route path='/turnos' element={ user ?<Turnos/> :<MiCuenta/>}/> 
+                <Route path='/nuevoturno' element={ user ?<NuevoTurno/> :<MiCuenta/>}/> 
                 <Route path='/micuenta' element={<MiCuenta/>}/>
                 <Route path='/usuario' element={<Usuario/>}/>
 
