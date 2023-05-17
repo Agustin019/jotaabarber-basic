@@ -26,9 +26,9 @@ export default function NavbarLinks({ flexDirection }) {
                     Sobre nosotros
                 </Link>
             </li>
-            <li className={`link ${location.pathname === '/#' ? 'activo' : ''}`}>
-                <Link to={'/#'}>
-                    Sevicios
+            <li className={`link ${location.pathname === '/calendario' ? 'activo' : ''}`}>
+                <Link to={'/calendario'}>
+                    Calendario
                 </Link>
             </li>
             <li className={`link ${location.pathname === '/#' ? 'activo' : ''}`}>

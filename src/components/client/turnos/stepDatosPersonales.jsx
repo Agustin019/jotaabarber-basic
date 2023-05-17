@@ -3,7 +3,7 @@ import React from 'react'
 export default function StepDatosPersonales() {
   
   return (
-    <article className='flex flex-col  gap-y-12 my-20'>
+    <div className='w-full mx-auto flex flex-col  gap-y-12'>
       <div className='flex flex-col items-start gap-y-2'>
         <label htmlFor="nombre">Nombre Completo</label>
         <input
@@ -22,6 +22,6 @@ export default function StepDatosPersonales() {
           placeholder=' ej: 223 633 4422'
           />
       </div>
-    </article>
+    </div>
   )
 }

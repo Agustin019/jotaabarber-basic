@@ -22,7 +22,7 @@ export default function Servicios({ }) {
 
   return (
 
-    <div className='sm:w-[90%] mx-auto overflow-x-hidden my-10 '>
+    <div className='sm:w-[90%] mx-auto overflow-x-hidden'>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
@@ -42,11 +42,11 @@ export default function Servicios({ }) {
         breakpoints={{
           640: {
             slidesPerView: 2,
-            spaceBetween: 20,
+            spaceBetween: 5,
           },
           768: {
             slidesPerView: 3,
-            spaceBetween: 30,
+            spaceBetween: 7,
           },
           1024: {
             slidesPerView: 3,

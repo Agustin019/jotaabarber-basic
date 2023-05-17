@@ -14,6 +14,8 @@ import InicioAdmin from './pages/admin/inicioAdmin'
 import MiCuenta from './pages/client/miCuenta'
 import Usuario from './pages/client/usuario'
 
+import CalendarioPrueba from './pages/client/calendarioPrueba'
+
 function App(){
 
 const { user } = useAuth()
@@ -29,6 +31,7 @@ const { user } = useAuth()
                 <Route path='/nuevoturno' element={ user ?<NuevoTurno/> :<MiCuenta/>}/> 
                 <Route path='/micuenta' element={<MiCuenta/>}/>
                 <Route path='/usuario' element={<Usuario/>}/>
+                <Route path='/calendario' element={<CalendarioPrueba/>}/>
 
                 //Admin
                 <Route path='/admin' element={<InicioAdmin/>}/>

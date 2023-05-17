@@ -6,6 +6,7 @@ import StepfechaYHora from '../../components/client/turnos/StepfechaYHora'
 import { useNavigate } from 'react-router-dom'
 import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 
+
 export default function NuevoTurno() {
     const [step, setStep] = useState(0)
     const navigate = useNavigate()
@@ -22,6 +23,8 @@ export default function NuevoTurno() {
                 return <StepfechaYHora />
             default:
                 return <StepDatosPersonales />
+            // default:
+            //     return <StepDatosPersonales />
         }
     }
     return (
@@ -44,12 +47,11 @@ export default function NuevoTurno() {
                 {/* Aside con la informacion actualizada del turno */}
                 {/* Mostrar paso actual del formulario */}
                 <article className=' col-span-1 w-full'>
-                    <div className=' relative max-w-[80%] mx-auto'>
+                    <div className=' relative max-w-[80%] h-[400px] mx-auto flex flex-col justify-center'>
                         {pasoActual()}
-
                     </div>
 
-                    <div className='flex justify-between mx-auto w-[75%]'>
+                    <div className='flex justify-between mx-auto w-[80%]'>
                         <button
                             className='py-3 px-5 h-[51px] border border-stone-900 w-[356px] text-stone-900 bg-white font-semibold text-lg rounded-md'
                             onClick={() => navigate(- 1)}
