@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { format } from 'date-fns';
+import { generarDocumentoPorCadaDiaDisponible } from '../../utils/horariosLaborales'
 
 export default function SteoFechaYHora() {
   const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -25,6 +27,9 @@ export default function SteoFechaYHora() {
     const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 3);
     setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
   }, [currentWeekStartDay]);
+  
+  const fechaFormateada = format(selectedDay, 'dd/MM');
+  console.log(fechaFormateada)
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
@@ -100,7 +105,16 @@ export default function SteoFechaYHora() {
     return calendar;
   };
   
-  
+  generarDocumentoPorCadaDiaDisponible()
+  // const availableDates = [];
+  // for (let date = currentDate; date <= thirtyDaysLater; date.setDate(date.getDate() + 1)) {
+  //   if (date.getDay() !== 0) { // Verificar si el día no es domingo (0: domingo, 1: lunes, ..., 6: sábado)
+  //     const formattedDate = format(date, 'dd-MM');
+  //     availableDates.push(formattedDate);
+  //   }
+  // }
+  // console.log(availableDates)
+
   return (
     <div className='w-full mx-auto flex flex-col items-center gap-y-8'>
       <h2 className="text-xl font-bold">{selectedMonth} 2023</h2>

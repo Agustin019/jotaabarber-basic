@@ -65,8 +65,8 @@ export default function Calendar({ selectedDate, handleDateChange, setFecha }) {
 
         }
     }
-    generarDocumentoPorCadaDiaDisponible()
-    generarDocumentoPorCadaDiaDeTurnos()
+  //  generarDocumentoPorCadaDiaDisponible()
+    //generarDocumentoPorCadaDiaDeTurnos()
     
   
 
