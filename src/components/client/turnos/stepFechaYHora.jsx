@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import generarDocumentoPorCadaDiaDisponible } from '../../../utils/horariosLaborales'
+import {generarDocumentoPorCadaDiaDisponible } from '../../../utils/horariosLaborales'
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseconfig';
 export default function SteoFechaYHora() {
