@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import StepDatosPersonales from '../../components/client/turnos/stepDatosPersonales'
 import StepProfesional from '../../components/client/turnos/stepProfesional'
 import StepServicios from '../../components/client/turnos/stepServicios'
-import StepfechaYHora from '../../components/client/turnos/StepfechaYHora'
+import StepfechaYHora from '../../components/client/turnos/stepfechaYHora'
 import { useNavigate } from 'react-router-dom'
 import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 
