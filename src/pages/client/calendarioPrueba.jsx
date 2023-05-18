@@ -38,18 +38,33 @@ export default function SteoFechaYHora() {
   const handlePrevWeek = () => {
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() - 4);
-      return newWeekStart >= currentDate ? newWeekStart : prevWeekStartDay;
+      const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+      const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 3);
+      if (newWeekStart < minPrevDate) {
+        return minPrevDate;
+      } else if (newWeekStart <= thirtyDaysLater) {
+        return newWeekStart;
+      } else {
+        return maxPrevDate;
+      }
     });
   };
+    
   
   const handleNextWeek = () => {
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + 4);
       const nextWeekEnd = new Date(newWeekStart.getFullYear(), newWeekStart.getMonth(), newWeekStart.getDate() + 6);
-      return nextWeekEnd <= thirtyDaysLater ? newWeekStart : prevWeekStartDay;
+      const maxNextDate = new Date(thirtyDaysLater.getFullYear(), thirtyDaysLater.getMonth(), thirtyDaysLater.getDate() - 6);
+      if (nextWeekEnd <= thirtyDaysLater) {
+        return newWeekStart;
+      } else if (prevWeekStartDay <= thirtyDaysLater) {
+        return maxNextDate;
+      } else {
+        return prevWeekStartDay;
+      }
     });
   };
-
   const renderCalendar = () => {
     const calendar = [];
     const startDate = new Date(currentWeekStartDay);
