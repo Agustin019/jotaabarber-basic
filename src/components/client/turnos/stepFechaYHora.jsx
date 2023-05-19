@@ -3,11 +3,16 @@ import { format } from 'date-fns';
 import {generarDocumentoPorCadaDiaDisponible } from '../../../utils/horariosLaborales'
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseconfig';
-export default function SteoFechaYHora() {
 
+
+export default function StepFechaYHora() {
+  // turnos
   const [turnos, setTurnos] = useState([])
+  const [periodoTurno, setPeriodoTurno] = useState('mañana')
+  const filtrarTurnosPorPeriodo = turnos.filter(turno => turno.periodo === periodoTurno)
 
 
+  // calendario
   const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   const monthsOfYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
@@ -133,16 +138,34 @@ export default function SteoFechaYHora() {
       </div>
 
       <h2 className='font-semibold text-xl text-stone-800'>Turnos del dia {fechaFormateada}</h2>
-      <div className='w-full grid grid-cols-4 place-items-center'>
-        {
-          turnos?.map((turno, i) =>
-            <div key={i} className='w-24 h-12 bg-stone-700 rounded-lg'>
-              <p className='text-xl font-semibold text-white'>{turno.hora}</p>
-            </div>
-          )
-        }
+      <div className='flex '>
+        <div className='w-[20%] flex flex-col'>
+          <button
+            onClick={() => setPeriodoTurno('mañana')}
+            className={`w-[120px] h-[44px] py-3 px-2 text-base ${ periodoTurno === 'mañana' ? 'font-semibold border-l-[5px] border-black' : 'font-light' }`}>
+            Mañana
+          </button>
+          <button
+            onClick={() => setPeriodoTurno('tarde')}
+            className={`w-[120px] h-[44px] py-3 px-2 text-base ${ periodoTurno === 'tarde' ? 'font-semibold border-l-[5px] border-black' : 'font-light' }`}>
+            Tarde
+          </button>
+        </div>
+        <div className='w-[80%] grid grid-cols-3 gap-y-5 gap-x-10'>
+          {
+            filtrarTurnosPorPeriodo?.map((turno, i) =>
+              <div key={i} className={`
+                h-[45px] w-[177px] flex justify-between items-center gap-3 px-2 py-3 border border-l-[5px]
+                ${!turno.disponible ? 'text-gray-400 border-gray-400' : 'border-black text-black'}
+                border border-l-[5px] border-black
+                `}>
+                <p className='text-sm font-normal'>{turno.hora}</p>
+                <p></p>
+              </div>
+            )
+          }
+        </div>
       </div>
     </div>
   );
 };
-
