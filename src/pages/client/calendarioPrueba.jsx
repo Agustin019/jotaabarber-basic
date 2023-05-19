@@ -32,10 +32,16 @@ export default function SteoFechaYHora() {
   useEffect(() => {
     const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 3);
     setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
+    // console.log(middleDate.getDate());
+    // const fechaFormateada = format(middleDate, 'dd-MM');
+    setSelectedDay(middleDate)
+
   }, [currentWeekStartDay]);
+
   useEffect(() => {
     handleDayClick(currentDate)
   }, [])
+
   const fechaFormateada = format(selectedDay, 'dd-MM');
   console.log(fechaFormateada)
 
@@ -61,8 +67,10 @@ export default function SteoFechaYHora() {
         return maxPrevDate;
       }
     });
-  };
 
+    // const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() - 1);
+    //console.log(middleDate.getDate());
+  };
 
   const handleNextWeek = () => {
     setCurrentWeekStartDay((prevWeekStartDay) => {
@@ -77,7 +85,14 @@ export default function SteoFechaYHora() {
         return prevWeekStartDay;
       }
     });
+
+    const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 4);
+    console.log(middleDate.getDate());
   };
+
+  // ...código posterior...
+
+
   const renderCalendar = () => {
     const calendar = [];
     const startDate = new Date(currentWeekStartDay);
@@ -141,12 +156,12 @@ export default function SteoFechaYHora() {
         <div className='w-[20%] flex flex-col'>
           <button
             onClick={() => setPeriodoTurno('mañana')}
-            className={`w-[120px] h-[44px] py-3 px-2 text-base ${ periodoTurno === 'mañana' ? 'font-semibold border-l-[5px] border-black' : 'font-light' }`}>
+            className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'mañana' ? 'font-semibold border-l-[5px] border-black' : 'font-light'}`}>
             Mañana
           </button>
           <button
             onClick={() => setPeriodoTurno('tarde')}
-            className={`w-[120px] h-[44px] py-3 px-2 text-base ${ periodoTurno === 'tarde' ? 'font-semibold border-l-[5px] border-black' : 'font-light' }`}>
+            className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'tarde' ? 'font-semibold border-l-[5px] border-black' : 'font-light'}`}>
             Tarde
           </button>
         </div>
