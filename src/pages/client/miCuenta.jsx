@@ -5,7 +5,7 @@ import { useAuth } from '../../context/authContext'
 import { useNavigate } from 'react-router-dom'
 import { doc, setDoc, getDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
-import PantallaCargando from '../../components/utils/PantallaCargando'
+import PantallaCargando from '../../components/utils/pantallaCargando'
 
 export default function MiCuenta() {
   // Hooks Registro
