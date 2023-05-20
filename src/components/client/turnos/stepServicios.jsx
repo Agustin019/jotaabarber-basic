@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
 
-export default function Servicios({ }) {
+export default function StepServicios({ }) {
 
   // const handleServicio = (servicio) => {
   //   console.log('Seleccionaste este servicio')
@@ -22,14 +22,14 @@ export default function Servicios({ }) {
 
   return (
 
-    <div className='sm:w-[90%] mx-auto overflow-x-hidden'>
+    <div className='sm:w-[83%] w-full max-w-full max-h-screen mx-auto overflow-x-hidden '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
       <Swiper
         //params={swiperOptions}
         slidesPerView={1}
-        spaceBetween={30}
+        spaceBetween={2}
         pagination={{
           clickable: true,
         }}
@@ -41,16 +41,16 @@ export default function Servicios({ }) {
         className="mySwiper"
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 5,
           },
           768: {
-            slidesPerView: 3,
-            spaceBetween: 7,
+            slidesPerView: 2,
+            spaceBetween: 5,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 2,
+            spaceBetween: 0,
           },
         }}
       >
@@ -60,7 +60,7 @@ export default function Servicios({ }) {
             <div
               //onClick={() => handleServicio(servicio.name)}
               className={`
-                flex flex-col  cursor-pointer rounded-xl 
+                flex flex-col  cursor-pointer rounded-xl  max-w-[235px] mx-auto
                 `
               }
 
