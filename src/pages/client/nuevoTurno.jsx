@@ -93,12 +93,13 @@ export default function NuevoTurno() {
           disponible: false
         };
       }
-      // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
+     // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
       const docref = doc(db, 'Turnos', fechaSeleccionada.dia)
       const turnoFirebase = await getDoc(docref)
       const turnos = turnoFirebase.data()
       console.log(turnos)
       turnos.turnos.push({
+        nombreDia:fechaSeleccionada.nombreDia,
         dia:fechaSeleccionada.dia,
         hora: fechaSeleccionada.hora,
         cliente: nombre,
@@ -108,6 +109,7 @@ export default function NuevoTurno() {
       })
   
       await updateDoc(horaSeleccionada, horas)
+      await updateDoc(docref, turnos)
 
       //setLoading(false)
       console.log('Turno reservado')

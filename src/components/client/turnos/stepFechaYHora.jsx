@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { format } from 'date-fns';
-import {generarDocumentoPorCadaDiaDisponible } from '../../../utils/horariosLaborales'
+import {generarDocumentoPorCadaDiaDisponible, generarDocumentoPorCadaDiaDeTurnosDisponible } from '../../../utils/horariosLaborales'
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseconfig';
 import Turnos from './turnos';
@@ -11,12 +11,12 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const [turnos, setTurnos] = useState([])
   const [periodoTurno, setPeriodoTurno] = useState('mañana')
   const filtrarTurnosPorPeriodo = turnos.filter(turno => turno.periodo === periodoTurno)
-
-
+  
   // calendario
   const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
   const monthsOfYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
+  
+  
   let currentDate = new Date();
   if (!(currentDate instanceof Date && !isNaN(currentDate))) {
     currentDate = new Date();
@@ -24,6 +24,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   currentDate.setHours(0, 0, 0, 0);
   const [selectedDay, setSelectedDay] = useState(currentDate);
   const [selectedMonth, setSelectedMonth] = useState(monthsOfYear[selectedDay.getMonth()]);
+  const diaAbreviado = daysOfWeek[selectedDay.getDay()].slice(0, 3);
 
   const currentMonth = currentDate.getMonth();
   const currentDay = currentDate.getDay();
@@ -45,7 +46,6 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   }, [])
 
   const fechaFormateada = format(selectedDay, 'dd-MM');
-  console.log(fechaFormateada)
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
@@ -129,7 +129,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   };
 
   generarDocumentoPorCadaDiaDisponible()
-
+  generarDocumentoPorCadaDiaDeTurnosDisponible()
 
 
 
@@ -158,6 +158,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
         filtrarTurnosPorPeriodo={filtrarTurnosPorPeriodo}
         selectedDay={selectedDay}
         setFechaSeleccionada={setFechaSeleccionada}
+        diaAbreviado={diaAbreviado}
       />
     </div>
   );

@@ -125,11 +125,26 @@ export async function generarDocumentoPorCadaDiaDisponible() {
 
 
 // Genera un documento con un arreglo vacio llamado "turnos" por cada dia de turnos disponible
-let turnos = []
-async function generarDocumentoPorCadaDiaDeTurnos() {
-    for (let i = 0; i < diasDisponibles.length; i++) {
-        const fechaDoc = diasDisponibles[i];
-        const docRef = doc(db, 'Turnos', fechaDoc);
+export async function generarDocumentoPorCadaDiaDeTurnosDisponible() {
+
+    // crear arreglo con las fechas formateadas del dia actual hasta 30 dias adelante
+    const currentDate = new Date();
+    const thirtyDaysLater = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
+
+
+    const availableDates = [];
+    const turnos = []
+    for (let date = currentDate; date <= thirtyDaysLater; date.setDate(date.getDate() + 1)) {
+        if (date.getDay() !== 0) { // Verificar si el día no es domingo (0: domingo, 1: lunes, ..., 6: sábado)
+            const formattedDate = format(date, 'dd-MM');
+            availableDates.push(formattedDate);
+        }
+    }
+
+
+    for (let i = 0; i < availableDates.length; i++) {
+        const fecha = availableDates[i];
+        const docRef = doc(db, 'Turnos', fecha);
         try {
             const documento = await getDoc(docRef)
             if (!documento.exists()) {
@@ -138,7 +153,7 @@ async function generarDocumentoPorCadaDiaDeTurnos() {
                 })
             }
         } catch (e) {
-            console.log(`Error en la fechaDoc ${fechaDoc}`, e)
+            console.log(`Error en la fecha ${fecha}`, e)
         }
 
     }
