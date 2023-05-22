@@ -62,7 +62,7 @@ export default function Servicios({ nextStep, servicioSeleccionado, setServicioS
           <SwiperSlide key={servicio.id}>
             
               <div
-                //onClick={() => handleServicio(servicio.name)}
+                onClick={() => handleServicio(servicio.name)}
                 className={`
                 flex flex-col my-10 mx-2 cursor-pointer shadow-xl rounded-md 
                 `

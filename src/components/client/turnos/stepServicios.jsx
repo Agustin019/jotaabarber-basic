@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { SERVICIOS } from "../../../utils/servicios";
-
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from "../../../utils/firebaseconfig";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -8,18 +8,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation } from "swiper";
+import { useEffect } from "react";
 
 
-export default function StepServicios({ }) {
+export default function StepServicios({ servicioSeleccionado, setServicioSeleccionado }) {
 
-  // const handleServicio = (servicio) => {
-  //   console.log('Seleccionaste este servicio')
-  //   setServicioSeleccionado(servicio)
-  //   setTimeout( () => {
-  //     nextStep()
-  //   },300)
-  // }
 
+  const [ servicios, setServicios ] = useState([])
+  useEffect(()=>{
+    const consultarServicios = async () => {
+      const docRef = doc(db, 'utilidades', 'servicios')
+      const serviciosDoc = await getDoc(docRef)
+      setServicios(serviciosDoc.data().servicio)
+    }
+    return () => consultarServicios()
+  },[])
   return (
 
     <div className='sm:w-[83%] w-full max-w-full max-h-screen mx-auto overflow-x-hidden '>
@@ -54,22 +57,24 @@ export default function StepServicios({ }) {
           },
         }}
       >
-        {SERVICIOS.map(servicio =>
-          <SwiperSlide key={servicio.id}>
+        {servicios.map(servicio =>
+          <SwiperSlide key={servicio.nombre}>
 
             <div
-              //onClick={() => handleServicio(servicio.name)}
+              onClick={() => setServicioSeleccionado(servicio)}
               className={`
-                flex flex-col  cursor-pointer rounded-xl  max-w-[235px] mx-auto
+              flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto my-2
+              hover:outline outline-[#1e1e1e]
+              ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-[#1e1e1e]' : ''}
                 `
               }
 
             >
-              <img className="rounded-3xl h-[235px] w-[235px]" src={servicio.img} alt={servicio.name} />
+              <img className="rounded-3xl h-[235px] w-[235px]" src={servicio.img} alt={servicio.nombre} />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>
-                <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{servicio.name}</p>
+                <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>
                 {/* <p className="text-xs text-gray-400 py-2">({servicio.description})</p> */}
-                <p className="text-sm font-bold text-gray-700">${servicio.price}</p>
+                <p className="text-sm font-bold text-gray-700">${servicio.precio}</p>
               </div>
             </div>
 

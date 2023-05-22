@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function StepDatosPersonales({ nombre,setNombre }) {
+export default function StepDatosPersonales({ nombre, setNombre, telefono, setTelefono }) {
   
   return (
     <div className='w-full mx-auto flex flex-col  gap-y-12'>

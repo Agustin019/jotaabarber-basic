@@ -16,6 +16,12 @@ export default function NuevoTurno() {
     const [ nombre, setNombre ] = useState('')
     const [ telefono, setTelefono ] = useState(0)
 
+    // step servicio
+    const [ servicioSeleccionado, setServicioSeleccionado ] = useState({})
+
+    // step profesional
+    const [ profesionalSeleccionado, setProfesionalSeleccionado ] = useState({})
+
     const navigate = useNavigate()
     const pasoActual = () => {
         switch (step) {
@@ -23,9 +29,9 @@ export default function NuevoTurno() {
                 return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono} />
 
             case 1:
-                return <StepServicios />
+                return <StepServicios servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado}/>
             case 2:
-                return <StepProfesional />
+                return <StepProfesional profesionalSeleccionado={profesionalSeleccionado} setProfesionalSeleccionado={setProfesionalSeleccionado}/>
             case 3:
                 return <StepfechaYHora />
             default:
@@ -76,7 +82,12 @@ export default function NuevoTurno() {
                     </div>
                 </article>
             </section>
-            <ResumenTurno nombre={nombre} telefono={telefono}/>
+            <ResumenTurno 
+                nombre={nombre} 
+                telefono={telefono}
+                servicioSeleccionado={servicioSeleccionado}
+                profesionalSeleccionado={profesionalSeleccionado}
+                />
            
         </main>
 
