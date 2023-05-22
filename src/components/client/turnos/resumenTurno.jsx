@@ -1,6 +1,11 @@
 import React from 'react'
 
-export default function ResumenTurno() {
+export default function ResumenTurno({ 
+    nombre, 
+    telefono,
+    servicioSeleccionado ,
+    profesionalSeleccionado
+}) {
     return (
         <aside className='w-[483px] col-span-1  bg-[#1e1e1e] h-screen py-[32px] pr-[63px] pl-[40px]'>
             <h2 className='font-bold text-white pb-5 text-2xl'>Resúmen de turno</h2>
@@ -9,36 +14,42 @@ export default function ResumenTurno() {
                 <div className='flex flex-col gap-y-2'>
                     <div className='flex justify-between items-center'>
                         <p className='font-normal text-lg text-white'>Nombre</p>
-                        <p className='font-light text-lg text-white'>Agustin Narciande</p>
+                        <p className='font-light text-lg text-white'>{nombre === '' ? '-' : nombre } </p>
                     </div>
                     <div className='flex justify-between items-center'>
                         <p className='font-normal text-lg text-white'>Teléfono</p>
-                        <p className='font-light text-lg text-white'>2236338023</p>
+                        <p className='font-light text-lg text-white'>{telefono === 0 ? '-' : telefono }</p>
                     </div>
                 </div>
                 <div className='flex flex-col gap-y-2 '>
                     <p className='font-medium text-xl text-white '>Servicio</p>
                     <div className='flex justify-start items-center'>
-                        <img
-                            src="https://i.ibb.co/fYB2jhG/corte-barba.png"
-                            alt="Imagen del servicio seleccionado"
-                            className='w-[66px] h-[90px] rounded-lg'
-                        />
+                        {
+                            servicioSeleccionado?.img &&
+                            <img
+                                src={servicioSeleccionado.img ?? '-'}
+                                alt={`imagen del servicio${servicioSeleccionado.nombre}`}
+                                className='w-[66px] h-[90px] rounded-lg object-cover'
+                            />
+                        }
                         <div className='px-5'>
-                            <p className='font-bold text-xl text-white'>Corte y barba</p>
-                            <p className='font-bold text-lg text-white'>$1233</p>
+                            <p className='font-bold text-xl text-white'>{servicioSeleccionado.nombre ?? '-'}</p>
+                            <p className='font-bold text-lg text-white'>{servicioSeleccionado.precio ? `$${servicioSeleccionado.precio}`: '-'}</p>
                         </div>
                     </div>
                 </div>
                 <div className='flex flex-col gap-y-2 '>
                     <p className='font-medium text-xl text-white '>Profesional</p>
                     <div className='flex justify-start items-center'>
-                        <img
-                            src="https://i.ibb.co/ZWZzjsT/lean.jpg"
-                            alt="Imagen del servicio seleccionado"
-                            className='w-[66px] h-[90px] rounded-lg'
-                        />
-                        <p className='font-bold text-xl text-white px-5'>Lean</p>
+                        {
+                            profesionalSeleccionado?.img &&
+                            <img
+                                src={profesionalSeleccionado.img}
+                                alt={`Imagen del profesional ${profesionalSeleccionado.nombre}`}
+                                className='w-[66px] h-[90px] rounded-lg'
+                            />
+                        }
+                        <p className='font-bold text-xl text-white px-5'>{profesionalSeleccionado.nombre}</p>
                     </div>
                 </div>
                 <div className='flex flex-col gap-y-2 '>
