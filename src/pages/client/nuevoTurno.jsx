@@ -6,22 +6,23 @@ import StepProfesional from '../../components/client/turnos/stepProfesional'
 import StepServicios from '../../components/client/turnos/stepServicios'
 import StepfechaYHora from '../../components/client/turnos/stepFechaYHora'
 import { useNavigate } from 'react-router-dom'
+import { BotonAvanzar, BotonAvanzarDeshabilitado } from '../../components/client/turnos/buttons'
 
 
 export default function NuevoTurno() {
-    
+
     //Formulario paso a paso
     const [step, setStep] = useState(0)
 
-    const [ nombre, setNombre ] = useState('')
-    const [ telefono, setTelefono ] = useState(0)
+    const [nombre, setNombre] = useState('')
+    const [telefono, setTelefono] = useState('')
 
     // step servicio
-    const [ servicioSeleccionado, setServicioSeleccionado ] = useState({})
+    const [servicioSeleccionado, setServicioSeleccionado] = useState({})
     // step profesional
-    const [ profesionalSeleccionado, setProfesionalSeleccionado ] = useState({})
+    const [profesionalSeleccionado, setProfesionalSeleccionado] = useState({})
     // step fecha
-    const [ fechaSeleccionada, setFechaSeleccionada ] = useState({})
+    const [fechaSeleccionada, setFechaSeleccionada] = useState({})
 
     const navigate = useNavigate()
     const pasoActual = () => {
@@ -30,15 +31,47 @@ export default function NuevoTurno() {
                 return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono} />
 
             case 1:
-                return <StepServicios servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado}/>
+                return <StepServicios servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
             case 2:
-                return <StepProfesional profesionalSeleccionado={profesionalSeleccionado} setProfesionalSeleccionado={setProfesionalSeleccionado}/>
+                return <StepProfesional profesionalSeleccionado={profesionalSeleccionado} setProfesionalSeleccionado={setProfesionalSeleccionado} />
             case 3:
-                return <StepfechaYHora fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada}/>
+                return <StepfechaYHora fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} />
             default:
-                return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono}/>
+                return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono} />
         }
     }
+
+    const validarPasos = () => {
+        switch (step) {
+            case 0 : if (telefono === '' || nombre === '') {
+                return <BotonAvanzarDeshabilitado step={step}/>  
+              } else {
+                return <BotonAvanzar step={step} setStep={setStep}/> 
+              }
+            case 1:
+                if (Object.keys(servicioSeleccionado).length === 0) {
+                    return <BotonAvanzarDeshabilitado step={step}/>  
+                  } else {
+                    return <BotonAvanzar step={step} setStep={setStep}/> 
+                  }
+            case 2:
+                if (Object.keys(profesionalSeleccionado).length === 0) {
+                    return <BotonAvanzarDeshabilitado step={step}/>  
+                  } else {
+                    return <BotonAvanzar step={step} setStep={setStep}/> 
+                  }
+            case 3:
+                if (Object.keys(fechaSeleccionada).length === 0) {
+                    return <BotonAvanzarDeshabilitado step={step}/>  
+                  } else {
+                    return <BotonAvanzar step={step} setStep={setStep}/> 
+                  }
+            default:
+                return <BotonAvanzarDeshabilitado/>
+        }
+    }
+
+
     return (
         <main className='grid grid-cols-1 md:grid-cols-[3fr,1fr]  gap-x-4  '>
             {/* Barra progrediva del formulario */}
@@ -59,7 +92,7 @@ export default function NuevoTurno() {
                 {/* Aside con la informacion actualizada del turno */}
                 {/* Mostrar paso actual del formulario */}
                 <article className=' col-span-1 w-full'>
-                <div className=' relative w-[90%] h-[400px] mx-auto flex flex-col justify-center'>
+                    <div className=' relative w-[90%] h-[400px] mx-auto flex flex-col justify-center'>
                         {pasoActual()}
                     </div>
 
@@ -70,27 +103,28 @@ export default function NuevoTurno() {
                         >
                             Cancelar reserva
                         </button>
-                        <button
+                        {/* <button
                             className='
                          py-3 px-5 h-[51px] w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md
                           flex justify-center items-center gap-2
                          '
                             onClick={() => setStep(step + 1)}
                         >
-                            Siguiente paso
+                            {step === 3 ? 'Confirmar turno' : 'Siguiente paso'}
                             <ion-icon name="arrow-forward-outline"></ion-icon>
-                        </button>
+                        </button> */}
+                        {validarPasos()}
                     </div>
                 </article>
             </section>
-            <ResumenTurno 
-                nombre={nombre} 
+            <ResumenTurno
+                nombre={nombre}
                 telefono={telefono}
                 servicioSeleccionado={servicioSeleccionado}
                 profesionalSeleccionado={profesionalSeleccionado}
                 fechaSeleccionada={fechaSeleccionada}
-                />
-           
+            />
+
         </main>
 
     )
