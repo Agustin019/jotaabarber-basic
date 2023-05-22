@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useAuth } from '../../context/authContext'
 
 import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 import ResumenTurno from '../../components/client/turnos/resumenTurno'
@@ -19,7 +20,8 @@ export default function NuevoTurno() {
 
     //Formulario paso a paso
     const [step, setStep] = useState(0)
-
+    const { datosUsuarioActual } = useAuth()
+    console.log(datosUsuarioActual)
     const [nombre, setNombre] = useState('')
     const [telefono, setTelefono] = useState('')
 
@@ -93,24 +95,44 @@ export default function NuevoTurno() {
           disponible: false
         };
       }
+      await updateDoc(horaSeleccionada, horas)
+      console.log('Disponibilidad de horario actualizada')
      // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
-      const docref = doc(db, 'Turnos', fechaSeleccionada.dia)
-      const turnoFirebase = await getDoc(docref)
+      const docRefTurno = doc(db, 'Turnos', fechaSeleccionada.dia)
+      const turnoFirebase = await getDoc(docRefTurno)
       const turnos = turnoFirebase.data()
       console.log(turnos)
       turnos.turnos.push({
+        objetoDiaSeleccionado:fechaSeleccionada.objetoDiaSeleccionado,
         nombreDia:fechaSeleccionada.nombreDia,
         dia:fechaSeleccionada.dia,
         hora: fechaSeleccionada.hora,
         cliente: nombre,
-        telefono:'telefono',
+        telefono:telefono,
         servicio: servicioSeleccionado.nombre,
         profesional: profesionalSeleccionado.nombre
       })
-  
-      await updateDoc(horaSeleccionada, horas)
-      await updateDoc(docref, turnos)
+      await updateDoc(docRefTurno, turnos)
+      console.log('turno enviado al documento de turnos')
 
+      const docRefUsuario = doc(db, 'usuarios', datosUsuarioActual.uid)
+      const userDoc = await getDoc(docRefUsuario)
+      const userTurnos = userDoc.data()
+      console.log(userTurnos)
+      userTurnos.turnosActivos.push({
+        objetoDiaSeleccionado:fechaSeleccionada.objetoDiaSeleccionado,
+        nombreDia:fechaSeleccionada.nombreDia,
+        dia:fechaSeleccionada.dia,
+        hora: fechaSeleccionada.hora,
+        cliente: nombre,
+        telefono:telefono,
+        servicio: servicioSeleccionado.nombre,
+        profesional: profesionalSeleccionado.nombre,
+      })
+      
+
+      await updateDoc(docRefUsuario, userTurnos)
+      console.log('turno enviadoa  los turnos activos del usuario logueado')
       //setLoading(false)
       console.log('Turno reservado')
     }

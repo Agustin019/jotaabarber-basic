@@ -7,7 +7,8 @@ export default function Turnos({
     filtrarTurnosPorPeriodo, 
     setFechaSeleccionada, 
     selectedDay,
-    diaAbreviado
+    diaAbreviado,
+    objetoDiaSeleccionado
 }) {
   return (
     <div className='flex '>
@@ -32,6 +33,7 @@ export default function Turnos({
                 setFechaSeleccionada={setFechaSeleccionada}
                 selectedDay={selectedDay}
                 diaAbreviado={diaAbreviado}
+                objetoDiaSeleccionado={objetoDiaSeleccionado}
             />
              )
       }

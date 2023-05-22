@@ -159,6 +159,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
         selectedDay={selectedDay}
         setFechaSeleccionada={setFechaSeleccionada}
         diaAbreviado={diaAbreviado}
+        objetoDiaSeleccionado={selectedDay}
       />
     </div>
   );
