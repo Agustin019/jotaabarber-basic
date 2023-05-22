@@ -1,12 +1,18 @@
 import { useState, useEffect } from 'react'
+
 import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 import ResumenTurno from '../../components/client/turnos/resumenTurno'
 import StepDatosPersonales from '../../components/client/turnos/stepDatosPersonales'
 import StepProfesional from '../../components/client/turnos/stepProfesional'
 import StepServicios from '../../components/client/turnos/stepServicios'
 import StepfechaYHora from '../../components/client/turnos/stepFechaYHora'
+import { BotonAvanzar, BotonAvanzarDeshabilitado, BotonCancelar, BotonConfirmarTurno } from '../../components/client/turnos/buttons'
+import { db } from '../../utils/firebaseconfig'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
+
 import { useNavigate } from 'react-router-dom'
-import { BotonAvanzar, BotonAvanzarDeshabilitado } from '../../components/client/turnos/buttons'
+
+
 
 
 export default function NuevoTurno() {
@@ -50,13 +56,13 @@ export default function NuevoTurno() {
               }
             case 1:
                 if (Object.keys(servicioSeleccionado).length === 0) {
-                    return <BotonAvanzarDeshabilitado step={step}/>  
+                    return <BotonAvanzarDeshabilitado step={step} />  
                   } else {
                     return <BotonAvanzar step={step} setStep={setStep}/> 
                   }
             case 2:
                 if (Object.keys(profesionalSeleccionado).length === 0) {
-                    return <BotonAvanzarDeshabilitado step={step}/>  
+                    return <BotonAvanzarDeshabilitado step={step} />  
                   } else {
                     return <BotonAvanzar step={step} setStep={setStep}/> 
                   }
@@ -64,13 +70,48 @@ export default function NuevoTurno() {
                 if (Object.keys(fechaSeleccionada).length === 0) {
                     return <BotonAvanzarDeshabilitado step={step}/>  
                   } else {
-                    return <BotonAvanzar step={step} setStep={setStep}/> 
+                    return <BotonConfirmarTurno/> 
                   }
             default:
                 return <BotonAvanzarDeshabilitado/>
         }
     }
 
+
+    const handleSubmit = async e => {
+        e.preventDefault()
+     
+      // Actualizar la disponibilidad de la hora 
+      const horaSeleccionada = doc(db, 'horarios', fechaSeleccionada.dia)
+      const horaFirebase = await getDoc(horaSeleccionada)
+      const horas = horaFirebase.data()
+     
+      const encontrarHora = horas.horariosLaborales.findIndex(obj => obj.hora === fechaSeleccionada.hora)
+      if (encontrarHora !== -1) {
+        horas.horariosLaborales[encontrarHora] = {
+          ...horas.horariosLaborales[encontrarHora],
+          disponible: false
+        };
+      }
+      // Enviar datos del turno a la coleccion 'Turnos' y modificar el documento de la fecha seleccionada
+      const docref = doc(db, 'Turnos', fechaSeleccionada.dia)
+      const turnoFirebase = await getDoc(docref)
+      const turnos = turnoFirebase.data()
+      console.log(turnos)
+      turnos.turnos.push({
+        dia:fechaSeleccionada.dia,
+        hora: fechaSeleccionada.hora,
+        cliente: nombre,
+        telefono:'telefono',
+        servicio: servicioSeleccionado.nombre,
+        profesional: profesionalSeleccionado.nombre
+      })
+  
+      await updateDoc(horaSeleccionada, horas)
+
+      //setLoading(false)
+      console.log('Turno reservado')
+    }
 
     return (
         <main className='grid grid-cols-1 md:grid-cols-[3fr,1fr]  gap-x-4  '>
@@ -92,29 +133,18 @@ export default function NuevoTurno() {
                 {/* Aside con la informacion actualizada del turno */}
                 {/* Mostrar paso actual del formulario */}
                 <article className=' col-span-1 w-full'>
-                    <div className=' relative w-[90%] h-[400px] mx-auto flex flex-col justify-center'>
-                        {pasoActual()}
-                    </div>
-
-                    <div className='flex justify-between mx-auto w-[90%] '>
-                        <button
-                            className='py-3 px-5 h-[51px] border border-stone-900 w-[356px] text-stone-900 bg-white font-semibold text-lg rounded-md'
-                            onClick={() => navigate(- 1)}
-                        >
-                            Cancelar reserva
-                        </button>
-                        {/* <button
-                            className='
-                         py-3 px-5 h-[51px] w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md
-                          flex justify-center items-center gap-2
-                         '
-                            onClick={() => setStep(step + 1)}
-                        >
-                            {step === 3 ? 'Confirmar turno' : 'Siguiente paso'}
-                            <ion-icon name="arrow-forward-outline"></ion-icon>
-                        </button> */}
-                        {validarPasos()}
-                    </div>
+                   <form
+                        onSubmit={handleSubmit}
+                   >
+                     <div className=' relative w-[90%] h-[400px] mx-auto flex flex-col justify-center'>
+                         {pasoActual()}
+                     </div>
+                    
+                     <div className='flex justify-between mx-auto w-[90%] '>
+                         <BotonCancelar/>
+                         {validarPasos()}
+                     </div>
+                   </form>
                 </article>
             </section>
             <ResumenTurno
