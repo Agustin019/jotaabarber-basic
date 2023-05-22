@@ -4,7 +4,8 @@ export default function ResumenTurno({
     nombre, 
     telefono,
     servicioSeleccionado ,
-    profesionalSeleccionado
+    profesionalSeleccionado,
+    fechaSeleccionada
 }) {
     return (
         <aside className='w-[483px] col-span-1  bg-[#1e1e1e] h-screen py-[32px] pr-[63px] pl-[40px]'>
@@ -57,11 +58,11 @@ export default function ResumenTurno({
                     <div className='flex flex-col gap-y-2'>
                         <div className='flex justify-between items-center'>
                             <p className='font-normal text-lg text-white'>Dia </p>
-                            <p className='font-light text-lg text-white'>20/05</p>
+                            <p className='font-light text-lg text-white'>{fechaSeleccionada?.dia ? fechaSeleccionada.dia : '-' }</p>
                         </div>
                         <div className='flex justify-between items-center'>
                             <p className='font-normal text-lg text-white'>Horario</p>
-                            <p className='font-light text-lg text-white'>14:00hs</p>
+                            <p className='font-light text-lg text-white'>{fechaSeleccionada?.hora ? `${fechaSeleccionada.hora}hs`: '-' }</p>
                         </div>
                         <div className='w-full border border-[#F2F2F2]'></div>
                         <div className='flex justify-between items-center'>
