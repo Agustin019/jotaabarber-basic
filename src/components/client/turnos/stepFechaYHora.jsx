@@ -3,9 +3,10 @@ import { format } from 'date-fns';
 import {generarDocumentoPorCadaDiaDisponible } from '../../../utils/horariosLaborales'
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseconfig';
+import Turnos from './turnos';
 
 
-export default function StepFechaYHora() {
+export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada }) {
   // turnos
   const [turnos, setTurnos] = useState([])
   const [periodoTurno, setPeriodoTurno] = useState('mañana')
@@ -144,43 +145,20 @@ export default function StepFechaYHora() {
   }, [selectedDay])
 
   return (
-    <div className='w-full mx-auto flex flex-col items-center gap-y-8'>
+    <div className='w-full m-auto flex flex-col items-center gap-y-10'>
       <h2 className="text-xl font-bold">{selectedMonth} 2023</h2>
       <div className="flex items-center justify-center">
         <button className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
         <div className="flex">{renderCalendar()}</div>
         <button className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
       </div>
-
-      <h2 className='font-semibold text-xl text-stone-800'>Turnos del dia {fechaFormateada}</h2>
-      <div className='flex '>
-        <div className='w-[20%] flex flex-col'>
-          <button
-            onClick={() => setPeriodoTurno('mañana')}
-            className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'mañana' ? 'font-semibold border-l-[5px] border-black' : 'font-light'}`}>
-            Mañana
-          </button>
-          <button
-            onClick={() => setPeriodoTurno('tarde')}
-            className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'tarde' ? 'font-semibold border-l-[5px] border-black' : 'font-light'}`}>
-            Tarde
-          </button>
-        </div>
-        <div className='w-[80%] grid grid-cols-3 gap-y-5 gap-x-10'>
-          {
-            filtrarTurnosPorPeriodo?.map((turno, i) =>
-              <div key={i} className={`
-                h-[45px] w-[177px] flex justify-between items-center gap-3 px-2 py-3 border border-l-[5px]
-                ${!turno.disponible ? 'text-gray-400 border-gray-400' : 'border-black text-black'}
-                border border-l-[5px] border-black
-                `}>
-                <p className='text-sm font-normal'>{turno.hora}</p>
-                <p></p>
-              </div>
-            )
-          }
-        </div>
-      </div>
+      <Turnos
+        periodoTurno={periodoTurno}
+        setPeriodoTurno={setPeriodoTurno} 
+        filtrarTurnosPorPeriodo={filtrarTurnosPorPeriodo}
+        selectedDay={selectedDay}
+        setFechaSeleccionada={setFechaSeleccionada}
+      />
     </div>
   );
 }

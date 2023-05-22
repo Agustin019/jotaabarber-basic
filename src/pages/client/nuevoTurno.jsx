@@ -18,9 +18,10 @@ export default function NuevoTurno() {
 
     // step servicio
     const [ servicioSeleccionado, setServicioSeleccionado ] = useState({})
-
     // step profesional
     const [ profesionalSeleccionado, setProfesionalSeleccionado ] = useState({})
+    // step fecha
+    const [ fechaSeleccionada, setFechaSeleccionada ] = useState({})
 
     const navigate = useNavigate()
     const pasoActual = () => {
@@ -33,7 +34,7 @@ export default function NuevoTurno() {
             case 2:
                 return <StepProfesional profesionalSeleccionado={profesionalSeleccionado} setProfesionalSeleccionado={setProfesionalSeleccionado}/>
             case 3:
-                return <StepfechaYHora />
+                return <StepfechaYHora fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada}/>
             default:
                 return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono}/>
         }
@@ -87,6 +88,7 @@ export default function NuevoTurno() {
                 telefono={telefono}
                 servicioSeleccionado={servicioSeleccionado}
                 profesionalSeleccionado={profesionalSeleccionado}
+                fechaSeleccionada={fechaSeleccionada}
                 />
            
         </main>
