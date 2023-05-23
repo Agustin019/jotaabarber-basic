@@ -4,7 +4,6 @@ import {  BrowserRouter, Route, Routes } from 'react-router-dom'
 import { useAuth } from './context/authContext'
 
 import Layout from './components/layout/layout'
-import Turnos from './pages/client/turnos'
 import NuevoTurno from './pages/client/nuevoTurno'
 import Agenda from './pages/admin/agenda'
 import AdministrarTurnos from './pages/admin/administrarTurnos'
@@ -27,7 +26,7 @@ const { user } = useAuth()
             <Routes>
                 //Cliente
                 <Route path='/' element={<Inicio/>}/>
-                <Route path='/turnos' element={ user ?<Turnos/> :<MiCuenta/>}/> 
+               {/* <Route path='/turnos' element={ user ?<Turnos/> :<MiCuenta/>}/> */}
                 <Route path='/nuevoturno' element={ user ?<NuevoTurno/> :<MiCuenta/>}/> 
                 <Route path='/micuenta' element={<MiCuenta/>}/>
                 <Route path='/usuario' element={<Usuario/>}/>

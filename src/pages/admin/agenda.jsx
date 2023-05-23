@@ -2,7 +2,6 @@ import { useState } from 'react'
 import TurnosDeHoy from '../../components/admin/adminTurnosDeHoy'
 import TurnosDeOtrosDias from '../../components/admin/adminTurnosDeOtrosDias'
 import { ClipLoader } from 'react-spinners'
-import TurnosDeMañana from '../../components/admin/adminTurnosDeMañana'
 import { dias } from '../../utils/helpers'
 
 function Agenda() {
@@ -14,9 +13,6 @@ function Agenda() {
         switch (button) {
             case 'Hoy':
                 return <TurnosDeHoy loading={loading} setLoading={setLoading}/>;
-
-            case 'Mañana':
-                return <TurnosDeMañana loading={loading} setLoading={setLoading}/>;
             
             case 'Otro dia':
                 return <TurnosDeOtrosDias loading={loading} setLoading={setLoading}/>;
