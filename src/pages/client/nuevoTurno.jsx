@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../../context/authContext'
+import { db } from '../../utils/firebaseconfig'
+import { doc, updateDoc, getDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router-dom'
 
+import { BotonAvanzar, BotonAvanzarDeshabilitado, BotonCancelar, BotonConfirmarTurno } from '../../components/client/turnos/buttons'
 import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 import ResumenTurno from '../../components/client/turnos/resumenTurno'
 import StepDatosPersonales from '../../components/client/turnos/stepDatosPersonales'
 import StepProfesional from '../../components/client/turnos/stepProfesional'
 import StepServicios from '../../components/client/turnos/stepServicios'
 import StepfechaYHora from '../../components/client/turnos/stepFechaYHora'
-import { BotonAvanzar, BotonAvanzarDeshabilitado, BotonCancelar, BotonConfirmarTurno } from '../../components/client/turnos/buttons'
-import { db } from '../../utils/firebaseconfig'
-import { doc, updateDoc, getDoc } from 'firebase/firestore'
-
-import { useNavigate } from 'react-router-dom'
+import PantallaTurnoConfirmado from '../../components/client/turnos/pantallaTurnoConfirmado'
 
 
 
@@ -21,16 +21,18 @@ export default function NuevoTurno() {
     //Formulario paso a paso
     const [step, setStep] = useState(0)
     const { datosUsuarioActual } = useAuth()
-    console.log(datosUsuarioActual)
+
+    // step datos personales
     const [nombre, setNombre] = useState('')
     const [telefono, setTelefono] = useState('')
-
     // step servicio
     const [servicioSeleccionado, setServicioSeleccionado] = useState({})
     // step profesional
     const [profesionalSeleccionado, setProfesionalSeleccionado] = useState({})
     // step fecha
     const [fechaSeleccionada, setFechaSeleccionada] = useState({})
+
+    const [ modal, setModal ] = useState(false)
 
     console.log(fechaSeleccionada)
     const navigate = useNavigate()
@@ -138,12 +140,16 @@ export default function NuevoTurno() {
       console.log('turno enviadoa  los turnos activos del usuario logueado')
       //setLoading(false)
       console.log('Turno reservado')
-      navigate('/usuario')
+
+      setModal(true)
     }
 
     return (
         <main className='grid grid-cols-1 md:grid-cols-[3fr,1fr]  gap-x-4  '>
             {/* Barra progrediva del formulario */}
+            {
+              modal && <PantallaTurnoConfirmado modal={modal}/>
+            }
             <section className='col-span-1 flex flex-col justify-between mt-10'>
 
                 <article className='flex flex-col gap-y-10 w-[90%] mx-auto'>
