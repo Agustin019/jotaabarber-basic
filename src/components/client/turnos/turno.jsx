@@ -9,7 +9,8 @@ export default function Turno({ turno, setFechaSeleccionada, selectedDay, diaAbr
                 dia: fechaFormateada,
                 hora: turno.hora,
                 nombreDia:diaAbreviado,
-                objetoDiaSeleccionado:objetoDiaSeleccionado
+                objetoDiaSeleccionado:objetoDiaSeleccionado,
+                id:turno.id
             })}
             className={`
                 h-[45px] w-[177px] flex justify-between items-center gap-3 px-2 py-3 border border-l-[5px]

@@ -32,6 +32,7 @@ export default function NuevoTurno() {
     // step fecha
     const [fechaSeleccionada, setFechaSeleccionada] = useState({})
 
+    console.log(fechaSeleccionada)
     const navigate = useNavigate()
     const pasoActual = () => {
         switch (step) {
@@ -103,6 +104,7 @@ export default function NuevoTurno() {
       const turnos = turnoFirebase.data()
       console.log(turnos)
       turnos.turnos.push({
+        id:fechaSeleccionada.id,
         objetoDiaSeleccionado:fechaSeleccionada.objetoDiaSeleccionado,
         nombreDia:fechaSeleccionada.nombreDia,
         dia:fechaSeleccionada.dia,
@@ -120,6 +122,7 @@ export default function NuevoTurno() {
       const userTurnos = userDoc.data()
       console.log(userTurnos)
       userTurnos.turnosActivos.push({
+        id:fechaSeleccionada.id,
         objetoDiaSeleccionado:fechaSeleccionada.objetoDiaSeleccionado,
         nombreDia:fechaSeleccionada.nombreDia,
         dia:fechaSeleccionada.dia,
@@ -135,6 +138,7 @@ export default function NuevoTurno() {
       console.log('turno enviadoa  los turnos activos del usuario logueado')
       //setLoading(false)
       console.log('Turno reservado')
+      navigate('/usuario')
     }
 
     return (

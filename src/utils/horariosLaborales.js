@@ -1,88 +1,105 @@
 import { format } from 'date-fns';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { db } from './firebaseconfig';
+import { v4 as uuidv4 } from "uuid";
 
 
 export const horariosLaborales = [{
         hora: '10:00',
         disponible: true,
-        periodo: 'mañana'
+        periodo: 'mañana',
+        id:uuidv4()
     },
     {
         hora: '10:30',
         disponible: true,
-        periodo: 'mañana'
+        periodo: 'mañana',
+        id:uuidv4()
     },
     {
         hora: '11:00',
         disponible: true,
-        periodo: 'mañana'
+        periodo: 'mañana',
+        id:uuidv4()
     },
     {
         hora: '11:30',
         disponible: true,
-        periodo: 'mañana'
+        periodo: 'mañana',
+        id:uuidv4()
     },
     {
         hora: '12:00',
         disponible: true,
-        periodo: 'mañana'
+        periodo: 'mañana',
+        id:uuidv4()
     },
     {
         hora: '12:30',
         disponible: true,
-        periodo: 'mañana'
+        periodo: 'mañana',
+        id:uuidv4()
     },
 
     {
         hora: '13:00',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '13:30',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '14:00',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '14:30',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '15:00',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '15:30',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '16:00',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '16:30',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '17:00',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
     {
         hora: '17:30',
         disponible: true,
-        periodo: 'tarde'
+        periodo: 'tarde',
+        id:uuidv4()
     },
 ]
 
