@@ -11,7 +11,7 @@ export default function Turnos({
     objetoDiaSeleccionado
 }) {
   return (
-    <div className='flex '>
+    <div className='flex'>
         <div className='w-[20%] flex flex-col'>
             <button
                 onClick={() => setPeriodoTurno('mañana')}
@@ -24,7 +24,7 @@ export default function Turnos({
                 Tarde
             </button>
         </div>
-    <div className='w-[80%] grid grid-cols-3 gap-y-5 gap-x-10'>
+    <div className='w-[90%] flex flex-wrap gap-5 h-[150px] overflow-y-auto'>
       {
         filtrarTurnosPorPeriodo?.map((turno, i) => 
             <Turno 

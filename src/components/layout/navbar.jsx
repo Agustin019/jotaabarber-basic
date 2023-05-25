@@ -15,7 +15,7 @@ export default function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const { datosUsuarioActual, setDatosUsuarioActual, traerDatosDeUsuarioActual, user } = auth
-
+  console.log(datosUsuarioActual)
   function handleDropdownToggle() {
     setShowDropdown(!showDropdown);
   }
@@ -63,7 +63,7 @@ export default function Navbar() {
           <Link to='/nuevoturno' className='p-2 bg-yellow-500'>+ Nuevo Turno</Link>
           <div className="hidden md:flex  items-center gap-x-1 text-xl ">
             <ion-icon name="person-circle-outline"></ion-icon>
-            {datosUsuarioActual?.fullName
+            {datosUsuarioActual?.email
               ? <NavbarDropdown showDropdown={showDropdown} handleDropdownToggle={handleDropdownToggle} />
               : <Link to='/micuenta'>Ingresar</Link>
             }
