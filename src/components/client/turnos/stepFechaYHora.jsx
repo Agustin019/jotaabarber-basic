@@ -145,12 +145,14 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   }, [selectedDay])
 
   return (
-    <div className='w-full m-auto flex flex-col items-center gap-y-10'>
-      <h2 className="text-xl font-bold">{selectedMonth} 2023</h2>
-      <div className="flex items-center justify-center">
-        <button className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
-        <div className="flex">{renderCalendar()}</div>
-        <button className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
+    <div className='w-full m-auto grid grid-rows-2 items-center gap-y-10'>
+      <div>
+        <h2 className="text-xl my-5 text-center font-bold">{selectedMonth} 2023</h2>
+        <div className="flex items-center justify-center">
+          <button className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
+          <div className="flex">{renderCalendar()}</div>
+          <button className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
+        </div>
       </div>
       <Turnos
         periodoTurno={periodoTurno}

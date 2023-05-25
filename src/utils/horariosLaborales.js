@@ -4,7 +4,20 @@ import { db } from './firebaseconfig';
 import { v4 as uuidv4 } from "uuid";
 
 
-export const horariosLaborales = [{
+export const horariosLaborales = [
+    {
+        hora: '09:00',
+        disponible: true,
+        periodo: 'mañana',
+        id:uuidv4()
+    },
+    {
+        hora: '09:30',
+        disponible: true,
+        periodo: 'mañana',
+        id:uuidv4()
+    },
+    {
         hora: '10:00',
         disponible: true,
         periodo: 'mañana',

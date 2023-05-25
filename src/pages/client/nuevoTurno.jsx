@@ -170,7 +170,7 @@ export default function NuevoTurno() {
                    <form
                         onSubmit={handleSubmit}
                    >
-                     <div className=' relative w-[90%] h-[400px] mx-auto flex flex-col justify-center'>
+                     <div className=' relative w-[90%] h-[400px] m-auto'>
                          {pasoActual()}
                      </div>
                     
