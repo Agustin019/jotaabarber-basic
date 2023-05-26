@@ -31,7 +31,9 @@ export const AuthProvider = ({ children }) => {
           uid: user.uid,
           email: user.email,
           role: 'cliente',
-          fullName: user.displayName !== null ? user.displayName : fullName
+          fullName: user.displayName !== null ? user.displayName : fullName,
+          turnosActivos: [],
+          img:''
         });
         setTimeout(() => {
           traerDatosDeUsuarioActual()

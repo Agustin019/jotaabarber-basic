@@ -21,7 +21,7 @@ export default function TurnosDeUsuario({ turnosActivos, datosUsuarioActual }) {
                     : <div className='flex flex-col  gap-y-8'>
                         
                         <div className='flex flex-col gap-y-10 items-center'>
-                            <p className='text-neutral-500 font-medium text-lg'>Aún no cuentas con turnos programados</p>
+                            <p className='text-neutral-500 font-medium text-lg py-8'>Aún no cuentas con turnos programados</p>
                             <Link
                                 to='/nuevoturno'
                                 className='w-[209px] h-[48px] py-3 px-6 flex justify-center items-center bg-black text-white font-bold text-base uppercase'
