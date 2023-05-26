@@ -63,15 +63,52 @@ export default function DatosDeUsuario({ datosUsuarioActual }) {
                         <button
                             onClick={handleButtonClick}
                             className="
-                bw-[214px] h-[48px] py-3 px-6 flex justify-center items-center gap-[10px]
-                bg-black text-white font-bold text-base uppercase
-            "
+                                bw-[214px] h-[48px] py-3 px-6 flex justify-center items-center gap-[10px]
+                                bg-black text-white font-bold text-base uppercase
+                                "
                         >
                             <img src="https://i.ibb.co/R4LzjhG/photo-camera.png" alt="" />
                             Cambiar foto
                         </button>
                     </div>
                 </div>
+            </div>
+            <div className='flex flex-col justify-start gap-y-3'>
+                <p className='font-bold text-2xl'>Mis Datos</p>
+                <p className='font-light text-base'>Información de tu cuenta</p>
+            </div>
+            <div className='flex flex-col gap-y-6'>
+                <div className='flex flex-col gap-y-2'>
+                    <label htmlFor="fullname">Nombre y apellido</label>
+                    <input 
+                        id="fullname"
+                        type="text" 
+                        name="Nombre y apellido" 
+                        placeholder='Nombre y apellido'
+                        className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4'
+                        />
+                </div>
+                <div className='flex flex-col gap-y-2'>
+                    <label htmlFor="Email">Email</label>
+                    <input 
+                        id="Email"
+                        type="email" 
+                        name="Email" 
+                        placeholder='Email'
+                        className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4'
+                        />
+                </div>
+                <div className='flex flex-col gap-y-2'>
+                    <label htmlFor="Telefono">Telefono</label>
+                    <input 
+                        id="Telefono"
+                        type="text" 
+                        name="Telefono" 
+                        placeholder='Telefono'
+                        className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4'
+                        />
+                </div>
+                
             </div>
         </article>
     );
