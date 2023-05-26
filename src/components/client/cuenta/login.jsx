@@ -1,10 +1,16 @@
-import {useState} from 'react'
+import { useState } from 'react'
 
 
-export default function Login({login, setIsLoading}) {
+export default function Login({ login, setIsLoading, handleGoogle, handleFacebook }) {
     // Hooks Log In
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const handleTogglePassword = () => {
+      setShowPassword(!showPassword);
+    };
 
     const handleLogin = async e => {
         e.preventDefault()
@@ -13,32 +19,92 @@ export default function Login({login, setIsLoading}) {
     }
 
     return (
-        <form
-            onSubmit={handleLogin}
-        >
-            <div className='mb-4'>
-                <input
-                    type="text"
-                    placeholder='E-mail'
-                    onChange={e => setEmail(e.target.value)}
-                    className='p-2 w-full bg-slate-200'
-                />
+        <article>
+            <div className='flex flex-col  mt-8'>
+                <h2 className='font-semibold text-3xl '>Iniciar sesión en MdpCuts</h2>
+                <div className='flex gap-x-10'>
+                    <button
+                        onClick={handleGoogle}
+                        className='
+                     w-full bg-white border border-zinc-800 rounded-xl py-4 px-[10px] my-5
+                     flex items-center justify-center gap-x-2 font-semibold text-base
+                     '
+                    >
+                        <img src="https://i.ibb.co/bsKnZYq/buscar.png" alt="Logo google" />
+                        Log in with Google
+                    </button>
+                    <button
+                        onClick={handleFacebook}
+                        className='
+                     w-full bg-[#1e1e1e] border border-zinc-800 rounded-xl py-4 px-[10px] my-5 
+                     flex items-center justify-center gap-x-2 font-semibold text-base text-white'
+                    >
+                        <img src="https://i.ibb.co/ckD2sLT/facebook.png" alt="Logo Facebook" />
+                        Log in with Facebook
+                    </button>
+                </div>
+                <div className='w-full flex justify-center items-center gap-x-2'>
+                    <div className='w-[32px] border border-gray-400'></div>
+                    <p className='text-2xl font-medium text-gray-400'>OR</p>
+                    <div className='w-[32px] border border-gray-400'></div>
+                </div>
             </div>
-            <div className='mb-4'>
-                <input
-                    type="password"
-                    placeholder='Contraseña'
-                    onChange={e => setPassword(e.target.value)}
-                    className='p-2 w-full  bg-slate-200'
-                />
-            </div>
-            <div className='flex justify-center'>
-                <input
-                    type="submit"
-                    value="Iniciar sesion"
-                    className='p-2 bg-yellow-500 text-white font-semibold rounded-xl mx-auto'
-                />
-            </div>
-        </form>
+
+            <form
+                onSubmit={handleLogin}
+                
+            >
+               
+                <div className='flex flex-col'>
+                    
+                    <div className="form__group  ">
+                        <input
+                            type="email"
+                            onChange={e => setEmail(e.target.value)}
+                            className="form__field"
+                            placeholder="Input"
+                            id='email'
+                            required
+                        />
+                        <label className="form__label " htmlFor='email'>
+                            Email
+                        </label>
+                    </div>
+                    <div className="form__group  ">
+                        <input
+                            type={ showPassword ? 'text' : 'password'  }
+                            id='contraseña'
+                            onChange={e => setPassword(e.target.value)}
+                            className="form__field"
+                            placeholder="Input"
+                            required
+                        />
+                        <label className="form__label " htmlFor="contraseña">
+                            Contraseña
+                        </label>
+                        <p 
+                            onClick={handleTogglePassword}
+                            className='absolute top-5 text-lg text-gray-400 right-2'>
+                                {
+                                    showPassword 
+                                    ? <ion-icon name="eye-sharp"></ion-icon>
+                                    :<ion-icon name="eye-off-sharp"></ion-icon>
+                                }
+                        </p>
+                    </div>
+                    
+                </div>
+               
+                <div className='flex justify-center mt-10'>
+                    <input
+                        type="submit"
+                        value="Iniciar sesion"
+                        className='
+                        w-[292px] h-[52px] flex justify-center items-center py-4 px-[10px] 
+                        bg-[#1E1E1E] text-white text-base font-bold rounded-xl mx-auto'
+                    />
+                </div>
+            </form>
+        </article>
     )
 }
