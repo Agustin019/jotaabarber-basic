@@ -17,7 +17,7 @@ export default function Usuario() {
         <Navbar/>
         <main className='w-[90%] mx-auto'>
             
-            <section className='mt-40 grid grid-cols-[1fr,5fr]'>
+            <section className='mt-32 grid grid-cols-[1fr,5fr]'>
                 <article>
                     <div className='w-[20%] flex flex-col'>
                         <button
