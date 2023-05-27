@@ -11,6 +11,9 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom"; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const authContext = createContext()
 
@@ -29,6 +32,9 @@ export const AuthProvider = ({ children }) => {
 
   // estado para el nombre completo en el registro comun de firebase
   const [fullName, setFullName] = useState('')
+
+  // Estado para la pantalla de carga
+  const [isLoading, setIsLoading] = useState(false);
 
   const crearDocumentoDeUsuario = async () => {
     if (user?.uid) {
@@ -63,7 +69,7 @@ export const AuthProvider = ({ children }) => {
         setDatosUsuarioActual(docSnap.data());
       } else {
         //setDatosUsuarioActual({});
-        await crearDocumentoDeUsuario(user.uid); // Pasa el UID del usuario como parámetro
+        await crearDocumentoDeUsuario(); 
       }
     }
   };
@@ -98,15 +104,25 @@ export const AuthProvider = ({ children }) => {
 
 
   const register = async (email, password) => {
+    setIsLoading(true);
     try {
       const response = await createUserWithEmailAndPassword(auth, email, password);
       const newUser = response.user;
       await traerDatosDeUsuarioActual();
       await crearDocumentoDeUsuario(newUser.uid);
     } catch (error) {
-      console.log('Error al registrar el usuario:', error.message);
+       if (error.code === 'auth/email-already-in-use') {
+      toast.error("Email ya registrado", "error")
+    } else if (error.code === 'auth/invalid-email') {
+      toast.error("Email invalido", "error")
+    } else if (error.code === 'auth/weak-password') {
+      toast.error("Contraseña demasiado corta, Usar minimo 6 caracteres", "error")
+    } else if (error.code) {
+      toast.error("Ups, algo salio mal", "error")
+    }
       // Aquí puedes realizar acciones adicionales en caso de error, como mostrar un mensaje de error al usuario.
     }
+    setIsLoading(false);
   };
   
   const login = async (email, password) => {
@@ -114,7 +130,13 @@ export const AuthProvider = ({ children }) => {
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
     } catch (error) {
-      console.log('Error al iniciar sesión:', error.message);
+      if (error.code === 'auth/wrong-password') {
+        toast.error("Contraseña incorrecta.", "error")
+      } else if (error.code === 'auth/user-not-found') {
+        toast.error("Usuario no encontrado.", "error")
+      } else {
+        toast.error("Ups, algo salio mal.", "error")
+      }
       // Acciones adicionales en caso de error.
     }
   };
@@ -125,14 +147,16 @@ export const AuthProvider = ({ children }) => {
       return await signInWithPopup(auth, responseGoogle);
     } catch (error) {
       console.log('Error al iniciar sesión con Google:', error.message);
+      setIsLoading(false)
+
       // Acciones adicionales en caso de error.
     }
   };
   
   const loginWithFacebook = async () => {
     try {
-      const responseFacebook = new FacebookAuthProvider();
-      return await signInWithPopup(auth, responseFacebook);
+      const provider = new FacebookAuthProvider();
+      return await signInWithPopup(auth, provider);
     } catch (error) {
       console.log('Error al iniciar sesión con Facebook:', error.message);
       // Acciones adicionales en caso de error.
@@ -141,8 +165,9 @@ export const AuthProvider = ({ children }) => {
   
   const logOut = async () => {
     try {
-      setDatosUsuarioActual({});
       const response = await signOut(auth);
+      //setDatosUsuarioActual({});
+      window.location.reload();
       console.log(response);
     } catch (error) {
       console.log('Error al cerrar sesión:', error.message);
@@ -164,10 +189,14 @@ export const AuthProvider = ({ children }) => {
         traerDatosDeUsuarioActual,
         crearDocumentoDeUsuario,
         fullName,
-        setFullName
+        setFullName,
+
+        isLoading,
+        setIsLoading
       }}
     >
       {children}
+      <ToastContainer />
     </authContext.Provider>
   )
 }
