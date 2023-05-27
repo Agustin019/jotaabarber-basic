@@ -1,6 +1,14 @@
 import { auth, db } from "../utils/firebaseconfig";
 import { createContext, useContext, useEffect } from 'react'
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "firebase/auth";
+import { 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  signOut, 
+  onAuthStateChanged ,
+  FacebookAuthProvider
+} from "firebase/auth";
 import { useState } from "react";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
@@ -90,33 +98,65 @@ export const AuthProvider = ({ children }) => {
 
 
   const register = async (email, password) => {
-    const response = await createUserWithEmailAndPassword(auth, email, password);
-    const newUser = response.user;
-    await traerDatosDeUsuarioActual(); // Elimina el parámetro newUser.uid
-    await crearDocumentoDeUsuario(newUser.uid); // Pasa el UID del nuevo usuario
+    try {
+      const response = await createUserWithEmailAndPassword(auth, email, password);
+      const newUser = response.user;
+      await traerDatosDeUsuarioActual();
+      await crearDocumentoDeUsuario(newUser.uid);
+    } catch (error) {
+      console.log('Error al registrar el usuario:', error.message);
+      // Aquí puedes realizar acciones adicionales en caso de error, como mostrar un mensaje de error al usuario.
+    }
   };
-
-
-
+  
   const login = async (email, password) => {
-    const response = await signInWithEmailAndPassword(auth, email, password)
-    console.log(response)
-  }
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log(response);
+    } catch (error) {
+      console.log('Error al iniciar sesión:', error.message);
+      // Acciones adicionales en caso de error.
+    }
+  };
+  
   const loginWithGoogle = async () => {
-    const responseGoogle = new GoogleAuthProvider()
-    return await signInWithPopup(auth, responseGoogle)
-  }
+    try {
+      const responseGoogle = new GoogleAuthProvider();
+      return await signInWithPopup(auth, responseGoogle);
+    } catch (error) {
+      console.log('Error al iniciar sesión con Google:', error.message);
+      // Acciones adicionales en caso de error.
+    }
+  };
+  
+  const loginWithFacebook = async () => {
+    try {
+      const responseFacebook = new FacebookAuthProvider();
+      return await signInWithPopup(auth, responseFacebook);
+    } catch (error) {
+      console.log('Error al iniciar sesión con Facebook:', error.message);
+      // Acciones adicionales en caso de error.
+    }
+  };
+  
   const logOut = async () => {
-    setDatosUsuarioActual({})
-    const response = await signOut(auth)
-    console.log(response)
-  }
+    try {
+      setDatosUsuarioActual({});
+      const response = await signOut(auth);
+      console.log(response);
+    } catch (error) {
+      console.log('Error al cerrar sesión:', error.message);
+      // Acciones adicionales en caso de error.
+    }
+  };
+  
   return (
     <authContext.Provider
       value={{
         register,
         login,
         loginWithGoogle,
+        loginWithFacebook,
         logOut,
         user,
         datosUsuarioActual,

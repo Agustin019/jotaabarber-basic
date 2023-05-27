@@ -15,14 +15,15 @@ export default function MiCuenta() {
   // Hook para el formulario
   const [form, setForm] = useState('login');
 
-  const { 
+  const {
     user,
     loginWithGoogle,
-    login, 
-    register, 
-    setDatosUsuarioActual, 
-    datosUsuarioActual, 
-    traerDatosDeUsuarioActual, 
+    loginWithFacebook,
+    login,
+    register,
+    setDatosUsuarioActual,
+    datosUsuarioActual,
+    traerDatosDeUsuarioActual,
   } = useAuth();
 
   const navigate = useNavigate();
@@ -37,8 +38,8 @@ export default function MiCuenta() {
         }
       }
     };
-      setIsLoading(false);
-      redireccionarUsuario();
+    setIsLoading(false);
+    redireccionarUsuario();
   }, [datosUsuarioActual]);
 
   useEffect(() => {
@@ -50,51 +51,91 @@ export default function MiCuenta() {
       setDatosUsuarioActual({});
     }
   }, [user]);
-// ...
+  // ...
 
 
 
-// FUnciones para registrarse y loguearse
+  // FUnciones para registrarse y loguearse
 
-const handleRegister = async (e) => {
-  e.preventDefault();
-  await register(emailRegister, passwordRegister);
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    await register(emailRegister, passwordRegister);
 
-  setIsLoading(true);
+    setIsLoading(true);
 
-  // Esperar a que se registre el usuario
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+    // Esperar a que se registre el usuario
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
-};
+  };
 
 
-const hanldeGoogle = async (e) => {
-  e.preventDefault();
-  await loginWithGoogle();
-  setIsLoading(true);
-};
+  const handleGoogle = async (e) => {
+    e.preventDefault();
+    await loginWithGoogle();
+    setIsLoading(true);
+  };
+  const handleFacebook = async (e) => {
+    await loginWithFacebook();
+    setIsLoading(true);
+  };
 
-return (
-  <main className='w-[90%] mx-auto'>
-    <section className='w-full mt-20'>
-      <article className='flex gap-x-5 justify-center'>
-        <button className='rounded-xl p-2 bg-neutral-800 text-white font-medium' onClick={() => setForm('login')}>Iniciar Sesion</button>
-        <button className='rounded-xl p-2 bg-neutral-800 text-white font-medium' onClick={() => setForm('register')}>Registrarse</button>
-      </article>
-      <article className='w-[40%] mx-auto my-10'>
-        {datosUsuarioActual?.fullName && <h2 className='text-center font-semibold text-2xl text-zinc-800 py-10'>{datosUsuarioActual.fullName}</h2>}
-        <h2 className='text-center font-semibold text-2xl text-zinc-800 py-10'>{form}</h2>
-        <button onClick={hanldeGoogle} className='w-full bg-white border border-zinc-800 rounded-md p-2 my-5'>Iniciar sesion con Google</button>
+
+  return (
+    <main className='flex w-full overflow-hidden'>
+      <section className='w-[60%] p-10'>
+        <article className='flex flex-col gap-y-2'>
+          <div
+            className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
+            onClick={() => navigate(- 1)}
+          >
+            <ion-icon name="arrow-back-sharp"></ion-icon>
+            <p>volver</p>
+          </div>
+
+          <div className='flex gap-x-5 justify-start'>
+            <button
+              onClick={() => setForm('register')}
+              className={`p-2 bg-transparent  text-2xl ${form === 'register' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
+            >
+              Registrarse
+            </button>
+            <button
+              onClick={() => setForm('login')}
+              className={`p-2 bg-transparent  text-2xl ${form === 'login' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
+            >
+              Iniciar Sesion
+            </button>
+          </div>
+
+        </article>
         {form === 'login' ? (
-          <Login setIsLoading={setIsLoading} login={login} />
+          <Login
+            setIsLoading={setIsLoading}
+            login={login}
+            handleGoogle={handleGoogle}
+            handleFacebook
+          />
         ) : (
-          <Register  setEmailRegister={setEmailRegister} setPasswordRegister={setPasswordRegister} handleRegister={handleRegister} />
+          <Register
+            setEmailRegister={setEmailRegister}
+            setPasswordRegister={setPasswordRegister}
+            handleRegister={handleRegister}
+            handleGoogle={handleGoogle}
+            handleFacebook={handleFacebook}
+          />
         )}
         <PantallaCargando isLoading={isLoading} />
-      </article>
-    </section>
-  </main>
-);
 
-// ...
+      </section>
+      <section className='w-[40%] h-screen flex flex-col items-center justify-center bg-gray-200 rounded-xl'>
+        <img
+          className='w-[135px]'
+          src="https://i.ibb.co/68ZDtsm/Vector-1.png"
+          alt="Logo de la empresa"
+        />
+      </section>
+    </main>
+  );
+
+  // ...
 }
