@@ -48,7 +48,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`
+      <nav className={` bg-white
         flex flex-row w-full justify-between items-center px-4  md:p-4 lg:p-[43px] 
         fixed z-20  h-[72px]   top-0 transition-colors duration-300 ease-out
         ${scroll ? 'bg-zinc-900 duration-300' : ''}  
@@ -59,18 +59,17 @@ export default function Navbar() {
         <div className="hidden md:flex">
           <NavbarLinks flexDirection={'flex-row'} />
         </div>
-        <div className='flex flex-row  gap-x-2 items-center  text-white font-normal leading-5 text-[18px] z-50 '>
-          <Link to='/nuevoturno' className='p-2 bg-yellow-500'>+ Nuevo Turno</Link>
+        <div className='flex justify-between w-[320px] items-center font-normal leading-5 text-[18px] z-50 '>
+          <MenuHamburguesa handleNav={handleNav} nav={nav} />
+          <Link to='/nuevoturno' className='p-2 bg-[#1e1e1e] text-white'>+ Nuevo Turno</Link>
           <div className="hidden md:flex  items-center gap-x-1 text-xl ">
-            <ion-icon name="person-circle-outline"></ion-icon>
-            {datosUsuarioActual?.email
+            { Object.keys(datosUsuarioActual).length !== 0
               ? <NavbarDropdown showDropdown={showDropdown} handleDropdownToggle={handleDropdownToggle} />
-              : <Link to='/micuenta'>Ingresar</Link>
+              : <Link to='/micuenta' className='flex items-center gap-x-1'> <ion-icon name="person-circle-outline"></ion-icon> <p>Ingresar</p></Link>
             }
 
           </div>
 
-          <MenuHamburguesa handleNav={handleNav} nav={nav} />
         </div>
 
 

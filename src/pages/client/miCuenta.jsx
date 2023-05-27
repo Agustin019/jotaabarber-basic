@@ -3,6 +3,7 @@ import Login from '../../components/client/cuenta/login';
 import Register from '../../components/client/cuenta/register';
 import { useAuth } from '../../context/authContext';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import PantallaCargando from '../../components/utils/pantallaCargando';
 
@@ -10,7 +11,6 @@ export default function MiCuenta() {
   // Hooks Registro
   const [emailRegister, setEmailRegister] = useState('');
   const [passwordRegister, setPasswordRegister] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
 
   // Hook para el formulario
   const [form, setForm] = useState('login');
@@ -24,6 +24,9 @@ export default function MiCuenta() {
     setDatosUsuarioActual,
     datosUsuarioActual,
     traerDatosDeUsuarioActual,
+
+    isLoading,
+    setIsLoading
   } = useAuth();
 
   const navigate = useNavigate();
@@ -31,6 +34,8 @@ export default function MiCuenta() {
   useEffect(() => {
     const redireccionarUsuario = () => {
       if (datosUsuarioActual && Object.keys(datosUsuarioActual).length !== 0) {
+        toast.success('Bienvenido '+ '' + datosUsuarioActual?.fullName?.split(' ')[0])
+
         if (datosUsuarioActual.role === 'cliente') {
           navigate('/usuario');
         } else if (datosUsuarioActual.role === 'admin') {
@@ -61,8 +66,6 @@ export default function MiCuenta() {
     e.preventDefault();
     await register(emailRegister, passwordRegister);
 
-    setIsLoading(true);
-
     // Esperar a que se registre el usuario
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
@@ -72,11 +75,11 @@ export default function MiCuenta() {
   const handleGoogle = async (e) => {
     e.preventDefault();
     await loginWithGoogle();
-    setIsLoading(true);
+   // setIsLoading(true);
   };
   const handleFacebook = async (e) => {
+    //setIsLoading(true);
     await loginWithFacebook();
-    setIsLoading(true);
   };
 
 
@@ -113,7 +116,7 @@ export default function MiCuenta() {
             setIsLoading={setIsLoading}
             login={login}
             handleGoogle={handleGoogle}
-            handleFacebook
+            handleFacebook={handleFacebook}
           />
         ) : (
           <Register
