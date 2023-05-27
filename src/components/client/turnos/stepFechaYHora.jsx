@@ -159,6 +159,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
         setPeriodoTurno={setPeriodoTurno} 
         filtrarTurnosPorPeriodo={filtrarTurnosPorPeriodo}
         selectedDay={selectedDay}
+        fechaSeleccionada={fechaSeleccionada}
         setFechaSeleccionada={setFechaSeleccionada}
         diaAbreviado={diaAbreviado}
         objetoDiaSeleccionado={selectedDay}

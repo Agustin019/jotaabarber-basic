@@ -168,8 +168,6 @@ export const AuthProvider = ({ children }) => {
       setUser('')
       setDatosUsuarioActual({})
       const response = await signOut(auth);
-      //setDatosUsuarioActual({});
-      //window.location.reload();
       console.log(response);
     } catch (error) {
       console.log('Error al cerrar sesión:', error.message);

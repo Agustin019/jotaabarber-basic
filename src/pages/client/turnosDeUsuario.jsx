@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom'
-import TurnoActivo from './turnoActivo'
+import TurnoActivo from '../../components/client/cuenta/turnoActivo'
 
 
 export default function TurnosDeUsuario({ turnosActivos, datosUsuarioActual }) {
 
     return (
-        <article >
-            <div className='flex items-start pb-5 border-b w-full border-gray-400'>
-                <h2 className='font-bold text-2xl'>Proximos turnos</h2>
+        <article className='w-[90%] mx-auto'>
+            <div className='flex items-start pb-5 border-b w-[80%] ml-[20%] border-gray-400 mt-20'>
+                <h2 className='font-bold text-2xl mt-20 '>Proximos turnos</h2>
             </div>
             {
                 turnosActivos?.length
@@ -18,7 +18,7 @@ export default function TurnosDeUsuario({ turnosActivos, datosUsuarioActual }) {
                             datosUsuarioActual={datosUsuarioActual}
                         />)
 
-                    : <div className='flex flex-col  gap-y-8'>
+                    : <div className='flex flex-col w-[90%]  mx-auto  gap-y-8'>
                         
                         <div className='flex flex-col gap-y-10 items-center'>
                             <p className='text-neutral-500 font-medium text-lg py-8'>Aún no cuentas con turnos programados</p>

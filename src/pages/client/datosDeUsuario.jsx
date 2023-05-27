@@ -1,9 +1,14 @@
 import React, { useRef } from 'react';
-import { db, storage } from '../../../utils/firebaseconfig';
+import { useAuth } from '../../context/authContext';
+
+import { db, storage } from '../../utils/firebaseconfig';
 import { getDownloadURL, uploadBytes, ref } from 'firebase/storage';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
-export default function DatosDeUsuario({ datosUsuarioActual }) {
+export default function DatosDeUsuario() {
+    
+    const { datosUsuarioActual } = useAuth()
+
     const inputRef = useRef(null);
 
     const handleFileChange = async (e) => {
@@ -21,6 +26,7 @@ export default function DatosDeUsuario({ datosUsuarioActual }) {
                     img: url
                 });
                 console.log('Campo img actualizado con la url de la imagen')
+                window.location.reload()
                 // Realizar operaciones adicionales si es necesario
             } else {
                 console.log('El documento del usuario no existe');
@@ -35,8 +41,8 @@ export default function DatosDeUsuario({ datosUsuarioActual }) {
     };
 
     return (
-        <article className="flex flex-col gap-y-5">
-            <div className="flex gap-x-5">
+        <article className="flex flex-col gap-y-5 w-[80%] ml-[20%] mt-20">
+            <div className="flex gap-x-5 w-[90%] mx-auto mt-20">
                 <div className="w-[120px] rounded-full h-[120px] flex flex-col justify-center items-center bg-[#D9D9D9] z-20">
                     {
                         datosUsuarioActual.img !== ''
@@ -73,11 +79,11 @@ export default function DatosDeUsuario({ datosUsuarioActual }) {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col justify-start gap-y-3'>
+            <div className='w-[90%] mx-auto flex flex-col justify-start gap-y-3 '>
                 <p className='font-bold text-2xl'>Mis Datos</p>
                 <p className='font-light text-base'>Información de tu cuenta</p>
             </div>
-            <div className='flex flex-col gap-y-6'>
+            <div className='w-[90%] mx-auto flex flex-col gap-y-6'>
                 <div className='flex flex-col gap-y-2'>
                     <label htmlFor="fullname">Nombre y apellido</label>
                     <input 
