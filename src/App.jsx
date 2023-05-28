@@ -28,21 +28,17 @@ function App() {
             <Routes>
                 //Cliente
                 <Route path='/' element={<Inicio />} />
-                {/* <Route path='/turnos' element={ user ?<Turnos/> :<MiCuenta/>}/> */}
                 <Route path='/nuevoturno' element={user ? <NuevoTurno /> : <MiCuenta />} />
                 <Route path='/micuenta' element={<MiCuenta />} />
-
-                <Route path='/calendario' element={<CalendarioPrueba />} />
-
                 //Admin
                 <Route path='/admin' element={<InicioAdmin />} />
                 <Route path='/admin/agenda' element={<Agenda />} />
                 <Route path='/admin/administrarturnos' element={<AdministrarTurnos />} />
             </Routes>
-                <SideBar/>
+                {user ? <SideBar/> : null}
                     <Routes>
-                    <Route path='/turnos' element={<TurnosDeUsuario />} />
-                    <Route path='/datos' element={<DatosDeUsuario />} />
+                    <Route path='/turnos' element={user ? <TurnosDeUsuario /> : <MiCuenta/>} />
+                    <Route path='/datos' element={user ? <DatosDeUsuario /> : <MiCuenta/>} />
 
                     </Routes>
                

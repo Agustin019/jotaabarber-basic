@@ -7,7 +7,7 @@ export default function SideBar() {
 
   return (
     <main>
-      <Navbar />
+
       <section className="flex mt-20 fixed left-20 w-[20%]">
         <div className="w-[20%] flex flex-col h-full justify-end">
           <Link

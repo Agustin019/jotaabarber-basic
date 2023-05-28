@@ -37,7 +37,7 @@ export default function MiCuenta() {
         toast.success('Bienvenido '+ '' + datosUsuarioActual?.fullName?.split(' ')[0])
 
         if (datosUsuarioActual.role === 'cliente') {
-          navigate('/usuario');
+          navigate('/turnos');
         } else if (datosUsuarioActual.role === 'admin') {
           navigate('/admin');
         }

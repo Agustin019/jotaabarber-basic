@@ -62,7 +62,7 @@ export default function Navbar() {
         <div className='flex justify-between gap-x-4 items-center font-normal leading-5 text-[18px] z-50 '>
 
           <ul className='navegacion'>
-            <Link to='/turnos' className={`link ${location.pathname === '/' ? 'activo' : ''}`}> Turnos</Link>
+            <Link to='/turnos' className={`link ${location.pathname === '/turnos' ? 'activo' : ''}`}> Turnos</Link>
           </ul>
 
           <Link to='/nuevoturno' className='p-2 bg-[#1e1e1e] text-white'>+ Nuevo Turno</Link>
