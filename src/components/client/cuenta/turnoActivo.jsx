@@ -97,7 +97,7 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                 </Transition>
 
             }
-            <div className='w-full flex justify-between h-[115px] rounded-lg bg-[#1e1e1e] my-8 '>
+            <div className=' mx-auto flex justify-between h-[115px] rounded-lg bg-[#1e1e1e] my-8 '>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
                     <p className='text-white text-sm font-normal'>Usuario</p>
                     <p className='text-white text-sm font-light'>{datosUsuarioActual.fullName}</p>

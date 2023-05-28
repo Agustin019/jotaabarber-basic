@@ -57,6 +57,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     });
   };
   const handlePrevWeek = () => {
+    setFechaSeleccionada({})
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() - 4);
       const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
@@ -75,6 +76,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   };
 
   const handleNextWeek = () => {
+    setFechaSeleccionada({})
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + 4);
       const nextWeekEnd = new Date(newWeekStart.getFullYear(), newWeekStart.getMonth(), newWeekStart.getDate() + 6);
@@ -155,10 +157,12 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
         </div>
       </div>
       <Turnos
+        turnos={turnos}
         periodoTurno={periodoTurno}
         setPeriodoTurno={setPeriodoTurno} 
         filtrarTurnosPorPeriodo={filtrarTurnosPorPeriodo}
         selectedDay={selectedDay}
+        fechaSeleccionada={fechaSeleccionada}
         setFechaSeleccionada={setFechaSeleccionada}
         diaAbreviado={diaAbreviado}
         objetoDiaSeleccionado={selectedDay}

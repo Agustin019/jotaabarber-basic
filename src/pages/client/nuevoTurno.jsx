@@ -150,7 +150,7 @@ export default function NuevoTurno() {
             {
               modal && <PantallaTurnoConfirmado modal={modal}/>
             }
-            <section className='col-span-1 flex flex-col justify-between mt-10'>
+            <section className='col-span-1 flex flex-col justify-evenly mt-10'>
 
                 <article className='flex flex-col gap-y-10 w-[90%] mx-auto'>
 
@@ -170,7 +170,7 @@ export default function NuevoTurno() {
                    <form
                         onSubmit={handleSubmit}
                    >
-                     <div className=' relative w-[90%] h-[400px] m-auto'>
+                     <div className=' relative w-[90%] h-[370px] m-auto'>
                          {pasoActual()}
                      </div>
                     

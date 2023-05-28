@@ -21,7 +21,7 @@ export default function NavbarDropdown({ showDropdown, handleDropdownToggle }) {
             </button>
             <ul className={`${showDropdown ? "block ease-in " : "hidden ease-out"} transition-all duration-500 absolute  right-5 `}>
                 <Link
-                    to='/usuario'
+                    to='/datos'
                     className="flex items-center gap-x-2  bg-gray-300 hover:bg-gray-400 p-2 w-48 link"
                 >
                     <ion-icon name="person-outline"></ion-icon>

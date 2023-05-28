@@ -59,17 +59,23 @@ export default function Navbar() {
         <div className="hidden md:flex">
           <NavbarLinks flexDirection={'flex-row'} />
         </div>
-        <div className='flex justify-between w-[320px] items-center font-normal leading-5 text-[18px] z-50 '>
-          <MenuHamburguesa handleNav={handleNav} nav={nav} />
+        <div className='flex justify-between gap-x-4 items-center font-normal leading-5 text-[18px] z-50 '>
+
+          <ul className='navegacion'>
+            <Link to='/turnos' className={`link ${location.pathname === '/turnos' ? 'activo' : ''}`}> Turnos</Link>
+          </ul>
+
           <Link to='/nuevoturno' className='p-2 bg-[#1e1e1e] text-white'>+ Nuevo Turno</Link>
+
           <div className="hidden md:flex  items-center gap-x-1 text-xl ">
-            { Object.keys(datosUsuarioActual).length !== 0
+            {Object.keys(datosUsuarioActual).length !== 0
               ? <NavbarDropdown showDropdown={showDropdown} handleDropdownToggle={handleDropdownToggle} />
               : <Link to='/micuenta' className='flex items-center gap-x-1'> <ion-icon name="person-circle-outline"></ion-icon> <p>Ingresar</p></Link>
             }
 
           </div>
 
+            <MenuHamburguesa handleNav={handleNav} nav={nav} />
         </div>
 
 
