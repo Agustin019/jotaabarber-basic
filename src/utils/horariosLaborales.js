@@ -142,15 +142,19 @@ export async function generarDocumentoPorCadaDiaDisponible() {
         try {
             const documento = await getDoc(docRef)
             if (!documento.exists()) {
+                const horariosConID = horariosLaborales.map(horario => ({
+                    ...horario,
+                    id: uuidv4()
+                }));
                 await setDoc(docRef, {
-                    horariosLaborales
-                })
+                    horariosLaborales: horariosConID
+                });
             }
         } catch (e) {
-            console.log(`Error en la fecha ${fecha}`, e)
+            console.log(`Error en la fecha ${fecha}`, e);
         }
-
     }
+
 }
 
 
