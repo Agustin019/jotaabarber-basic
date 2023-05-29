@@ -54,7 +54,7 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
                         <input
                             type="text"
                             className="form__field"
-                            onChange={() => setFullName(e.target.value)}
+                            onChange={e => setFullName(e.target.value)}
                             placeholder="Input"
                             id='fullname'
                             required

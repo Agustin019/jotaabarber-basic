@@ -54,7 +54,7 @@ export default function Navbar() {
         ${scroll ? 'bg-zinc-900 duration-300' : ''}  
           `}>
         <Link to="./">
-          <img className='w-[3.9rem]' src='https://i.ibb.co/XX7rF46/image.png' alt="Logo" />
+          <img className='w-[6.9rem]' src='https://i.ibb.co/rmhx39D/7514343f-f695-4107-bc09-f025524aeebf.jpgg' alt="Logo" />
         </Link>
         <div className="hidden md:flex">
           <NavbarLinks flexDirection={'flex-row'} />
