@@ -61,7 +61,6 @@ export const BotonConfirmarTurno = () => {
     return (
         <button
             type='submit'
-            onClick={handleSubmit}
             className='py-3 px-5 h-[51px] w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2'
         >
             Confirmar turno
