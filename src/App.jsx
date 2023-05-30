@@ -18,6 +18,8 @@ import SideBar from './components/client/cuenta/sideBar'
 import TurnosDeUsuario from './pages/client/turnosDeUsuario'
 import DatosDeUsuario from './pages/client/datosDeUsuario'
 import DashBoard from './components/admin/dashBoard'
+import ServiciosAdmin from './pages/admin/serviciosAdmin'
+import ProfesionalesAdmin from './pages/admin/profesionalesAdmin'
 
 function App() {
 
@@ -27,37 +29,24 @@ function App() {
 
     return (
         <BrowserRouter>
+            {user ? <Layout/> : ''}
             <Routes>
                 //Cliente
                 <Route path='/' element={<Inicio />} />
                 <Route path='/nuevoturno' element={user ? <NuevoTurno /> : <MiCuenta />} />
                 <Route path='/micuenta' element={<MiCuenta />} />
                 //Admin
-
-
-            </Routes>
-            {user ? <SideBar /> : null}
-            <Routes>
                 <Route path='/turnos' element={user ? <TurnosDeUsuario /> : <MiCuenta />} />
                 <Route path='/datos' element={user ? <DatosDeUsuario /> : <MiCuenta />} />
 
+                <Route path='/admin/turnos' element={<TurnosAdmin />} />
+                <Route path='/admin/diasyhorarios' element={<Agenda />} />
+                <Route path='/admin/servicios' element={<ServiciosAdmin />} />
+                <Route path='/admin/profesionales' element={<ProfesionalesAdmin/>} />
+
             </Routes>
 
-            {role === 'admin' && <DashBoard/>}
-            <Routes>
-                {
-                    role === 'admin'
-                        ? <>
-                            <Route path='/admin/turnos' element={<TurnosAdmin />} />
-                            <Route path='/admin/diasyhorarios' element={<Agenda />} />
-                            <Route path='/admin/servicios' element={<p className='text-cente font-bold text-stone-800 m-80'>Servicios</p>} />
-                            <Route path='/admin/profesionales' element={<p className='text-cente font-bold text-stone-800 m-80'>Profesionales</p>} />
-                        </>
-                        : ''
-                }
-            </Routes>
-
-        </BrowserRouter>
+        </BrowserRouter >
     )
 }
 
