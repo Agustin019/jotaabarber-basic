@@ -39,7 +39,7 @@ export default function MiCuenta() {
         if (datosUsuarioActual.role === 'cliente') {
           navigate('/turnos');
         } else if (datosUsuarioActual.role === 'admin') {
-          navigate('/admin');
+          navigate('/admin/turnos');
         }
       }
     };

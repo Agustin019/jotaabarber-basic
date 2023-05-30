@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { doc, getDoc } from 'firebase/firestore'
+import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 
 export default function TurnosAdmin() {
     const [turnos, setTurnos] = useState([])
 
     useEffect(() => {
-        const consultarTurnos = async () => {
+        const consultarTurnos = () => {
             const docRef = doc(db, 'Turnos', '29-05')
-            const docTurnos = await getDoc(docRef)
-            setTurnos(docTurnos.data().turnos)
+            const unsubscribe = onSnapshot(docRef, (snapshot) => {
+                setTurnos(snapshot.data().turnos)
+            })
+
+            return () => {
+                unsubscribe()
+            }
         }
 
         consultarTurnos()
