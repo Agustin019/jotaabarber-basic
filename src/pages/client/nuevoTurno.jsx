@@ -150,9 +150,9 @@ export default function NuevoTurno() {
             {
               modal && <PantallaTurnoConfirmado modal={modal}/>
             }
-            <section className='col-span-1 flex flex-col justify-evenly mt-10'>
+            <section className='col-span-1 flex flex-col my-9 '>
 
-                <article className='flex flex-col gap-y-10 w-[90%] mx-auto'>
+                <article className='flex flex-col gap-y-10 w-[90%] my-9 mx-auto'>
 
                     <div
                         className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
@@ -169,12 +169,13 @@ export default function NuevoTurno() {
                 <article className=' col-span-1 w-full'>
                    <form
                         onSubmit={handleSubmit}
+                        className='flex flex-col gap-y-10'
                    >
-                     <div className=' relative w-[90%] h-[370px] m-auto'>
+                     <div className=' relative w-[90%] h-[370px] m-auto flex flex-col items-center justify-center'>
                          {pasoActual()}
                      </div>
                     
-                     <div className='flex justify-between mx-auto w-[90%] '>
+                     <div className='flex justify-between mx-auto w-[80%] '>
                          <BotonCancelar/>
                          {validarPasos()}
                      </div>

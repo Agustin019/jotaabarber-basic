@@ -13,7 +13,7 @@ export default function MiCuenta() {
   const [passwordRegister, setPasswordRegister] = useState('');
 
   // Hook para el formulario
-  const [form, setForm] = useState('login');
+  const [form, setForm] = useState('register');
 
   const {
     user,
