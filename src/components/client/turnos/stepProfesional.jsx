@@ -20,7 +20,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
   },[])
   return (
 
-    <div className='sm:w-[90%] mx-auto overflow-x-hidden'>
+    <div className='w-[90%] mx-auto overflow-x-hidden'>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
@@ -58,14 +58,16 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
             <div
               onClick={() => setProfesionalSeleccionado(profesional)}
               className={`
-              flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto my-2
-              hover:outline outline-[#1e1e1e]
-              ${profesionalSeleccionado.nombre === profesional.nombre ? 'outline outline-[#1e1e1e]' : ''}
+              flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto 
+              
                 `
               }
 
             >
-              <img className="rounded-3xl h-[235px] w-[235px] object-top" src={profesional.img} alt={profesional.nombre} />
+              <img className={`
+              rounded-3xl h-[235px] w-[235px] object-top hover:outline outline-[#1e1e1e]
+              ${profesionalSeleccionado.nombre === profesional.nombre ? 'outline outline-[#1e1e1e]' : ''}
+              `} src={profesional.img} alt={profesional.nombre} />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>
                 <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{profesional.nombre}</p>
                  <p className="text-xs text-gray-400 py-2">{profesional.profesion}</p> 

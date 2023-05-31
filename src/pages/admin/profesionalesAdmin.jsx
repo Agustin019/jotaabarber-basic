@@ -1,11 +1,13 @@
+import { useState, useEffect } from 'react'
+import ModalProfesionales from '../../components/admin/modalProfesionales'
+
 import { doc, onSnapshot } from 'firebase/firestore'
-import React, { useState } from 'react'
-import { useEffect } from 'react'
 import { db } from '../../utils/firebaseconfig'
 
 export default function ProfesionalesAdmin() {
 
     const [profesionales, setProfesionales] = useState([])
+    const [ modal, setModal ] = useState(false)
 
     useEffect(() => {
         const consultarTurnos = () => {
@@ -21,15 +23,20 @@ export default function ProfesionalesAdmin() {
 
         consultarTurnos()
     }, [])
+
+    const handleModal = () =>{
+        setModal(!modal)
+    }
     return (
         <main className='ml-[250px]'>
+            {modal && <ModalProfesionales handleModal={handleModal}/>}
             <section className='flex justify-start p-10 text-[#1e1e1e]'>
                 <article className='flex flex-col gap-y-5'>
                     <h2 className='text-2xl font-semibold'>Profesionales</h2>
                     <p className='text-base font-light '>En este panel tienes la posibilidad de administrar los profesionales de tu negocio. ¡Puedes agregar nuevos, editar los que ya tienes o eliminarlos!</p>
                     <div className='flex justify-end'>
                         <button
-                            to='/turnos'
+                            onClick={handleModal}
                             className='w-[209px] h-[48px] p-3 flex justify-center items-center bg-[#1e1e1e] text-white font-medium text-base '
                         >
                             <ion-icon name="add"></ion-icon>
@@ -72,7 +79,7 @@ export default function ProfesionalesAdmin() {
                                 <button>
                                      <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="icono eliminar" />
                                 </button>
-                                <button>
+                                <button onClick={handleModal}>
                                      <img src="https://i.ibb.co/7gbLxGS/edit.png" alt="icono editar" />
                                 </button>
                                </div>

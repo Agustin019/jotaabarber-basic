@@ -12,7 +12,7 @@
 
 .swiper-slide {
   @apply w-full max-w-full max-h-screen 
-        text-center text-lg bg-transparent flex justify-center items-center px-5
+        text-center text-lg bg-transparent flex justify-center items-center 
 }
 
 .swiper-slide img {
@@ -21,7 +21,7 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply absolute z-10  border-stone-800
+  @apply absolute z-10  border-stone-800 
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
@@ -41,6 +41,7 @@
     padding: 1.5rem;
   }
 }
+
 .swiper-button-next {
   right: 10px;
 }
