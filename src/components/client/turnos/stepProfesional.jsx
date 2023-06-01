@@ -20,7 +20,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
   },[])
   return (
 
-    <div className='w-[90%] mx-auto overflow-x-hidden'>
+    <div className='sm:w-[83%] w-full max-w-full max-h-screen mx-auto overflow-x-hidden '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
@@ -39,16 +39,16 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
         className="mySwiper"
         breakpoints={{
           640: {
-            slidesPerView: 2,
-            spaceBetween: 20,
+            slidesPerView: 1,
+            spaceBetween: 5,
           },
           768: {
-            slidesPerView: 3,
-            spaceBetween: 30,
+            slidesPerView: 2,
+            spaceBetween: 5,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 2,
+            spaceBetween: 30,
           },
         }}
       >
