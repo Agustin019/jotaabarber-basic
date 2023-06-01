@@ -2,7 +2,8 @@ import React from 'react'
 
 export default function Alerta({ 
         titulo, 
-        texto, 
+        texto,
+        nombre,
         txtBtnCancelar, 
         txtBtnConfirmar, 
         cancelar, 

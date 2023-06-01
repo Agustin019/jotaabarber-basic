@@ -1,11 +1,16 @@
-import { doc, onSnapshot } from 'firebase/firestore'
+import { doc, onSnapshot, getDoc, updateDoc } from 'firebase/firestore'
 import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { db } from '../../utils/firebaseconfig'
+import ModalServicios from '../../components/admin/modalServicios'
+import Alerta from '../../components/utils/alerta'
 
 export default function ServiciosAdmin() {
 
     const [servicios, setServicios] = useState([])
+    const [servicioAEditar, setServicioAEditar] = useState({})
+    const [ modal, setModal ] = useState(false)
+    const [ modalEliminar, setModalEliminar ] = useState(null)
 
     useEffect(() => {
         const consultarServicios = () => {
@@ -21,15 +26,46 @@ export default function ServiciosAdmin() {
 
         consultarServicios()
     }, [])
+    const eliminarServicio = async nombre => {
+        const docRef = doc(db, 'utilidades', 'servicios')
+        const docServicios = await getDoc(docRef)
+        const dataServicios = docServicios.data().servicio
+        const serviciosActualizados = dataServicios.filter(serv => serv.nombre !== nombre)
+        await updateDoc(docRef, {
+            servicio: serviciosActualizados
+        })
+        setModalEliminar(null)
+    }
+
+
+    const handleModal = () =>{
+        setModal(!modal)
+    }
     return (
         <main className='ml-[250px]'>
+            {modal && <ModalServicios servicio={servicioAEditar} setServicioAEditar={setServicioAEditar} handleModal={handleModal}/>}
+            {modalEliminar !== null && 
+            <Alerta
+                titulo='Eliminar Servicio'
+                texto={(
+                    <p>
+                      ¿Estás seguro de eliminar al profesional
+                      <span className="font-bold"> {''} {modalEliminar} {''} </span>
+                      del sistema? Una vez realizada esta acción, no podrá revertirse.
+                    </p>
+                  )}
+                txtBtnCancelar='No, conservar'
+                txtBtnConfirmar='Si, eliminar'
+                confirmar={() => eliminarServicio(modalEliminar)}
+                cancelar={() => setModalEliminar(null)}
+            />}
             <section className='flex justify-start p-10 text-[#1e1e1e]'>
                 <article className='flex flex-col gap-y-5'>
                     <h2 className='text-2xl font-semibold'>servicios</h2>
                     <p className='text-base font-light '>En este panel tienes la posibilidad de administrar los servicios de tu negocio. ¡Puedes agregar nuevos, editar los que ya tienes o eliminarlos!</p>
                     <div className='flex justify-end'>
                         <button
-                            to='/turnos'
+                            onClick={handleModal}
                             className='w-[209px] h-[48px] p-3 flex justify-center items-center bg-[#1e1e1e] text-white font-medium text-base '
                         >
                             <ion-icon name="add"></ion-icon>
@@ -66,13 +102,13 @@ export default function ServiciosAdmin() {
                                         </div>
                                 }
                                 <p className='font-normal text-sm'>{servicio.nombre}</p>
-                                <p className='font-normal text-sm'>{servicio.profesion}</p>
+                                <p className='font-normal text-sm'>$ {servicio.precio}</p>
                                 <p className='font-normal text-sm'>{servicio.fecha ?? '-'}</p>
                                <div className='flex justify-between gap-x-8 '>
-                                <button>
+                                <button onClick={() => setModalEliminar(servicio.nombre)}>
                                      <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="icono eliminar" />
                                 </button>
-                                <button>
+                                <button onClick={() => setServicioAEditar(servicio)}>
                                      <img src="https://i.ibb.co/7gbLxGS/edit.png" alt="icono editar" />
                                 </button>
                                </div>

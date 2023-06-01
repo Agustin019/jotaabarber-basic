@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import ModalProfesionales from '../../components/admin/modalProfesionales'
-
-import { doc, onSnapshot } from 'firebase/firestore'
+import Alerta from '../../components/utils/alerta'
+import { doc, getDoc, onSnapshot, updateDoc } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 
 export default function ProfesionalesAdmin() {
 
     const [profesionales, setProfesionales] = useState([])
+    const [profesionalAEditar, setProfesionalAEditar] = useState({})
     const [ modal, setModal ] = useState(false)
+    const [ modalEliminar, setModalEliminar ] = useState(null)
 
     useEffect(() => {
         const consultarTurnos = () => {
@@ -24,12 +26,39 @@ export default function ProfesionalesAdmin() {
         consultarTurnos()
     }, [])
 
+    const eliminarProfesional = async nombre => {
+        const docRef = doc(db, 'utilidades', 'profesionales')
+        const docProfesionales = await getDoc(docRef)
+        const dataProfesionales = docProfesionales.data().profesionales
+        const profesionalesActualizados = dataProfesionales.filter(prof => prof.nombre !== nombre)
+        await updateDoc(docRef, {
+            profesionales: profesionalesActualizados
+        })
+        setModalEliminar(null)
+    }
+
+
     const handleModal = () =>{
         setModal(!modal)
     }
     return (
         <main className='ml-[250px]'>
-            {modal && <ModalProfesionales handleModal={handleModal}/>}
+            {modal && <ModalProfesionales profesional={profesionalAEditar} setProfesionalAEditar={setProfesionalAEditar} handleModal={handleModal}/>}
+            {modalEliminar !== null && 
+            <Alerta
+                titulo='Eliminar Profesional'
+                texto={(
+                    <p>
+                      ¿Estás seguro de eliminar al profesional
+                      <span className="font-bold"> {''} {modalEliminar} {''} </span>
+                      del sistema? Una vez realizada esta acción, no podrá revertirse.
+                    </p>
+                  )}
+                txtBtnCancelar='No, conservar'
+                txtBtnConfirmar='Si, eliminar'
+                confirmar={() => eliminarProfesional(modalEliminar)}
+                cancelar={() => setModalEliminar(null)}
+            />}
             <section className='flex justify-start p-10 text-[#1e1e1e]'>
                 <article className='flex flex-col gap-y-5'>
                     <h2 className='text-2xl font-semibold'>Profesionales</h2>
@@ -76,10 +105,13 @@ export default function ProfesionalesAdmin() {
                                 <p className='font-normal text-sm'>{profesional.profesion}</p>
                                 <p className='font-normal text-sm'>{profesional.fecha ?? '-'}</p>
                                <div className='flex justify-between gap-x-8 '>
-                                <button>
+                                <button onClick={ () => setModalEliminar(profesional.nombre) }>
                                      <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="icono eliminar" />
                                 </button>
-                                <button onClick={handleModal}>
+                                <button onClick={() => {
+                                    setProfesionalAEditar(profesional)
+                                    handleModal()
+                                }}>
                                      <img src="https://i.ibb.co/7gbLxGS/edit.png" alt="icono editar" />
                                 </button>
                                </div>

@@ -3,36 +3,37 @@ import { useEffect, useState, useRef } from 'react';
 import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseconfig';
 
-export default function ModalProfesionales({ handleModal, profesional ,setProfesionalAEditar }) {
+export default function ModalProfesionales({ handleModal, servicio ,setServicioAEditar }) {
   // Estado para almacenar la imagen seleccionada
   const [selectedImage, setSelectedImage] = useState(null);
   // Estado para almacenar el nombre de la imagen seleccionada
   const [nombreImagen, setNombreImagen] = useState('');
   // Estado para controlar si se está arrastrando una imagen
   const [dragging, setDragging] = useState(false);
-  // Estado para almacenar los servicios
-  const [servicios, setServicios] = useState([]);
-  // Estado para almacenar el nombre del profesional
-  const [nombreProfesional, setNombreProfesional] = useState('');
+  // Estado para almacenar los profesionales
+  const [profesionales, setProfesionales] = useState([]);
+  // Estado para almacenar los datos del servicio
+  const [nombreSercivio, setNombreServicio] = useState('');
+  const [ precio, setPrecio ] = useState('')
 
-  // Obtener los servicios al cargar el componente
+  // Obtener los profesionales al cargar el componente
   useEffect(() => {
-    const consultarServicios = async () => {
-      const docRef = doc(db, 'utilidades', 'servicios');
+    const consultarProfesionales = async () => {
+      const docRef = doc(db, 'utilidades', 'profesionales');
       const serviciosDoc = await getDoc(docRef);
-      setServicios(serviciosDoc.data().servicio);
+      setProfesionales(serviciosDoc.data().profesionales);
     };
-    consultarServicios();
+    consultarProfesionales();
   }, []);
 
-  // Actualizar el formulario cuando se selecciona un profesional existente
+  // Actualizar el formulario cuando se selecciona un servicio existente
   useEffect(() => {
-    if (profesional) {
-      setSelectedImage(profesional.img);
+    if (servicio) {
+      setSelectedImage(servicio.img);
       setNombreImagen('');
-      setNombreProfesional(profesional.nombre);
+      setNombreServicio(servicio.nombre);
     }
-  }, [profesional]);
+  }, [servicio]);
 
   // Manejo de imágenes
 
@@ -103,29 +104,30 @@ export default function ModalProfesionales({ handleModal, profesional ,setProfes
         downloadURL = selectedImage;
       }
 
-      // Obtener la colección de profesionales
-      const docRefProfesionales = doc(db, 'utilidades', 'profesionales');
-      const profesionalesDoc = await getDoc(docRefProfesionales);
-      const profesionalesData = profesionalesDoc.data();
+      // Obtener la colección de servicios
+      const docRef = doc(db, 'utilidades', 'servicios');
+      const serviciosDoc = await getDoc(docRef);
+      const dataServicios = serviciosDoc.data();
       
-      if (Object.keys(profesional).length !== 0) {
-        // Editar un profesional existente
-        const index = profesionalesData.profesionales.findIndex(
-          (profesionalItem) => profesionalItem.nombre === profesional.nombre
+      if (Object.keys(servicio).length !== 0) {
+        // Editar un servicio existente
+        const index = dataServicios.servicio.findIndex(
+          (profesionalItem) => profesionalItem.nombre === servicio.nombre
         );
-        profesionalesData.profesionales[index].img = downloadURL;
-        profesionalesData.profesionales[index].nombre = nombreProfesional;
+        dataServicios.profesionales[index].img = downloadURL;
+        dataServicios.profesionales[index].nombre = nombreSercivio;
       } else {
-        // Agregar un nuevo profesional
-        profesionalesData.profesionales.push({
+        // Agregar un nuevo servicio
+        dataServicios.servicio.push({
           img: downloadURL,
-          nombre: nombreProfesional,
-          profesion: 'Barbero'
+          nombre: nombreSercivio,
+          precio: precio,
+          fecha: 'Barbero',
         });
       }
 
       // Actualizar los cambios en Firestore
-      await updateDoc(docRefProfesionales, profesionalesData);
+      await updateDoc(docRef, dataServicios);
 
       console.log('Enviando formulario');
     } catch (error) {
@@ -140,23 +142,23 @@ export default function ModalProfesionales({ handleModal, profesional ,setProfes
       <form onSubmit={handleSubmit} className='w-[636px] h-[642px] rounded-xl py-8 px-6 bg-[#474747] flex flex-col'>
         {/* Contenido del modal */}
         <article className='flex justify-between items-center'>
-          <h2 className='font-bold text-2xl text-[#FDFFFC]'>Nuevo Profesional</h2>
+          <h2 className='font-bold text-2xl text-[#FDFFFC]'>Nuevo servicio</h2>
           <button onClick={() => {
             handleModal()
-            setProfesionalAEditar({})
+            setServicioAEditar({})
           }}>
             <img src='https://i.ibb.co/18mdwKB/close.png' alt='' />
           </button>
         </article>
 
-        {/* contenedor cmapos */}
+        {/* contenedor campos */}
         <article className='flex flex-col'>
-          <div className='flex flex-col h-[407px] gap-y-5 justify-between'>
+          <div className='flex flex-col max-h-[457px] overflow-y-scroll px-2  gap-y-5 justify-between'>
             <div className=''>
                {/* Contenedor campo imagen */}
-            <p className='text-[#FDFFFC] font-semibold text-base py-4 mt-3'>Foto del profesional</p>
+            <p className='text-[#FDFFFC] font-semibold text-base py-4 mt-3'>Foto del servicio</p>
             <div
-              className={`w-[588px] h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
+              className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
               onDragOver={(e) => e.preventDefault()}
@@ -200,17 +202,30 @@ export default function ModalProfesionales({ handleModal, profesional ,setProfes
                 type='text'
                 id='nombre'
                 className='p-4 rounded-xl border border-[#d9d9d9] bg-transparent  font-light text-[#FDFFFC] outline-none'
-                placeholder='Nombre del profesional'
-                value={nombreProfesional}
-                onChange={(e) => setNombreProfesional(e.target.value)}
+                placeholder='Nombre del servicio'
+                value={nombreSercivio}
+                onChange={(e) => setNombreServicio(e.target.value)}
+              />
+            </div>
+            <div className='flex flex-col gap-y-3'>
+              <label className='font-semibold text-base text-[#FDFFFC]' htmlFor='precio'>
+                Precio
+              </label>
+              <input
+                type='number'
+                id='precio'
+                className='p-4 rounded-xl border border-[#d9d9d9] bg-transparent  font-light text-[#FDFFFC] outline-none'
+                placeholder='Precio del servicio'
+                value={precio}
+                onChange={(e) => setPrecio(e.target.value)}
               />
             </div>
 
             {/* Campo de serviicos a cargo */}
             <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-[#FDFFFC]'>Servicios a cargo</label>
+              <label className='font-semibold text-base text-[#FDFFFC]'>profesionales a cargo</label>
               <div className='flex justify-between'>
-                {servicios?.map((servicio) => (
+                {profesionales?.map((servicio) => (
                   <div key={servicio.nombre} className='flex gap-2'>
                     <label className='font-light text-sm text-[#FDFFFC]'>
                       <input type='checkbox' name={servicio.nombre} className='mr-1' />
@@ -223,14 +238,14 @@ export default function ModalProfesionales({ handleModal, profesional ,setProfes
           </div>
 
           {/* Botón enviar */}
-          <div className='flex justify-center mt-20'>
+          <div className='flex justify-center mt-10'>
            <button
             type='submit' 
             className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
               {
-                Object.keys(profesional).length !== 0 
+                Object.keys(servicio).length !== 0 
                 ? 'Guardar Cambios'
-                : 'Agregar Profesional'
+                : 'Agregar servicio'
               }
              
            </button>
