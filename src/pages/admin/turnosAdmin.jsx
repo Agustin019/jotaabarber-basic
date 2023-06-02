@@ -1,24 +1,46 @@
 import React, { useEffect, useState } from 'react'
 import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
+import { format } from 'date-fns';
+import Calendar from '../../components/utils/calendar';
+
 
 export default function TurnosAdmin() {
     const [turnos, setTurnos] = useState([])
+    const [selectedDay, setSelectedDay] = useState(new Date());
+
+    // Estado para manejar la apertura del calendario
+    const [isOpen, setIsOpen] = useState(false);
+    const fechaFormateada = format(selectedDay, 'dd-MM');
+    console.log(fechaFormateada)
+
+
+    const consultarTurnos = () => {
+        const docRef = doc(db, 'Turnos', fechaFormateada)
+        const unsubscribe = onSnapshot(docRef, (snapshot) => {
+            setTurnos(snapshot.data().turnos)
+        })
+        console.log(turnos)
+        return () => {
+            unsubscribe()
+        }
+    }
+
+
 
     useEffect(() => {
-        const consultarTurnos = () => {
-            const docRef = doc(db, 'Turnos', '29-05')
-            const unsubscribe = onSnapshot(docRef, (snapshot) => {
-                setTurnos(snapshot.data().turnos)
-            })
+        consultarTurnos();
+    }, [selectedDay]);
 
-            return () => {
-                unsubscribe()
-            }
-        }
+    useEffect(() => {
+        consultarTurnos();
+    }, []); // Llamar al cargar el componente
 
-        consultarTurnos()
-    }, [])
+
+    const handleDateChange = (date) => {
+        setSelectedDay(date);
+        setIsOpen(!isOpen);
+    }
 
     return (
         <main className='ml-[250px] '>
@@ -26,8 +48,15 @@ export default function TurnosAdmin() {
                 <article className='flex flex-col gap-y-5'>
                     <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
                     <div className='flex items-center gap-x-2 '>
-                        <p className='text-[20px] font-semibold'>29/05</p>
+                        <p className='text-[20px] font-semibold'>{fechaFormateada}</p>
                         <p>cambiar dia</p>
+                        <Calendar
+                            selectedDay={selectedDay}
+                            setSelectedDay={setSelectedDay}
+                            handleDateChange={handleDateChange}
+                            isOpen={isOpen}
+                            setIsOpen={setIsOpen}
+                        />
                     </div>
                 </article>
             </section>
