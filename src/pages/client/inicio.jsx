@@ -13,13 +13,14 @@ import "swiper/css/navigation";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
+import SobreNosotros from "../../components/client/inicio/sobreNosotros";
 export default function Inicio() {
 
 
   return (
    <>
    <Navbar/>
-     <main className="bg-black z-50 ">
+     <main className="z-50 ">
        <section className="inicio h-screen bg-inicio bg-cover bg-center">
          <article className="w-full h-full bg-gradient-to-b from-black/80 to-black/50  pt-[72px]">
            <div className="flex flex-col justify-center items-center gap-y-8 pt-20">
@@ -61,6 +62,7 @@ export default function Inicio() {
            }         
          </Swiper> */}
        </section>
+      {/* <SobreNosotros/>*/}
     
      </main>
    </>

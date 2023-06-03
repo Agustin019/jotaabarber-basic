@@ -9,7 +9,9 @@ export default function Layout() {
   if(location.pathname === '/admin' || 
     location.pathname === '/admin/turnos' || 
     location.pathname === '/admin/servicios' || 
-    location.pathname === '/admin/Profesionales'){
+    location.pathname === '/admin/diasyhorarios' || 
+    location.pathname === '/admin/profesionales'
+    ){
     return (
       <DashBoard />
     )
