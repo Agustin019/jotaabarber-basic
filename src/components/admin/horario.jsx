@@ -7,7 +7,7 @@ export default function Horario({ horario, horariosModificados, setHorariosModif
     setIsActive(horario.disponible);
   }, [horario]);
 
-  const isHorarioModificado = horariosModificados.some((horarioModificado) => horarioModificado.id === horario.id);
+  const isHorarioModificado = horariosModificados?.some((horarioModificado) => horarioModificado.id === horario.id) ;
 
   const handleToggle = () => {
     setIsActive(!isActive);
@@ -42,7 +42,7 @@ export default function Horario({ horario, horariosModificados, setHorariosModif
         uncheckedIcon={false}
         checkedIcon={false}
         onHandleColor="#000"
-        offHandleColor="#c1c1c1"
+        offHandleColor="#837e7e"
       />
     </div>
   );

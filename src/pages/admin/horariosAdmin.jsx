@@ -7,6 +7,9 @@ import Horario from '../../components/admin/horario';
 import PantallaCargando from '../../components/utils/pantallaCargando'
 
 import Switch from 'react-switch'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 export default function HorariosAdmin() {
@@ -24,7 +27,7 @@ export default function HorariosAdmin() {
   const fechaFormateada = format(selectedDay, 'dd-MM');
   console.log(horariosModificados)
 
-  const [ isLoading, setIsLoading ] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
 
   const consultarHorarios = () => {
@@ -41,14 +44,29 @@ export default function HorariosAdmin() {
   useEffect(() => {
     consultarHorarios();
     setHorariosModificados([])
+    checkInitialAvailability();
   }, [selectedDay]);
 
   useEffect(() => {
     consultarHorarios();
+    checkInitialAvailability();
   }, []); // Llamar al cargar el componente
 
+  const [switchEnabled, setSwitchEnabled] = useState(false);
 
-  const cambiarTodasLasDisponibilidades = async () => {
+  const checkInitialAvailability = async () => {
+    const docRef = doc(db, 'horarios', fechaFormateada);
+    const docHorarios = await getDoc(docRef);
+    const dataHorarios = docHorarios.data().horariosLaborales;
+
+    const hasAvailability = dataHorarios.some(horario => horario.disponible);
+
+    setSwitchEnabled(hasAvailability);
+  };
+
+
+  const deshabilitarTodoLosTurnos = async () => {
+    setIsLoading(true)
     const docRef = doc(db, 'horarios', fechaFormateada);
     const docHorarios = await getDoc(docRef);
     const dataHorarios = docHorarios.data().horariosLaborales;
@@ -61,7 +79,25 @@ export default function HorariosAdmin() {
 
     // Guardar los horarios actualizados en Firestore
     await updateDoc(docRef, { horariosLaborales: nuevosHorarios });
-    console.log(`Todos los horarios del día ${fechaFormateada} actualizados`)
+    setIsLoading(false)
+    toast.success('Todos los turnos deshabilitados correctamente')
+  }
+  const habilitarTodosLosTurnos = async () => {
+    setIsLoading(true)
+    const docRef = doc(db, 'horarios', fechaFormateada);
+    const docHorarios = await getDoc(docRef);
+    const dataHorarios = docHorarios.data().horariosLaborales;
+
+    // Actualizar el campo 'disponible' de todos los horarios a 'false'
+    const nuevosHorarios = dataHorarios.map(horario => ({
+      ...horario,
+      disponible: true
+    }));
+
+    // Guardar los horarios actualizados en Firestore
+    await updateDoc(docRef, { horariosLaborales: nuevosHorarios });
+    setIsLoading(false)
+    toast.success('Todos los turnos habilitados correctamente')
   }
 
 
@@ -71,13 +107,12 @@ export default function HorariosAdmin() {
   }
 
 
-
   const guardarCambios = async () => {
     try {
       setIsLoading(true)
       // Obtiene una copia del arreglo horarios
       const horariosActualizados = [...horarios];
-  
+
       // Actualiza los horarios modificados según los cambios en horariosModificados
       horariosModificados.forEach((horarioModificado) => {
         const horarioExistente = horariosActualizados.find((horario) => horario.id === horarioModificado.id);
@@ -85,31 +120,34 @@ export default function HorariosAdmin() {
           horarioExistente.disponible = horarioModificado.disponible;
         }
       });
-  
+
       // Actualiza los horarios en Firestore
       const docRef = doc(db, 'horarios', fechaFormateada);
       await updateDoc(docRef, { horariosLaborales: horariosActualizados });
-  
+      consultarHorarios()
+
       console.log('Horarios actualizados correctamente');
+      setHorariosModificados([])
+      toast.success('Horarios actualizados correctamente')
       setIsLoading(false)
     } catch (error) {
       console.error('Error al actualizar los horarios:', error);
     }
   };
-  
+
 
   return (
     <main className='ml-[250px] p-10 flex flex-col gap-y-7'>
+      <ToastContainer />
       <section>
         <article className='flex flex-col gap-y-5 items-start '>
           <h1 className='font-semibold text-2xl'>Horarios</h1>
           <p className='font-ligh text-lg'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
         </article>
         <article className='flex flex-col gap-y-5 items-start mt-10'>
-       <h2 className='font-semibold text-xl'>Agenda del día {''}</h2>
+          <h2 className='font-semibold text-xl'>Horarios del día {''}</h2>
           <div className='flex justify-between w-full'>
             <div className='flex gap-x-5'>
-              <h2 className='font-semibold text-xl'>{fechaFormateada}</h2>
               <Calendar
                 selectedDay={selectedDay}
                 setSelectedDay={setSelectedDay}
@@ -119,20 +157,28 @@ export default function HorariosAdmin() {
               />
             </div>
 
-            <Switch
-              onChange={() => {
-                cambiarTodasLasDisponibilidades();
-              }}
-             // checked={turnos}
-              onColor="#CCCCCC"
-              offColor="#CCCCCC"
-              handleDiameter={20}
-              uncheckedIcon={false}
-              checkedIcon={false}
-              onHandleColor='#000'
-              offHandleColor='#c1c1c1'
-            />
-          </div> 
+            <div className='flex gap-x-3'>
+              <p className='font-medium text-lg'>{switchEnabled ? 'Turnos Habilitados' : 'Turnos Deshabilitados'}</p>
+              <Switch
+                checked={switchEnabled}
+                onChange={async () => {
+                  if (switchEnabled) {
+                    deshabilitarTodoLosTurnos(); // Deshabilitar los turnos
+                  } else {
+                    habilitarTodosLosTurnos();
+                  }
+                  setSwitchEnabled(!switchEnabled);
+                }}
+                onColor="#CCCCCC"
+                offColor="#CCCCCC"
+                handleDiameter={20}
+                uncheckedIcon={false}
+                checkedIcon={false}
+                onHandleColor='#000'
+                offHandleColor="#837e7e"
+              />
+            </div>
+          </div>
         </article>
       </section>
       <section>
@@ -171,13 +217,13 @@ export default function HorariosAdmin() {
               </div>
               <div className='flex justify-center '>
                 {
-                  isLoading && <PantallaCargando isLoading={isLoading}/>
+                  isLoading && <PantallaCargando isLoading={isLoading} />
                 }
                 <button
-                  onClick={ horariosModificados.length !== 0 ? () => guardarCambios() : null} 
+                  onClick={horariosModificados.length !== 0 ? () => guardarCambios() : null}
                   className={`
-                  ${horariosModificados.length !== 0 ?'bg-[#1e1e1e]' :'bg-gray-400'} 
-                  p-2  text-white
+                  ${horariosModificados.length !== 0 ? 'bg-[#1e1e1e]' : 'bg-gray-400'} 
+                  px-3 py-2  text-white
                   `}>
                   Guardar cambios
                 </button>
