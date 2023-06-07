@@ -39,16 +39,20 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
         await updateDoc(docRefHoras, horas)
         console.log('Horario disponible para todo el publico')
 
-        // Eliminando el turno en la coleccion 'Turnos' que es el que se le va a mostrar al admin
         const docRefTurno = doc(db, 'Turnos', turno.dia)
         const docTurno = await getDoc(docRefTurno)
-        const turnos = docTurno.data().turnos
-        const turnosActualidados = turnos.filter(turn => turn.id !== turno.id)
-        await updateDoc(docRefTurno, {
-            turnos: turnosActualidados
-        });
-        console.log('Turno eliminado de la base de datos')
+        const turnos = docTurno.data()
+
+        const encontrarTUrno = turnos.turnos.findIndex(obj => obj.id === turno.id)
+        if (encontrarTUrno !== -1) {
+            turnos.turnos[encontrarTUrno] = {
+                ...turnos.turnos[encontrarTUrno],
+                estado: 'cancelado'
+            };
+        }
+        await updateDoc(docRefTurno, turnos)
         window.location.reload();
+        console.log('Estado de turno actualizado')
     }
 
     useEffect(() => {
