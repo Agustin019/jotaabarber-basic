@@ -12,7 +12,7 @@ import StepProfesional from '../../components/client/turnos/stepProfesional'
 import StepServicios from '../../components/client/turnos/stepServicios'
 import StepfechaYHora from '../../components/client/turnos/stepFechaYHora'
 import PantallaTurnoConfirmado from '../../components/client/turnos/pantallaTurnoConfirmado'
-
+import { v4 as uuidv4 } from "uuid";
 
 
 
@@ -33,6 +33,7 @@ export default function NuevoTurno() {
     const [fechaSeleccionada, setFechaSeleccionada] = useState({})
 
     const [ modal, setModal ] = useState(false)
+    const turnoId = uuidv4(); // Generar un UUID
 
     console.log(fechaSeleccionada)
     const navigate = useNavigate()
@@ -107,6 +108,8 @@ export default function NuevoTurno() {
       console.log(turnos)
       turnos.turnos.push({
         id:fechaSeleccionada.id,
+        userId:datosUsuarioActual.uid,
+        turnoId:turnoId,
         objetoDiaSeleccionado:fechaSeleccionada.objetoDiaSeleccionado,
         nombreDia:fechaSeleccionada.nombreDia,
         dia:fechaSeleccionada.dia,
@@ -125,7 +128,8 @@ export default function NuevoTurno() {
       const userTurnos = userDoc.data()
       console.log(userTurnos)
       userTurnos.turnosActivos.push({
-        id:fechaSeleccionada.id,
+        turnoId:turnoId,
+        userId:datosUsuarioActual.uid,
         objetoDiaSeleccionado:fechaSeleccionada.objetoDiaSeleccionado,
         nombreDia:fechaSeleccionada.nombreDia,
         dia:fechaSeleccionada.dia,
