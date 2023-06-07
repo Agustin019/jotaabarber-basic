@@ -114,7 +114,8 @@ export default function NuevoTurno() {
         cliente: nombre,
         telefono:telefono,
         servicio: servicioSeleccionado.nombre,
-        profesional: profesionalSeleccionado.nombre
+        profesional: profesionalSeleccionado.nombre,
+        estado:'confirmado'
       })
       await updateDoc(docRefTurno, turnos)
       console.log('turno enviado al documento de turnos')
@@ -133,6 +134,7 @@ export default function NuevoTurno() {
         telefono:telefono,
         servicio: servicioSeleccionado.nombre,
         profesional: profesionalSeleccionado.nombre,
+        estado:'confirmado'
       })
       
 

@@ -30,6 +30,7 @@ export default function TurnosAdmin() {
 
     useEffect(() => {
         consultarTurnos();
+        console.log(turnos)
     }, [selectedDay]);
 
     useEffect(() => {
@@ -47,33 +48,31 @@ export default function TurnosAdmin() {
             <section className='flex justify-start p-10 text-[#1e1e1e]'>
                 <article className='flex flex-col gap-y-5'>
                     <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
-                    <div className='flex items-center gap-x-2 '>
-                        <p className='text-[20px] font-semibold'>{fechaFormateada}</p>
-                        <p>cambiar dia</p>
                         <Calendar
                             selectedDay={selectedDay}
                             setSelectedDay={setSelectedDay}
                             handleDateChange={handleDateChange}
                             isOpen={isOpen}
                             setIsOpen={setIsOpen}
-                        />
-                    </div>
+                        />                 
                 </article>
             </section>
             <section>
-                <article className='w-full grid grid-cols-5 place-items-start px-10'>
+                <article className='w-full grid grid-cols-7 place-items-start px-10'>
                     <p className='font-normal text-base'>Cliente</p>
                     <p className='font-normal text-base'>Telefono</p>
                     <p className='font-normal text-base'>Hora</p>
                     <p className='font-normal text-base'>Servicio</p>
                     <p className='font-normal text-base'>Profesional</p>
+                    <p className='font-normal text-base'>Estado</p>
+                    <p className='font-normal text-base'>Cancelar</p>
                 </article>
                 <article>
                     {turnos.length !== 0 ? (
                         turnos.map((turno, index) => (
                             <div
                                 key={turno.id}
-                                className={`grid grid-cols-5 place-items-start py-4 px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
+                                className={`grid grid-cols-7 place-items-start py-4 px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
                                     }`}
                             >
                                 <p className='font-light text-sm'>{turno.cliente}</p>
@@ -84,6 +83,13 @@ export default function TurnosAdmin() {
                                 <p className='font-light text-sm'>{turno.hora}</p>
                                 <p className='font-light text-sm'>{turno.servicio}</p>
                                 <p className='font-light text-sm'>{turno.profesional}</p>
+                                <p className={`font-medium text-sm ${turno.estado === 'confirmado' ? 'text-green-600': 'text-red-600'}`}>{turno.estado}</p>
+                                <button 
+                                    className='mx-7'
+                                    onClick={turno.estado === 'cancelado' ? null : () => console.log('Cancelando turno')}
+                                    >
+                                    <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
+                                </button>
                             </div>
                         ))
                     ) : (
