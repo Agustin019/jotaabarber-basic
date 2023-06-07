@@ -3,6 +3,7 @@ import { doc, onSnapshot } from 'firebase/firestore'
 import { db } from '../../utils/firebaseconfig'
 import { format } from 'date-fns';
 import Calendar from '../../components/utils/calendar';
+import Turno from '../../components/admin/turno';
 
 
 export default function TurnosAdmin() {
@@ -70,27 +71,7 @@ export default function TurnosAdmin() {
                 <article>
                     {turnos.length !== 0 ? (
                         turnos.map((turno, index) => (
-                            <div
-                                key={turno.id}
-                                className={`grid grid-cols-7 place-items-start py-4 px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
-                                    }`}
-                            >
-                                <p className='font-light text-sm'>{turno.cliente}</p>
-                                <div className='flex items-center gap-x-1 underline'>
-                                    <ion-icon name="logo-whatsapp"></ion-icon>
-                                    <a href={`https://wa.me/${turno.telefono}`} className='font-medium text-sm'>{turno.telefono}</a>
-                                </div>
-                                <p className='font-light text-sm'>{turno.hora}</p>
-                                <p className='font-light text-sm'>{turno.servicio}</p>
-                                <p className='font-light text-sm'>{turno.profesional}</p>
-                                <p className={`font-medium text-sm ${turno.estado === 'confirmado' ? 'text-green-600': 'text-red-600'}`}>{turno.estado}</p>
-                                <button 
-                                    className='mx-7'
-                                    onClick={turno.estado === 'cancelado' ? null : () => console.log('Cancelando turno')}
-                                    >
-                                    <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
-                                </button>
-                            </div>
+                           <Turno key={turno.id} turno={turno} index={index} /> 
                         ))
                     ) : (
                         <p>No hay turnos para este día aún</p>
