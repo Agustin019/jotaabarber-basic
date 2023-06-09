@@ -8,7 +8,7 @@ export default function ResumenTurno({
     fechaSeleccionada
 }) {
     return (
-        <aside className='w-[483px] col-span-1  bg-[#1e1e1e] h-screen py-[32px] pr-[63px] pl-[40px]'>
+        <aside className='w-full sm:w-[483px] col-span-1  bg-[#1e1e1e] h-screen py-[32px] pr-[63px] pl-[40px]'>
             <h2 className='font-bold text-white pb-5 text-2xl'>Resúmen de turno</h2>
             <div className='flex flex-col gap-y-4'>
                 <p className='font-medium text-xl text-white '>Datos del cliente:</p>

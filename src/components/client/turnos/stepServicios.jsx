@@ -25,7 +25,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
   }, [])
   return (
 
-    <div className='sm:w-[80%] max-w-full max-h-full mx-auto overflow-x-hidden '>
+    <div className='sm:w-[82%] max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center  '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
@@ -41,7 +41,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
           nextEl: '.swiper-button-next',
         }}
         modules={[Navigation]}
-        //className="mySwiper"
+        className="mySwiper"
         breakpoints={{
           640: {
             slidesPerView: 2,
@@ -49,32 +49,30 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 15,
+            spaceBetween: 10,
           },
         }}
       >
         {servicios.map(servicio =>
-          <SwiperSlide key={servicio.nombre} className="max-w-[235px]">
+          <SwiperSlide key={servicio.nombre} className="max-w-[235px] ">
 
             <div
               onClick={() => setServicioSeleccionado(servicio)}
               className={`
-              flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto my-2
+              flex flex-col cursor-pointer rounded-3xl max-w-[235px] p-2 mx-auto
              
-            
                 `
               }
 
             >
               <img className={
-                `rounded-3xl h-[235px] w-[235px]  hover:outline outline-[#1e1e1e]   
+                `rounded-3xl min-h-[235px] max-h-[235px] min-w-[235px] max-w-[235px] object-top hover:outline outline-[#1e1e1e]
               ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-[#1e1e1e]' : ''}`}
                 src={servicio.img}
                 alt={servicio.nombre} 
               />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>
                 <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>
-                {/* <p className="text-xs text-gray-400 py-2">({servicio.description})</p> */}
                 <p className="text-sm font-bold text-gray-700">${servicio.precio}</p>
               </div>
             </div>

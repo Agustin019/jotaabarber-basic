@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 
-/* Carousel servicios */
-.swiper {
+/* Carousel estandar */
+/* .swiper {
   width: 100%;
   height: 100%;
 }
@@ -14,7 +14,6 @@
   font-size: 18px;
   background: #fff;
 
-  /* Center slide text vertically */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,9 +24,13 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
+} */
 
- /* swiper {
+
+
+/* Carousel personalizado  */
+
+  swiper {
   width: 100%;
   max-width: 100%;
   max-height: 100%;
@@ -38,16 +41,16 @@
  }
 .swiper-slide {
   @apply w-full max-w-full max-h-screen 
-        text-center text-lg bg-transparent flex justify-center items-center 
+        text-center text-lg bg-transparent flex justify-center items-center pt-5 pr-4
 }
 
 .swiper-slide img {
-  @apply block w-full object-cover max-w-full max-h-[400px]
+  @apply block w-full object-cover max-w-full 
 }
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply absolute z-10  border-stone-800 
+  @apply absolute z-10  border-stone-800 pb-32 
 }
 .swiper-button-prev::after,
 .swiper-button-next::after {
@@ -74,8 +77,7 @@
 
 .swiper-button-prev {
   left: 10px;
-} */
-
+} 
 
 /*Transicion de componentes en turnos*/
 .fade-enter {
