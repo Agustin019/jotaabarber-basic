@@ -156,7 +156,7 @@ export default function NuevoTurno() {
             {
               modal && <PantallaTurnoConfirmado modal={modal}/>
             }
-            <section className='col-span-1 flex flex-col my-9 '>
+            <section className='col-span-1 max-w-[100%] my-3 '>
 
                 <article className='flex flex-col gap-y-10 w-[90%] my-9 mx-auto'>
 
@@ -175,9 +175,9 @@ export default function NuevoTurno() {
                 <article className=' col-span-1 w-full'>
                    <form
                         onSubmit={handleSubmit}
-                        className='flex flex-col gap-y-10'
+                        className='my-10'
                    >
-                     <div className=' relative w-[90%] h-[370px] m-auto flex flex-col items-center justify-center'>
+                     <div className=' relative w-[90%] h-[370px] m-auto '>
                          {pasoActual()}
                      </div>
                     

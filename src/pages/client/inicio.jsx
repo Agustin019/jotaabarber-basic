@@ -62,7 +62,9 @@ export default function Inicio() {
            }         
          </Swiper> */}
        </section>
-      {/* <SobreNosotros/>*/}
+     <section className="w-full">
+       <SobreNosotros/>
+     </section>
     
      </main>
    </>

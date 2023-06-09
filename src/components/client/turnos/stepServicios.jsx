@@ -25,7 +25,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
   }, [])
   return (
 
-    <div className='sm:w-[83%] w-full max-w-full max-h-screen mx-auto overflow-x-hidden '>
+    <div className='sm:w-[80%] max-w-full max-h-full mx-auto overflow-x-hidden '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
@@ -41,24 +41,20 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
           nextEl: '.swiper-button-next',
         }}
         modules={[Navigation]}
-        className="mySwiper"
+        //className="mySwiper"
         breakpoints={{
           640: {
-            slidesPerView: 1,
-            spaceBetween: 5,
-          },
-          768: {
             slidesPerView: 2,
-            spaceBetween: 5,
+            spaceBetween: 10,
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 0,
+            spaceBetween: 15,
           },
         }}
       >
         {servicios.map(servicio =>
-          <SwiperSlide key={servicio.nombre}>
+          <SwiperSlide key={servicio.nombre} className="max-w-[235px]">
 
             <div
               onClick={() => setServicioSeleccionado(servicio)}

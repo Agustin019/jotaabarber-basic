@@ -25,7 +25,7 @@ export default function BarraProgresiva({ step }) {
               <p className={` text-[16px] transition-colors duration-500 ${step > +i ? 'font-semibold text-green-600' : 'font-medium'}`}>{barStep}</p>
             </div>
             {i === barraSteps.length - 1 ? null : (
-              <div className='border-dashed border m-auto  border-stone-400 h-[2px] w-[100px]'></div>
+              <div className='border-dashed border m-auto  border-stone-400 h-[2px] w-[130px]'></div>
             )}
           </div>
         ))

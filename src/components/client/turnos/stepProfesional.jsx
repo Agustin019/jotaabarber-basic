@@ -20,7 +20,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
   },[])
   return (
 
-    <div className='sm:w-[83%] w-full max-w-full max-h-screen mx-auto overflow-x-hidden '>
+    <div className='sm:w-[83%]  md:w-full max-w-full max-h-screen mx-auto pt-10 overflow-hidden '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
@@ -36,7 +36,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
           nextEl: '.swiper-button-next',
         }}
         modules={[Navigation]}
-        className="mySwiper"
+        //className="mySwiper"
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -44,7 +44,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 5,
+            spaceBetween: 15,
           },
           1024: {
             slidesPerView: 3,
@@ -58,7 +58,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
             <div
               onClick={() => setProfesionalSeleccionado(profesional)}
               className={`
-              flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto 
+              flex flex-col cursor-pointer rounded-3xl max-w-[235px] m-1
               
                 `
               }
