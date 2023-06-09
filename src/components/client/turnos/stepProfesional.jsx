@@ -20,12 +20,12 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
   },[])
   return (
 
-    <div className='sm:w-[83%]  md:w-full max-w-full max-h-screen mx-auto pt-10 overflow-hidden '>
+    <div className='sm:w-[85%]   max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 
       <Swiper
-        //params={swiperOptions}
+       // params={swiperOptions}
         slidesPerView={1}
         spaceBetween={30}
         pagination={{
@@ -36,7 +36,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
           nextEl: '.swiper-button-next',
         }}
         modules={[Navigation]}
-        //className="mySwiper"
+        className="mySwiper"
         breakpoints={{
           640: {
             slidesPerView: 1,
@@ -48,24 +48,23 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
           },
           1024: {
             slidesPerView: 3,
-            spaceBetween: 30,
+            spaceBetween: 10,
           },
         }}
       >
         {profesionales?.map((profesional) =>
-          <SwiperSlide key={profesional.nombre}>
+          <SwiperSlide  className="max-w-[235px] " key={profesional.nombre}>
 
             <div
               onClick={() => setProfesionalSeleccionado(profesional)}
               className={`
-              flex flex-col cursor-pointer rounded-3xl max-w-[235px] m-1
-              
+              flex flex-col cursor-pointer rounded-3xl max-w-[235px] p-2 mx-auto
                 `
               }
 
             >
               <img className={`
-              rounded-3xl h-[235px] w-[235px] object-top hover:outline outline-[#1e1e1e]
+              rounded-3xl min-h-[235px] max-h-[235px] min-w-[235px] max-w-[235px] object-top hover:outline outline-[#1e1e1e]
               ${profesionalSeleccionado.nombre === profesional.nombre ? 'outline outline-[#1e1e1e]' : ''}
               `} src={profesional.img} alt={profesional.nombre} />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>

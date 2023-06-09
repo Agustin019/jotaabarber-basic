@@ -151,14 +151,14 @@ export default function NuevoTurno() {
     }
 
     return (
-        <main className='grid grid-cols-1 md:grid-cols-[3fr,1fr]  gap-x-4  '>
+        <main className='grid grid-cols-1 lg:grid-cols-[3fr,1fr]  gap-x-4  '>
             {/* Barra progrediva del formulario */}
             {
               modal && <PantallaTurnoConfirmado modal={modal}/>
             }
-            <section className='col-span-1 max-w-[100%] my-3 '>
+            <section className='col-span-1 max-w-[100%]  '>
 
-                <article className='flex flex-col gap-y-10 w-[90%] my-9 mx-auto'>
+                <article className='flex flex-col gap-y-10 w-[90%] my-5 mx-auto'>
 
                     <div
                         className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
@@ -181,7 +181,7 @@ export default function NuevoTurno() {
                          {pasoActual()}
                      </div>
                     
-                     <div className='flex justify-between mx-auto w-[80%] '>
+                     <div className='flex flex-col-reverse items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[80%] md:pt-20 '>
                          <BotonCancelar/>
                          {validarPasos()}
                      </div>
