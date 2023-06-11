@@ -57,7 +57,7 @@ export default function Turnos({
           </div>
 
 
-          : <div className=' h-[150px] flex justify-center'>
+          : <div className=' h-[183px] flex justify-center'>
             <p className='text-2xl text-[#1e1e1e] text-center '>No hay turnos para este dia</p>
           </div>
 
