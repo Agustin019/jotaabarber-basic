@@ -33,7 +33,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const thirtyDaysLater = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
 
   useEffect(() => {
-    const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 3);
+    const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 5);
     setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
     // console.log(middleDate.getDate());
     // const fechaFormateada = format(middleDate, 'dd-MM');
@@ -52,47 +52,49 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     setSelectedMonth(monthsOfYear[day.getMonth()]);
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const diff = Math.floor((day - prevWeekStartDay) / (24 * 60 * 60 * 1000));
-      const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 3);
+      const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 5);
       return newWeekStart;
     });
   };
   const handlePrevWeek = () => {
-    setFechaSeleccionada({})
+    if (selectedDay.toDateString() === currentDate.toDateString()) {
+      return; // No retroceder si el día seleccionado es el día actual
+    }
+  
+    setFechaSeleccionada({});
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() - 4);
-      const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-      const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 3);
-      if (newWeekStart < minPrevDate) {
-        return minPrevDate;
-      } else if (newWeekStart <= thirtyDaysLater) {
+      const maxPrevDate = currentDate + 1;
+      const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 6);
+      
+      if (newWeekStart >= minPrevDate) {
         return newWeekStart;
       } else {
-        return maxPrevDate;
+        return minPrevDate;
       }
     });
-
-    // const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() - 1);
-    //console.log(middleDate.getDate());
   };
-
+  
+  
   const handleNextWeek = () => {
-    setFechaSeleccionada({})
+    if (selectedDay.toDateString() === thirtyDaysLater.toDateString()) {
+      return; // No avanzar si el día seleccionado es la fecha máxima
+    }
+  
+    setFechaSeleccionada({});
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + 4);
       const nextWeekEnd = new Date(newWeekStart.getFullYear(), newWeekStart.getMonth(), newWeekStart.getDate() + 6);
       const maxNextDate = new Date(thirtyDaysLater.getFullYear(), thirtyDaysLater.getMonth(), thirtyDaysLater.getDate() - 6);
-      if (nextWeekEnd <= thirtyDaysLater) {
+      if (nextWeekEnd <= thirtyDaysLater && nextWeekEnd <= maxNextDate) { // Cambio aquí
         return newWeekStart;
-      } else if (prevWeekStartDay <= thirtyDaysLater) {
+      } else if (prevWeekStartDay <= thirtyDaysLater && maxNextDate <= thirtyDaysLater) { // Cambio aquí
         return maxNextDate;
       } else {
         return prevWeekStartDay;
       }
     });
-
-    const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 4);
-    console.log(middleDate.getDate());
-  };
+  }
 
   // ...código posterior...
 
@@ -100,10 +102,10 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const renderCalendar = () => {
     const calendar = [];
     const startDate = new Date(currentWeekStartDay);
-    const middleDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 3);
+    const middleDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 5);
     const thirtyDaysLater = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 11; i++) {
       const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
       const day = date.getDate();
       const dayName = daysOfWeek[date.getDay()].slice(0, 3);
