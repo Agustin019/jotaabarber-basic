@@ -64,9 +64,9 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     setFechaSeleccionada({});
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() - 4);
-      const maxPrevDate = currentDate + 1;
+      const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1);
       const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 6);
-      
+  
       if (newWeekStart >= minPrevDate) {
         return newWeekStart;
       } else {
