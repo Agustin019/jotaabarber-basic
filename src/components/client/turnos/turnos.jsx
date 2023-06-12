@@ -13,17 +13,17 @@ export default function Turnos({
   objetoDiaSeleccionado
 }) {
   return (
-    <div>
+    <div >
       {
         turnos.length !== 0
-          ? <div className='flex'>
-            <div className='w-[20%] flex flex-col'>
+          ? <div className='flex flex-col md:flex-row items-center justify-center'>
+            <div className=' mx-auto md:w-[20%] flex md:flex-col'>
               <button
                 onClick={() => {
                   setFechaSeleccionada({})
                   setPeriodoTurno('mañana')
                 }}
-                className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'mañana' ? 'font-semibold border-l-[5px] border-black' : 'font-light'}`}>
+                className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'mañana' ? 'font-semibold border-b-[2px] md:border-b-0 md:border-l-[5px] border-black' : 'font-light'}`}>
                 Mañana
               </button>
               <button
@@ -31,14 +31,14 @@ export default function Turnos({
                   setFechaSeleccionada({})
                   setPeriodoTurno('tarde')
                 }}
-                className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'tarde' ? 'font-semibold border-l-[5px] border-black' : 'font-light'}`}>
+                className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'tarde' ? 'font-semibold border-b-[2px] md:border-b-0 md:border-l-[5px] border-black' : 'font-light'}`}>
                 Tarde
               </button>
             </div>
             :
 
 
-            <div className='w-[90%] flex flex-wrap gap-5 h-[183px] overflow-y-auto'>
+            <div className='w-full  mx-auto flex flex-wrap gap-3 xl:gap-5 h-[99px] md:h-[183px] md:py-4 overflow-y-auto'>
               {
                 filtrarTurnosPorPeriodo?.map((turno, i) =>
                   <Turno
