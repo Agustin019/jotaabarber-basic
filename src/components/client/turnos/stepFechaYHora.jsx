@@ -33,13 +33,24 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const thirtyDaysLater = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
 
   useEffect(() => {
-    const middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 5);
-    setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
-    // console.log(middleDate.getDate());
-    // const fechaFormateada = format(middleDate, 'dd-MM');
-    setSelectedDay(middleDate)
-
-  }, [currentWeekStartDay]);
+    let middleDate;
+    if (window.innerWidth >= 1024) {
+      middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 5);
+    } else if (window.innerWidth >= 768) {
+      middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 3);
+    } else if ((window.innerWidth <= 768)) {
+      middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 2);
+    }
+    
+    if (selectedDay >= currentWeekStartDay && selectedDay <= middleDate) {
+      setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
+      setSelectedDay(selectedDay);
+    } else {
+      setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
+      setSelectedDay(middleDate);
+    }
+  }, [currentWeekStartDay, selectedDay]);
+  
 
   useEffect(() => {
     handleDayClick(currentDate)
@@ -52,7 +63,14 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     setSelectedMonth(monthsOfYear[day.getMonth()]);
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const diff = Math.floor((day - prevWeekStartDay) / (24 * 60 * 60 * 1000));
-      const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 5);
+      let newWeekStart;
+      if (window.innerWidth >= 1024) {
+        newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 5);
+      } else if (window.innerWidth >= 768) {
+        newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 3);
+      } else if ((window.innerWidth <= 768)) {
+        newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 2);
+      }
       return newWeekStart;
     });
   };
@@ -96,27 +114,52 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     });
   }
 
-  // ...código posterior...
-
-
   const renderCalendar = () => {
     const calendar = [];
     const startDate = new Date(currentWeekStartDay);
-    const middleDate = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + 5);
-    const thirtyDaysLater = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
-
-    for (let i = 0; i < 11; i++) {
+    const thirtyDaysLater = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      currentDate.getDate() + 30
+    );
+  
+    let visibleDaysCount;
+    if (window.innerWidth >= 1024) {
+      visibleDaysCount = 11;
+    } else if (window.innerWidth >= 768) {
+      visibleDaysCount = 7;
+    } else {
+      visibleDaysCount = 5;
+    }
+  
+    const middleIndex = Math.floor(visibleDaysCount / 2);
+    const startIndex = Math.max(0, middleIndex - Math.floor(visibleDaysCount / 2));
+    const endIndex = startIndex + visibleDaysCount;
+  
+    let selectedDayIndex = middleIndex;
+  
+    if (selectedDay) {
+      const currentDateIndex = Math.floor((selectedDay - startDate) / (1000 * 60 * 60 * 24));
+      if (currentDateIndex >= startIndex && currentDateIndex < endIndex) {
+        selectedDayIndex = currentDateIndex - startIndex;
+      }
+    }
+  
+    for (let i = startIndex; i < endIndex; i++) {
       const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
       const day = date.getDate();
       const dayName = daysOfWeek[date.getDay()].slice(0, 3);
-      const isCurrentDay = date.toDateString() === currentDate.toDateString();
-      const isMiddleDay = date.toDateString() === middleDate.toDateString();
+      const isSelectedDay = selectedDay && date.toDateString() === selectedDay.toDateString();
+      const isMiddleDay = i - startIndex === selectedDayIndex && isSelectedDay;
       const isSelectable = date >= currentDate && date <= thirtyDaysLater;
-
-      const dayClassNames = `py-2 px-4 mx-2 flex flex-col items-center gap-3 rounded-lg w-[63px] h-[76px] ${isCurrentDay ? 'border border-[#1e1e1e]' : ''
-        } ${isCurrentDay && isMiddleDay ? 'bg-[#1e1e1e] text-white' : isMiddleDay ? 'bg-[#1e1e1e] text-white' : ''
-        } ${!isSelectable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`;
-
+  
+      const dayClassNames = `py-2 px-4 flex flex-col items-center gap-3 rounded-lg ${
+        visibleDaysCount === 5 ? 'sm:w-[63px]' : 'w-[63px]'
+      } h-[76px] ${isSelectedDay ? 'border border-[#1e1e1e]' : ''
+        } ${isSelectedDay && isMiddleDay ? 'bg-[#1e1e1e] text-white' : isMiddleDay ? 'bg-[#1e1e1e] text-white' : ''} 
+        ${!isSelectable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+      `;
+  
       calendar.push(
         <div
           key={i}
@@ -128,10 +171,14 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
         </div>
       );
     }
-
-    return calendar;
+  
+    return (
+      <div className="flex justify-center">
+        {calendar}
+      </div>
+    );
   };
-
+  
   generarDocumentoPorCadaDiaDisponible()
   generarDocumentoPorCadaDiaDeTurnosDisponible()
 
