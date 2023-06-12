@@ -19,7 +19,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function NuevoTurno() {
 
     //Formulario paso a paso
-    const [step, setStep] = useState(0)
+    const [step, setStep] = useState(3)
     const { datosUsuarioActual } = useAuth()
 
     // step datos personales
@@ -151,14 +151,14 @@ export default function NuevoTurno() {
     }
 
     return (
-        <main className='grid grid-cols-1 lg:grid-cols-[3fr,1fr]  gap-x-4  '>
+        <main className='grid grid-cols-1 lg:grid-cols-[3fr,1fr]  gap-x-2  '>
             {/* Barra progrediva del formulario */}
             {
               modal && <PantallaTurnoConfirmado modal={modal}/>
             }
             <section className='col-span-1 max-w-[100%]  '>
 
-                <article className='flex flex-col gap-y-10 w-[90%] my-5 mx-auto'>
+                <article className='flex flex-col gap-y-5 md:gap-y-10 w-[90%] my-5 mx-auto'>
 
                     <div
                         className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
@@ -177,11 +177,11 @@ export default function NuevoTurno() {
                         onSubmit={handleSubmit}
                         className='my-10'
                    >
-                     <div className=' relative w-[90%] h-[370px] m-auto '>
+                     <div className=' relative w-[90%] h-[350px] mx-auto '>
                          {pasoActual()}
                      </div>
                     
-                     <div className='flex flex-col-reverse items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[80%] md:pt-20 '>
+                     <div className='flex flex-col-reverse items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[80%] xl:pt-20 '>
                          <BotonCancelar/>
                          {validarPasos()}
                      </div>

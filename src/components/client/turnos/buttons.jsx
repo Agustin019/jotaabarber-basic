@@ -24,7 +24,7 @@ export const BotonCancelar = () => {
             :''
         }
         <button
-            className='py-3 px-5 h-[51px] border border-stone-900 w-[300px] sm:w-[356px] text-stone-900 bg-white font-semibold text-lg rounded-md'
+            className='py-3 px-5 h-[51px] border border-stone-900 w-[300px] lg:w-[356px] text-stone-900 bg-white font-semibold text-lg rounded-md'
             onClick={() => setModal(true)}
         >
             Cancelar reserva
@@ -36,7 +36,7 @@ export const BotonCancelar = () => {
 export const BotonAvanzar = ({ step, setStep }) => {
     return (
         <button
-            className='py-3 px-5 h-[51px] w-[300px] sm:w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2'
+            className='py-3 px-5 h-[51px] w-[300px] lg:w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2'
             onClick={() => setStep(step + 1)}
         >
             Siguiente paso
@@ -48,7 +48,7 @@ export const BotonAvanzar = ({ step, setStep }) => {
 export const BotonAvanzarDeshabilitado = ({ step }) => {
     return (
         <button
-            className='py-3 px-5 h-[51px] w-[300px] sm:w-[356px] bg-gray-400 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2 '
+            className='py-3 px-5 h-[51px] w-[300px] lg:w-[356px] bg-gray-400 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2 '
             disabled
         >
             {step === 3 ? 'Confirmar turno' : 'Siguiente paso'}
@@ -61,7 +61,7 @@ export const BotonConfirmarTurno = () => {
     return (
         <button
             type='submit'
-            className='py-3 px-5 h-[51px] w-[300px] sm:w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2'
+            className='py-3 px-5 h-[51px] w-[300px] lg:w-[356px] bg-stone-900 text-white font-medium text-lg rounded-md flex justify-center items-center gap-2'
         >
             Confirmar turno
             <ion-icon name="arrow-forward-outline"></ion-icon>

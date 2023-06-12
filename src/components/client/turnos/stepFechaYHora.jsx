@@ -64,7 +64,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     setCurrentWeekStartDay((prevWeekStartDay) => {
       const diff = Math.floor((day - prevWeekStartDay) / (24 * 60 * 60 * 1000));
       let newWeekStart;
-      if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 1280) {
         newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 5);
       } else if (window.innerWidth >= 768) {
         newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 3);
@@ -124,7 +124,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     );
   
     let visibleDaysCount;
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth >= 1280) {
       visibleDaysCount = 11;
     } else if (window.innerWidth >= 768) {
       visibleDaysCount = 7;
@@ -153,9 +153,8 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
       const isMiddleDay = i - startIndex === selectedDayIndex && isSelectedDay;
       const isSelectable = date >= currentDate && date <= thirtyDaysLater;
   
-      const dayClassNames = `py-2 px-4 flex flex-col items-center gap-3 rounded-lg ${
-        visibleDaysCount === 5 ? 'sm:w-[63px]' : 'w-[63px]'
-      } h-[76px] ${isSelectedDay ? 'border border-[#1e1e1e]' : ''
+      const dayClassNames = `py-2 px-4 flex flex-col items-center gap-3 rounded-lg w-[63px]  h-[76px]   
+      ${isSelectedDay ? 'border border-[#1e1e1e]' : ''
         } ${isSelectedDay && isMiddleDay ? 'bg-[#1e1e1e] text-white' : isMiddleDay ? 'bg-[#1e1e1e] text-white' : ''} 
         ${!isSelectable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
       `;
@@ -173,12 +172,47 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
     }
   
     return (
-      <div className="flex justify-center">
+      <div className="flex gap-1 ">
         {calendar}
       </div>
     );
   };
   
+
+  const [viewType, setViewType] = useState('');
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      let newViewType = '';
+
+      if (screenWidth >= 1280) {
+        newViewType = 'desktop';
+      } else if (screenWidth >= 768) {
+        newViewType = 'tablet';
+      } else {
+        newViewType = 'mobile';
+      }
+
+      if (newViewType !== viewType) {
+        setViewType(newViewType);
+        // Aquí puedes ejecutar la función específica para cada tipo de vista
+        console.log('Vista cambiada a:', newViewType);
+        handleDayClick(selectedDay)
+      }
+    };
+
+    handleResize(); // Verificar el estado inicial al cargar la página
+
+    window.addEventListener('resize', handleResize); // Agregar el evento de escucha
+
+    return () => {
+      window.removeEventListener('resize', handleResize); // Eliminar el evento de escucha al desmontar el componente
+    };
+  }, [viewType]);
+
+
+
   generarDocumentoPorCadaDiaDisponible()
   generarDocumentoPorCadaDiaDeTurnosDisponible()
 
@@ -196,12 +230,12 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   }, [selectedDay])
 
   return (
-    <div className='w-full m-auto grid grid-rows-2 items-center gap-y-10'>
+    <div className='w-full flex flex-col gap-y-3 md:gap-y-10'>
       <div>
-        <h2 className="text-xl my-5 text-center font-bold">{selectedMonth} 2023</h2>
-        <div className="flex items-center justify-center">
+        <h2 className="text-xl my-2 md:my-5 text-center font-bold">{selectedMonth} 2023</h2>
+        <div className="flex items-center justify-around">
           <button className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
-          <div className="flex">{renderCalendar()}</div>
+          <div >{renderCalendar()}</div>
           <button className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
         </div>
       </div>
