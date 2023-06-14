@@ -4,7 +4,7 @@ export default function StepDatosPersonales({ nombre, setNombre, telefono, setTe
   
   return (
     <div className='w-[90%] mx-auto px-1 '>
-      <div className='flex flex-col items-start gap-y-2 pt-20'>
+      <div className='flex flex-col items-start gap-y-2 pt-10 lg:pt-20'>
         <label htmlFor="nombre">Nombre Completo</label>
         <input
           id='nombre'
