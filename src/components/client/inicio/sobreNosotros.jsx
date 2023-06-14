@@ -12,7 +12,7 @@ export default function SobreNosotros() {
   
 
   const images = [
-    "https://i.ibb.co/MfTsL05/barba1.jpg",
+    "https://i.ibb.co/xDkCZwm/barbero.jpg",
     "https://i.ibb.co/QJVNxWJ/116458ad3a32cb261cd88428a17058f6.jpg",
     "https://i.ibb.co/2KTNbB5/6c6236144da2821d79b0559a448bcb5e.jpg",
 
@@ -55,7 +55,7 @@ export default function SobreNosotros() {
             >
               <div className='flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto my-2'>
                 <img
-                  className='rounded-3xl max-h-[235px] min-h-[235px] w-[235px] object-cover hover:outline outline-[#1e1e1e]'
+                  className='rounded-3xl max-h-[235px] min-h-[235px] w-[235px] object-top hover:outline outline-[#1e1e1e]'
                   src={image}
                   alt={`Imagen ${index + 1}`}
                 />
