@@ -31,7 +31,7 @@ export default function Inicio() {
              <Link
                to='/nuevoturno'
                className="
-                     w-[327px] h-[55px] flex justify-center items-center mt-20 md:mt-10
+                     w-[327px] h-[55px] flex justify-center items-center mt-10
                      py-[10px] px-4 bg-black text-[#FDFFFC] text-base text-center font-semibold uppercase 
                      transition-all duration-300"
              >
@@ -39,27 +39,7 @@ export default function Inicio() {
              </Link>
            </div>
          </article>
-         {/*
-         <Swiper
-           spaceBetween={30}
-           centeredSlides={true}
-           autoplay={{
-             delay: 2500,
-             disableOnInteraction: false,
-           }}
-           pagination={{
-             clickable: true,
-           }}
-           navigation={true}
-           modules={[Autoplay, Pagination, Navigation]}
-           className="mySwiper"
-         >
-           {  
-               cortesDePelo.map( (corte, i) =>
-               <SwiperSlide key={i}><img  src={corte.img} alt="/" /></SwiperSlide>
-               )
-           }         
-         </Swiper> */}
+         
        </section>
      <section className="w-full">
        <SobreNosotros/>
