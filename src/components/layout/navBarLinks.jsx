@@ -7,7 +7,7 @@ export default function NavbarLinks({ flexDirection }) {
     
 
     return (
-        <ul className={`navegacion flex items-center gap-x-7 font-normal leading-5 text-[18px] z-10
+        <ul className={`navegacion flex items-start lg:items-center gap-x-7 font-normal leading-5 text-[18px] z-10
             ${flexDirection}
         `}>
 
@@ -16,9 +16,16 @@ export default function NavbarLinks({ flexDirection }) {
                     Inicio
                 </Link>
             </li>
+            <div className='lg:hidden'>
+            <li className={`link  ${location.pathname === '/turnos' ? 'activo' : ''}`}>
+                <Link className="" to={'/turnos'}>
+                    Turnos
+                </Link>
+            </li>
+            </div>
             <li className={`link ${location.pathname === '/#' ? 'activo' : ''}`}>
                 <Link to={'/#'}>
-                    Sobre nosotros
+                     Nosotros
                 </Link>
             </li>
             <li className={`link ${location.pathname === '/#' ? 'activo' : ''}`}>

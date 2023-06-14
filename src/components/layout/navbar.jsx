@@ -50,24 +50,22 @@ export default function Navbar() {
     <>
       <nav className={` bg-white
         flex flex-row w-full justify-between items-center px-4  md:p-4 lg:p-[43px] 
-        fixed z-20  h-[72px]   top-0 transition-colors duration-300 ease-out
-        ${scroll ? 'bg-zinc-900 duration-300' : ''}  
-          `}>
+        fixed z-20  h-[72px]   top-0 transition-colors duration-300 ease-out`}>
         <Link to="./">
           <img className='w-[6.9rem]' src='https://i.ibb.co/rmhx39D/7514343f-f695-4107-bc09-f025524aeebf.jpgg' alt="Logo" />
         </Link>
-        <div className="hidden md:flex">
+        <div className="hidden lg:flex">
           <NavbarLinks flexDirection={'flex-row'} />
         </div>
         <div className='flex justify-between gap-x-4 items-center font-normal leading-5 text-[18px] z-50 '>
 
-          <ul className='navegacion'>
+          <ul className='navegacion hidden lg:block'>
             <Link to='/turnos' className={`link ${location.pathname === '/turnos' ? 'activo' : ''}`}> Turnos</Link>
           </ul>
 
-          <Link to='/nuevoturno' className='p-2 bg-[#1e1e1e] text-white'>+ Nuevo Turno</Link>
+          <Link to='/nuevoturno' className=' mr-8 lg:mr-0 p-2 bg-[#1e1e1e] text-white '>+ Nuevo Turno</Link>
 
-          <div className="hidden md:flex  items-center gap-x-1 text-xl ">
+          <div className="hidden lg:flex  items-center gap-x-1 text-xl ">
             {Object.keys(datosUsuarioActual).length !== 0
               ? <NavbarDropdown showDropdown={showDropdown} handleDropdownToggle={handleDropdownToggle} />
               : <Link to='/micuenta' className='flex items-center gap-x-1'> <ion-icon name="person-circle-outline"></ion-icon> <p>Ingresar</p></Link>
@@ -75,7 +73,7 @@ export default function Navbar() {
 
           </div>
 
-            <MenuHamburguesa handleNav={handleNav} nav={nav} />
+          <MenuHamburguesa handleNav={handleNav} nav={nav} />
         </div>
 
 
@@ -86,7 +84,7 @@ export default function Navbar() {
       <div
         className={
           nav
-            ? `md:hidden fixed  top-0 w-full h-screen transition-colors duration-300 bg-black/40 z-10`
+            ? `lg:hidden fixed  top-0 w-full h-screen transition-colors duration-300 bg-black/40 z-10`
             : "transition-colors duration-300"
         }
       >
@@ -98,14 +96,36 @@ export default function Navbar() {
               : "fixed top-[-100%] w-full p-10 ease-out transition-all duration-300 "
           }
         >
-          <div className={` mt-6 py-4 flex flex-col items-center ease-out ${scroll ? 'bg-zinc-800 duration-300' : 'bg-zinc-900 duration-300'}  `}>
+          <div className={` mt-6 p-4 flex flex-col items-start ease-out ${scroll ? 'bg-[#fdfffc] duration-300' : 'bg-[#fdfffc] duration-300'}  `}>
             <NavbarLinks flexDirection={'flex-col'} />
+            
+            <div className="md:hidden flex items-start gap-x-1 mt-8 text-xl">
+              <div className="flex items-start gap-x-1 text-xl ">
+                {Object.keys(datosUsuarioActual).length !== 0
+                  ? <ul className='flex flex-col gap-y-4 '>
+                    <Link
+                      to='/datos'
+                      className="flex items-center gap-x-2  link"
+                    >
+                      <ion-icon name="person-outline"></ion-icon>
+                      <p> Perfil</p>
+                    </Link>
+                    <Link to='/micuenta'
+                      onClick={() => {
+                        logOut()
+                        //setDatosUsuarioActual({})
+                      }}
+                      className="flex items-center gap-x-2  "
+                    >
+                      <ion-icon name="log-out-outline"></ion-icon> Cerrar sesión
+                    </Link>
 
-            <div className="md:hidden flex text-white items-center gap-x-1 mt-5 text-xl">
-              <ion-icon name="person-circle-outline"></ion-icon>
-              <Link to={'/micuenta'} >
-                Ingresar
-              </Link>
+
+                  </ul>
+                  : <Link to='/micuenta' className='flex items-center gap-x-1'> <ion-icon name="person-circle-outline"></ion-icon> <p>Ingresar</p></Link>
+                }
+
+              </div>
             </div>
           </div>
         </div>

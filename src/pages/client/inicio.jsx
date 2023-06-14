@@ -27,13 +27,12 @@ export default function Inicio() {
              <h1 className="font-bold text-[64px] leading-[78px] text-center text-white">Tu estilo, nuestra <br />
                <span className="text-[96px] leading-[117px]">Pasión</span>
              </h1>
-             <p className="w-[846px] h-[52px] mx-auto font-light text-white text-base text-center ">Nuestros expertos barberos se apasionan por ayudarte a encontrar el estilo de cabello y barba que mejor te represente. Con nuestra atención personalizada y técnica profesional, te garantizamos un look que reflejará tu personalidad y te hará sentir seguro y atractivo.</p>
+             <p className="w-[328px] md:w-[550px] lg:w-[846px] h-[52px] mx-auto font-light text-white text-base text-center ">¡Bienvenido a nuestra barbería, donde el estilo y la elegancia se unen en un solo lugar!</p>
              <Link
-               to='/turnos'
+               to='/nuevoturno'
                className="
-                     w-[347px] h-[55px] text-center mt-10
-                     py-[10px] px-4 bg-yellow-400 text-lg font-bold uppercase 
-                     hover:bg-black hover:text-yellow-400 
+                     w-[327px] h-[55px] flex justify-center items-center mt-20 md:mt-10
+                     py-[10px] px-4 bg-black text-[#FDFFFC] text-base text-center font-semibold uppercase 
                      transition-all duration-300"
              >
                ¡Quiero reservar un turno!
