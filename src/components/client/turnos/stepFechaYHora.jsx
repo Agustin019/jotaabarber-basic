@@ -59,6 +59,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const fechaFormateada = format(selectedDay, 'dd-MM');
 
   const handleDayClick = (day) => {
+    setFechaSeleccionada({})
     setSelectedDay(day);
     setSelectedMonth(monthsOfYear[day.getMonth()]);
     setCurrentWeekStartDay((prevWeekStartDay) => {
