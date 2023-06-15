@@ -14,6 +14,7 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper";
 import { Link } from "react-router-dom";
 import SobreNosotros from "../../components/client/inicio/sobreNosotros";
+import Servicios from "../../components/client/inicio/servicios";
 export default function Inicio() {
 
 
@@ -41,10 +42,9 @@ export default function Inicio() {
          </article>
          
        </section>
-     <section className="w-full">
+     
        <SobreNosotros/>
-     </section>
-    
+      <Servicios/>
      </main>
    </>
   );
