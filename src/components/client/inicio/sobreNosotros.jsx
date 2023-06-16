@@ -12,62 +12,80 @@ export default function SobreNosotros() {
   
 
   const images = [
-    "https://i.ibb.co/xDkCZwm/barbero.jpg",
-    "https://i.ibb.co/QJVNxWJ/116458ad3a32cb261cd88428a17058f6.jpg",
-    "https://i.ibb.co/2KTNbB5/6c6236144da2821d79b0559a448bcb5e.jpg",
+    "https://i.ibb.co/0Dhrjsg/julien-orliac-gzob-GDzh4ww-unsplash.jpg",
+    "https://i.ibb.co/QvQt1zp/nathon-oski-EW-rqo-Sd-Des-unsplash-1.jpg",
+    "https://i.ibb.co/vXK5rQG/joshua-lawrence-d-U6e-E-j2-My8-unsplash.jpg",
 
   ];
 
   return (
-    <article className='sm:w-[80%] max-w-full max-h-full mx-auto overflow-x-hidden relative'>
+    <section className='w-full h-[80vh] lg:h-[90vh] max-w-full max-h-full mx-auto overflow-x-hidden '>
      
-      <div className='swiper-button-prev swiper-button'></div>
-      <div className='swiper-button-next swiper-button'></div>
+     <article className='flex flex-col items-center pt-20 lg:pt-0 my-10 gap-y-5 '>
+      <h2 className='font-bold text-[32px] text-center'>Sobre nosotros</h2>
+      <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui mollitia iure unde deserunt exercitationem et dolorem suscipit maxime perspiciatis accusamus!
+      </p>
+     </article>
+     {/* <div className='swiper-button-prev swiper-button'></div>
+          <div className='swiper-button-next swiper-button'></div> */}
         <Swiper
           slidesPerView={1}
           spaceBetween={10}
           ///loop={true}
-          navigation={{
-            prevEl: '.swiper-button-prev',
-            nextEl: '.swiper-button-next',
-          }}
+          // navigation={{
+          //   prevEl: '.swiper-button-prev',
+          //   nextEl: '.swiper-button-next',
+          // }}
           breakpoints={{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 1,
               spaceBetween: 20,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 20,
+              spaceBetween: 10,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 30,
+              spaceBetween: 15,
             },
           }}
           modules={[Navigation]}
-          className="mySwiper"
+          className="mySwiper flex justify-center"
         >
    
           {images.map((image, index) => (
             <SwiperSlide
-              key={index}
+            key={index}
+            
             >
-              <div className='flex flex-col cursor-pointer rounded-3xl max-w-[235px] mx-auto my-2'>
+              <div className={` flex flex-col items-center justify-center  rounded-3xl max-h-[348px] min-h-[348px] w-[348px] mx-auto my-2
+              
+              ${
+                index == 1 
+                ? 'lg:max-w-[480px] lg:ml-auto lg:min-w-[480px] lg:min-h-[372px]  lg:mr-[150px]'
+                :'lg:max-w-[351px] lg:max-h-[256px] lg:min-h-[372px] lg:pt-14  lg:ml-auto'
+              }
+              `
+
+            }>
                 <img
-                  className='rounded-3xl max-h-[235px] min-h-[235px] w-[235px] object-top hover:outline outline-[#1e1e1e]'
+                  className={`rounded-3xl object-top h-[328px] max-h-[328px] w-[328px] mx-auto
+                      ${
+                        index == 1 
+                      ? 'lg:max-w-[510px] lg:min-w-[480px] lg:min-h-[372px]  '
+                      :'lg:h-[256px] lg:min-w-[256px] '
+                    }
+                  `}
                   src={image}
                   alt={`Imagen ${index + 1}`}
                 />
-                <div className='w-full flex flex-col py-2 my-2 justify-center'>
-                  <p className='text-gray-800 text-lg font-semibold uppercase text-center'>Nombre</p>
-                  <p className='text-xs text-gray-400 py-2 text-center'>Barbero</p>
-                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
     
-    </article>
+    
+    </section>
   );
 }
