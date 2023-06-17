@@ -30,7 +30,7 @@ export default function Equipo() {
     ]
 
     return (
-        <section className='w-[90%]  h-[100vh] lg:h-auto max-w-full max-h-full mx-auto overflow-hidden my-32 relative'>
+        <section className='w-[90%]   lg:h-auto max-w-full max-h-full mx-auto overflow-hidden my-20 relative'>
             <h2 className='font-bold text-[32px] text-center lg:pt-24 pb-5'>Nuestro equipo</h2>
             <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto mb-10'>Lorem ipsum arum ducitus, autem qui mollitia iure unde deserunt exercitationem et dolorem suscipit maxime perspiciatis accusamus!
             </p>

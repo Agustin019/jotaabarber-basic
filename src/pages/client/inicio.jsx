@@ -17,6 +17,7 @@ import SobreNosotros from "../../components/client/inicio/sobreNosotros";
 import Servicios from "../../components/client/inicio/servicios";
 import Equipo from "../../components/client/inicio/equipo";
 import Testimonios from "../../components/client/inicio/testimonios";
+import Contacto from "../../components/client/inicio/contacto";
 export default function Inicio() {
 
 
@@ -49,6 +50,7 @@ export default function Inicio() {
       <Servicios/>
       <Equipo/>
       <Testimonios/>
+      <Contacto/>
      </main>
    </>
   );
