@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import SobreNosotros from "../../components/client/inicio/sobreNosotros";
 import Servicios from "../../components/client/inicio/servicios";
 import Equipo from "../../components/client/inicio/equipo";
+import Testimonios from "../../components/client/inicio/testimonios";
 export default function Inicio() {
 
 
@@ -47,6 +48,7 @@ export default function Inicio() {
        <SobreNosotros/>
       <Servicios/>
       <Equipo/>
+      <Testimonios/>
      </main>
    </>
   );
