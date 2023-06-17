@@ -19,7 +19,7 @@ export default function SobreNosotros() {
   ];
 
   return (
-    <section className='w-full h-[80vh] lg:h-[90vh] max-w-full max-h-full mx-auto overflow-x-hidden '>
+    <section className='w-full h-auto max-w-full max-h-full mx-auto overflow-hidden '>
      
      <article className='flex flex-col items-center pt-20 lg:pt-0 my-10 gap-y-5 '>
       <h2 className='font-bold text-[32px] text-center'>Sobre nosotros</h2>

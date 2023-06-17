@@ -122,7 +122,7 @@ export default function Navbar() {
 
 
                   </ul>
-                  : <Link to='/micuenta' className='flex items-center gap-x-1'> <ion-icon name="person-circle-outline"></ion-icon> <p>Ingresar</p></Link>
+                  : <Link to='/micuenta' className='flex items-center gap-x-1'> <ion-icon name="person-circle-outline"></ion-icon> Ingresar</Link>
                 }
 
               </div>
