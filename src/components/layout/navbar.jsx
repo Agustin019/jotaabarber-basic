@@ -50,7 +50,7 @@ export default function Navbar() {
     <>
       <nav className={` bg-white
         flex flex-row w-full justify-between items-center px-4  md:p-4 lg:p-[43px] 
-        fixed z-20  h-[72px]   top-0 transition-colors duration-300 ease-out`}>
+        fixed z-40  h-[72px]   top-0 transition-colors duration-300 ease-out`}>
         <Link to="./">
           <img className='w-[6.9rem]' src='https://i.ibb.co/rmhx39D/7514343f-f695-4107-bc09-f025524aeebf.jpgg' alt="Logo" />
         </Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
       <div
         className={
           nav
-            ? `lg:hidden fixed  top-0 w-full h-screen transition-colors duration-300 bg-black/40 z-10`
+            ? `lg:hidden fixed  top-0 w-full h-screen transition-colors duration-300 bg-black/40 z-30`
             : "transition-colors duration-300"
         }
       >
