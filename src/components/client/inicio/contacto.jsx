@@ -33,7 +33,7 @@ export default function Contacto() {
         </div>
       </article>
 
-      <article className='mt-32  mb-96' >
+      <article className='my-32 ' >
         <div className='flex flex-col gap-y-5 items-center px-10'>
           <h2 className='text-center font-bold text-[32px]'>Contacto</h2>
           <p className='font-light text-base text-center'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
