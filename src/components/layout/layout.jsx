@@ -16,10 +16,6 @@ export default function Layout() {
       <DashBoard />
     )
     
-    }else if(location.pathname === '/turnos' || '/datos'){
-      return(
-        <SideBar />
-      )
     } else{
       return null
     }
