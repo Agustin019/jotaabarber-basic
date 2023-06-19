@@ -52,8 +52,7 @@ export default function Servicios() {
             </article>
             <article className='grid md:grid-cols-2 w-[90%] lg:w-[80%] xl:w-[70%] place-items-center mx-auto gap-y-3'>
                 {
-                    servicios?.length !== 0
-                        ? servicios?.map(servicio =>
+                 servicios?.map(servicio =>
                             <div
                                 key={servicio.nombre}
                                 className='relative w-[328px] h-[320px] xl:w-[503px] lg:h-[320px]'
@@ -71,7 +70,7 @@ export default function Servicios() {
                                 </div>  
                             </div>
                         )
-                        : <p>No se cargaron las imagenes</p>
+                     
                 }
                 
             </article>
