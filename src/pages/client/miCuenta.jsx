@@ -84,8 +84,8 @@ export default function MiCuenta() {
 
 
   return (
-    <main className='flex w-full overflow-hidden'>
-      <section className='w-[60%] p-10'>
+    <main className='flex w-full gap-x-10  overflow-hidden'>
+      <section className='w-[90%] lg:w-[60%] m-auto p-10'>
         <article className='flex flex-col gap-y-2'>
           <div
             className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
@@ -95,16 +95,16 @@ export default function MiCuenta() {
             <p>volver</p>
           </div>
 
-          <div className='flex gap-x-5 justify-start'>
+          <div className='flex gap-x-5 justify-start mt-10'>
             <button
               onClick={() => setForm('register')}
-              className={`p-2 bg-transparent  text-2xl ${form === 'register' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
+              className={`p-2 bg-transparent text-base md:text-2xl ${form === 'register' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
             >
               Registrarse
             </button>
             <button
               onClick={() => setForm('login')}
-              className={`p-2 bg-transparent  text-2xl ${form === 'login' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
+              className={`p-2 bg-transparent  text-base md:text-2xl ${form === 'login' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
             >
               Iniciar Sesion
             </button>
@@ -130,7 +130,7 @@ export default function MiCuenta() {
         <PantallaCargando isLoading={isLoading} />
 
       </section>
-      <section className='w-[40%] h-screen flex flex-col items-center justify-center bg-gray-200 rounded-xl'>
+      <section className='hidden w-[40%] h-screen lg:flex flex-col items-center justify-center bg-gray-200 rounded-xl'>
         <img
           className='w-[135px]'
           src="https://i.ibb.co/68ZDtsm/Vector-1.png"
