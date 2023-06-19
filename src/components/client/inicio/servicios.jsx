@@ -10,9 +10,16 @@ export default function Servicios() {
     useEffect(() => {
 
         const consultarServicios = async () => {
-            const docRef = doc(db, 'utilidades', 'servicios')
-            const serviciosDoc = await getDoc(docRef)
-            setServicios(serviciosDoc.data().servicio)
+            try{
+                
+                const docRef = doc(db, 'utilidades', 'servicios')
+                const serviciosDoc = await getDoc(docRef)
+                setServicios(serviciosDoc.data().servicio)
+                console.log('servicios consultados correctamente')
+                console.log(servicios)
+            } catch(err){
+                console.log(err)
+            }
         }
         return () => consultarServicios()
 
@@ -52,7 +59,7 @@ export default function Servicios() {
             </article>
             <article className='grid md:grid-cols-2 w-[90%] lg:w-[80%] xl:w-[70%] place-items-center mx-auto gap-y-3'>
                 {
-                 servicios?.map(servicio =>
+                 servicios.map(servicio =>
                             <div
                                 key={servicio.nombre}
                                 className='relative w-[328px] h-[320px] xl:w-[503px] lg:h-[320px]'
