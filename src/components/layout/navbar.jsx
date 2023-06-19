@@ -14,7 +14,7 @@ export default function Navbar() {
   const auth = useAuth()
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const { datosUsuarioActual, setDatosUsuarioActual, traerDatosDeUsuarioActual, user } = auth
+  const { datosUsuarioActual, setDatosUsuarioActual, traerDatosDeUsuarioActual, user,  logOut } = auth
   console.log(datosUsuarioActual)
   function handleDropdownToggle() {
     setShowDropdown(!showDropdown);

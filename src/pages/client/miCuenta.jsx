@@ -85,7 +85,7 @@ export default function MiCuenta() {
 
   return (
     <main className='flex w-full gap-x-10  overflow-hidden'>
-      <section className='w-[90%] lg:w-[60%] m-auto p-10'>
+      <section className='w-[90%] lg:w-[60%] m-auto py-10 lg:p-10'>
         <article className='flex flex-col gap-y-2'>
           <div
             className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
