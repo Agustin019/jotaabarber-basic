@@ -8,22 +8,20 @@ export default function Servicios() {
     const [servicios, setServicios] = useState([])
     console.log('servicios page')
 
-    useEffect(() => {
-
-        const consultarServicios = async () => {
-            try{
-                
-                const docRef = doc(db, 'utilidades', 'servicios')
-                const serviciosDoc = await getDoc(docRef)
-                setServicios(serviciosDoc.data().servicio)
-                console.log('servicios consultados correctamente')
-                console.log(servicios)
-            } catch(err){
-                console.log(err)
-            }
+    const consultarServicios = async () => {
+        try{
+            
+            const docRef = doc(db, 'utilidades', 'servicios')
+            const serviciosDoc = await getDoc(docRef)
+            setServicios(serviciosDoc.data().servicio)
+            console.log('servicios consultados correctamente')
+            console.log(servicios)
+        } catch(err){
+            console.log(err)
         }
-        return () => consultarServicios()
-
+    }
+    useEffect(() => {
+       consultarServicios()
     }, [])
     const servicios2 = [
         {
