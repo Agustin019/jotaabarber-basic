@@ -21,7 +21,7 @@ export default function NuevoTurno() {
   const { datosUsuarioActual } = useAuth()
   
   //Formulario paso a paso
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(3)
 
   // step datos personales
   const [nombre, setNombre] = useState('')

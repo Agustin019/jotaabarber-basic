@@ -6,6 +6,7 @@ import { doc, getDoc } from 'firebase/firestore'
 export default function Servicios() {
 
     const [servicios, setServicios] = useState([])
+    console.log('servicios page')
 
     useEffect(() => {
 
@@ -53,7 +54,7 @@ export default function Servicios() {
     return (
         <section className='h-auto lg:h-[90vh] '>
             <article className='flex flex-col items-center my-10 gap-y-5 '>
-                <h2 className='font-bold text-[32px] text-center'>Servicios</h2>
+                <h2 className='font-bold text-[32px] text-center'>Servicios page</h2>
                 <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui mollitia iure unde deserunt exercitationem et dolorem suscipit maxime perspiciatis accusamus!
                 </p>
             </article>
