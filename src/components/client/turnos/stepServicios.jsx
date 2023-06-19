@@ -23,6 +23,32 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
     }
     return () => consultarServicios()
   }, [])
+
+  const servicios2 = [
+    {
+      img: "https://i.ibb.co/Xpyqq0F/corte.png",
+      nombre: "Corte",
+      precio: "1200"
+    },
+    {
+
+      img: "https://i.ibb.co/7rhPhF6/rasuradora1.webp",
+      nombre: "Corte con rasuradora",
+      precio: "1300"
+    },
+    {
+
+      img: "https://i.ibb.co/9V7nYNs/corteybarba1.jpg",
+      nombre: "Corte y barba",
+      precio: "1500"
+    },
+
+    {
+      img: "https://i.ibb.co/MfTsL05/barba1.jpg",
+      nombre: "Barba",
+      precio: "600"
+    }
+  ]
   return (
 
     <div className='sm:w-[82%] max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center  '>
@@ -53,7 +79,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
           },
         }}
       >
-        {servicios.map(servicio =>
+        {servicios2.map(servicio =>
           <SwiperSlide key={servicio.nombre} className="max-w-[235px] ">
 
             <div
@@ -69,7 +95,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
                 `rounded-3xl min-h-[235px] max-h-[235px] min-w-[235px] max-w-[235px] object-top hover:outline outline-[#1e1e1e]
               ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-[#1e1e1e]' : ''}`}
                 src={servicio.img}
-                alt={servicio.nombre} 
+                alt={servicio.nombre}
               />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>
                 <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>

@@ -17,6 +17,31 @@ export default function Servicios() {
         return () => consultarServicios()
 
     }, [])
+    const servicios2 = [
+        {
+          img: "https://i.ibb.co/Xpyqq0F/corte.png",
+          nombre: "Corte",
+          precio: "1200"
+        },
+        {
+    
+          img: "https://i.ibb.co/7rhPhF6/rasuradora1.webp",
+          nombre: "Corte con rasuradora",
+          precio: "1300"
+        },
+        {
+    
+          img: "https://i.ibb.co/9V7nYNs/corteybarba1.jpg",
+          nombre: "Corte y barba",
+          precio: "1500"
+        },
+    
+        {
+          img: "https://i.ibb.co/MfTsL05/barba1.jpg",
+          nombre: "Barba",
+          precio: "600"
+        }
+      ]
 
     return (
         <section className='h-auto lg:h-[90vh] '>
@@ -28,7 +53,7 @@ export default function Servicios() {
             <article className='grid md:grid-cols-2 w-[90%] lg:w-[80%] xl:w-[70%] place-items-center mx-auto gap-y-3'>
                 {
                     servicios.length !== 0
-                        ? servicios.map(servicio =>
+                        ? servicios2.map(servicio =>
                             <div
                                 key={servicio.nombre}
                                 className='relative w-[328px] h-[320px] xl:w-[503px] lg:h-[320px]'
