@@ -153,6 +153,7 @@ export default function NuevoTurno() {
 
 
     await updateDoc(docRefUsuario, userTurnos)
+  
     console.log('turno enviadoa  los turnos activos del usuario logueado')
     //setLoading(false)
     console.log('Turno reservado')
