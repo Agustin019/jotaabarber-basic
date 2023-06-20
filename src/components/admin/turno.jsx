@@ -5,17 +5,18 @@ import Alerta from '../utils/alerta';
 import PantallaCargando from '../utils/pantallaCargando'
 
 
-export default function Turno({ turno, index }) {
 
-    const [modal, setModal] = useState(false)
+export default function Turno({ turno, index, handleModal, modal, setModalDatosDeTurno }) {
+
+    
     const [ isLoading, setIsLoading ] = useState(false)
+
+
     const { cliente, telefono, hora, servicio, profesional, estado, userId, turnoId } = turno;
 
     console.log(userId)
 
-    const handleModal = () => {
-        setModal(!modal)
-    }
+ 
     const cancelarTurno = async () => {
 
         setIsLoading(true)
@@ -62,6 +63,7 @@ export default function Turno({ turno, index }) {
         await updateDoc(docRefTurno, turnos)
         console.log('Estado de turno actualizado')
         handleModal()
+        setModalDatosDeTurno({})
         setIsLoading(false)
     }
 
@@ -77,7 +79,10 @@ export default function Turno({ turno, index }) {
         ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'}
         `}
         >
+            
+
             <PantallaCargando isLoading={isLoading}/>
+
             <p className='font-light text-sm'>{cliente}</p>
             <div className='flex items-center gap-x-1 underline'>
                 <ion-icon name="logo-whatsapp"></ion-icon>
@@ -93,9 +98,14 @@ export default function Turno({ turno, index }) {
             >
                 <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
             </button>
-            <button className='md:hidden place-self-end pr-2'>
+            <button 
+                className='md:hidden place-self-end pr-2'
+                onClick={() => setModalDatosDeTurno(turno)}
+                >
                 <img src="https://i.ibb.co/sqMv74d/more-vert.png" alt="Ver más" />
             </button>
+
+
             {
                 modal &&
                 <Alerta
