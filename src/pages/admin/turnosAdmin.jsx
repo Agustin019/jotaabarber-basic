@@ -5,17 +5,21 @@ import { format } from 'date-fns';
 import Calendar from '../../components/utils/calendar';
 import Turno from '../../components/admin/turno';
 import DashBoard from '../../components/admin/dashBoard';
+import ModalDatosDelTurno from '../../components/admin/modalDatosDelTurno';
 
 
 export default function TurnosAdmin() {
     const [turnos, setTurnos] = useState([])
     const [selectedDay, setSelectedDay] = useState(new Date());
-    const [ showDashboard, setShowDashboard ] = useState(false)
 
-    const handleDashBoard = () => {
-        setShowDashboard(!showDashboard)
+    // Modal para ver los datos del turno
+    const [ modalDatosDeTurno, setModalDatosDeTurno  ] = useState({})
+
+    // Modal para xancelar el turno
+    const [modal, setModal] = useState(false)
+    const handleModal = () => {
+        setModal(!modal)
     }
-
     // Estado para manejar la apertura del calendario
     const [isOpen, setIsOpen] = useState(false);
     const fechaFormateada = format(selectedDay, 'dd-MM');
@@ -52,8 +56,11 @@ export default function TurnosAdmin() {
 
     return (
        <>
-       <DashBoard showDashboard={showDashboard}/>
+       <DashBoard />
          <main className='lg:ml-[250px] '>
+            {Object.keys(modalDatosDeTurno).length !== 0 
+            && <ModalDatosDelTurno modalDatosDeTurno={modalDatosDeTurno} setModalDatosDeTurno={setModalDatosDeTurno} handleModal={handleModal}/> 
+            }
              <section className='flex justify-start p-10 text-[#1e1e1e]'>
                  <article className='flex flex-col gap-y-5'>
                      <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
@@ -67,6 +74,7 @@ export default function TurnosAdmin() {
                  </article>
              </section>
              <section>
+
                  <article className='
                      grid grid-cols-[3fr,3fr,1fr,1fr]  
                      sm:grid-cols-[2fr,2fr,2fr,2fr,1fr]
@@ -86,7 +94,14 @@ export default function TurnosAdmin() {
                  <article>
                      {turnos.length !== 0 ? (
                          turnos.map((turno, index) => (
-                             <Turno key={turno.id} turno={turno} index={index} />
+                             <Turno 
+                                key={turno.turnoId} 
+                                turno={turno} 
+                                index={index}
+                                modal={modal}
+                                handleModal={handleModal}
+                                setModalDatosDeTurno={setModalDatosDeTurno}
+                                />
                          ))
                      ) : (
                          <p>No hay turnos para este día aún</p>
