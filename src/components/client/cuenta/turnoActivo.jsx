@@ -10,7 +10,7 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
     const handleModal = () => {
         setModal(!modal)
     }
-    console.log(turno)
+    console.log(turno.turnoId)
 
     const cancelarTurno = async () => {
         // Eliminando el turno activo en el documento del usuario
@@ -28,7 +28,7 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
         const docUser = await getDoc(docRefUser)
         const turnosActivos = docUser.data().turnosActivos;
 
-        const encontrarTurnoUsuario = turnosActivos.findIndex(obj => obj.id === turno.id)
+        const encontrarTurnoUsuario = turnosActivos.findIndex(obj => obj.turnoId === turno.turnoId)
         if (encontrarTurnoUsuario !== -1) {
             turnosActivos[encontrarTurnoUsuario] = {
                 ...turnosActivos[encontrarTurnoUsuario],
@@ -55,11 +55,13 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
         await updateDoc(docRefHoras, horas)
         console.log('Horario disponible para todo el publico')
 
+
+        // Cambiando el estado del turno en el panel del admin
         const docRefTurno = doc(db, 'Turnos', turno.dia)
         const docTurno = await getDoc(docRefTurno)
         const turnos = docTurno.data()
 
-        const encontrarTUrno = turnos.turnos.findIndex(obj => obj.id === turno.id)
+        const encontrarTUrno = turnos.turnos.findIndex(obj => obj.turnoId === turno.turnoId)
         if (encontrarTUrno !== -1) {
             turnos.turnos[encontrarTUrno] = {
                 ...turnos.turnos[encontrarTUrno],
@@ -67,8 +69,9 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
             };
         }
         await updateDoc(docRefTurno, turnos)
-        window.location.reload();
+        handleModal()
         console.log('Estado de turno actualizado')
+        window.location.reload();
     }
 
     useEffect(() => {
