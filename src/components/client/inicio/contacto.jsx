@@ -13,7 +13,7 @@ export default function Contacto() {
           rounded-3xl flex flex-col md:flex-row items-center
          '>
         <img
-          src="https://i.ibb.co/HHLqfHR/agustin-fernandez-1-Pmp9ux-K8-X8-unsplash-min.jpg"
+          src="https://i.ibb.co/SVcNwqN/corte-De-Un-Facherardo.jpg"
           alt="imagen corte de pelo"
           className='
           w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
@@ -22,7 +22,7 @@ export default function Contacto() {
         <div className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
           <h2 className='font-bold text-2xl lg:text-5xl text-white '>
             ¿Te interesa alguno de nuestros servicios?
-          </h2>
+          </h2>  
           <p className='font-light text-sm text-white md:w-[90%]'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
           <Link
             to={user ? '/nuevoturno' : '/micuenta'}

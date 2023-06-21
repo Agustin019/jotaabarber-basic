@@ -8,7 +8,7 @@ module.exports = {
     extend: {
     
       backgroundImage:{
-        'inicio':'url(https://i.ibb.co/NZ461Hn/nathon-oski-EW-rqo-Sd-Des-unsplash.jpg)'
+        'inicio':'url(https://i.ibb.co/CHyrhFj/barbpesada-optimized.jpg)'
       },
       fontFamily:{
         monsterrat:[ 'Montserrat', 'sans-serif']
