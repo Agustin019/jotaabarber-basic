@@ -9,15 +9,15 @@ import { Navigation } from "swiper";
 
 export default function StepProfesional({ profesionalSeleccionado, setProfesionalSeleccionado }) {
 
-  const [ profesionales, setProfesionales ] = useState([])
-  useEffect(()=>{
-    const consultarProfesionales = async () => {
-      const docRef = doc(db, 'utilidades', 'profesionales')
-      const serviciosDoc = await getDoc(docRef)
-      setProfesionales(serviciosDoc.data().profesionales)
-    }
-    return () => consultarProfesionales()
-  },[])
+  const [profesionales, setProfesionales] = useState([])
+  const consultarProfesionales = async () => {
+    const docRef = doc(db, 'utilidades', 'profesionales')
+    const serviciosDoc = await getDoc(docRef)
+    setProfesionales(serviciosDoc.data().profesionales)
+  }
+  useEffect(() => {
+    consultarProfesionales()
+  }, [])
   return (
 
     <div className='sm:w-[85%]   max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center '>
@@ -25,7 +25,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
       <div className='swiper-button-next swiper-button'></div>
 
       <Swiper
-       // params={swiperOptions}
+        // params={swiperOptions}
         slidesPerView={1}
         spaceBetween={30}
         pagination={{
@@ -53,7 +53,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
         }}
       >
         {profesionales?.map((profesional) =>
-          <SwiperSlide  className="max-w-[235px] " key={profesional.nombre}>
+          <SwiperSlide className="max-w-[235px] " key={profesional.nombre}>
 
             <div
               onClick={() => setProfesionalSeleccionado(profesional)}
@@ -69,8 +69,8 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
               `} src={profesional.img} alt={profesional.nombre} />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>
                 <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{profesional.nombre}</p>
-                 <p className="text-xs text-gray-400 py-2">{profesional.profesion}</p> 
-          
+                <p className="text-xs text-gray-400 py-2">{profesional.profesion}</p>
+
               </div>
             </div>
 
