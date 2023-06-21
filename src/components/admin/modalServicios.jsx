@@ -20,20 +20,21 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
   useEffect(() => {
     const consultarProfesionales = async () => {
       const docRef = doc(db, 'utilidades', 'profesionales');
-      const serviciosDoc = await getDoc(docRef);
-      setProfesionales(serviciosDoc.data().profesionales);
+      const profesionalesDoc = await getDoc(docRef);
+      setProfesionales(profesionalesDoc.data().profesionales);
     };
     consultarProfesionales();
   }, []);
 
   // Actualizar el formulario cuando se selecciona un servicio existente
-  useEffect(() => {
-    if (servicio) {
-      setSelectedImage(servicio.img);
-      setNombreImagen('');
-      setNombreServicio(servicio.nombre);
-    }
-  }, [servicio]);
+  // useEffect(() => {
+  //   if (servicio) {
+  //     setSelectedImage(servicio.img);
+  //     setNombreImagen('');
+  //     setNombreServicio(servicio.nombre);
+  //     setPrecio(servicio.precio)
+  //   }
+  // }, [servicio]);
 
   // Manejo de imágenes
 
@@ -137,15 +138,14 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
   };
 
   return (
-    <main className='h-screen w-screen fixed left-0 pl-[250px] bg-[#474747]/40 flex flex-col items-center justify-center'>
+    <main className='h-screen w-screen fixed left-0 lg:pl-[250px] bg-[#474747]/40 flex flex-col items-center justify-center z-50'>
       {/* Modal */}
-      <form onSubmit={handleSubmit} className='w-[636px] h-[642px] rounded-xl py-8 px-6 bg-[#474747] flex flex-col'>
+      <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[672px] rounded-xl py-8 px-6 bg-[#1e1e1e] flex flex-col'>
         {/* Contenido del modal */}
-        <article className='flex justify-between items-center'>
+        <article className='flex justify-between items-center mb-8'>
           <h2 className='font-bold text-2xl text-[#FDFFFC]'>Nuevo servicio</h2>
           <button onClick={() => {
             handleModal()
-            setServicioAEditar({})
           }}>
             <img src='https://i.ibb.co/18mdwKB/close.png' alt='' />
           </button>
@@ -165,15 +165,15 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
               onDrop={handleDrop}
             >
               {!selectedImage ? (
-                <div className='flex flex-col gap-y-3 items-center'>
-                  <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
-                  <label htmlFor="imageInput" className="cursor-pointer text-[#FDFFFC] font-light text-[10px]">
-                    Sube o arrastra el archivo. Puede ser .jpg o .png
-                  </label>
-                </div>
+               <div className='flex items-center'>
+               <label htmlFor="imageInput" className="cursor-pointer text-[#FDFFFC] font-light text-[10px] flex flex-col gap-y-4 items-center ">
+               <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
+                   Sube o arrastra el archivo. Puede ser .jpg o .png
+               </label>
+           </div>
               ) : (
                 <div className='flex flex-col items-center gap-y-1 mt-16'>
-                  <img src={selectedImage} alt="Selected" className="max-h-[100px] max-w-[80px]" />
+                  <img src={selectedImage} alt="Selected" className="max-h-[100px] max-w-[170px]" />
                   <button
                     className="mt-4 bg-[#FDFFFC] text-[#1e1e1e] font-medium hover:bg-blue-600  py-2 px-4 rounded-md"
                     onClick={handleImageChange}
@@ -207,6 +207,7 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
                 onChange={(e) => setNombreServicio(e.target.value)}
               />
             </div>
+            {/** Campo Precio */}
             <div className='flex flex-col gap-y-3'>
               <label className='font-semibold text-base text-[#FDFFFC]' htmlFor='precio'>
                 Precio
@@ -221,8 +222,8 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
               />
             </div>
 
-            {/* Campo de serviicos a cargo */}
-            <div className='flex flex-col gap-y-3'>
+            {/* Campo de profesionales a cargo */}
+            {/* <div className='flex flex-col gap-y-3'>
               <label className='font-semibold text-base text-[#FDFFFC]'>profesionales a cargo</label>
               <div className='flex justify-between'>
                 {profesionales?.map((servicio) => (
@@ -234,7 +235,7 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
                   </div>
                 ))}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Botón enviar */}
@@ -242,12 +243,7 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
            <button
             type='submit' 
             className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
-              {
-                Object.keys(servicio).length !== 0 
-                ? 'Guardar Cambios'
-                : 'Agregar servicio'
-              }
-             
+                 Agregar servicio
            </button>
 
          </div>

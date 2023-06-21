@@ -78,11 +78,10 @@ export default function ProfesionalesAdmin() {
                  </article>
              </section>
              <section>
-                 <article className='w-full grid grid-cols-5 place-items-start px-10'>
+                 <article className='w-full grid grid-cols-4 place-items-start px-2 sm:px-10'>
                      <p className='font-normal text-base'>Foto</p>
                      <p className='font-normal text-base'>Nombre</p>
                      <p className='font-normal text-base'>Profesion</p>
-                     <p className='font-normal text-base'>Fecha</p>
                      <p className='font-normal text-base'>Acciones</p>
                  </article>
                  <article>
@@ -90,7 +89,7 @@ export default function ProfesionalesAdmin() {
                          profesionales.map((profesional, index) => (
                              <div
                                  key={profesional.id}
-                                 className={`grid grid-cols-5 place-items-start items-center py-[11px] px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
+                                 className={`grid grid-cols-4 place-items-start items-center py-[11px] px-2 sm:px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
                                      }`}
                              >
                                  {
@@ -106,7 +105,6 @@ export default function ProfesionalesAdmin() {
                                  }
                                  <p className='font-normal text-sm'>{profesional.nombre}</p>
                                  <p className='font-normal text-sm'>{profesional.profesion}</p>
-                                 <p className='font-normal text-sm'>{profesional.fecha ?? '-'}</p>
                                 <div className='flex justify-between gap-x-8 '>
                                  <button onClick={ () => setModalEliminar(profesional.nombre) }>
                                       <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="icono eliminar" />
