@@ -12,9 +12,9 @@ export default function SobreNosotros() {
   
 
   const images = [
-    "https://i.ibb.co/0Dhrjsg/julien-orliac-gzob-GDzh4ww-unsplash.jpg",
-    "https://i.ibb.co/QvQt1zp/nathon-oski-EW-rqo-Sd-Des-unsplash-1.jpg",
-    "https://i.ibb.co/vXK5rQG/joshua-lawrence-d-U6e-E-j2-My8-unsplash.jpg",
+    "https://i.ibb.co/9cpJt1n/barbpesada3-optimized.jpg",
+    "https://i.ibb.co/CHyrhFj/barbpesada-optimized.jpg",
+    "https://i.ibb.co/wY6b33B/barbpesada2-optimized.jpg",
 
   ];
 

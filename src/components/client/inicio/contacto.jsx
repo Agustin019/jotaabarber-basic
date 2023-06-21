@@ -13,7 +13,7 @@ export default function Contacto() {
           rounded-3xl flex flex-col md:flex-row items-center
          '>
         <img
-          src="https://i.ibb.co/HHLqfHR/agustin-fernandez-1-Pmp9ux-K8-X8-unsplash-min.jpg"
+          src="https://i.ibb.co/SVcNwqN/corte-De-Un-Facherardo.jpg"
           alt="imagen corte de pelo"
           className='
           w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
