@@ -22,7 +22,7 @@ export default function Contacto() {
         <div className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
           <h2 className='font-bold text-2xl lg:text-5xl text-white '>
             ¿Te interesa alguno de nuestros servicios?
-          </h2>
+          </h2>  
           <p className='font-light text-sm text-white md:w-[90%]'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
           <Link
             to={user ? '/nuevoturno' : '/micuenta'}
