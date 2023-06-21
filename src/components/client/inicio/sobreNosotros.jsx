@@ -47,7 +47,7 @@ export default function SobreNosotros() {
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 15,
+              spaceBetween: 10,
             },
           }}
           modules={[Navigation]}
@@ -63,7 +63,7 @@ export default function SobreNosotros() {
               
               ${
                 index == 1 
-                ? 'lg:max-w-[480px] lg:ml-auto lg:min-w-[480px] lg:min-h-[372px]  lg:mr-[150px]'
+                ? 'lg:max-w-[32rem] lg:ml-auto lg:min-w-[30rem] lg:min-h-[25rem]'
                 :'lg:max-w-[351px] lg:max-h-[256px] lg:min-h-[372px] lg:pt-14  lg:ml-auto'
               }
               `
@@ -73,8 +73,8 @@ export default function SobreNosotros() {
                   className={`rounded-3xl object-top h-[328px] max-h-[328px] w-[328px] mx-auto
                       ${
                         index == 1 
-                      ? 'lg:max-w-[510px] lg:min-w-[480px] lg:min-h-[372px]  '
-                      :'lg:h-[256px] lg:min-w-[256px] '
+                      ? 'lg:max-w-[510px] lg:min-w-[30rem] lg:min-h-[24rem]  '
+                      :'lg:h-[16rem] lg:min-w-[16rem] '
                     }
                   `}
                   src={image}

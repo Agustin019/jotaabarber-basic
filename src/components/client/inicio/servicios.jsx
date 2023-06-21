@@ -50,7 +50,7 @@ export default function Servicios() {
       ]
 
     return (
-        <section className='h-auto lg:h-[90vh] '>
+        <section className='h-auto '>
             <article className='flex flex-col items-center my-10 gap-y-5 '>
                 <h2 className='font-bold text-[32px] text-center'>Servicios page</h2>
                 <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui mollitia iure unde deserunt exercitationem et dolorem suscipit maxime perspiciatis accusamus!
@@ -66,7 +66,7 @@ export default function Servicios() {
 
                                 <img
                                     src={servicio.img}
-                                    className='w-[328px] h-[320px] xl:w-[503px] lg:h-[320px] object-cover rounded-2xl'
+                                    className='w-[328px] h-[320px] xl:w-[31rem] lg:h-[20rem] object-cover rounded-2xl'
                                     alt={`imagen del servicio ${servicio.nombre}`} />
 
                                   <div className=' flex flex-col justify-end p-5
