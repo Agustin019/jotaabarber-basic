@@ -5,6 +5,7 @@ import { db } from '../../utils/firebaseconfig'
 import ModalServicios from '../../components/admin/modalServicios'
 import Alerta from '../../components/utils/alerta'
 import DashBoard from '../../components/admin/dashBoard'
+import ModalEditarServicio from '../../components/admin/modalEditarServicio'
 
 export default function ServiciosAdmin() {
 
@@ -46,7 +47,8 @@ export default function ServiciosAdmin() {
         <>
         <DashBoard/>
             <main className='lg:ml-[250px]'>
-                {modal && <ModalServicios servicio={servicioAEditar} setServicioAEditar={setServicioAEditar} handleModal={handleModal}/>}
+                {modal && <ModalServicios handleModal={handleModal}/>}
+                {Object.keys(servicioAEditar).length !== 0 && <ModalEditarServicio servicioAEditar={servicioAEditar} setServicioAEditar={setServicioAEditar}/>}
                 {modalEliminar !== null && 
                 <Alerta
                     titulo='Eliminar Servicio'
@@ -78,19 +80,18 @@ export default function ServiciosAdmin() {
                     </article>
                 </section>
                 <section>
-                    <article className='w-full grid grid-cols-5 place-items-start px-10'>
-                        <p className='font-normal text-base'>Foto</p>
-                        <p className='font-normal text-base'>Descripcion</p>
-                        <p className='font-normal text-base'>Precio</p>
-                        <p className='font-normal text-base'>Fecha</p>
-                        <p className='font-normal text-base'>Acciones</p>
+                    <article className='w-full grid grid-cols-4 place-items-start px-2 sm:px-10 sm:text-base text-sm'>
+                        <p className='font-normal '>Foto</p>
+                        <p className='font-normal '>Descripcion</p>
+                        <p className='font-normal '>Precio</p>
+                        <p className='font-normal '>Acciones</p>
                     </article>
                     <article>
                         {servicios?.length !== 0 ? (
                             servicios.map((servicio, index) => (
                                 <div
                                     key={servicio.id}
-                                    className={`grid grid-cols-5 place-items-start items-center py-[11px] px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
+                                    className={`grid grid-cols-4 place-items-start items-center py-[11px] px-2 sm:px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
                                         }`}
                                 >
                                     {
@@ -106,12 +107,13 @@ export default function ServiciosAdmin() {
                                     }
                                     <p className='font-normal text-sm'>{servicio.nombre}</p>
                                     <p className='font-normal text-sm'>$ {servicio.precio}</p>
-                                    <p className='font-normal text-sm'>{servicio.fecha ?? '-'}</p>
                                    <div className='flex justify-between gap-x-8 '>
                                     <button onClick={() => setModalEliminar(servicio.nombre)}>
                                          <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="icono eliminar" />
                                     </button>
-                                    <button onClick={() => setServicioAEditar(servicio)}>
+                                    <button onClick={() => { 
+                                        setServicioAEditar(servicio)
+                                    }}>
                                          <img src="https://i.ibb.co/7gbLxGS/edit.png" alt="icono editar" />
                                     </button>
                                    </div>
