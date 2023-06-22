@@ -21,6 +21,7 @@ export default function Alerta({
                 </p>
                 <div className='flex flex-col md:flex-row items-center gap-8'>
                     <button
+                        type='button'
                         onClick={cancelar} 
                         className='
                             w-[282px] h-[52px] py-[15px] px-6 flex justify-center gap-[10px] items-center
@@ -28,6 +29,7 @@ export default function Alerta({
                         {txtBtnCancelar}
                     </button>
                     <button
+                        type='button'
                         onClick={confirmar} 
                         className='
                         w-[282px] h-[52px] py-[15px] px-6 flex justify-center gap-[10px] items-center 

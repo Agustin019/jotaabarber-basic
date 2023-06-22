@@ -20,7 +20,7 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
   }, [])
   return (
 
-    <div className='sm:w-[85%]   max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center '>
+    <div className='w-full sm:w-[85%]  sm:max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center '>
       <div className='swiper-button-prev swiper-button'></div>
       <div className='swiper-button-next swiper-button'></div>
 

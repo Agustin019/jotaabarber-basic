@@ -25,7 +25,7 @@ export default function Turno({
                     })
                 }
             className={`
-                w-[160px] h-[40px] xl:h-[45px] xl:w-[177px] flex justify-between items-center gap-3 px-2 py-3 border border-l-[5px]
+                w-[158px] h-[40px] xl:h-[45px] xl:w-[177px] flex justify-between items-center  px-2 py-3 border border-l-[5px]
                 ${!turno.disponible ? 'text-gray-400 border-gray-400' : 'border-black text-black'}
                 border border-l-[5px] border-black
             `}

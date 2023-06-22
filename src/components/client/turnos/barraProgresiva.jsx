@@ -33,7 +33,7 @@ export default function BarraProgresiva({ step }) {
   return (
     <article className='flex  justify-center w-full '>
      <div>
-      <p className='text-[#2D2D2D] font-semibold text-xs'>Paso {step + 1} de 4 : <span className='font-normal'>{pasosNombres()}</span></p>
+      <p className='text-[#2D2D2D] font-semibold text-lg'>Paso {step + 1} de 4 : <span className='font-medium'>{pasosNombres()}</span></p>
        <div className="w-[328px] h-2 bg-gray-200 rounded overflow-hidden">
          {barraSteps.map((barStep, i) => (
            <div

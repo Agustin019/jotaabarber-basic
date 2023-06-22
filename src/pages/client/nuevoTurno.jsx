@@ -192,13 +192,13 @@ export default function NuevoTurno() {
         <article className=' col-span-1 w-full'>
           <form
             onSubmit={handleSubmit}
-            className='my-10'
+            className=''
           >
-            <div className=' relative w-[90%] h-[350px] mx-auto '>
+            <div className=' relative sm:w-[90%] h-[350px] mx-auto '>
               {pasoActual()}
             </div>
 
-            <div className='flex flex-col-reverse items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[80%] xl:pt-20 '>
+            <div className='flex flex-col-reverse items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[90%] pt-20 '>
               <BotonCancelar />
               {validarPasos()}
             </div>

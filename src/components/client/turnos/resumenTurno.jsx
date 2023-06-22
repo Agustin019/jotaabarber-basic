@@ -47,7 +47,7 @@ export default function ResumenTurno({
                             }
                             <div className='px-5'>
                                 <p className='font-bold text-xl text[#fdfffc] '>{servicioSeleccionado.nombre ?? '-'}</p>
-                                <p className='font-bold text-lg text[#fdfffc] '>{servicioSeleccionado.precio ? `$${servicioSeleccionado.precio}` : '-'}</p>
+                                <p className='font-bold text-lg text[#fdfffc] '>$ {servicioSeleccionado.precio ? `$${servicioSeleccionado.precio}` : '-'}</p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ export default function ResumenTurno({
                             <div className='w-full border border-[#F2F2F2]'></div>
                             <div className='flex justify-between items-center'>
                                 <p className='font-medium text-xl text-[#F2F2F2]'>Total</p>
-                                <p className='font-bold text-xl text-[#F2F2F2]'>$1500.00</p>
+                                <p className='font-bold text-xl text-[#F2F2F2]'>${servicioSeleccionado.precio ?? '-'}</p>
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@ export default function ResumenTurno({
                             }
                             <div className='px-5'>
                                 <p className='font-bold text-base text-white'>{servicioSeleccionado.nombre ?? '-'}</p>
-                                <p className='font-bold text-xs text-white'>{servicioSeleccionado.precio ?? '-'}</p>
+                                <p className='font-bold text-xs text-white'>${servicioSeleccionado.precio ?? '-'}</p>
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ export default function ResumenTurno({
                             <div className='w-full border border-[#F2F2F2]'></div>
                             <div className='flex justify-between items-center'>
                                 <p className='font-medium text-base text-[#F2F2F2]'>Total</p>
-                                <p className='font-bold text-base text-[#F2F2F2]'>{servicioSeleccionado.precio ?? '-'}</p>
+                                <p className='font-bold text-base text-[#F2F2F2]'>${servicioSeleccionado.precio ?? '-'}</p>
                             </div>
                         </div>
                     </div>
