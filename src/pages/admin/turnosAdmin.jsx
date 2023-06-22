@@ -61,8 +61,8 @@ export default function TurnosAdmin() {
             {Object.keys(modalDatosDeTurno).length !== 0 
             && <ModalDatosDelTurno modalDatosDeTurno={modalDatosDeTurno} setModalDatosDeTurno={setModalDatosDeTurno} handleModal={handleModal}/> 
             }
-             <section className='flex justify-start p-10 text-[#1e1e1e]'>
-                 <article className='flex flex-col gap-y-5'>
+             <section className='flex justify-start p-10 text-[#1e1e1e] '>
+                 <article className='flex flex-col gap-y-5 z-20'>
                      <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
                      <Calendar
                          selectedDay={selectedDay}
