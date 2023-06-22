@@ -142,7 +142,7 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                     <p className='text-white text-sm font-normal'>Estado</p>
                     {
                         turno.estado === 'confirmado'
-                            ? <p className='text-white text-sm font-normal p-[10px] bg-[#474747] rounded-xl'>confirmado</p>
+                            ? <p className='text-white text-sm font-normal p-[10px] bg-[#474747] rounded-xl'>Confirmado</p>
                             : <p className='text-white text-sm font-normal p-[10px] bg-[#802a2a] rounded-xl'>Cancelado</p>
                     }
                 </div>
