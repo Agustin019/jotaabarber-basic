@@ -80,7 +80,7 @@ export default function DatosDeUsuario() {
                     </article>
                 </section>
 
-                <section className="flex flex-col gap-y-5 md:w-[80%]">
+                <section className="flex flex-col gap-y-5 md:w-[80%] py-5">
                     <article className="flex gap-x-5 w-[90%] mx-auto mt-20">
                         <div className="w-[120px] rounded-full h-[120px] flex flex-col justify-center items-center bg-[#D9D9D9] z-20">
                             {
@@ -123,7 +123,7 @@ export default function DatosDeUsuario() {
                     </article>
                     <article>
                         <div className='w-[90%] mx-auto flex flex-col justify-start gap-y-3 '>
-                            <p className='font-bold text-2xl'>Mis Datos</p>
+                            <p className='font-bold text-[20px]'>Mis Datos</p>
                             <p className='font-light text-base'>Información de tu cuenta</p>
                         </div>
                         <form className='w-[90%] mx-auto flex flex-col gap-y-6 pt-5'>

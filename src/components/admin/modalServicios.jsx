@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseconfig';
 
-export default function ModalProfesionales({ handleModal, servicio ,setServicioAEditar }) {
+export default function ModalProfesionales({ handleModal }) {
   // Estado para almacenar la imagen seleccionada
   const [selectedImage, setSelectedImage] = useState(null);
   // Estado para almacenar el nombre de la imagen seleccionada
@@ -14,7 +14,7 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
   const [profesionales, setProfesionales] = useState([]);
   // Estado para almacenar los datos del servicio
   const [nombreSercivio, setNombreServicio] = useState('');
-  const [ precio, setPrecio ] = useState('')
+  const [precio, setPrecio] = useState('')
 
   // Obtener los profesionales al cargar el componente
   useEffect(() => {
@@ -109,32 +109,25 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
       const docRef = doc(db, 'utilidades', 'servicios');
       const serviciosDoc = await getDoc(docRef);
       const dataServicios = serviciosDoc.data();
-      
-      if (Object.keys(servicio).length !== 0) {
-        // Editar un servicio existente
-        const index = dataServicios.servicio.findIndex(
-          (profesionalItem) => profesionalItem.nombre === servicio.nombre
-        );
-        dataServicios.profesionales[index].img = downloadURL;
-        dataServicios.profesionales[index].nombre = nombreSercivio;
-      } else {
-        // Agregar un nuevo servicio
-        dataServicios.servicio.push({
-          img: downloadURL,
-          nombre: nombreSercivio,
-          precio: precio,
-          fecha: 'Barbero',
-        });
-      }
+
+
+      // Agregar un nuevo servicio
+      dataServicios.servicio.push({
+        img: downloadURL,
+        nombre: nombreSercivio,
+        precio: precio,
+        fecha: 'Barbero',
+      });
+
 
       // Actualizar los cambios en Firestore
       await updateDoc(docRef, dataServicios);
+      handleModal();
 
       console.log('Enviando formulario');
     } catch (error) {
       console.log('Error al cargar la imagen:', error);
     }
-    handleModal();
   };
 
   return (
@@ -155,39 +148,39 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
         <article className='flex flex-col'>
           <div className='flex flex-col max-h-[457px] overflow-y-scroll px-2  gap-y-5 justify-between'>
             <div className=''>
-               {/* Contenedor campo imagen */}
-            <p className='text-[#FDFFFC] font-semibold text-base py-4 mt-3'>Foto del servicio</p>
-            <div
-              className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={handleDrop}
-            >
-              {!selectedImage ? (
-               <div className='flex items-center'>
-               <label htmlFor="imageInput" className="cursor-pointer text-[#FDFFFC] font-light text-[10px] flex flex-col gap-y-4 items-center ">
-               <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
-                   Sube o arrastra el archivo. Puede ser .jpg o .png
-               </label>
-           </div>
-              ) : (
-                <div className='flex flex-col items-center gap-y-1 mt-16'>
-                  <img src={selectedImage} alt="Selected" className="max-h-[100px] max-w-[170px]" />
-                  <button
-                    className="mt-4 bg-[#FDFFFC] text-[#1e1e1e] font-medium hover:bg-blue-600  py-2 px-4 rounded-md"
-                    onClick={handleImageChange}
-                  >
-                    Cambiar imagen
-                  </button>
-                </div>
-              )}
-              <input
-                id="imageInput"
-                type="file"
-                className="hidden"
-                onChange={handleImageUpload}
-              />
+              {/* Contenedor campo imagen */}
+              <p className='text-[#FDFFFC] font-semibold text-base py-4 mt-3'>Foto del servicio</p>
+              <div
+                className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={handleDrop}
+              >
+                {!selectedImage ? (
+                  <div className='flex items-center'>
+                    <label htmlFor="imageInput" className="cursor-pointer text-[#FDFFFC] font-light text-[10px] flex flex-col gap-y-4 items-center ">
+                      <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
+                      Sube o arrastra el archivo. Puede ser .jpg o .png
+                    </label>
+                  </div>
+                ) : (
+                  <div className='flex flex-col items-center gap-y-1 mt-16'>
+                    <img src={selectedImage} alt="Selected" className="max-h-[100px] max-w-[170px]" />
+                    <button
+                      className="mt-4 bg-[#FDFFFC] text-[#1e1e1e] font-medium hover:bg-blue-600  py-2 px-4 rounded-md"
+                      onClick={handleImageChange}
+                    >
+                      Cambiar imagen
+                    </button>
+                  </div>
+                )}
+                <input
+                  id="imageInput"
+                  type="file"
+                  className="hidden"
+                  onChange={handleImageUpload}
+                />
               </div>
               <p className='text-sm font-light text-[#FDFFFC] text-center py-4'> {!selectedImage && 'Sin archivo seleccionado'}</p>
 
@@ -240,13 +233,13 @@ export default function ModalProfesionales({ handleModal, servicio ,setServicioA
 
           {/* Botón enviar */}
           <div className='flex justify-center mt-10'>
-           <button
-            type='submit' 
-            className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
-                 Agregar servicio
-           </button>
+            <button
+              type='submit'
+              className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
+              Agregar servicio
+            </button>
 
-         </div>
+          </div>
         </article>
       </form>
     </main>

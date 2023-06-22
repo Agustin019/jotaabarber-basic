@@ -154,7 +154,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
       const isMiddleDay = i - startIndex === selectedDayIndex && isSelectedDay;
       const isSelectable = date >= currentDate && date <= thirtyDaysLater;
   
-      const dayClassNames = `py-2 px-4 flex flex-col items-center gap-3 rounded-lg w-[63px]  h-[76px]   
+      const dayClassNames = `py-2 px-4 flex flex-col items-center gap-2 sm:gap-3 rounded-lg w-[58px] h-[70px] sm:w-[63px]  sm:h-[76px]   
       ${isSelectedDay ? 'border border-[#1e1e1e]' : ''
         } ${isSelectedDay && isMiddleDay ? 'bg-[#1e1e1e] text-white' : isMiddleDay ? 'bg-[#1e1e1e] text-white' : ''} 
         ${!isSelectable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}

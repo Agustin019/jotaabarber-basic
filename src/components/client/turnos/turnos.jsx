@@ -38,7 +38,7 @@ export default function Turnos({
             :
 
 
-            <div className='w-full  mx-auto flex flex-wrap gap-3 xl:gap-5 h-[99px] md:h-[183px] md:py-4 overflow-y-auto'>
+            <div className='w-full  mx-auto flex flex-wrap justify-center gap-2 xl:gap-5 h-[184px] pb-2 md:py-4 overflow-y-auto'>
               {
                 filtrarTurnosPorPeriodo?.map((turno, i) =>
                   <Turno
