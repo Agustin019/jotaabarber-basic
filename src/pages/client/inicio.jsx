@@ -26,7 +26,7 @@ export default function Inicio() {
    <>
    <Navbar/>
      <main className="z-50 ">
-       <section className="inicio h-screen bg-inicio bg-cover bg-center">
+       <section id="inicio" className="inicio h-screen bg-inicio bg-cover bg-center">
          <article className="w-full h-full bg-gradient-to-b from-black/80 to-black/50  pt-[72px]">
            <div className="flex flex-col justify-center items-center gap-y-8 pt-20">
              <h1 className="font-bold text-[64px] leading-[78px] text-center text-white">Tu estilo, nuestra <br />
