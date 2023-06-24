@@ -6,7 +6,7 @@ export default function Contacto() {
 
   const { user } = useAuth()
   return (
-    <section className='relative mt-60 '>
+    <section id='contacto' className='relative mt-60 '>
       <article className='
           w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-[#676B6C] 
           px-2 pb-10 pt-60  md:p-9 xl:py-14 xl:px-16

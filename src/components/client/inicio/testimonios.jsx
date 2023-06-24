@@ -18,8 +18,8 @@ export default function Testimonios() {
 
     };
     return (
-        <section className='mx-auto my-20 bg-[#D9D9D9] p-9 md:p-16 relative'>
-            <h2 className='font-semibold text-[25px] sm:text-[32px] md:text-5xl text-center my-5'>¿Qué dicen nuestros <br /> clientes?</h2>
+        <section id='testimonios' name='testimonios' className='mx-auto my-20 bg-[#D9D9D9] h-auto p-9 md:p-16 relative'>
+            <h2 className='font-semibold text-[25px] sm:text-[32px] md:text-5xl text-center py-5'>¿Qué dicen nuestros <br /> clientes?</h2>
             <div className='flex md:pl-44 xl:pl-72 justify-start absolute top-36 md:top-60 md:left-24'>
                 <FormatQuoteRoundedIcon />
             </div>
