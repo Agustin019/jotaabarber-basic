@@ -122,28 +122,28 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
             }
             <div className=' grid grid-cols-2  mx-auto w-[328px] lg:w-auto lg:flex justify-between rounded-lg bg-[#1e1e1e] my-8 '>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-normal'>Usuario</p>
-                    <p className='text-white text-sm font-light'>{datosUsuarioActual.fullName}</p>
-                    <p className='text-white text-sm font-light'>+54 {turno.telefono}</p>
+                    <p className='text-white text-sm font-semibold'>Usuario</p>
+                    <p className='text-white text-sm font-normal'>{datosUsuarioActual.fullName}</p>
+                    <p className='text-white text-sm font-normal'>+54 {turno.telefono}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-normal'>Dia y horario</p>
-                    <p className='text-white text-sm font-light'>{`${turno.nombreDia} - ${turno.dia}`} <br /> {turno.hora} hs</p>
+                    <p className='text-white text-sm font-semibold'>Dia y horario</p>
+                    <p className='text-white text-sm font-normal'>{`${turno.nombreDia} - ${turno.dia}`} <br /> {turno.hora} hs</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-normal'>Servicio</p>
-                    <p className='text-white text-sm font-light'>{turno.servicio}</p>
+                    <p className='text-white text-sm font-semibold'>Servicio</p>
+                    <p className='text-white text-sm font-normal'>{turno.servicio}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-normal'>Profesional</p>
-                    <p className='text-white text-sm font-light'>{turno.profesional}</p>
+                    <p className='text-white text-sm font-semibold'>Profesional</p>
+                    <p className='text-white text-sm font-normal'>{turno.profesional}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-normal'>Estado</p>
+                    <p className='text-white text-sm font-semibold'>Estado</p>
                     {
                         turno.estado === 'confirmado'
-                            ? <p className='text-white text-sm font-normal p-[10px] bg-[#474747] rounded-xl'>Confirmado</p>
-                            : <p className='text-white text-sm font-normal p-[10px] bg-[#802a2a] rounded-xl'>Cancelado</p>
+                            ? <p className='text-white text-sm font-semibold p-[10px] bg-[#474747] rounded-xl'>Confirmado</p>
+                            : <p className='text-white text-sm font-semibold p-[10px] bg-[#802a2a] rounded-xl'>Cancelado</p>
                     }
                 </div>
                 <div className='flex justify-end items-end py-5 pr-10'>
