@@ -21,9 +21,9 @@ export default function SobreNosotros() {
   return (
     <section id='nosotros' className='w-full h-auto max-w-full max-h-full mx-auto overflow-hidden '>
      
-     <article className='flex flex-col items-center pt-20 lg:pt-0 my-10 gap-y-5 '>
+     <article className='flex flex-col items-center pt-20 lg:pt-0 md:my-10 gap-y-5 '>
       <h2 className='font-bold text-[32px] text-center'>Sobre nosotros</h2>
-      <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui mollitia iure unde deserunt exercitationem et dolorem suscipit maxime perspiciatis accusamus!
+      <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui 
       </p>
      </article>
      {/* <div className='swiper-button-prev swiper-button'></div>

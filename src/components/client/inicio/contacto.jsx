@@ -6,7 +6,7 @@ export default function Contacto() {
 
   const { user } = useAuth()
   return (
-    <section id='contacto' className='relative mt-60 '>
+    <section className='relative mt-60 '>
       <article className='
           w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-[#676B6C] 
           px-2 pb-10 pt-60  md:p-9 xl:py-14 xl:px-16
@@ -33,7 +33,7 @@ export default function Contacto() {
         </div>
       </article>
 
-      <article className='my-32 ' >
+      <article id='contacto'  className='my-32 ' >
         <div className='flex flex-col gap-y-5 items-center px-10'>
           <h2 className='text-center font-bold text-[32px]'>Contacto</h2>
           <p className='font-light text-base text-center'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
