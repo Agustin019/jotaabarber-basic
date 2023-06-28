@@ -19,7 +19,7 @@ export default function Contacto() {
           w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
           -top-40 md:-top-16 xl:-top-28 md:right-12 lg:right-10 xl:right-44 mx-auto'
         />
-        <div className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
+        <div  className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
           <h2 className='font-bold text-2xl lg:text-5xl text-white '>
             ¿Te interesa alguno de nuestros servicios?
           </h2>  
@@ -33,8 +33,8 @@ export default function Contacto() {
         </div>
       </article>
 
-      <article id='contacto'  className='my-32 ' >
-        <div className='flex flex-col gap-y-5 items-center px-10'>
+      <article id='contacto'  className='my-10 py-20' >
+        <div  className='flex flex-col gap-y-5 items-center px-10'>
           <h2 className='text-center font-bold text-[32px]'>Contacto</h2>
           <p className='font-light text-base text-center'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
           <div className='flex flex-col gap-y-5 items-center '>
