@@ -18,7 +18,7 @@ export default function Testimonios() {
 
     };
     return (
-       <section id='testimonios' className='pt-40 h-auto mx-auto my-20 '>
+       <section id='testimonios' className='pt-20 min-h-screen mx-auto  '>
          <article   className=' bg-[#D9D9D9] h-auto p-9 md:px-16  relative'>
              <h2 className='font-semibold text-[25px] sm:text-[32px] md:text-5xl text-center py-5'>¿Qué dicen nuestros <br /> clientes?</h2>
              <div className='flex md:pl-44 xl:pl-72 justify-start absolute top-36 md:top-60 md:left-24'>

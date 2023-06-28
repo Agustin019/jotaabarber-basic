@@ -6,40 +6,42 @@ export default function Contacto() {
 
   const { user } = useAuth()
   return (
-    <section className='relative mt-60 '>
-      <article className='
-          w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-[#676B6C] 
-          px-2 pb-10 pt-60  md:p-9 xl:py-14 xl:px-16
-          rounded-3xl flex flex-col md:flex-row items-center
-         '>
-        <img
-          src="https://i.ibb.co/SVcNwqN/corte-De-Un-Facherardo.jpg"
-          alt="imagen corte de pelo"
-          className='
-          w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
-          -top-40 md:-top-16 xl:-top-28 md:right-12 lg:right-10 xl:right-44 mx-auto'
-        />
-        <div  className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
-          <h2 className='font-bold text-2xl lg:text-5xl text-white '>
-            ¿Te interesa alguno de nuestros servicios?
-          </h2>  
-          <p className='font-light text-sm text-white md:w-[90%]'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-          <Link
-            to={user ? '/nuevoturno' : '/micuenta'}
-            className='w-[296px] h-[55px] flex justify-center items-center p-[10px] bg-black font-medium text-lg lg:text-base text-white'
-          >
-            Reservar turno
-          </Link>
+    <section className=' '>
+      <article className='md:min-h-[95vh] md:flex flex-col justify-center items-center relative'>
+        <div className='
+            w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-[#676B6C] 
+            px-2 pb-10 pt-60  md:p-9 xl:py-14 xl:px-16
+            rounded-3xl flex flex-col md:flex-row items-center
+           '>
+          <img
+            src="https://i.ibb.co/SVcNwqN/corte-De-Un-Facherardo.jpg"
+            alt="imagen corte de pelo"
+            className='
+            w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
+            -top-40 md:-top-16 xl:top-10 md:right-12 lg:right-10 xl:right-44 mx-auto'
+          />
+          <div  className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
+            <h2 className='font-bold text-2xl lg:text-5xl text-white '>
+              ¿Te interesa alguno de nuestros servicios?
+            </h2>  
+            <p className='font-light text-sm text-white md:w-[90%]'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            <Link
+              to={user ? '/nuevoturno' : '/micuenta'}
+              className='w-[296px] h-[55px] flex justify-center items-center p-[10px] bg-black font-medium text-lg lg:text-base text-white'
+            >
+              Reservar turno
+            </Link>
+          </div>
         </div>
       </article>
 
-      <article id='contacto'  className='my-10 py-20' >
+     <article id='contacto' className='pt-10 h-auto max-h-full' >
         <div  className='flex flex-col gap-y-5 items-center px-10'>
           <h2 className='text-center font-bold text-[32px]'>Contacto</h2>
           <p className='font-light text-base text-center'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
           <div className='flex flex-col gap-y-5 items-center '>
 
-            <h3 className='font-bold text-2xl py-4'>Encontranos en</h3>
+            <h3  className='font-bold text-2xl py-4'>Encontranos en</h3>
 
             <div className='flex flex-col md:flex-row md:gap-x-10 lg:gap-x-20 xl:gap-x-40 gap-y-3 md:mb-5'>
               <div className='text-xl font-light flex items-center gap-x-2'>
