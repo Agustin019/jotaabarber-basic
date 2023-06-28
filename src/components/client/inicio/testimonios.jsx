@@ -18,31 +18,33 @@ export default function Testimonios() {
 
     };
     return (
-        <section id='testimonios' name='testimonios' className='mx-auto my-20 bg-[#D9D9D9] h-auto p-9 md:p-16 relative'>
-            <h2 className='font-semibold text-[25px] sm:text-[32px] md:text-5xl text-center py-5'>¿Qué dicen nuestros <br /> clientes?</h2>
-            <div className='flex md:pl-44 xl:pl-72 justify-start absolute top-36 md:top-60 md:left-24'>
-                <FormatQuoteRoundedIcon />
-            </div>
-            <Slider {...settings}>
-                <div className='py-8 md:px-5'>
-                    <p className='text-center p-2 md:p-12 md:w-[60%] mx-auto'>"¡La barbería superó mis expectativas! Excelente atención, ambiente agradable y un corte de cabello impecable. ¡Volveré sin duda!"</p>
-                    <p className='text-center font-semibold text-lg pt-8'>Luis Torres</p>
-                </div>
-
-                <div className='py-8'>
-                    <p className='text-center p-2 md:p-12 md:w-[60%] mx-auto'>"Increíble experiencia en la barbería. El personal es amable y profesional. Me encantó mi nuevo peinado. Recomendado al 100%."</p>
-                    <p className='text-center font-semibold text-lg pt-8'>Alejandro Ramos</p>
-                </div>
-
-                <div className='py-8'>
-                    <p className='text-center p-2 md:p-12 md:w-[60%] mx-auto'>"La barbería es mi lugar favorito para arreglar mi barba. Siempre salgo con un aspecto impecable y me siento renovado. ¡Un servicio excepcional!"</p>
-                    <p className='text-center font-semibold text-lg pt-8'>Javier Mendoza</p>
-                </div>
-            </Slider>
-            <div className='flex md:pr-44 xl:pr-72 justify-end absolute right-2 bottom-24 md:bottom-48 md:right-24'>
-                <FormatQuoteRoundedIcon />
-            </div>
-        </section>
+       <section id='testimonios' className='pt-40 h-auto mx-auto my-20 '>
+         <article   className=' bg-[#D9D9D9] h-auto p-9 md:px-16  relative'>
+             <h2 className='font-semibold text-[25px] sm:text-[32px] md:text-5xl text-center py-5'>¿Qué dicen nuestros <br /> clientes?</h2>
+             <div className='flex md:pl-44 xl:pl-72 justify-start absolute top-36 md:top-60 md:left-24'>
+                 <FormatQuoteRoundedIcon />
+             </div>
+             <Slider {...settings}>
+                 <div className='py-8 md:px-5'>
+                     <p className='text-center p-2 md:p-12 md:w-[60%] mx-auto'>"¡La barbería superó mis expectativas! Excelente atención, ambiente agradable y un corte de cabello impecable. ¡Volveré sin duda!"</p>
+                     <p className='text-center font-semibold text-lg pt-8'>Luis Torres</p>
+                 </div>
+        
+                 <div className='py-8'>
+                     <p className='text-center p-2 md:p-12 md:w-[60%] mx-auto'>"Increíble experiencia en la barbería. El personal es amable y profesional. Me encantó mi nuevo peinado. Recomendado al 100%."</p>
+                     <p className='text-center font-semibold text-lg pt-8'>Alejandro Ramos</p>
+                 </div>
+        
+                 <div className='py-8'>
+                     <p className='text-center p-2 md:p-12 md:w-[60%] mx-auto'>"La barbería es mi lugar favorito para arreglar mi barba. Siempre salgo con un aspecto impecable y me siento renovado. ¡Un servicio excepcional!"</p>
+                     <p className='text-center font-semibold text-lg pt-8'>Javier Mendoza</p>
+                 </div>
+             </Slider>
+             <div className='flex md:pr-44 xl:pr-72 justify-end absolute right-2 bottom-24 md:bottom-48 md:right-24'>
+                 <FormatQuoteRoundedIcon />
+             </div>
+         </article>
+       </section>
     )
 }
 

@@ -4,16 +4,8 @@ import { animateScroll as scroll, Link as LinkScroll, scroller } from 'react-scr
 
 export default function NavbarLinks({ flexDirection }) {
   const location = useLocation();
-
-  
-  const handleClickScroll = (section) => {
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const isHomePage = location.pathname === '/';
+
   const navigate = useNavigate()
   const hadleLinkClick = (link, offset) => {
      if (!isHomePage) {
@@ -116,12 +108,12 @@ export default function NavbarLinks({ flexDirection }) {
       <li className="cursor-pointer">
         <LinkScroll
           to="contacto"
-          onClick={() => hadleLinkClick('contacto', 460)}
+          onClick={() => hadleLinkClick('contacto', -50)}
           className="link"
           activeClass="activo"
           spy={true}
           smooth={true}
-          offset={-80}
+          offset={-50}
           duration={500}
         >
           Contacto
