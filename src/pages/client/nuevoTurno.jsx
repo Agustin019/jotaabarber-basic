@@ -181,7 +181,7 @@ export default function NuevoTurno() {
             </div>
             <button
               onClick={handleResumen} 
-              className='bg-[#1e1e1e] py-[10px] px-[11px] rounded-lg'>
+              className='bg-[#1e1e1e] py-[10px] px-[11px] rounded-lg lg:hidden'>
               <img src="https://i.ibb.co/92rcnBj/receipt-long.png" alt="resumen turno" />
             </button>
           </div>

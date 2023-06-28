@@ -14,25 +14,25 @@ export default function ResumenTurno({
 
             <aside
                 className='
-            w-full sm:w-[483px] col-span-1 right-0 bg-[#1e1e1e] h-screen py-[32px] pr-[63px] pl-[40px] hidden lg:block
+            w-full sm:w-[483px] col-span-1 right-0 bg-[#1e1e1e] h-screen py-[32px] pr-[63px] pl-[40px] hidden lg:block text-[#fdfffc]
       '>
                 <div className='flex justify-between items-center mb-5'>
                     <h2 className='font-bold text-[#fdfffc] text-xl sm:text-2xl'>Resúmen de turno</h2>
                 </div>
                 <div className='flex flex-col gap-y-4'>
-                    <p className='font-medium  text-base sm:text-xl text[#fdfffc]  '>Datos del cliente:</p>
+                    <p className='font-medium  text-base sm:text-xl text-[#fdfffc]  '>Datos del cliente:</p>
                     <div className='flex flex-col gap-y-2'>
                         <div className='flex justify-between items-center'>
-                            <p className='font-normal text-xs sm:text-lg text[#fdfffc] '>Nombre</p>
-                            <p className='font-light text-xs sm:text-lg text[#fdfffc] '>{nombre === '' ? '-' : nombre} </p>
+                            <p className='font-normal text-xs sm:text-lg text-[#fdfffc] '>Nombre</p>
+                            <p className='font-light text-xs sm:text-lg text-[#fdfffc] '>{nombre === '' ? '-' : nombre} </p>
                         </div>
                         <div className='flex justify-between items-center'>
-                            <p className='font-normal text-xs sm:text-lg text[#fdfffc] '>Teléfono</p>
-                            <p className='font-light text-xs sm:text-lg text[#fdfffc] '>{telefono === 0 ? '-' : telefono}</p>
+                            <p className='font-normal text-xs sm:text-lg text-[#fdfffc] '>Teléfono</p>
+                            <p className='font-light text-xs sm:text-lg text-[#fdfffc] '>{telefono === 0 ? '-' : telefono}</p>
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-2 '>
-                        <p className='font-medium text-base sm:text-xl text[#fdfffc]  '>Servicio</p>
+                        <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Servicio</p>
                         <div className='flex justify-start items-center'>
                             {
                                 !servicioSeleccionado?.img
@@ -46,13 +46,13 @@ export default function ResumenTurno({
                                     />
                             }
                             <div className='px-5'>
-                                <p className='font-bold text-xl text[#fdfffc] '>{servicioSeleccionado.nombre ?? '-'}</p>
-                                <p className='font-bold text-lg text[#fdfffc] '>$ {servicioSeleccionado.precio ? `$${servicioSeleccionado.precio}` : '-'}</p>
+                                <p className='font-bold text-xl text-[#fdfffc] '>{servicioSeleccionado.nombre ?? '-'}</p>
+                                <p className='font-bold text-lg text-[#fdfffc] '>$ {servicioSeleccionado.precio ? `$${servicioSeleccionado.precio}` : '-'}</p>
                             </div>
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-2 '>
-                        <p className='font-medium text-base sm:text-xl text[#fdfffc]  '>Profesional</p>
+                        <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Profesional</p>
                         <div className='flex justify-start items-center'>
                             {
                                 !profesionalSeleccionado?.img
@@ -65,19 +65,19 @@ export default function ResumenTurno({
                                         className='w-[66px] h-[90px] rounded-lg object-cover '
                                     />
                             }
-                            <p className='font-bold text-xl text[#fdfffc]  px-5'>{profesionalSeleccionado.nombre ?? '-'}</p>
+                            <p className='font-bold text-xl text-[#fdfffc]  px-5'>{profesionalSeleccionado.nombre ?? '-'}</p>
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-2 '>
-                        <p className='font-medium text-base sm:text-xl text[#fdfffc]  '>Datos del turno</p>
+                        <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Datos del turno</p>
                         <div className='flex flex-col gap-y-2'>
                             <div className='flex justify-between items-center'>
-                                <p className='font-normal text-base sm:text-lg text[#fdfffc] '>Dia </p>
-                                <p className='font-light text-base sm:text-lg text[#fdfffc] '>{fechaSeleccionada?.dia ? fechaSeleccionada.dia : '-'}</p>
+                                <p className='font-normal text-base sm:text-lg text-[#fdfffc] '>Dia </p>
+                                <p className='font-light text-base sm:text-lg text-[#fdfffc] '>{fechaSeleccionada?.dia ? fechaSeleccionada.dia : '-'}</p>
                             </div>
                             <div className='flex justify-between items-center'>
-                                <p className='font-normal text-base sm:text-lg text[#fdfffc] '>Horario</p>
-                                <p className='font-light text-base sm:text-lg text[#fdfffc] '>{fechaSeleccionada?.hora ? `${fechaSeleccionada.hora}hs` : '-'}</p>
+                                <p className='font-normal text-base sm:text-lg text-[#fdfffc] '>Horario</p>
+                                <p className='font-light text-base sm:text-lg text-[#fdfffc] '>{fechaSeleccionada?.hora ? `${fechaSeleccionada.hora}hs` : '-'}</p>
                             </div>
                             <div className='w-full border border-[#F2F2F2]'></div>
                             <div className='flex justify-between items-center'>

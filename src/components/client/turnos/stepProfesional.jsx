@@ -63,8 +63,8 @@ export default function StepProfesional({ profesionalSeleccionado, setProfesiona
               }
 
             >
-              <img className={`
-              rounded-3xl min-h-[235px] max-h-[235px] min-w-[235px] max-w-[235px] object-top hover:outline outline-[#1e1e1e]
+              <img className={`min-h-[235px] max-h-[235px] min-w-[235px] max-w-[235px]
+              rounded-3xl md:min-h-[200px] md:max-h-[200px] md:min-w-[200px] md:max-w-[200px] object-top hover:outline outline-[#1e1e1e]
               ${profesionalSeleccionado.nombre === profesional.nombre ? 'outline outline-[#1e1e1e]' : ''}
               `} src={profesional.img} alt={profesional.nombre} />
               <div className='w-full flex flex-col py-2 my-2 justify-center '>
