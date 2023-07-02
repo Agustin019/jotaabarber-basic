@@ -82,12 +82,13 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   
     setFechaSeleccionada({});
     setCurrentWeekStartDay((prevWeekStartDay) => {
-      const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() - 4);
-      const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1);
-      const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 6);
+      const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+      const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 4);
   
-      if (newWeekStart >= minPrevDate) {
-        return newWeekStart;
+      if (prevWeekStartDay <= maxPrevDate) {
+        return prevWeekStartDay;
+      } else if (prevWeekStartDay <= currentDate && currentDate <= minPrevDate) {
+        return currentDate;
       } else {
         return minPrevDate;
       }
@@ -235,9 +236,9 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
       <div>
         <h2 className="text-xl my-2 md:my-5 text-center font-bold">{selectedMonth} 2023</h2>
         <div className="flex items-center justify-around">
-          <button className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
+          <button type='button' className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
           <div >{renderCalendar()}</div>
-          <button className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
+          <button type='button'  className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
         </div>
       </div>
       <Turnos

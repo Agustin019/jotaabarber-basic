@@ -14,6 +14,7 @@ import StepfechaYHora from '../../components/client/turnos/stepFechaYHora'
 import PantallaTurnoConfirmado from '../../components/client/turnos/pantallaTurnoConfirmado'
 import { v4 as uuidv4 } from "uuid";
 
+import CalendarioPrueba from '../../components/client/turnos/calendarioPrueba'
 
 
 export default function NuevoTurno() {
@@ -21,7 +22,7 @@ export default function NuevoTurno() {
   const { datosUsuarioActual } = useAuth()
   
   //Formulario paso a paso
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(3)
 
   // step datos personales
   const [nombre, setNombre] = useState('')
@@ -57,7 +58,7 @@ export default function NuevoTurno() {
       case 2:
         return <StepProfesional profesionalSeleccionado={profesionalSeleccionado} setProfesionalSeleccionado={setProfesionalSeleccionado} />
       case 3:
-        return <StepfechaYHora fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} />
+        return <CalendarioPrueba fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} />
       default:
         return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono} />
     }
