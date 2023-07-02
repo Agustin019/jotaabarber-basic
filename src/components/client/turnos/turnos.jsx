@@ -1,5 +1,7 @@
 import React from 'react'
 import Turno from './turno'
+import format from 'date-fns/format';
+import es from 'date-fns/locale/es';
 
 export default function Turnos({
   turnos,
@@ -12,11 +14,14 @@ export default function Turnos({
   diaAbreviado,
   objetoDiaSeleccionado
 }) {
+  const fechaFormateada = format(selectedDay, "EEEE dd-MM", { locale: es });  
   return (
     <div >
       {
         turnos.length !== 0
-          ? <div className='flex flex-col md:flex-row items-center justify-center'>
+          ? <div>
+            <p className='text-center'>Turnos del dia <span className='capitalize font-medium text-xl'>{fechaFormateada}</span></p>
+            <div className='flex flex-col md:flex-row items-center justify-center'>
             <div className=' mx-auto md:w-[20%] flex md:flex-col'>
               <button
                 type='button' 
@@ -38,8 +43,8 @@ export default function Turnos({
               </button>
             </div>
             :
-
-
+            
+            
             <div className='w-full  mx-auto flex flex-wrap justify-center md:justify-start gap-2 xl:gap-5 h-[184px] pb-2 md:py-4 overflow-y-auto'>
               {
                 filtrarTurnosPorPeriodo?.map((turno, i) =>
@@ -53,8 +58,9 @@ export default function Turnos({
                     objetoDiaSeleccionado={objetoDiaSeleccionado}
                   />
                 )
-
+            
               }
+            </div>
             </div>
           </div>
 

@@ -20,6 +20,7 @@
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.7",
     "firebase": "^9.17.1",
+    "framer-motion": "^10.12.18",
     "moment": "^2.29.4",
     "react": "^18.2.0",
     "react-alice-carousel": "^2.7.1",
