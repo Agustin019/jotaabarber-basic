@@ -19,6 +19,7 @@ export default function Turnos({
           ? <div className='flex flex-col md:flex-row items-center justify-center'>
             <div className=' mx-auto md:w-[20%] flex md:flex-col'>
               <button
+                type='button' 
                 onClick={() => {
                   setFechaSeleccionada({})
                   setPeriodoTurno('mañana')
@@ -27,6 +28,7 @@ export default function Turnos({
                 Mañana
               </button>
               <button
+                type='button' 
                 onClick={() => {
                   setFechaSeleccionada({})
                   setPeriodoTurno('tarde')
@@ -38,7 +40,7 @@ export default function Turnos({
             :
 
 
-            <div className='w-full  mx-auto flex flex-wrap justify-center gap-2 xl:gap-5 h-[184px] pb-2 md:py-4 overflow-y-auto'>
+            <div className='w-full  mx-auto flex flex-wrap justify-center md:justify-start gap-2 xl:gap-5 h-[184px] pb-2 md:py-4 overflow-y-auto'>
               {
                 filtrarTurnosPorPeriodo?.map((turno, i) =>
                   <Turno
