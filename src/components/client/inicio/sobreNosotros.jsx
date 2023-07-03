@@ -13,7 +13,7 @@ export default function SobreNosotros() {
 
   const images = [
     "https://i.ibb.co/9cpJt1n/barbpesada3-optimized.jpg",
-    "https://i.ibb.co/CHyrhFj/barbpesada-optimized.jpg",
+    "https://i.ibb.co/Db5QJDD/barberia-home-minif.webp",
     "https://i.ibb.co/wY6b33B/barbpesada2-optimized.jpg",
 
   ];

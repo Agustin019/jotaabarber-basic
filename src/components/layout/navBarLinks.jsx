@@ -27,6 +27,7 @@ export default function NavbarLinks({ flexDirection }) {
     >
         <li className="cursor-pointer">
           <LinkScroll
+           onClick={() => hadleLinkClick('inicio', -80)}
             to="inicio"
             className="link"
             activeClass="activo"

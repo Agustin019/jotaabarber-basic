@@ -1,250 +1,157 @@
-import React, { useState, useEffect } from 'react';
-import { format } from 'date-fns';
-import {generarDocumentoPorCadaDiaDisponible, generarDocumentoPorCadaDiaDeTurnosDisponible } from '../../../utils/horariosLaborales'
+import { useState, useEffect } from 'react';
+import format from 'date-fns/format';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseconfig';
+import { motion } from 'framer-motion'; 
 import Turnos from './turnos';
+import {
+  generarDocumentoPorCadaDiaDisponible, 
+  generarDocumentoPorCadaDiaDeTurnosDisponible 
+} 
+from '../../../utils/horariosLaborales'
 
 
 export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada }) {
-  // turnos
-  const [turnos, setTurnos] = useState([])
-  const [periodoTurno, setPeriodoTurno] = useState('mañana')
-  const filtrarTurnosPorPeriodo = turnos.filter(turno => turno.periodo === periodoTurno)
-  
-  // calendario
   const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-  const monthsOfYear = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-  
-  
-  let currentDate = new Date();
-  if (!(currentDate instanceof Date && !isNaN(currentDate))) {
-    currentDate = new Date();
-  }
-  currentDate.setHours(0, 0, 0, 0);
-  const [selectedDay, setSelectedDay] = useState(currentDate);
-  const [selectedMonth, setSelectedMonth] = useState(monthsOfYear[selectedDay.getMonth()]);
-  const diaAbreviado = daysOfWeek[selectedDay.getDay()].slice(0, 3);
 
-  const currentMonth = currentDate.getMonth();
-  const currentDay = currentDate.getDay();
-  const currentWeekStart = new Date(currentDate.getFullYear(), currentMonth, currentDate.getDate() - currentDay);
-  const [currentWeekStartDay, setCurrentWeekStartDay] = useState(currentWeekStart);
-  const thirtyDaysLater = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 30);
-
-  useEffect(() => {
-    let middleDate;
-    if (window.innerWidth >= 1024) {
-      middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 5);
-    } else if (window.innerWidth >= 768) {
-      middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 3);
-    } else if ((window.innerWidth <= 768)) {
-      middleDate = new Date(currentWeekStartDay.getFullYear(), currentWeekStartDay.getMonth(), currentWeekStartDay.getDate() + 2);
-    }
-    
-    if (selectedDay >= currentWeekStartDay && selectedDay <= middleDate) {
-      setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
-      setSelectedDay(selectedDay);
-    } else {
-      setSelectedMonth(monthsOfYear[middleDate.getMonth()]);
-      setSelectedDay(middleDate);
-    }
-  }, [currentWeekStartDay, selectedDay]);
-  
-
-  useEffect(() => {
-    handleDayClick(currentDate)
-  }, [])
-
+  const [startDay, setStartDay] = useState(new Date());
+  const [selectedDay, setSelectedDay] = useState(startDay);
   const fechaFormateada = format(selectedDay, 'dd-MM');
 
-  const handleDayClick = (day) => {
-    setFechaSeleccionada({})
-    setSelectedDay(day);
-    setSelectedMonth(monthsOfYear[day.getMonth()]);
-    setCurrentWeekStartDay((prevWeekStartDay) => {
-      const diff = Math.floor((day - prevWeekStartDay) / (24 * 60 * 60 * 1000));
-      let newWeekStart;
-      if (window.innerWidth >= 1280) {
-        newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 5);
-      } else if (window.innerWidth >= 768) {
-        newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 3);
-      } else if ((window.innerWidth <= 768)) {
-        newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + diff - 2);
-      }
-      return newWeekStart;
-    });
-  };
-  const handlePrevWeek = () => {
-    if (selectedDay.toDateString() === currentDate.toDateString()) {
-      return; // No retroceder si el día seleccionado es el día actual
-    }
-  
-    setFechaSeleccionada({});
-    setCurrentWeekStartDay((prevWeekStartDay) => {
-      const maxPrevDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-      const minPrevDate = new Date(maxPrevDate.getFullYear(), maxPrevDate.getMonth(), maxPrevDate.getDate() - 4);
-  
-      if (prevWeekStartDay <= maxPrevDate) {
-        return prevWeekStartDay;
-      } else if (prevWeekStartDay <= currentDate && currentDate <= minPrevDate) {
-        return currentDate;
-      } else {
-        return minPrevDate;
-      }
-    });
-  };
-  
-  
-  const handleNextWeek = () => {
-    if (selectedDay.toDateString() === thirtyDaysLater.toDateString()) {
-      return; // No avanzar si el día seleccionado es la fecha máxima
-    }
-  
-    setFechaSeleccionada({});
-    setCurrentWeekStartDay((prevWeekStartDay) => {
-      const newWeekStart = new Date(prevWeekStartDay.getFullYear(), prevWeekStartDay.getMonth(), prevWeekStartDay.getDate() + 4);
-      const nextWeekEnd = new Date(newWeekStart.getFullYear(), newWeekStart.getMonth(), newWeekStart.getDate() + 6);
-      const maxNextDate = new Date(thirtyDaysLater.getFullYear(), thirtyDaysLater.getMonth(), thirtyDaysLater.getDate() - 6);
-      if (nextWeekEnd <= thirtyDaysLater && nextWeekEnd <= maxNextDate) { // Cambio aquí
-        return newWeekStart;
-      } else if (prevWeekStartDay <= thirtyDaysLater && maxNextDate <= thirtyDaysLater) { // Cambio aquí
-        return maxNextDate;
-      } else {
-        return prevWeekStartDay;
-      }
-    });
-  }
+  const [turnos, setTurnos] = useState([]);
+  const [periodoTurno, setPeriodoTurno] = useState('mañana');
+  const filtrarTurnosPorPeriodo = turnos.filter(turno => turno.periodo === periodoTurno)
 
-  const renderCalendar = () => {
-    const calendar = [];
-    const startDate = new Date(currentWeekStartDay);
-    const thirtyDaysLater = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      currentDate.getDate() + 30
-    );
-  
-    let visibleDaysCount;
-    if (window.innerWidth >= 1280) {
-      visibleDaysCount = 11;
-    } else if (window.innerWidth >= 768) {
-      visibleDaysCount = 7;
-    } else {
-      visibleDaysCount = 5;
-    }
-  
-    const middleIndex = Math.floor(visibleDaysCount / 2);
-    const startIndex = Math.max(0, middleIndex - Math.floor(visibleDaysCount / 2));
-    const endIndex = startIndex + visibleDaysCount;
-  
-    let selectedDayIndex = middleIndex;
-  
-    if (selectedDay) {
-      const currentDateIndex = Math.floor((selectedDay - startDate) / (1000 * 60 * 60 * 24));
-      if (currentDateIndex >= startIndex && currentDateIndex < endIndex) {
-        selectedDayIndex = currentDateIndex - startIndex;
-      }
-    }
-  
-    for (let i = startIndex; i < endIndex; i++) {
-      const date = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate() + i);
-      const day = date.getDate();
-      const dayName = daysOfWeek[date.getDay()].slice(0, 3);
-      const isSelectedDay = selectedDay && date.toDateString() === selectedDay.toDateString();
-      const isMiddleDay = i - startIndex === selectedDayIndex && isSelectedDay;
-      const isSelectable = date >= currentDate && date <= thirtyDaysLater;
-  
-      const dayClassNames = `py-2 px-4 flex flex-col items-center gap-2 sm:gap-3 rounded-lg w-[58px] h-[70px] sm:w-[63px]  sm:h-[76px]   
-      ${isSelectedDay ? 'border border-[#1e1e1e]' : ''
-        } ${isSelectedDay && isMiddleDay ? 'bg-[#1e1e1e] text-white' : isMiddleDay ? 'bg-[#1e1e1e] text-white' : ''} 
-        ${!isSelectable ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
-      `;
-  
-      calendar.push(
-        <div
-          key={i}
-          className={dayClassNames}
-          onClick={() => isSelectable && handleDayClick(date)}
-        >
-          <div>{day}</div>
-          <div>{dayName}</div>
-        </div>
-      );
-    }
-  
-    return (
-      <div className="flex gap-1 ">
-        {calendar}
-      </div>
-    );
-  };
-  
+  const diaAbreviado = daysOfWeek[selectedDay.getDay()].slice(0, 3);
 
-  const [viewType, setViewType] = useState('');
+  // Establecer el número de días visibles según el ancho de la ventana
+  const [limitDays, setLimitDays] = useState(window.innerWidth <= 768 ? 5 : 10);
+
+ 
 
   useEffect(() => {
+    // Función para manejar el cambio de tamaño de la ventana
     const handleResize = () => {
-      const screenWidth = window.innerWidth;
-      let newViewType = '';
-
-      if (screenWidth >= 1280) {
-        newViewType = 'desktop';
-      } else if (screenWidth >= 768) {
-        newViewType = 'tablet';
+      if (window.innerWidth < 640) {
+        setLimitDays(5);
+      } else if (window.innerWidth < 1100) {
+        setLimitDays(7);
       } else {
-        newViewType = 'mobile';
-      }
-
-      if (newViewType !== viewType) {
-        setViewType(newViewType);
-        // Aquí puedes ejecutar la función específica para cada tipo de vista
-        console.log('Vista cambiada a:', newViewType);
-        handleDayClick(selectedDay)
+        setLimitDays(10);
       }
     };
 
-    handleResize(); // Verificar el estado inicial al cargar la página
+    // Agregar el listener al evento resize de la ventana
+    window.addEventListener('resize', handleResize);
 
-    window.addEventListener('resize', handleResize); // Agregar el evento de escucha
-
+    // Eliminar el listener al desmontar el componente
     return () => {
-      window.removeEventListener('resize', handleResize); // Eliminar el evento de escucha al desmontar el componente
+      window.removeEventListener('resize', handleResize);
     };
-  }, [viewType]);
-
-
-
-  generarDocumentoPorCadaDiaDisponible()
-  generarDocumentoPorCadaDiaDeTurnosDisponible()
-
-
-
-  /*  consultar ´por los turnos disponibles segun el dia de hoy o la fecha seleccionada  */
+  }, []);
 
   useEffect(() => {
+    // Obtener los turnos para la fecha seleccionada
     const unsubscribe = onSnapshot(doc(db, 'horarios', fechaFormateada), (doc) => {
       setTurnos(doc.data()?.horariosLaborales ?? []);
-      console.log(turnos)
+      console.log(turnos);
     });
 
-    return () => unsubscribe()
-  }, [selectedDay])
+    // Eliminar el listener al desmontar el componente
+    return () => unsubscribe();
+  }, [selectedDay]);
 
+  const handleDayClick = (day) => {
+    setSelectedDay(day);
+  };
+
+  // Generar una matriz de días a partir del día de inicio
+  const maxDaysAfterCurrent = 14; // Máximo número de días después del día actual
+  const days = [];
+  for (let i = 0; i < limitDays; i++) {
+    const day = new Date(startDay);
+    day.setDate(startDay.getDate() + i);
+    days.push(day);
+  }
+
+  const handlePreviousClick = () => {
+    const currentDate = new Date();
+    const newStartDay = new Date(startDay);
+    newStartDay.setDate(startDay.getDate() - 4);
+
+    if (newStartDay >= currentDate) {
+      setStartDay(newStartDay);
+    } else {
+      setStartDay(currentDate);
+    }
+  };
+
+  const handleNextClick = () => {
+    const currentDate = new Date();
+    const limitDate = new Date(currentDate);
+    limitDate.setDate(currentDate.getDate() + maxDaysAfterCurrent); // Límite de días después del día actual
+
+    const newStartDay = new Date(startDay);
+    newStartDay.setDate(startDay.getDate() + 4);
+
+    if (newStartDay <= limitDate) {
+      setStartDay(newStartDay);
+    }
+  };
+
+  const isCurrentDay = (day) => {
+    const currentDate = new Date();
+    return day.toDateString() === currentDate.toDateString();
+  };
+
+  const getDayAbbreviation = (day) => {
+    const options = { weekday: 'short' };
+    return day.toLocaleDateString('es-ES', options).substring(0, 3);
+  };
+
+  const monthOptions = { month: 'long', year: 'numeric' };
+  const currentMonth = startDay.toLocaleDateString('es-ES', monthOptions);
+
+
+   // Generar documentos para firestore
+   generarDocumentoPorCadaDiaDisponible()
+   generarDocumentoPorCadaDiaDeTurnosDisponible()
+   
   return (
     <div className='w-full flex flex-col gap-y-3 md:gap-y-10'>
-      <div>
-        <h2 className="text-xl my-2 md:my-5 text-center font-bold">{selectedMonth} 2023</h2>
-        <div className="flex items-center justify-around">
-          <button type='button' className="text-xl" onClick={handlePrevWeek}><ion-icon name="arrow-back"></ion-icon></button>
-          <div >{renderCalendar()}</div>
-          <button type='button'  className="text-xl" onClick={handleNextWeek}><ion-icon name="arrow-forward"></ion-icon></button>
+      <div className='w-full flex justify-center items-center'>
+        <p className='text-xl font-medium'>{currentMonth}</p>
+      </div>
+      <div className='flex justify-around'>
+        <button type='button' onClick={handlePreviousClick}>
+          <ion-icon name='arrow-back'></ion-icon>
+        </button>
+        <div className='flex items-center gap-2'>
+          {days.map((day) => (
+            <motion.div // Agregar el contenedor motion
+              key={day.toISOString()}
+              onClick={() => handleDayClick(day)}
+              className={`w-[58px] h-[70px] sm:w-[63px] sm:h-[76px] cursor-pointer
+              py-2 px-4 flex flex-col items-center gap-2 sm:gap-3 rounded-lg 
+              ${isCurrentDay(day) ? 'border border-black' : ''} 
+              ${selectedDay.toDateString() === day.toDateString() ? 'bg-black text-white' : ''}`}
+              initial={{ opacity: 0 }} // Definir la animación inicial
+              animate={{ opacity: 1 }} // Definir la animación al entrar
+              transition={{ duration: 1.2 }} // Definir la duración de la transición
+            >
+              <div>{day.getDate()}</div>
+              <div>{getDayAbbreviation(day)}</div>
+            </motion.div>
+          ))}
         </div>
+        <button type='button' onClick={handleNextClick}>
+          <ion-icon name='arrow-forward'></ion-icon>
+        </button>
       </div>
       <Turnos
         turnos={turnos}
         periodoTurno={periodoTurno}
-        setPeriodoTurno={setPeriodoTurno} 
+        setPeriodoTurno={setPeriodoTurno}
         filtrarTurnosPorPeriodo={filtrarTurnosPorPeriodo}
         selectedDay={selectedDay}
         fechaSeleccionada={fechaSeleccionada}
