@@ -79,7 +79,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
           },
         }}
       >
-        {servicios2.map(servicio =>
+        {servicios.map(servicio =>
           <SwiperSlide key={servicio.nombre} className="max-w-[235px] ">
 
             <div
