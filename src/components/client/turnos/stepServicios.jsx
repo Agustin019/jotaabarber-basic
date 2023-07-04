@@ -15,13 +15,14 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
 
 
   const [servicios, setServicios] = useState([])
+  
+  const consultarServicios = async () => {
+    const docRef = doc(db, 'utilidades', 'servicios')
+    const serviciosDoc = await getDoc(docRef)
+    setServicios(serviciosDoc.data().servicio)
+  }
   useEffect(() => {
-    const consultarServicios = async () => {
-      const docRef = doc(db, 'utilidades', 'servicios')
-      const serviciosDoc = await getDoc(docRef)
-      setServicios(serviciosDoc.data().servicio)
-    }
-    return () => consultarServicios()
+   consultarServicios()
   }, [])
 
   const servicios2 = [
