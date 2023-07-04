@@ -2,8 +2,9 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState, useRef } from 'react';
 import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseconfig';
+import { toast } from 'react-toastify';
 
-export default function ModalProfesionales({ handleModal }) {
+export default function ModalProfesionales({ handleModal, setIsLoading }) {
   // Estado para almacenar la imagen seleccionada
   const [selectedImage, setSelectedImage] = useState(null);
   // Estado para almacenar el nombre de la imagen seleccionada
@@ -26,17 +27,6 @@ export default function ModalProfesionales({ handleModal }) {
     consultarProfesionales();
   }, []);
 
-  // Actualizar el formulario cuando se selecciona un servicio existente
-  // useEffect(() => {
-  //   if (servicio) {
-  //     setSelectedImage(servicio.img);
-  //     setNombreImagen('');
-  //     setNombreServicio(servicio.nombre);
-  //     setPrecio(servicio.precio)
-  //   }
-  // }, [servicio]);
-
-  // Manejo de imágenes
 
   // Manejar la subida de imágenes desde el input file
   const handleImageUpload = async (e) => {
@@ -88,12 +78,13 @@ export default function ModalProfesionales({ handleModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!selectedImage) {
-      console.log('No se ha seleccionado ninguna imagen');
+    if (!selectedImage || precio === '' || nombreSercivio === '') {
+      toast.error('Todos los campos son obligatorios', 'error')
       return;
-    }
+  }
 
     try {
+      setIsLoading(true)
       let downloadURL = '';
 
       // Subir la imagen al almacenamiento de Firebase
@@ -123,19 +114,20 @@ export default function ModalProfesionales({ handleModal }) {
       // Actualizar los cambios en Firestore
       await updateDoc(docRef, dataServicios);
       handleModal();
-
-      console.log('Enviando formulario');
+      setIsLoading(false)
+      toast.success('Sevicio añadido correctamente')
     } catch (error) {
-      console.log('Error al cargar la imagen:', error);
+      toast.error("Ups, algo salio mal.", "error")
+      setIsLoading(false)
     }
   };
 
   return (
     <main className='h-screen w-screen fixed left-0 lg:pl-[250px] bg-[#474747]/40 flex flex-col items-center justify-center z-50'>
       {/* Modal */}
-      <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[672px] rounded-xl py-8 px-6 bg-[#1e1e1e] flex flex-col'>
+      <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[630px] rounded-xl py-8 px-6 gap-y-6 bg-[#1e1e1e] flex flex-col mb-20 md:mb-0'>
         {/* Contenido del modal */}
-        <article className='flex justify-between items-center mb-8'>
+        <article className='flex justify-between items-center '>
           <h2 className='font-bold text-2xl text-[#FDFFFC]'>Nuevo servicio</h2>
           <button onClick={() => {
             handleModal()
@@ -146,10 +138,10 @@ export default function ModalProfesionales({ handleModal }) {
 
         {/* contenedor campos */}
         <article className='flex flex-col'>
-          <div className='flex flex-col max-h-[457px] overflow-y-scroll px-2  gap-y-5 justify-between'>
+          <div className='flex flex-col max-h-[452px] overflow-y-scroll  gap-y-5 justify-between'>
             <div className=''>
               {/* Contenedor campo imagen */}
-              <p className='text-[#FDFFFC] font-semibold text-base py-4 mt-3'>Foto del servicio</p>
+              <p className='text-[#FDFFFC] font-semibold text-base py-3 '>Foto del servicio</p>
               <div
                 className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
                 onDragEnter={handleDragEnter}
@@ -232,7 +224,8 @@ export default function ModalProfesionales({ handleModal }) {
           </div>
 
           {/* Botón enviar */}
-          <div className='flex justify-center mt-10'>
+        </article>
+          <div className=' '>
             <button
               type='submit'
               className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
@@ -240,7 +233,6 @@ export default function ModalProfesionales({ handleModal }) {
             </button>
 
           </div>
-        </article>
       </form>
     </main>
   );

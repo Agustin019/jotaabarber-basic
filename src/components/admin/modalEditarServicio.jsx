@@ -2,8 +2,9 @@ import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { useEffect, useState, useRef } from 'react';
 import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseconfig';
+import { toast } from 'react-toastify';
 
-export default function ModalEditarServicio({ handleModal, servicioAEditar, setServicioAEditar }) {
+export default function ModalEditarServicio({  servicioAEditar, setServicioAEditar, setIsLoading }) {
     // Estado para almacenar la imagen seleccionada
     const [selectedImage, setSelectedImage] = useState(servicioAEditar.img);
     // Estado para almacenar el nombre de la imagen seleccionada
@@ -67,14 +68,14 @@ export default function ModalEditarServicio({ handleModal, servicioAEditar, setS
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!selectedImage) {
-            console.log('No se ha seleccionado ninguna imagen');
+        if (!selectedImage || precio === '' || nombreSercivio === '') {
+            toast.error('Todos los campos son obligatorios', 'error')
             return;
         }
 
         try {
             let downloadURL = '';
-
+            setIsLoading(true)
             // Subir la imagen al almacenamiento de Firebase
             if (selectedImage instanceof File) {
                 const storageRef = ref(storage, nombreImagen);
@@ -101,19 +102,20 @@ export default function ModalEditarServicio({ handleModal, servicioAEditar, setS
             // Actualizar los cambios en Firestore
             await updateDoc(docRef, dataServicios);
             setServicioAEditar({})
-
-            console.log('Enviando formulario');
+            setIsLoading(false)
+            toast.success('¡Servicio modificado correctamente!')
         } catch (error) {
-            console.log('Error al cargar la imagen:', error);
+            toast.error('Ups. Algo salio mal.', 'error')
+            setIsLoading(false)
         }
     };
 
     return (
-        <main className='h-screen w-screen fixed left-0 lg:pl-[250px] bg-[#474747]/40 flex flex-col items-center justify-center z-30'>
+        <main className='h-screen w-screen fixed left-0 lg:pl-[250px] bg-[#474747]/40 flex flex-col items-center justify-center z-40'>
             {/* Modal */}
-            <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[672px] rounded-xl py-8 px-6 bg-[#1e1e1e] flex flex-col'>
+            <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[630px] rounded-xl py-8 px-6 bg-[#1e1e1e] flex flex-col gap-y-6 mb-20 md:mb-0'>
                 {/* Contenido del modal */}
-                <article className='flex justify-between items-center mb-8'>
+                <article className='flex justify-between items-center '>
                     <h2 className='font-bold text-2xl text-[#FDFFFC]'>Editar servicio</h2>
                     <button onClick={() => {
                         setServicioAEditar({})
@@ -124,10 +126,10 @@ export default function ModalEditarServicio({ handleModal, servicioAEditar, setS
 
                 {/* contenedor campos */}
                 <article className='flex flex-col'>
-                    <div className='flex flex-col max-h-[457px] overflow-y-scroll px-2  gap-y-5 justify-between'>
+                    <div className='flex flex-col max-h-[452px] overflow-y-scroll px-2  gap-y-5 justify-between'>
                         <div className=''>
                             {/* Contenedor campo imagen */}
-                            <p className='text-[#FDFFFC] font-semibold text-base py-4 mt-3'>Foto del servicio</p>
+                            <p className='text-[#FDFFFC] font-semibold text-base py-4 '>Foto del servicio</p>
                             <div
                                 className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
                                 onDragEnter={handleDragEnter}
@@ -209,8 +211,9 @@ export default function ModalEditarServicio({ handleModal, servicioAEditar, setS
             </div> */}
                     </div>
 
+                </article>
                     {/* Botón enviar */}
-                    <div className='flex justify-center mt-10'>
+                    <div className='flex justify-center '>
                         <button
                             type='submit'
                             className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
@@ -218,7 +221,6 @@ export default function ModalEditarServicio({ handleModal, servicioAEditar, setS
                         </button>
 
                     </div>
-                </article>
             </form>
         </main>
     );
