@@ -6,6 +6,8 @@ import ModalServicios from '../../components/admin/modalServicios'
 import Alerta from '../../components/utils/alerta'
 import DashBoard from '../../components/admin/dashBoard'
 import ModalEditarServicio from '../../components/admin/modalEditarServicio'
+import { toast } from 'react-toastify'
+import PantallaCargando from '../../components/utils/pantallaCargando'
 
 export default function ServiciosAdmin() {
 
@@ -13,6 +15,8 @@ export default function ServiciosAdmin() {
     const [servicioAEditar, setServicioAEditar] = useState({})
     const [ modal, setModal ] = useState(false)
     const [ modalEliminar, setModalEliminar ] = useState(null)
+
+    const [ isLoading, setIsLoading ] = useState(false)
 
     useEffect(() => {
         const consultarServicios = () => {
@@ -29,14 +33,22 @@ export default function ServiciosAdmin() {
         consultarServicios()
     }, [])
     const eliminarServicio = async nombre => {
-        const docRef = doc(db, 'utilidades', 'servicios')
-        const docServicios = await getDoc(docRef)
-        const dataServicios = docServicios.data().servicio
-        const serviciosActualizados = dataServicios.filter(serv => serv.nombre !== nombre)
-        await updateDoc(docRef, {
-            servicio: serviciosActualizados
-        })
-        setModalEliminar(null)
+        try {
+            setIsLoading(true)     
+            const docRef = doc(db, 'utilidades', 'servicios')
+            const docServicios = await getDoc(docRef)
+            const dataServicios = docServicios.data().servicio
+            const serviciosActualizados = dataServicios.filter(serv => serv.nombre !== nombre)
+            await updateDoc(docRef, {
+                servicio: serviciosActualizados
+            })
+            setModalEliminar(null)
+            setIsLoading(false)     
+            toast.success('¡Servicio eliminado correctamente!')
+        } catch (error) {
+            setIsLoading(false)     
+            toast.error("Ups, algo salio mal.", "error")
+        }
     }
 
 
@@ -47,8 +59,9 @@ export default function ServiciosAdmin() {
         <>
         <DashBoard/>
             <main className='lg:ml-[250px]'>
-                {modal && <ModalServicios handleModal={handleModal}/>}
-                {Object.keys(servicioAEditar).length !== 0 && <ModalEditarServicio servicioAEditar={servicioAEditar} setServicioAEditar={setServicioAEditar}/>}
+                { isLoading && <PantallaCargando isLoading={isLoading}/> }
+                {modal && <ModalServicios handleModal={handleModal} setIsLoading={setIsLoading}/>}
+                {Object.keys(servicioAEditar).length !== 0 && <ModalEditarServicio servicioAEditar={servicioAEditar} setServicioAEditar={setServicioAEditar} setIsLoading={setIsLoading}/>}
                 {modalEliminar !== null && 
                 <Alerta
                     titulo='Eliminar Servicio'
