@@ -51,7 +51,7 @@ export default function Servicios() {
 
     return (
         <section id='servicios' className='h-auto '>
-            <article className='flex flex-col items-center my-5 py-10 gap-y-5 '>
+            <article className='flex flex-col items-center  py-10 gap-y-5 '>
                 <h2 className='font-bold text-[32px] text-center'>Servicios </h2>
                 <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui mollitia iure unde deserunt!
                 </p>
@@ -61,12 +61,12 @@ export default function Servicios() {
                  servicios.map(servicio =>
                             <div
                                 key={servicio.nombre}
-                                className='relative w-[328px] h-[320px] xl:w-[503px] lg:h-[320px]'
+                                className='relative w-[328px] h-[320px] xl:w-[28rem] lg:h-[272px]'
                             >
 
                                 <img
                                     src={servicio.img}
-                                    className='w-[328px] h-[320px] xl:w-[31rem] lg:h-[20rem] object-cover rounded-2xl'
+                                    className='w-[328px] h-[320px] xl:w-[28rem] lg:h-[17rem] object-cover rounded-2xl'
                                     alt={`imagen del servicio ${servicio.nombre}`} />
 
                                   <div className=' flex flex-col justify-end p-5
