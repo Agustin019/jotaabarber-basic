@@ -21,7 +21,7 @@ export default function Testimonios() {
        <section id='testimonios' className='pt-20 min-h-screen mx-auto  '>
          <article   className=' bg-[#D9D9D9] h-auto p-9 md:px-16  relative'>
              <h2 className='font-semibold text-[25px] sm:text-[32px] md:text-5xl text-center py-5'>¿Qué dicen nuestros <br /> clientes?</h2>
-             <div className='flex md:pl-44 xl:pl-72 justify-start absolute top-36 md:top-60 md:left-24'>
+             <div className='flex md:pl-44 xl:pl-72 justify-start absolute top-36 md:top-60 lg:top-56 md:left-24'>
                  <FormatQuoteRoundedIcon />
              </div>
              <Slider {...settings}>
@@ -40,7 +40,7 @@ export default function Testimonios() {
                      <p className='text-center font-semibold text-lg pt-8'>Javier Mendoza</p>
                  </div>
              </Slider>
-             <div className='flex md:pr-44 xl:pr-72 justify-end absolute right-2 bottom-24 md:bottom-48 md:right-24'>
+             <div className='flex md:pr-44 xl:pr-72 justify-end absolute right-2 bottom-24 md:bottom-48 lg:bottom-36 md:right-24'>
                  <FormatQuoteRoundedIcon />
              </div>
          </article>
