@@ -184,7 +184,7 @@ export default function NuevoTurno() {
           modal && <PantallaTurnoConfirmado modal={modal} />
         }
         <article className='w-full lg:max-w-[70%] '>
-          <div className='flex flex-col gap-y-7 md:gap-y-10 w-[90%] my-5 mx-auto'>
+          <div className='flex flex-col gap-y-3 md:gap-y-10 w-[90%] my-5 mx-auto'>
       
             <div className='flex justify-between'>
               <div
@@ -213,7 +213,7 @@ export default function NuevoTurno() {
                 {pasoActual()}
               </div>
       
-              <div className='flex flex-col   items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[90%] pt-10 xl:pt-20 '>
+              <div className='flex flex-col-reverse   items-center gap-y-3 md:flex-row md:justify-between mx-auto w-[90%] pt-20 mb-1'>
                 <BotonCancelar />
                 {validarPasos()}
               </div>

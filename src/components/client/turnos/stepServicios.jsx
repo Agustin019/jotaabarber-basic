@@ -76,20 +76,20 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
               onClick={() => setServicioSeleccionado(servicio)}
               className={`
               flex flex-col cursor-pointer rounded-3xl w-[235px] md:w-[200px] lg:w-[180px] xl:w-[200px] mx-auto
-              max-h-[320px] min-h-[320px] py-2  px-1
+              max-h-[320px] min-h-[330px] py-2  px-1
                 `
               }
 
             >
               <img className={`  w-[235px] h-[235px]  lg:w-[180px] xl:w-[200px]
-              rounded-3xl  md:h-[200px]  md:w-[200px] object-top hover:outline outline-[#1e1e1e]
-              ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-[#1e1e1e]' : ''}`}
+              rounded-3xl  md:h-[200px]  md:w-[200px] object-top hover:outline outline-2 outline-[#1e1e1e] hover:shadow-lg hover:shadow-[#1e1e1e]
+              ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-2 outline-[#1e1e1e] shadow-lg shadow-[#1e1e1e]' : ''}`}
                 src={servicio.img}
                 alt={servicio.nombre}
               />
               <div className='w-full flex flex-col py-3 my-2 justify-center items-center  '>
-                <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>
-                <p className="text-sm font-bold text-gray-700">${servicio.precio}</p>
+                <p className='text-base md:text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>
+                <p className="text-base font-normal ">${servicio.precio}</p>
               </div>
             </div>
 
@@ -126,7 +126,7 @@ const CustomNextArrow = (props) => {
         <button 
           type="button" 
           onClick={onClick}
-          className="absolute -top-[200px] lg:-top-[225px] xl:-top-[250px] lg:bottom-[177px] xl:bottom-[154px] right-5  md:right-0"
+          className="absolute -top-[215px] lg:-top-[225px] xl:-top-[250px] lg:bottom-[177px] xl:bottom-[154px] right-5  md:right-0"
           >
         <ion-icon name="arrow-forward-sharp"></ion-icon>
       </button>
