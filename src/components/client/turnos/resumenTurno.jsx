@@ -89,7 +89,7 @@ export default function ResumenTurno({
                 </div>
             </aside>
             <aside
-                className={`w-[90%] fixed bg-[#1e1e1e] h-screen py-[28px] pr-[56px] pl-[40px] block lg:hidden z-30
+                className={`w-[90%] fixed bg-[#1e1e1e] h-screen py-[28px] pr-[26px] pl-[20px] block lg:hidden z-30
                 transition-all duration-300 ease-in-out
                 ${resumen ? 'right-0' : 'right-[-100%] '} 
     `}>

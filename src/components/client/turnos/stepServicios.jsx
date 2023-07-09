@@ -3,113 +3,135 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from "../../../utils/firebaseconfig";
 
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Navigation } from "swiper";
+
 import { useEffect } from "react";
+
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 
 export default function StepServicios({ servicioSeleccionado, setServicioSeleccionado }) {
 
 
   const [servicios, setServicios] = useState([])
-  
+
   const consultarServicios = async () => {
     const docRef = doc(db, 'utilidades', 'servicios')
     const serviciosDoc = await getDoc(docRef)
     setServicios(serviciosDoc.data().servicio)
   }
   useEffect(() => {
-   consultarServicios()
+    consultarServicios()
   }, [])
 
-  const servicios2 = [
-    {
-      img: "https://i.ibb.co/Xpyqq0F/corte.png",
-      nombre: "Corte",
-      precio: "1200"
-    },
-    {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    dots: true,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+   
+    initialSlide: 0,
+    nextArrow: <CustomNextArrow />,
+    prevArrow: <CustomPrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          infinite: true
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1
+        }
+      }
+    ]
 
-      img: "https://i.ibb.co/7rhPhF6/rasuradora1.webp",
-      nombre: "Corte con rasuradora",
-      precio: "1300"
-    },
-    {
+  };
 
-      img: "https://i.ibb.co/9V7nYNs/corteybarba1.jpg",
-      nombre: "Corte y barba",
-      precio: "1500"
-    },
 
-    {
-      img: "https://i.ibb.co/MfTsL05/barba1.jpg",
-      nombre: "Barba",
-      precio: "600"
-    }
-  ]
   return (
 
-    <div className='sm:w-[82%] max-w-[85%] max-h-screen mx-auto  overflow-hidden flex justify-center  '>
-      <div className='swiper-button-prev swiper-button'></div>
-      <div className='swiper-button-next swiper-button'></div>
+    <div className='h-auto relative pt-5 lg:w-[95%] mx-auto'>
 
-      <Swiper
-        //params={swiperOptions}
-        slidesPerView={1}
-        spaceBetween={2}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={{
-          prevEl: '.swiper-button-prev',
-          nextEl: '.swiper-button-next',
-        }}
-        modules={[Navigation]}
-        className="mySwiper"
-        breakpoints={{
-          640: {
-            slidesPerView: 2,
-            spaceBetween: 10,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 10,
-          },
-        }}
-      >
+      <Slider {...settings}>
         {servicios.map(servicio =>
-          <SwiperSlide key={servicio.nombre} className="max-w-[235px] ">
-
+          <div key={servicio.nombre} className="" >
             <div
               onClick={() => setServicioSeleccionado(servicio)}
               className={`
-              flex flex-col cursor-pointer rounded-3xl max-w-[235px] p-2 mx-auto
-              
+              flex flex-col cursor-pointer rounded-3xl w-[235px] md:w-[200px] lg:w-[180px] xl:w-[200px] mx-auto
+              max-h-[320px] min-h-[320px] py-2  px-1
                 `
               }
 
             >
-              <img className={ `  min-h-[235px] max-h-[235px] min-w-[235px] max-w-[235px]
-              rounded-3xl md:min-h-[200px] md:max-h-[200px] md:min-w-[200px] md:max-w-[200px] object-top hover:outline outline-[#1e1e1e]
+              <img className={`  w-[235px] h-[235px]  lg:w-[180px] xl:w-[200px]
+              rounded-3xl  md:h-[200px]  md:w-[200px] object-top hover:outline outline-[#1e1e1e]
               ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-[#1e1e1e]' : ''}`}
                 src={servicio.img}
                 alt={servicio.nombre}
               />
-              <div className='w-full flex flex-col py-2 my-2 justify-center '>
+              <div className='w-full flex flex-col py-3 my-2 justify-center items-center  '>
                 <p className='text-gray-800  text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>
                 <p className="text-sm font-bold text-gray-700">${servicio.precio}</p>
               </div>
             </div>
 
-          </SwiperSlide>
+          </div>
         )}
-      </Swiper>
+      </Slider>
     </div>
 
 
   );
 }
+
+const CustomPrevArrow = (props) => {
+  const { className, onClick, style } = props;
+
+  return (
+    <div className='h-full text-3xl z-10 flex-col content-center justify-end relative flex'>
+      <button 
+        type="button"
+        onClick={onClick} 
+        className="absolute top-[118px] left-5 md:left-0 lg:top-[100px]">
+        <ion-icon name="arrow-back-sharp"></ion-icon>
+      </button>
+    </div>
+  );
+};
+
+// Componente de flecha de navegación personalizada para ir hacia adelante
+const CustomNextArrow = (props) => {
+  const { className, onClick, style } = props;
+
+  return (
+    <div className='h-full z-10 text-3xl flex flex-col content-center justify-end relative'>
+        <button 
+          type="button" 
+          onClick={onClick}
+          className="absolute -top-[200px] lg:-top-[225px] xl:-top-[250px] lg:bottom-[177px] xl:bottom-[154px] right-5  md:right-0"
+          >
+        <ion-icon name="arrow-forward-sharp"></ion-icon>
+      </button>
+    </div>
+  );
+};
+
 

@@ -26,7 +26,7 @@ export default function NuevoTurno() {
 
   //Formulario paso a paso
 
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(1)
   // step datos personales
   const [nombre, setNombre] = useState('')
   const [telefono, setTelefono] = useState('')
@@ -175,15 +175,15 @@ export default function NuevoTurno() {
     }
   };
   return (
-    <main>
+    <main className='max-w-screen w-full overflow-hidden relative'>
         {
           isLoading && <PantallaCargando isLoading={isLoading}/>
         }
-      <section className='grid grid-cols-1 lg:grid-cols-[3fr,1fr]  gap-x-2  '>
+      <section className='flex gap-x-2  '>
         {
           modal && <PantallaTurnoConfirmado modal={modal} />
         }
-        <article className='col-span-1 max-w-[100%]  '>
+        <article className='w-full lg:max-w-[70%] '>
           <div className='flex flex-col gap-y-7 md:gap-y-10 w-[90%] my-5 mx-auto'>
       
             <div className='flex justify-between'>
@@ -204,16 +204,16 @@ export default function NuevoTurno() {
           </div>
           {/* Aside con la informacion actualizada del turno */}
           {/* Mostrar paso actual del formulario */}
-          <div className=' col-span-1 w-full'>
+          <div className=' col-span-1 max-w-screen w-full'>
             <form
               onSubmit={handleSubmit}
               className=''
             >
-              <div className=' relative sm:w-[90%] h-[350px] mx-auto '>
+              <div className=' relative sm:max-w-[97%] h-[350px] mx-auto '>
                 {pasoActual()}
               </div>
       
-              <div className='flex flex-col-reverse items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[90%] pt-20 '>
+              <div className='flex flex-col   items-center gap-y-7 md:flex-row md:justify-between mx-auto w-[90%] pt-10 xl:pt-20 '>
                 <BotonCancelar />
                 {validarPasos()}
               </div>
