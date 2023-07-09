@@ -3,7 +3,7 @@ import React from 'react'
 export default function StepDatosPersonales({ nombre, setNombre, telefono, setTelefono }) {
   
   return (
-    <div className=' w-[90%] sm:w-full mx-auto flex flex-col justify-center  '>
+    <div className=' w-[90%] sm:w-[93%]  mx-auto flex flex-col justify-center  '>
       <div className='flex flex-col items-start gap-y-2 pt-28 lg:pt-20'>
         <label htmlFor="nombre">Nombre Completo</label>
         <input

@@ -16,13 +16,19 @@ export default function Turno({
                 !turno.disponible
                     ? null
 
-                    : () => setFechaSeleccionada({
+                    :( fechaSeleccionada.id !== turno.id
+                    
+                        ? () => setFechaSeleccionada({
                         dia: fechaFormateada,
                         hora: turno.hora,
                         nombreDia: diaAbreviado,
                         objetoDiaSeleccionado: objetoDiaSeleccionado,
                         id: turno.id
-                    })
+                        })
+
+                        : () => setFechaSeleccionada({})
+                    
+                    )
                 }
             className={`
                 w-[158px] h-[40px] xl:h-[45px] xl:w-[177px] flex justify-between items-center  px-2 py-3 border border-l-[5px]

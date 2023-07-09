@@ -47,7 +47,7 @@ export default function ResumenTurno({
                             }
                             <div className='px-5'>
                                 <p className='font-bold text-xl text-[#fdfffc] '>{servicioSeleccionado.nombre ?? '-'}</p>
-                                <p className='font-bold text-lg text-[#fdfffc] '>$ {servicioSeleccionado.precio ? `$${servicioSeleccionado.precio}` : '-'}</p>
+                                <p className='font-bold text-lg text-[#fdfffc] '>$ {servicioSeleccionado.precio ? `${servicioSeleccionado.precio}` : '-'}</p>
                             </div>
                         </div>
                     </div>
