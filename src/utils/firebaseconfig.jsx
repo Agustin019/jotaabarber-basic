@@ -5,13 +5,13 @@ import { getStorage } from "firebase/storage";
 //import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBGZZpIS0wSH29Tm5GBR_O-2NuGj0NLlwA",
-  authDomain: "jota-barber.firebaseapp.com",
-  projectId: "jota-barber",
-  storageBucket: "jota-barber.appspot.com",
-  messagingSenderId: "674666335417",
-  appId: "1:674666335417:web:fe3245fcf1b94c5cd91f68",
-  measurementId: "G-ZWWS7N3RL3"
+  apiKey: "AIzaSyAtSk3YqtjKuYgnUY_XHed5fHNNT1-2Dik",
+  authDomain: "basic-jotabarber.firebaseapp.com",
+  projectId: "basic-jotabarber",
+  storageBucket: "basic-jotabarber.appspot.com",
+  messagingSenderId: "879202135865",
+  appId: "1:879202135865:web:da7ce1de69a5c36603c2e8",
+  measurementId: "G-X4PG1MR9TR"
  // measurementId: false,
 };
 
