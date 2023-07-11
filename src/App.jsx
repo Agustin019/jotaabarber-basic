@@ -11,7 +11,6 @@ import MiCuenta from './pages/client/miCuenta';
 import TurnosDeUsuario from './pages/client/turnosDeUsuario';
 import DatosDeUsuario from './pages/client/datosDeUsuario';
 import ServiciosAdmin from './pages/admin/serviciosAdmin';
-import ProfesionalesAdmin from './pages/admin/profesionalesAdmin';
 
 import PantallaCargando from './components/utils/pantallaCargando';
 
@@ -46,10 +45,6 @@ function App() {
               <Route path="/admin/turnos" element={<TurnosAdmin />} />
               <Route path="/admin/diasyhorarios" element={<HorariosAdmin />} />
               <Route path="/admin/servicios" element={<ServiciosAdmin />} />
-              <Route
-                path="/admin/profesionales"
-                element={<ProfesionalesAdmin />}
-              />
             </>
           )}
         </Routes>

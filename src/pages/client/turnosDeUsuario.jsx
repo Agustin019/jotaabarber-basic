@@ -45,7 +45,7 @@ export default function TurnosDeUsuario() {
                     </article>
                 </section>
                 <section className="flex flex-col gap-y-5 w-[100%] mx-auto">
-                    <article className='flex items-start mx-5 mt-12 py-5 border-b border-gray-400 w-[90%] '>
+                    <article className='flex items-start mx-auto lg:mx-0 mt-12 py-5 border-b border-gray-400 w-[90%] '>
                         <h2 className='font-bold text-2xl  '>Proximos turnos</h2>
                     </article>
                     <article className=''>

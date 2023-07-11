@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../../context/authContext'
 import { db } from '../../utils/firebaseconfig'
 import { doc, updateDoc, getDoc } from 'firebase/firestore'
@@ -9,14 +9,12 @@ import { BotonAvanzar, BotonAvanzarDeshabilitado, BotonCancelar, BotonConfirmarT
 import BarraProgresiva from '../../components/client/turnos/barraProgresiva'
 import ResumenTurno from '../../components/client/turnos/resumenTurno'
 import StepDatosPersonales from '../../components/client/turnos/stepDatosPersonales'
-import StepProfesional from '../../components/client/turnos/stepProfesional'
 import StepServicios from '../../components/client/turnos/stepServicios'
 import StepfechaYHora from '../../components/client/turnos/stepFechaYHora'
 import PantallaTurnoConfirmado from '../../components/client/turnos/pantallaTurnoConfirmado'
 import { v4 as uuidv4 } from "uuid";
 
 import PantallaCargando from '../../components/utils/pantallaCargando'
-import { isLastDayOfMonth } from 'date-fns'
 
 export default function NuevoTurno() {
   // context
@@ -26,14 +24,12 @@ export default function NuevoTurno() {
 
   //Formulario paso a paso
 
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(0)
   // step datos personales
   const [nombre, setNombre] = useState('')
   const [telefono, setTelefono] = useState('')
   // step servicio
   const [servicioSeleccionado, setServicioSeleccionado] = useState({})
-  // step profesional
-  const [profesionalSeleccionado, setProfesionalSeleccionado] = useState({})
   // step fecha
   const [fechaSeleccionada, setFechaSeleccionada] = useState({})
 
@@ -58,10 +54,10 @@ export default function NuevoTurno() {
 
       case 1:
         return <StepServicios servicioSeleccionado={servicioSeleccionado} setServicioSeleccionado={setServicioSeleccionado} />
+
       case 2:
-        return <StepProfesional profesionalSeleccionado={profesionalSeleccionado} setProfesionalSeleccionado={setProfesionalSeleccionado} />
-      case 3:
         return <StepfechaYHora fechaSeleccionada={fechaSeleccionada} setFechaSeleccionada={setFechaSeleccionada} />
+
       default:
         return <StepDatosPersonales nombre={nombre} setNombre={setNombre} telefono={telefono} setTelefono={setTelefono} />
     }
@@ -81,12 +77,6 @@ export default function NuevoTurno() {
           return <BotonAvanzar step={step} setStep={setStep} />
         }
       case 2:
-        if (Object.keys(profesionalSeleccionado).length === 0) {
-          return <BotonAvanzarDeshabilitado step={step} />
-        } else {
-          return <BotonAvanzar step={step} setStep={setStep} />
-        }
-      case 3:
         if (Object.keys(fechaSeleccionada).length === 0) {
           return <BotonAvanzarDeshabilitado step={step} />
         } else {
@@ -135,7 +125,6 @@ export default function NuevoTurno() {
         cliente: nombre,
         telefono: telefono,
         servicio: servicioSeleccionado.nombre,
-        profesional: profesionalSeleccionado.nombre,
         estado: 'confirmado',
       });
   
@@ -158,7 +147,6 @@ export default function NuevoTurno() {
         cliente: nombre,
         telefono: telefono,
         servicio: servicioSeleccionado.nombre,
-        profesional: profesionalSeleccionado.nombre,
         estado: 'confirmado',
       });
   
@@ -224,7 +212,6 @@ export default function NuevoTurno() {
           nombre={nombre}
           telefono={telefono}
           servicioSeleccionado={servicioSeleccionado}
-          profesionalSeleccionado={profesionalSeleccionado}
           fechaSeleccionada={fechaSeleccionada}
           resumen={resumen}
           handleResumen={handleResumen}

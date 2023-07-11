@@ -14,7 +14,6 @@ export default function BarraProgresiva({ step }) {
   const barraSteps = [
     'Datos personales',
     'Servicio',
-    'Profesional',
     'Dia Y Horario',
   ]
 
@@ -24,8 +23,6 @@ export default function BarraProgresiva({ step }) {
     }else if (step === 1){
       return 'Selecciona el servicio'
     }else if (step === 2){
-      return 'Selecciona el profesional'
-    }else if (step === 3){
       return 'Selecciona dia y hora'
     }
   }
@@ -33,7 +30,7 @@ export default function BarraProgresiva({ step }) {
   return (
     <article className='flex  justify-center w-full '>
      <div className='w-full'>
-      <p className='text-[#2D2D2D] font-semibold text-lg'>Paso {step + 1} de 4 : <span className='font-medium text-base sm:text-lg'>{pasosNombres()}</span></p>
+      <p className='text-[#2D2D2D] font-semibold text-lg'>Paso {step + 1} de 3 : <span className='font-medium text-base sm:text-lg'>{pasosNombres()}</span></p>
        <div className="w-full h-2 bg-gray-200 rounded overflow-hidden">
          {barraSteps.map((barStep, i) => (
            <div

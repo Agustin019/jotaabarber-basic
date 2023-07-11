@@ -120,7 +120,7 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                 </Transition>
 
             }
-            <div className=' grid grid-cols-2  mx-auto w-[328px] lg:w-auto lg:flex justify-between rounded-lg bg-[#1e1e1e] my-8 '>
+            <div className=' grid grid-cols-2 mx-auto lg:mx-0 w-[328px] lg:w-[923px] lg:flex justify-between rounded-lg bg-[#1e1e1e] my-8 '>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
                     <p className='text-white text-sm font-semibold'>Usuario</p>
                     <p className='text-white text-sm font-normal'>{datosUsuarioActual.fullName}</p>
@@ -135,10 +135,6 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                     <p className='text-white text-sm font-normal'>{turno.servicio}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-semibold'>Profesional</p>
-                    <p className='text-white text-sm font-normal'>{turno.profesional}</p>
-                </div>
-                <div className='flex flex-col gap-y-2 p-[20px]'>
                     <p className='text-white text-sm font-semibold'>Estado</p>
                     {
                         turno.estado === 'confirmado'
@@ -146,19 +142,23 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                             : <p className='text-white text-sm font-semibold p-[10px] bg-[#802a2a] rounded-xl'>Cancelado</p>
                     }
                 </div>
-                <div className='flex justify-end items-end py-5 pr-10'>
+                <div className='flex justify-end items-end py-5 px-2 lg:py-0 md:pr-0 col-span-2'>
                     {
                         turno.estado === 'confirmado'
-                            ? <div
-                                className='w-[40px] h-[40px] md:w-9 md:h-full bg-gray-300 rounded-lg md:rounded-r-lg  flex flex-col justify-center items-center '
+                            ? <button
+                                type='button'
+                                onClick={handleModal}
+                                className='lg:w-[40px]  w-full lg:h-full bg-gray-300 rounded-lg md:rounded-none md:rounded-r-lg  flex lg:flex-col justify-center items-center '
                             >
                                 <img
                                     src="https://i.ibb.co/6W6fcfJ/delete-1.png"
                                     alt="icono eliminar"
-                                    className='p-2 cursor-pointer '
-                                    onClick={handleModal}
-                                />
-                            </div>
+                                    className='p-2 cursor-pointer '    
+                                    />
+                                <span className='font-semibold lg:hidden'>
+                                Cancelar reserva
+                                </span>
+                            </button>
 
                             :''
                 }

@@ -8,6 +8,7 @@ export default function Nosotros() {
         "https://i.ibb.co/9cpJt1n/barbpesada3-optimized.jpg",
         "https://i.ibb.co/Db5QJDD/barberia-home-minif.webp",
         "https://i.ibb.co/wY6b33B/barbpesada2-optimized.jpg",
+        "https://i.ibb.co/wY6b33B/barbpesada2-optimized.jpg",
 
     ];
     const settings = {
@@ -48,9 +49,9 @@ export default function Nosotros() {
 
     };
     return (
-        <section id='nosotros' className='  mx-auto  '>
+        <section id='trabajos' className='  mx-auto  '>
             <article className=' h-auto p-9  relative'>
-                <h2 className='font-bold text-[32px]  text-center py-5'>Sobre nosotros</h2>
+                <h2 className='font-bold text-[32px]  text-center py-5'>Mis trabajos</h2>
                 <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui
                 </p>
                 <Slider {...settings}>

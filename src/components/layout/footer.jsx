@@ -18,8 +18,8 @@ export default function Footer() {
         },
         {
             id: 2,
-            nombre: 'Nosotros',
-            pathname: 'nosotros',
+            nombre: 'Trabajos',
+            pathname: 'trabajos',
             offset: -80
         },
         {
@@ -27,12 +27,6 @@ export default function Footer() {
             nombre: 'Servicios',
             pathname: 'servicios',
             offset: -75
-        },
-        {
-            id: 4,
-            nombre: 'Equipo',
-            pathname: 'team',
-            offset: 10
         },
         {
             id: 5,

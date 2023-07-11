@@ -4,7 +4,6 @@ export default function ResumenTurno({
     nombre,
     telefono,
     servicioSeleccionado,
-    profesionalSeleccionado,
     fechaSeleccionada,
     resumen,
     handleResumen
@@ -51,23 +50,7 @@ export default function ResumenTurno({
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-y-2 '>
-                        <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Profesional</p>
-                        <div className='flex justify-start items-center'>
-                            {
-                                !profesionalSeleccionado?.img
-                                    ? <div className='w-[66px] h-[90px] bg-gray-300 rounded-lg flex flex-col justify-center items-center'>
-                                        <img src='https://i.ibb.co/YthSfQx/Vector.png' className='w-[15px] h-[15px]' alt='Sin foto del profesional' />
-                                    </div>
-                                    : <img
-                                        src={profesionalSeleccionado.img ?? '-'}
-                                        alt={`imagen del servicio${profesionalSeleccionado.nombre}`}
-                                        className='w-[66px] h-[90px] rounded-lg object-cover '
-                                    />
-                            }
-                            <p className='font-bold text-xl text-[#fdfffc]  px-5'>{profesionalSeleccionado.nombre ?? '-'}</p>
-                        </div>
-                    </div>
+
                     <div className='flex flex-col gap-y-2 '>
                         <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Datos del turno</p>
                         <div className='flex flex-col gap-y-2'>
@@ -131,23 +114,6 @@ export default function ResumenTurno({
                                 <p className='font-bold text-base text-white'>{servicioSeleccionado.nombre ?? '-'}</p>
                                 <p className='font-bold text-xs text-white'>${servicioSeleccionado.precio ?? '-'}</p>
                             </div>
-                        </div>
-                    </div>
-                    <div className='flex flex-col gap-y-4 '>
-                        <p className='font-medium text-base text-white '>Profesional</p>
-                        <div className='flex justify-start items-center'>
-                            {
-                                !profesionalSeleccionado?.img
-                                    ? <div className='w-[66px] h-[90px] bg-gray-300 rounded-lg flex flex-col justify-center items-center'>
-                                        <img src='https://i.ibb.co/YthSfQx/Vector.png' className='w-[15px] h-[15px]' alt='Sin foto del profesional' />
-                                    </div>
-                                    : <img
-                                        src={profesionalSeleccionado.img ?? '-'}
-                                        alt={`imagen del servicio${profesionalSeleccionado.nombre}`}
-                                        className='w-[66px] h-[90px] rounded-lg object-cover '
-                                    />
-                            }
-                            <p className='font-bold text-base text-white px-5'>{profesionalSeleccionado.nombre ?? '-'}</p>
                         </div>
                     </div>
                     <div className='flex flex-col gap-y-4 '>

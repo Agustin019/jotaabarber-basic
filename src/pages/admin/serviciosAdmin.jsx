@@ -101,7 +101,7 @@ export default function ServiciosAdmin() {
                     </article>
                     <article>
                         {servicios?.length !== 0 ? (
-                            servicios.map((servicio, index) => (
+                            servicios?.map((servicio, index) => (
                                 <div
                                     key={servicio.id}
                                     className={`grid grid-cols-4 place-items-start items-center py-[11px] px-2 sm:px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'

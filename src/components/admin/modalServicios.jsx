@@ -11,22 +11,11 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
   const [nombreImagen, setNombreImagen] = useState('');
   // Estado para controlar si se está arrastrando una imagen
   const [dragging, setDragging] = useState(false);
-  // Estado para almacenar los profesionales
-  const [profesionales, setProfesionales] = useState([]);
   // Estado para almacenar los datos del servicio
   const [nombreSercivio, setNombreServicio] = useState('');
   const [precio, setPrecio] = useState('')
 
-  // Obtener los profesionales al cargar el componente
-  useEffect(() => {
-    const consultarProfesionales = async () => {
-      const docRef = doc(db, 'utilidades', 'profesionales');
-      const profesionalesDoc = await getDoc(docRef);
-      setProfesionales(profesionalesDoc.data().profesionales);
-    };
-    consultarProfesionales();
-  }, []);
-
+  
 
   // Manejar la subida de imágenes desde el input file
   const handleImageUpload = async (e) => {
@@ -118,6 +107,7 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
       toast.success('Sevicio añadido correctamente')
     } catch (error) {
       toast.error("Ups, algo salio mal.", "error")
+      console.log(error)
       setIsLoading(false)
     }
   };

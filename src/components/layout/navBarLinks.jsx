@@ -48,8 +48,8 @@ export default function NavbarLinks({ flexDirection }) {
 
       <li className="cursor-pointer">
         <LinkScroll
-          onClick={() => hadleLinkClick('nosotros', -80)}
-          to="nosotros"
+          onClick={() => hadleLinkClick('trabajos', -80)}
+          to="trabajos"
           activeClass="activo"
           className="link"
           spy={true}
@@ -57,7 +57,7 @@ export default function NavbarLinks({ flexDirection }) {
           offset={-80}
           duration={500}
         >
-          Nosotros
+          Trabajos
         </LinkScroll>
       </li>
 
@@ -73,21 +73,6 @@ export default function NavbarLinks({ flexDirection }) {
           duration={500}
         >
           Servicios
-        </LinkScroll>
-      </li>
-
-      <li className="cursor-pointer">
-        <LinkScroll
-          to="team"
-          activeClass="activo"
-         onClick={() => hadleLinkClick('team', 10)}
-          className="link"
-          spy={true}
-          smooth={true}
-          offset={10}
-          duration={500}
-        >
-          Equipo
         </LinkScroll>
       </li>
 

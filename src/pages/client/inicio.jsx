@@ -3,7 +3,6 @@ import Navbar from '../../components/layout/navbar'
 import { Link } from "react-router-dom";
 import Nosotros from "../../components/client/inicio/nosotros";
 import Servicios from "../../components/client/inicio/servicios";
-import Equipo from "../../components/client/inicio/equipo";
 import Testimonios from "../../components/client/inicio/testimonios";
 import Contacto from "../../components/client/inicio/contacto";
 import Footer from "../../components/layout/footer";
@@ -37,7 +36,6 @@ export default function Inicio() {
      
        <Nosotros/>
       <Servicios/>
-      <Equipo/>
       <Testimonios/>
       <Contacto/>
       <Footer/>
