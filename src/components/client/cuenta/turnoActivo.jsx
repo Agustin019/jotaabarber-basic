@@ -148,7 +148,7 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                             ? <button
                                 type='button'
                                 onClick={handleModal}
-                                className='lg:w-[40px] mx-4 w-full lg:h-full bg-gray-300 rounded-lg lg:rounded-none md:rounded-r-lg  flex lg:flex-col justify-center items-center '
+                                className='lg:w-[40px] mx-5 w-full lg:h-full bg-gray-300 rounded-lg lg:rounded-none md:rounded-r-lg  flex lg:flex-col justify-center items-center '
                             >
                                 <img
                                     src="https://i.ibb.co/6W6fcfJ/delete-1.png"
