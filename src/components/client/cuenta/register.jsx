@@ -15,19 +15,19 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
     return (
         <article>
             <div className='flex flex-col  mt-8'>
-                <h2 className='font-semibold text-3xl '>Registrarse en MdpCuts</h2>
+                <h2 className='font-semibold text-3xl '>Registrarse </h2>
                 <div className=' flex flex-col lg:flex-row gap-10 py-10 items-center'>
                     <button
                         onClick={handleGoogle}
                         className='
-                     w-[328px]  bg-white border border-zinc-800 rounded-xl py-4 px-[10px] 
+                     w-full bg-white border border-zinc-800 rounded-xl py-4 px-[10px] 
                      flex items-center justify-center gap-x-2 font-semibold text-base
                      '
                     >
                         <img src="https://i.ibb.co/bsKnZYq/buscar.png" alt="Logo google" />
                         Registrarse con Google
                     </button>
-                    <button
+                    {/* <button
                         onClick={handleGoogle}
                         className='
                      w-[328px]  bg-[#1e1e1e] border border-zinc-800 rounded-xl py-4 px-[10px]  
@@ -35,11 +35,11 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
                     >
                         <img src="https://i.ibb.co/ckD2sLT/facebook.png" alt="Logo Facebook" />
                         Registrarse con Facebook
-                    </button>
+                    </button> */}
                 </div>
                 <div className='w-full flex justify-center items-center gap-x-2'>
                     <div className='w-[32px] border border-gray-400'></div>
-                    <p className='text-2xl font-medium text-gray-400'>OR</p>
+                    <p className='text-2xl font-medium text-gray-400'>O</p>
                     <div className='w-[32px] border border-gray-400'></div>
                 </div>
             </div>
