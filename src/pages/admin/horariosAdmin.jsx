@@ -145,7 +145,7 @@ export default function HorariosAdmin() {
         <section>
           <article className='flex flex-col gap-y-5 items-start '>
             <h1 className='font-semibold text-2xl'>Horarios</h1>
-            <p className='font-ligh text-lg'>Amet minim mollit non deserunt ullamco est sit aliquastrud amet.</p>
+            <p className='font-ligh text-lg'>¡Administra tus horarios a tu manera!</p>
           </article>
           <article className='flex flex-col gap-y-5 items-start mt-10'>
             <h2 className='font-semibold text-xl'>Horarios del día {''}</h2>

@@ -47,9 +47,9 @@ export default function DashBoard() {
         <>
             <div className='md:hidden  flex justify-between items-center p-5'>
                 <img
-                    src="https://i.ibb.co/rmhx39D/7514343f-f695-4107-bc09-f025524aeebf.jpg"
+                    src="https://i.ibb.co/6RVJFCR/f12afd03-3580-406d-bf0a-d2f4d4ea242c-min.jpg"
                     alt="logo"
-                    className='w-[130px]'
+                    className='w-[80px]'
                 />
                 <MenuHamburguesa handleNav={handleNav} nav={nav}/>
             </div>
@@ -59,9 +59,9 @@ export default function DashBoard() {
                  fixed top-0 lg:left-0`}>
                 <div className='h-full flex flex-col justify-around items-center relative'>
                     <img
-                        src="https://i.ibb.co/qxH90r1/dffe70f8-5ff0-4439-b1ba-9199478e6888.jpg"
+                        src="https://i.ibb.co/6RVJFCR/f12afd03-3580-406d-bf0a-d2f4d4ea242c-min.jpg"
                         alt="logo"
-                        className='w-[200px]'
+                        className='w-[130px]'
                     />
                     <div className='flex flex-col gap-y-2 items-start'>
                         {

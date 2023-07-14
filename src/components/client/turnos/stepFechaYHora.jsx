@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 import format from 'date-fns/format';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../../../utils/firebaseconfig';
-import { motion } from 'framer-motion'; 
+import { motion } from 'framer-motion';
 import Turnos from './turnos';
 import {
-  generarDocumentoPorCadaDiaDisponible, 
-  generarDocumentoPorCadaDiaDeTurnosDisponible 
-} 
-from '../../../utils/horariosLaborales'
+  generarDocumentoPorCadaDiaDisponible,
+  generarDocumentoPorCadaDiaDeTurnosDisponible
+}
+  from '../../../utils/horariosLaborales'
 
 
-export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada }) {
+export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada, servicioSeleccionado }) {
   const daysOfWeek = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
   const [startDay, setStartDay] = useState(new Date());
@@ -19,15 +19,13 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const fechaFormateada = format(selectedDay, 'dd-MM');
 
   const [turnos, setTurnos] = useState([]);
-  const [periodoTurno, setPeriodoTurno] = useState('mañana');
-  const filtrarTurnosPorPeriodo = turnos.filter(turno => turno.periodo === periodoTurno)
 
   const diaAbreviado = daysOfWeek[selectedDay.getDay()].slice(0, 3);
 
   // Establecer el número de días visibles según el ancho de la ventana
   const [limitDays, setLimitDays] = useState(window.innerWidth <= 768 ? 5 : 10);
 
- 
+
 
   useEffect(() => {
     // Función para manejar el cambio de tamaño de la ventana
@@ -113,10 +111,12 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   const currentMonth = startDay.toLocaleDateString('es-ES', monthOptions);
 
 
-   // Generar documentos para firestore
-   generarDocumentoPorCadaDiaDisponible()
-   generarDocumentoPorCadaDiaDeTurnosDisponible()
-   
+  // Generar documentos para firestore
+  useEffect(() => {
+    generarDocumentoPorCadaDiaDisponible()
+    generarDocumentoPorCadaDiaDeTurnosDisponible()
+  })
+
   return (
     <div className='w-full flex flex-col gap-y-3 md:gap-y-10'>
       <div className='w-full flex justify-center items-center'>
@@ -150,10 +150,8 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
       </div>
       <Turnos
         turnos={turnos}
-        periodoTurno={periodoTurno}
-        setPeriodoTurno={setPeriodoTurno}
-        filtrarTurnosPorPeriodo={filtrarTurnosPorPeriodo}
         selectedDay={selectedDay}
+        servicioSeleccionado={servicioSeleccionado}
         fechaSeleccionada={fechaSeleccionada}
         setFechaSeleccionada={setFechaSeleccionada}
         diaAbreviado={diaAbreviado}

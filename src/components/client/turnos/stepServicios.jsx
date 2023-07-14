@@ -82,7 +82,7 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
 
             >
               <img className={`  w-[235px] h-[235px]  lg:w-[180px] xl:w-[200px]
-              rounded-3xl  md:h-[200px]  md:w-[200px] object-top hover:outline outline-2 outline-[#1e1e1e] hover:shadow-lg hover:shadow-[#1e1e1e]
+              rounded-3xl  md:h-[200px]  md:w-[200px] object-cover hover:outline outline-2 outline-[#1e1e1e] hover:shadow-lg hover:shadow-[#1e1e1e]
               ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-2 outline-[#1e1e1e] shadow-lg shadow-[#1e1e1e]' : ''}`}
                 src={servicio.img}
                 alt={servicio.nombre}

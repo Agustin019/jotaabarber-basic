@@ -14,8 +14,8 @@ export default function Contacto() {
             rounded-3xl flex flex-col md:flex-row items-center
            '>
           <img
-            src="https://i.ibb.co/SVcNwqN/corte-De-Un-Facherardo.jpg"
-            alt="imagen corte de pelo"
+            src="https://i.ibb.co/w0krfkr/2cff81ec-8587-4207-8711-85f4db54800c-min.jpg"
+            alt="imagen de herramientas"
             className='
             w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
             -top-40 md:-top-16 xl:top-10 md:right-12 lg:right-10 xl:right-44 mx-auto'

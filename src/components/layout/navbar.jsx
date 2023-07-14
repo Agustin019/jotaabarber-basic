@@ -52,7 +52,7 @@ export default function Navbar() {
         flex flex-row w-full justify-between items-center px-4  md:p-4 lg:p-[43px] 
         fixed z-40  h-[72px]   top-0 transition-colors duration-300 ease-out`}>
         <Link to="./">
-          <img className='w-[6.9rem]' src='https://i.ibb.co/mTT5shc/logo-negro-minif-min.jpg' alt="Logo" />
+          <img className='w-[4.9rem]' src='https://i.ibb.co/6RVJFCR/f12afd03-3580-406d-bf0a-d2f4d4ea242c-min.jpg' alt="Logo" />
         </Link>
         <div className="hidden lg:flex">
           <NavbarLinks flexDirection={'flex-row'} />

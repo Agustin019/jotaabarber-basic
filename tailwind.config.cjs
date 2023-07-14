@@ -8,7 +8,7 @@ module.exports = {
     extend: {
     
       backgroundImage:{
-        'inicio':'url(https://i.ibb.co/Db5QJDD/barberia-home-minif.webp)'
+        'inicio':'url(https://i.ibb.co/6sRb8G7/053c2c5e-97f4-45db-9057-7923a113fdeb-min.jpg)'
       },
       fontFamily:{
         monsterrat:[ 'Montserrat', 'sans-serif']

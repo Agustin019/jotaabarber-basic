@@ -37,7 +37,7 @@ export default function BarraProgresiva({ step }) {
              key={i}
              className="h-full transition-width duration-500"
              style={{
-               width: `${((step - 1) >= i ? (step - 1) + 1 : step) * 25 + 25}%`,
+               width: `${((step - 1) >= i ? (step - 1) + 1 : step) * 33.3 + 33.3}%`,
                backgroundColor: step  >= i ? '#1C1B1F' : '#D9D9D9',
              }}
            ></div>
