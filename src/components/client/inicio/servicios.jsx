@@ -53,7 +53,12 @@ export default function Servicios() {
         <section id='servicios' className='h-auto '>
             <article className='flex flex-col items-center  py-10 gap-y-5 '>
                 <h2 className='font-bold text-[32px] text-center'>Servicios </h2>
-                <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit rem fugiat earum ducimus aperiam, ea dolorum, natus, autem qui mollitia iure unde deserunt!
+                <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>
+                  Los servicios de corte y corte con barba incluyen el perfilado de cejas. 
+                  Tanto los claritos como los colores completos vienen acompañados de un corte de pelo. 
+                  Si estás interesado en colores personalizados, no dudes en contactarme a través de
+                 <a href="https://wa.me/+5492235808853" className='underline font-semibold' target='__blank'> WhatsApp </a>
+                 para obtener más información.
                 </p>
             </article>
             <article className='grid md:grid-cols-2 w-[90%] lg:w-[80%] xl:w-[70%] place-items-center mx-auto gap-y-3'>

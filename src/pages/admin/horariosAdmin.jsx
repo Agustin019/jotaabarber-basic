@@ -147,10 +147,10 @@ export default function HorariosAdmin() {
             <h1 className='font-semibold text-2xl'>Horarios</h1>
             <p className='font-ligh text-lg'>¡Administra tus horarios a tu manera!</p>
           </article>
-          <article className='flex flex-col gap-y-5 items-start mt-10'>
+          <article className='flex flex-col gap-y-5 items-start mt-10 '>
             <h2 className='font-semibold text-xl'>Horarios del día {''}</h2>
             <div className='flex flex-col gap-3 md:flex-row justify-between w-full'>
-              <div className='flex gap-x-5'>
+              <div className='flex gap-x-5 z-20'>
                 <Calendar
                   selectedDay={selectedDay}
                   setSelectedDay={setSelectedDay}
@@ -193,13 +193,13 @@ export default function HorariosAdmin() {
                   <div className='w-full md:w-[20%] flex justify-center md:flex-col'>
                     <button
                       onClick={() => setPeriodoHorario('mañana')}
-                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'mañana' ? 'font-semibold border-b-[5px] md:border-l-[5px] border-black' : 'font-light'}`}
+                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'mañana' ? 'font-semibold border-b-[5px] md:border-l-[5px] md:border-b-0 border-black' : 'font-light'}`}
                     >
                       Mañana
                     </button>
                     <button
                       onClick={() => setPeriodoHorario('tarde')}
-                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'tarde' ? 'font-semibold border-b-[5px] md:border-l-[5px] border-black' : 'font-light'}`}
+                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'tarde' ? 'font-semibold border-b-[5px] md:border-l-[5px] md:border-b-0 border-black' : 'font-light'}`}
                     >
                       Tarde
                     </button>

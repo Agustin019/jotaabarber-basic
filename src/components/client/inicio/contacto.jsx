@@ -18,13 +18,13 @@ export default function Contacto() {
             alt="imagen de herramientas"
             className='
             w-[296px] h-[320px] lg:w-[340px] lg:h-[399px] xl:w-[397px] xl:h-[457px] object-cover rounded-2xl absolute 
-            -top-40 md:-top-16 xl:top-10 md:right-12 lg:right-10 xl:right-44 mx-auto'
+            -top-28 md:-top-16 xl:top-10 md:right-12 lg:right-10 xl:right-44 mx-auto'
           />
           <div  className='flex flex-col justify-center items-center gap-y-6 lg:gap-y-10 text-center max-w-sm lg:max-w-xl'>
             <h2 className='font-bold text-2xl lg:text-5xl text-white '>
               ¿Te interesa alguno de nuestros servicios?
             </h2>  
-            <p className='font-light text-sm text-white md:w-[90%]'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            <p className='font-light text-sm text-white md:w-[90%]'>No pierdas más tiempo, reserva tu turno ahora mismo. En caso de poder asistir cancela tu turno desde la misma pagina con anticipacion.</p>
             <Link
               to={user ? '/nuevoturno' : '/micuenta'}
               className='w-[296px] h-[55px] flex justify-center items-center p-[10px] bg-black font-medium text-lg lg:text-base text-white'
@@ -46,24 +46,23 @@ export default function Contacto() {
             <div className='flex flex-col md:flex-row md:gap-x-10 lg:gap-x-20 xl:gap-x-40 gap-y-3 md:mb-5'>
               <div className='text-xl font-light flex items-center gap-x-2'>
                 <ion-icon name="location"></ion-icon>
-                <p className='text-base'> Direccion del local</p>
+                <p className='text-base font-medium '> Pirán 624</p>
               </div>
               <div className='text-xl font-light flex items-center gap-2'>
                 <ion-icon name="logo-instagram"></ion-icon>
-                <p className='text-base'>instagram</p>
-              </div>
-              <div className='text-xl font-light flex items-center gap-x-2'>
-                <ion-icon name="logo-facebook"></ion-icon>
-                <p className='text-base'>facebook</p>
+                <a href='https://www.instagram.com/jotaa_barberr/' target='__blank' className='text-base font-medium underline'>@jotaa_barberr</a>
               </div>
               <div className='text-xl font-light flex items-center gap-x-2'>
                 <ion-icon name="logo-whatsapp"></ion-icon>
-                <p className='text-base'>whatsapp</p>
+                <a href="https://wa.me/+5492235808853"  target='__blank' className='text-base font-medium underline'>2235808853</a>
+              </div>
+              <div className='text-xl font-light flex items-center gap-x-2'>
+                <ion-icon name="logo-facebook"></ion-icon>
+                <p className='text-base font-medium'>facebook</p>
               </div>
             </div>
-
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5289.459298339436!2d-57.55375997221372!3d-37.97406465536815!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584dbe0f154f8ff%3A0xbb48a827aae21b59!2sBlas%20Parera%20419%2C%20B7600BSI%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1687025714631!5m2!1sen!2sar"
+             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.860914002079!2d-57.58143582458097!3d-37.957033442238924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d9a3d51c6871%3A0xeb6f43680c702e19!2sJos%C3%A9%20Mar%C3%ADa%20Piran%20624%2C%20B7604JCN%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1sen!2sar!4v1689360373348!5m2!1sen!2sar"
               className='w-[3w0px] h-[480px] sm:w-[500px]  md:w-[650px] lg:w-[900px] xl:w-[1240px]'
               allowfullscreen="" loading="lazy"
               eferrerpolicy="no-referrer-when-downgrade"></iframe>

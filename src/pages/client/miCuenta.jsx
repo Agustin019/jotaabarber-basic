@@ -63,12 +63,13 @@ export default function MiCuenta() {
   // FUnciones para registrarse y loguearse
 
   const handleRegister = async (e) => {
+    setIsLoading(true)
     e.preventDefault();
     await register(emailRegister, passwordRegister);
 
     // Esperar a que se registre el usuario
     await new Promise((resolve) => setTimeout(resolve, 3000));
-
+    setIsLoading(false)
   };
 
 

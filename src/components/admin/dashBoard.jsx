@@ -47,7 +47,7 @@ export default function DashBoard() {
         <>
             <div className='md:hidden  flex justify-between items-center p-5'>
                 <img
-                    src="https://i.ibb.co/6RVJFCR/f12afd03-3580-406d-bf0a-d2f4d4ea242c-min.jpg"
+                    src="https://i.ibb.co/Cv5w53B/496274c6-1833-4cbf-b3dc-8d485285f3b3-min-removebg-preview.png"
                     alt="logo"
                     className='w-[80px]'
                 />
@@ -59,7 +59,7 @@ export default function DashBoard() {
                  fixed top-0 lg:left-0`}>
                 <div className='h-full flex flex-col justify-around items-center relative'>
                     <img
-                        src="https://i.ibb.co/6RVJFCR/f12afd03-3580-406d-bf0a-d2f4d4ea242c-min.jpg"
+                        src="https://i.ibb.co/BBM0tyC/a6ae29a7-1496-4c0f-9a09-c2a18b4540c7-removebg-preview.png"
                         alt="logo"
                         className='w-[130px]'
                     />

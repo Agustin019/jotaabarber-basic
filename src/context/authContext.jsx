@@ -151,8 +151,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = async (email, password) => {
-    setIsLoading(true);
     try {
+      setIsLoading(true);
       const response = await signInWithEmailAndPassword(auth, email, password);
       console.log(response);
       setIsLoading(false);

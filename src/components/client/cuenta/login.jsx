@@ -15,7 +15,6 @@ export default function Login({ login, setIsLoading, handleGoogle, handleFaceboo
     const handleLogin = async e => {
         e.preventDefault()
         await login(email, password)
-        setIsLoading(true)
     }
 
     return (
