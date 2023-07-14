@@ -40,7 +40,7 @@ export default function Testimonios() {
                      <p className='text-center font-semibold text-lg pt-8'>Ivan Osellaa</p>
                  </div>
              </Slider>
-             <div className='flex md:pr-44 xl:pr-72 justify-end absolute right-7 bottom-40 md:bottom-48 lg:bottom-40 md:right-24'>
+             <div className='flex md:pr-44 xl:pr-72 justify-end absolute right-7 bottom-28 md:bottom-48 lg:bottom-40 md:right-24'>
                  <FormatQuoteRoundedIcon />
              </div>
          </article>

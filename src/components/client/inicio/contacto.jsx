@@ -38,10 +38,9 @@ export default function Contacto() {
      <article id='contacto' className='pt-10 h-auto max-h-full' >
         <div  className='flex flex-col gap-y-5 items-center px-10'>
           <h2 className='text-center font-bold text-[32px]'>Contacto</h2>
-          <p className='font-light text-base text-center'>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
           <div className='flex flex-col gap-y-5 items-center '>
 
-            <h3  className='font-bold text-2xl py-4'>Encontranos en</h3>
+            <h3  className='font-semobold text-xl py-4'>Encontranos en</h3>
 
             <div className='flex flex-col md:flex-row md:gap-x-10 lg:gap-x-20 xl:gap-x-40 gap-y-3 md:mb-5'>
               <div className='text-xl font-light flex items-center gap-x-2'>
@@ -55,10 +54,6 @@ export default function Contacto() {
               <div className='text-xl font-light flex items-center gap-x-2'>
                 <ion-icon name="logo-whatsapp"></ion-icon>
                 <a href="https://wa.me/+5492235808853"  target='__blank' className='text-base font-medium underline'>2235808853</a>
-              </div>
-              <div className='text-xl font-light flex items-center gap-x-2'>
-                <ion-icon name="logo-facebook"></ion-icon>
-                <p className='text-base font-medium'>facebook</p>
               </div>
             </div>
             <iframe

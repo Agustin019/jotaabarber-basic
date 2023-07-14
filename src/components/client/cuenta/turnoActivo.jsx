@@ -142,13 +142,13 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                             : <p className='text-white text-sm font-semibold p-[10px] bg-[#802a2a] rounded-xl'>Cancelado</p>
                     }
                 </div>
-                <div className='flex justify-end items-end py-5 px-2 lg:py-0 md:pr-0 col-span-2'>
+                <div className='flex justify-end items-end py-5  lg:py-0 md:pr-0 col-span-2'>
                     {
                         turno.estado === 'confirmado'
                             ? <button
                                 type='button'
                                 onClick={handleModal}
-                                className='lg:w-[40px]  w-full lg:h-full bg-gray-300 rounded-lg md:rounded-none md:rounded-r-lg  flex lg:flex-col justify-center items-center '
+                                className='lg:w-[40px] mx-4 w-full lg:h-full bg-gray-300 rounded-lg lg:rounded-none md:rounded-r-lg  flex lg:flex-col justify-center items-center '
                             >
                                 <img
                                     src="https://i.ibb.co/6W6fcfJ/delete-1.png"
