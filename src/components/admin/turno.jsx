@@ -72,9 +72,9 @@ export default function Turno({ turno, index, handleModal, modal, setModalDatosD
         <div
             className={
                 `grid grid-cols-[3fr,3fr,1fr,1fr] 
-                sm:grid-cols-[2fr,2fr,2fr,2fr,1fr]
-                md:grid-cols-[2fr,2fr,2fr,2fr,2fr,2fr,1fr]
-                lg:grid-cols-7 
+                sm:grid-cols-[2fr,2fr,2fr,1fr]
+                md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
+                lg:grid-cols-6
                 place-items-start  content-center justify-center items-center py-4 px-2 xl:px-10 text-[#2d2d2d] 
         ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'}
         `}
@@ -89,7 +89,6 @@ export default function Turno({ turno, index, handleModal, modal, setModalDatosD
                 <a href={`https://wa.me/${telefono}`} className='font-medium text-sm'>{telefono}</a>
             </div>
             <p className='font-light text-sm'>{hora}</p>
-            <p className='font-light text-sm hidden sm:block'>{profesional}</p>
             <p className='font-light text-sm hidden md:block'>{servicio}</p>
             <p className={`font-medium text-sm hidden md:block ${estado === 'confirmado' ? 'text-green-600' : 'text-red-600'}`}>{estado}</p>
             <button

@@ -77,15 +77,14 @@ export default function TurnosAdmin() {
 
                  <article className='
                      grid grid-cols-[3fr,3fr,1fr,1fr]  
-                     sm:grid-cols-[2fr,2fr,2fr,2fr,1fr]
-                     md:grid-cols-[2fr,2fr,2fr,2fr,2fr,2fr,1fr]
-                     lg:grid-cols-7 
+                     sm:grid-cols-[2fr,2fr,2fr,1fr]
+                     md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
+                     lg:grid-cols-6 
                      place-items-start  px-2 xl:px-10 text-sm xl:text-base '
                  >
                      <p className='font-normal '>Cliente</p>
                      <p className='font-normal '>Telefono</p>
                      <p className='font-normal '>Hora</p>
-                     <p className='font-normal hidden sm:block'>Profesional</p>
                      <p className='font-normal hidden md:block'>Servicio</p>
                      <p className='font-normal hidden md:block'>Estado</p>
                      <p className='font-normal hidden md:block'>Cancelar</p>
