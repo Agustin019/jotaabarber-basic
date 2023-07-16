@@ -13,7 +13,7 @@ export default function TurnosAdmin() {
     const [selectedDay, setSelectedDay] = useState(new Date());
 
     // Modal para ver los datos del turno
-    const [ modalDatosDeTurno, setModalDatosDeTurno  ] = useState({})
+    const [modalDatosDeTurno, setModalDatosDeTurno] = useState({})
 
     // Modal para xancelar el turno
     const [modal, setModal] = useState(false)
@@ -29,14 +29,24 @@ export default function TurnosAdmin() {
     const consultarTurnos = () => {
         const docRef = doc(db, 'Turnos', fechaFormateada)
         const unsubscribe = onSnapshot(docRef, (snapshot) => {
-            setTurnos(snapshot.data().turnos)
-        })
+            // Obtener los datos del documento
+            const datosDelDocumento = snapshot.data().turnos;
+            // Ordenar los turnos por la hora utilizando la función compararHoras
+            const turnosOrdenados = datosDelDocumento.sort(compararHoras);
+            // Actualizar el estado con los turnos ordenados
+            setTurnos(turnosOrdenados);
+        });
         console.log(turnos)
         return () => {
             unsubscribe()
         }
     }
-
+    // Función para comparar las horas y ordenar el arreglo
+    const compararHoras = (a, b) => {
+        const horaA = a.hora;
+        const horaB = b.hora;
+        return horaA.localeCompare(horaB, 'es', { numeric: true });
+    };
 
 
     useEffect(() => {
@@ -55,59 +65,59 @@ export default function TurnosAdmin() {
     }
 
     return (
-       <>
-       <DashBoard />
-         <main className='lg:ml-[250px] '>
-            {Object.keys(modalDatosDeTurno).length !== 0 
-            && <ModalDatosDelTurno modalDatosDeTurno={modalDatosDeTurno} setModalDatosDeTurno={setModalDatosDeTurno} handleModal={handleModal}/> 
-            }
-             <section className='flex justify-start p-10 text-[#1e1e1e] '>
-                 <article className='flex flex-col gap-y-5 z-20'>
-                     <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
-                     <Calendar
-                         selectedDay={selectedDay}
-                         setSelectedDay={setSelectedDay}
-                         handleDateChange={handleDateChange}
-                         isOpen={isOpen}
-                         setIsOpen={setIsOpen}
-                     />
-                 </article>
-             </section>
-             <section>
+        <>
+            <DashBoard />
+            <main className='lg:ml-[250px] '>
+                {Object.keys(modalDatosDeTurno).length !== 0
+                    && <ModalDatosDelTurno modalDatosDeTurno={modalDatosDeTurno} setModalDatosDeTurno={setModalDatosDeTurno} handleModal={handleModal} />
+                }
+                <section className='flex justify-start p-10 text-[#1e1e1e] '>
+                    <article className='flex flex-col gap-y-5 z-20'>
+                        <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
+                        <Calendar
+                            selectedDay={selectedDay}
+                            setSelectedDay={setSelectedDay}
+                            handleDateChange={handleDateChange}
+                            isOpen={isOpen}
+                            setIsOpen={setIsOpen}
+                        />
+                    </article>
+                </section>
+                <section>
 
-                 <article className='
+                    <article className='
                      grid grid-cols-[3fr,3fr,1fr,1fr]  
                      sm:grid-cols-[2fr,2fr,2fr,1fr]
                      md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
                      lg:grid-cols-6 
                      place-items-start  px-2 xl:px-10 text-sm xl:text-base '
-                 >
-                     <p className='font-normal '>Cliente</p>
-                     <p className='font-normal '>Telefono</p>
-                     <p className='font-normal '>Hora</p>
-                     <p className='font-normal hidden md:block'>Servicio</p>
-                     <p className='font-normal hidden md:block'>Estado</p>
-                     <p className='font-normal hidden md:block'>Cancelar</p>
-                     <p className='font-normal md:hidden block place-items-end place-self-end'> más</p>
-                 </article>
-                 <article>
-                     {turnos.length !== 0 ? (
-                         turnos.map((turno, index) => (
-                             <Turno 
-                                key={turno.turnoId} 
-                                turno={turno} 
-                                index={index}
-                                modal={modal}
-                                handleModal={handleModal}
-                                setModalDatosDeTurno={setModalDatosDeTurno}
+                    >
+                        <p className='font-normal '>Cliente</p>
+                        <p className='font-normal '>Telefono</p>
+                        <p className='font-normal '>Hora</p>
+                        <p className='font-normal hidden md:block'>Servicio</p>
+                        <p className='font-normal hidden md:block'>Estado</p>
+                        <p className='font-normal hidden md:block'>Cancelar</p>
+                        <p className='font-normal md:hidden block place-items-end place-self-end'> más</p>
+                    </article>
+                    <article>
+                        {turnos.length !== 0 ? (
+                            turnos.map((turno, index) => (
+                                <Turno
+                                    key={turno.turnoId}
+                                    turno={turno}
+                                    index={index}
+                                    modal={modal}
+                                    handleModal={handleModal}
+                                    setModalDatosDeTurno={setModalDatosDeTurno}
                                 />
-                         ))
-                     ) : (
-                         <p>No hay turnos para este día aún</p>
-                     )}
-                 </article>
-             </section>
-         </main>
-       </>
+                            ))
+                        ) : (
+                            <p>No hay turnos para este día aún</p>
+                        )}
+                    </article>
+                </section>
+            </main>
+        </>
     )
 }

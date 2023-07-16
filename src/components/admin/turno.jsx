@@ -76,7 +76,7 @@ export default function Turno({ turno, index, handleModal, modal, setModalDatosD
                 md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
                 lg:grid-cols-6
                 place-items-start  content-center justify-center items-center py-4 px-2 xl:px-10 text-[#2d2d2d] 
-        ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'}
+        ${estado === 'cancelado'  ? 'bg-red-100' : 'bg-green-100'}
         `}
         >
             
