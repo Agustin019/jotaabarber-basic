@@ -1,7 +1,16 @@
 import React from 'react'
 
-export default function ModalDatosDelTurno({modalDatosDeTurno, setModalDatosDeTurno, handleModal}) {
+export default function ModalDatosDelTurno({ 
+    modalDatosDeTurno, 
+    setModalDatosDeTurno, 
+    handleModal, 
+    setTurnoACancelar, 
+    modalEliminarTurno,
+    setModalEliminarTurno 
+}) {
+
     const { cliente, telefono, hora, servicio, profesional, estado} = modalDatosDeTurno;
+
   return (
    <div className='w-screen z-40 h-[100vh] top-0 bg-black/40  fixed flex flex-col justify-center items-center'>
      <div className='w-[328px]  mx-auto rounded-xl py-10 px-4 bg-[#1e1e1e] '>
@@ -44,15 +53,29 @@ export default function ModalDatosDelTurno({modalDatosDeTurno, setModalDatosDeTu
            
         </div>
         <div>
-            <button 
-            onClick={ () => { 
-                handleModal()
-                setModalDatosDeTurno({})
-            }} 
-            className='flex justify-center items-center gap-x-2 rounded-xl py-[15px] px-6 w-full bg-white text-[#1e1e1e] font-semibold text-sm'>
-                <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="Cancelar" />
-                <p>Cancelar turno</p>
-            </button>
+        {
+                        estado === 'confirmado'
+                            ? <button
+                                onClick={() => {
+                                    handleModal()
+                                    setTurnoACancelar(modalDatosDeTurno)
+                                    setModalDatosDeTurno({})
+                                }}
+                                className='flex justify-center items-center gap-x-2 rounded-xl py-[15px] px-6 w-full bg-white text-[#1e1e1e] font-semibold text-sm'>
+                                <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="Cancelar" />
+                                <p>Cancelar turno</p>
+                            </button>
+
+                            : <button
+                                onClick={() => {
+                                    setTurnoACancelar(modalDatosDeTurno)
+                                    setModalEliminarTurno(!modalEliminarTurno)
+                                }}
+                                className='flex justify-center items-center gap-x-2 rounded-xl py-[15px] px-6 w-full bg-white text-[#1e1e1e] font-semibold text-sm'>
+                                <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="Cancelar" />
+                                <p>Eliminar</p>
+                            </button>
+                    }
         </div>
      </div>
    </div>
