@@ -27,7 +27,7 @@ export default function Contacto() {
             <p className='font-light text-sm text-white md:w-[90%]'>No pierdas más tiempo, reserva tu turno ahora mismo. En caso de poder asistir cancela tu turno desde la misma pagina con anticipacion.</p>
             <Link
               to={user ? '/nuevoturno' : '/micuenta'}
-              className='w-[296px] h-[55px] flex justify-center items-center p-[10px] bg-amarillo font-medium text-lg lg:text-base text-negroPrincipal'
+              className='w-[296px] h-[55px] flex justify-center font-semibold items-center p-[10px] bg-amarillo  text-lg lg:text-base text-negroPrincipal rounded-lg'
             >
               Reservar turno
             </Link>
