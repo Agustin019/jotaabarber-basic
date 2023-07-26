@@ -20,7 +20,8 @@ export default function Nosotros() {
     const settings = {
         infinite: true,
         speed: 500,
-
+        nextArrow: <CustomNextArrow />,
+        prevArrow: <CustomPrevArrow />,
         autoplay: true,
         autoplaySpeed: 2000,
         slidesToShow: 3,
@@ -57,8 +58,8 @@ export default function Nosotros() {
     return (
         <section id='trabajos' className='  mx-auto  '>
             <article className=' h-auto p-9  relative'>
-                <h2 className='font-bold text-[32px]  text-center py-5'>Mis trabajos</h2>
-                <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>
+                <h2 className='font-bold text-[32px] text-blanco text-center py-5'>Mis trabajos</h2>
+                <p className='font-light text-sm text-blanco py-3 md:py-1 text-center lg:w-[80%] lg:mx-auto'>
                 Estos son algunos de mis trabajos realizados a lo largo de mis 4 años de experiencia como barbero. Cada corte de pelo y color realizado refleja mi dedicación, pasión y compromiso por brindar resultados excepcionales.
                 </p>
                 <Slider {...settings}>
@@ -93,7 +94,7 @@ const CustomPrevArrow = (props) => {
     const { className, onClick, style } = props;
 
     return (
-        <div className='h-full z-10 flex-col content-center justify-end relative hidden md:flex'>
+        <div className='h-full z-10 flex-col content-center justify-end relative hidden '>
 
             <img
                 onClick={onClick}
@@ -110,7 +111,7 @@ const CustomNextArrow = (props) => {
     const { className, onClick, style } = props;
 
     return (
-        <div className='h-full z-10 hidden md:flex flex-col content-center justify-end relative'>
+        <div className='h-full z-10 hidden  flex-col content-center justify-end relative'>
 
             <img
                 onClick={onClick}

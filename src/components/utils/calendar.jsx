@@ -16,9 +16,9 @@ export default function Calendar ({ selectedDay, setSelectedDay, handleDateChang
     };
     return (
       <div className='relative'>
-        <button className="font-semibold text-xl text-[#1E1E1E] flex items-center gap-x-2" onClick={handleClick}>
+        <button className="font-semibold text-xl text-blancoSecundario flex items-center gap-x-2" onClick={handleClick}>
           {format(selectedDay, "dd/MM/yyyy")}
-        <p className='pb-[6px]'>
+        <p className='pb-[6px] text-amarillo'>
             <CalendarMonthRoundedIcon/>
         </p>
         </button>

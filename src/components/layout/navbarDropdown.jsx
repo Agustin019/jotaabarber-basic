@@ -10,8 +10,8 @@ export default function NavbarDropdown({ showDropdown, handleDropdownToggle }) {
     return (
         <div className="relative ">
             <button onClick={handleDropdownToggle} className="link  py-2 rounded inline-flex items-center gap-x-1 " >
-                <p className="link mr-1 inline-flex items-center">
-                    <ion-icon name="person-circle-outline"></ion-icon>
+                <p className="link mr-1 inline-flex items-center gap-x-1">
+                <ion-icon name="person-outline"></ion-icon>
                     {datosUsuarioActual?.fullName?.split(' ')[0]}
                 </p>
 
@@ -19,10 +19,11 @@ export default function NavbarDropdown({ showDropdown, handleDropdownToggle }) {
                     <ion-icon name="chevron-down-sharp"></ion-icon>
                 </p>
             </button>
-            <ul className={`${showDropdown ? "block ease-in " : "hidden ease-out"} transition-all duration-500 absolute  right-5 `}>
+            <ul className={`${showDropdown ? "block ease-in " : "hidden ease-out"} 
+             transition-all duration-500 absolute  right-5 bg-negroSecundario`}>
                 <Link
                     to='/datos'
-                    className="flex items-center gap-x-2  bg-gray-300 hover:bg-gray-400 p-2 w-48 link"
+                    className="flex items-center gap-x-2   hover:bg-gray-400 p-2 w-48 link"
                 >
                     <ion-icon name="person-outline"></ion-icon>
                     <p> Perfil</p>
@@ -32,7 +33,7 @@ export default function NavbarDropdown({ showDropdown, handleDropdownToggle }) {
                         logOut()
                         //setDatosUsuarioActual({})
                     }}
-                    className="flex items-center gap-x-2  bg-gray-300 hover:bg-gray-400 p-2 w-48 "
+                    className="flex items-center gap-x-2  hover:bg-gray-400 p-2 w-48 "
                 >
                     <ion-icon name="log-out-outline"></ion-icon> Cerrar sesión
                 </Link>

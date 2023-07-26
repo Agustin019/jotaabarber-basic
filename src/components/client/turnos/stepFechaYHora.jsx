@@ -120,10 +120,10 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
   return (
     <div className='w-full flex flex-col gap-y-3 md:gap-y-10'>
       <div className='w-full flex justify-center items-center'>
-        <p className='text-xl font-medium'>{currentMonth}</p>
+        <p className='text-xl font-medium text-blanco'>{currentMonth}</p>
       </div>
       <div className='flex justify-around'>
-        <button type='button' onClick={handlePreviousClick}>
+        <button type='button' className='text-blanco' onClick={handlePreviousClick}>
           <ion-icon name='arrow-back'></ion-icon>
         </button>
         <div className='flex items-center gap-2'>
@@ -132,9 +132,9 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
               key={day.toISOString()}
               onClick={() => handleDayClick(day)}
               className={`w-[58px] h-[70px] sm:w-[63px] sm:h-[76px] cursor-pointer
-              py-2 px-4 flex flex-col items-center gap-2 sm:gap-3 rounded-lg 
-              ${isCurrentDay(day) ? 'border border-black' : ''} 
-              ${selectedDay.toDateString() === day.toDateString() ? 'bg-black text-white' : ''}`}
+              py-2 px-4 flex flex-col items-center gap-2 sm:gap-3 rounded-lg  text-blanco
+              ${isCurrentDay(day) ? 'border border-amarillo' : ''} 
+              ${selectedDay.toDateString() === day.toDateString() ? 'bg-negroSecundario text-amarillo' : ''}`}
               initial={{ opacity: 0 }} // Definir la animación inicial
               animate={{ opacity: 1 }} // Definir la animación al entrar
               transition={{ duration: 1.2 }} // Definir la duración de la transición
@@ -144,7 +144,7 @@ export default function StepFechaYHora({ fechaSeleccionada, setFechaSeleccionada
             </motion.div>
           ))}
         </div>
-        <button type='button' onClick={handleNextClick}>
+        <button type='button' className='text-blanco' onClick={handleNextClick}>
           <ion-icon name='arrow-forward'></ion-icon>
         </button>
       </div>

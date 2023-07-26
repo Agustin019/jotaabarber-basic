@@ -1,26 +1,26 @@
 import Alerta from '../utils/alerta';
 
 
-export default function Turno({ 
-    turno, 
-    handleModal, 
-    modal, 
-    setModalDatosDeTurno, 
-    setTurnoACancelar, 
+export default function Turno({
+    turno,
+    handleModal,
+    modal,
+    setModalDatosDeTurno,
+    setTurnoACancelar,
     cancelarTurno,
     modalEliminarTurno,
     setModalEliminarTurno,
-    eliminarTurno 
+    eliminarTurno
 }) {
 
 
     const { cliente, telefono, hora, servicio, estado, userId, turnoId } = turno;
 
-    const verificarEstadoDelTurno = () =>{
-        if(estado === 'cancelado'){
+    const verificarEstadoDelTurno = () => {
+        if (estado === 'cancelado') {
             setTurnoACancelar(turno)
             setModalEliminarTurno(!modalEliminarTurno)
-        }else{
+        } else {
             handleModal()
             setTurnoACancelar(turno)
         }
@@ -34,8 +34,8 @@ export default function Turno({
                 md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
                 lg:grid-cols-6
                 place-items-start  content-center justify-center items-center 
-                py-4 px-2 xl:px-10 text-[#2d2d2d] my-2
-        ${estado === 'cancelado'  ? 'bg-red-100' : 'bg-green-100'}
+                py-4 px-2 xl:px-10 text-negroPrincipal my-2
+        ${estado === 'cancelado' ? 'bg-rojo' : 'bg-verde'}
         `}
         >
             <p className='font-light text-sm'>{cliente}</p>
@@ -45,26 +45,18 @@ export default function Turno({
             </div>
             <p className='font-light text-sm'>{hora}</p>
             <p className='font-light text-sm hidden md:block'>{servicio}</p>
-            <p className={`font-medium text-sm hidden md:block ${estado === 'confirmado' ? 'text-green-600' : 'text-red-600'}`}>{estado}</p>
-            {
-            estado === 'confirmado'
-                ?<button
-                    className='lg:mx-7 hidden md:block'
-                    onClick={verificarEstadoDelTurno}
-                >
-                    <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
-                </button>
-                :<button
-                    className='lg:mx-7 hidden md:block'
-                    onClick={verificarEstadoDelTurno}
-                >
-                    <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
-                </button>
-            }
-            <button 
+            <p className={`font-medium text-sm hidden md:block `}>{estado}</p>
+            <button
+                className='lg:mx-7 hidden md:block'
+                onClick={verificarEstadoDelTurno}
+            >
+                <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
+            </button>
+
+            <button
                 className='md:hidden   pl-7'
                 onClick={() => setModalDatosDeTurno(turno)}
-                >
+            >
                 <img src="https://i.ibb.co/sqMv74d/more-vert.png" alt="Ver más" />
             </button>
 

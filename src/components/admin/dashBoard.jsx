@@ -45,16 +45,16 @@ export default function DashBoard() {
 
     return (
         <>
-            <div className='md:hidden  flex justify-between items-center p-5'>
+            <div className='md:hidden  flex justify-between items-center p-2 '>
                 <img
-                    src="https://i.ibb.co/Cv5w53B/496274c6-1833-4cbf-b3dc-8d485285f3b3-min-removebg-preview.png"
+                    src="https://i.ibb.co/BBM0tyC/a6ae29a7-1496-4c0f-9a09-c2a18b4540c7-removebg-preview.png"
                     alt="logo"
-                    className='w-[80px]'
+                    className='w-[4.3rem]'
                 />
                 <MenuHamburguesa handleNav={handleNav} nav={nav}/>
             </div>
             <aside className={`
-                 w-[250px] z-30 bg-[#2D2D2D] h-screen transition-all duration-300 
+                 w-[250px] z-30 bg-negroPrincipal h-screen transition-all duration-300 
                 ${ nav ? 'left-0': '-left-[100%]'  } 
                  fixed top-0 lg:left-0`}>
                 <div className='h-full flex flex-col justify-around items-center relative'>
@@ -69,17 +69,17 @@ export default function DashBoard() {
                                 .map(route =>
                                     <div
                                         key={route.id}
-                                        className={`w-[226px] py-2 px-4 flex gap-x-2 text-white ${location.pathname === route.pathname ? ' bg-[#1e1e1e] ' : ''}`}
+                                        className={`w-[226px] py-2 px-4 flex gap-x-2  ${location.pathname === route.pathname ? ' bg-amarillo rounded-lg text-negroPrincipal ' : 'text-blancoSecundario'}`}
                                     >
-                                        <p className='text-lg pt-1 text-[#fdfffc]'>
+                                        <p className='text-lg pt-1 '>
                                             <ion-icon name={route.icon}></ion-icon>
                                         </p>
                                         <Link
 
                                             to={route.pathname}
                                             className={`
-                                    text-sm text-[#fdfffc]  w-[226px] pt-[5px]
-                                    ${location.pathname === route.pathname ? 'font-bold ' : ' font-light'}
+                                    text-sm   w-[226px] pt-[5px]
+                                    ${location.pathname === route.pathname ? 'font-bold text-negroPrincipal ' : ' font-light text-blancoSecundario'}
                          `}
                                         >
                                             {route.name}

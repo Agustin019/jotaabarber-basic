@@ -72,8 +72,8 @@ export default function ResumenTurno({
                 </div>
             </aside>
             <aside
-                className={`w-[90%] fixed bg-[#1e1e1e] h-screen  pr-[26px] pl-[20px]  lg:hidden z-30
-                transition-all duration-300 ease-in-out flex flex-col justify-between  py-10
+                className={`w-[90%] fixed bg-negroSecundario h-screen  pr-[26px] pl-[20px]  lg:hidden z-30
+                transition-all duration-300 ease-in-out flex flex-col justify-between  py-14
                 ${resumen ? 'right-0' : 'right-[-100%] '} 
     `}>
                 <div className='flex flex-col gap-y-7'>
@@ -85,18 +85,20 @@ export default function ResumenTurno({
                         <img src="https://i.ibb.co/DVsQG6m/close-1.png" alt="cerrar resumen" />
                     </button>
                 </div>
-                    <p className='font-medium text-base text-white '>Datos del cliente:</p>
-                    <div className='flex flex-col gap-y-2'>
-                        <div className='flex justify-between items-center'>
-                            <p className='font-normal text-xs text-white'>Nombre</p>
-                            <p className='font-light text-xs text-white'>{nombre === '' ? '-' : nombre} </p>
-                        </div>
-                        <div className='flex justify-between items-center'>
-                            <p className='font-normal text-xs text-white'>Teléfono</p>
-                            <p className='font-light text-xs text-white'>{telefono === '' ? '-' : telefono}</p>
-                        </div>
-                    </div>
-                    <div className='flex flex-col gap-y-4 '>
+                   <div className='pt-6'>
+                     <p className='font-medium text-base text-white py-4'>Datos del cliente:</p>
+                     <div className='flex flex-col gap-y-5'>
+                         <div className='flex justify-between items-center'>
+                             <p className='font-normal text-xs text-white'>Nombre</p>
+                             <p className='font-light text-xs text-white'>{nombre === '' ? '-' : nombre} </p>
+                         </div>
+                         <div className='flex justify-between items-center'>
+                             <p className='font-normal text-xs text-white'>Teléfono</p>
+                             <p className='font-light text-xs text-white'>{telefono === '' ? '-' : telefono}</p>
+                         </div>
+                     </div>
+                   </div>
+                    <div className='flex flex-col gap-y-4 pt-10'>
                         <p className='font-medium text-base text-white '>Servicio</p>
                         <div className='flex justify-start items-center'>
                             {
@@ -116,9 +118,9 @@ export default function ResumenTurno({
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-y-4 '>
+                    <div className='flex flex-col gap-y-4 pt-14'>
                         <p className='font-medium text-base text-white '>Datos del turno</p>
-                        <div className='flex flex-col gap-y-2'>
+                        <div className='flex flex-col gap-y-5'>
                             <div className='flex justify-between items-center'>
                                 <p className='font-normal text-xs text-white'>Dia </p>
                                 <p className='font-light text-xs text-white'>{fechaSeleccionada?.dia ? fechaSeleccionada.dia : '-'}</p>
@@ -130,7 +132,7 @@ export default function ResumenTurno({
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col'>
+                <div className='flex flex-col pb-10'>
                     <div className='w-full border border-[#F2F2F2]'></div>
                     <div className='flex justify-between items-center'>
                         <p className='font-medium text-base text-[#F2F2F2]'>Total</p>

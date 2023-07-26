@@ -24,8 +24,8 @@ export default function Inicio() {
                to='/nuevoturno'
                className="
                      w-[327px] h-[55px] flex justify-center items-center mt-10
-                     py-[10px] px-4 bg-[#FDFFFC] text-[#1e1e1e] text-base text-center font-semibold uppercase 
-                     transition-all duration-300"
+                     py-[10px] px-4 bg-amarillo text-[#1e1e1e] text-base text-center font-semibold uppercase 
+                     transition-all duration-300 rounded-lg"
              >
                ¡Quiero reservar un turno!
              </Link>

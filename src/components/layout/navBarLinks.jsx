@@ -23,7 +23,7 @@ export default function NavbarLinks({ flexDirection }) {
   }
   return (
     <ul
-      className={`navegacion flex items-start lg:items-center gap-x-7 font-normal leading-5 text-[18px] z-10 ${flexDirection}`}
+      className={`navegacion text-blanco  flex items-start lg:items-center gap-x-7 font-normal leading-5 text-[18px] z-10 ${flexDirection}`}
     >
         <li className="cursor-pointer">
           <LinkScroll

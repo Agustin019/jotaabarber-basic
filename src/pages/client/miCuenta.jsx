@@ -86,26 +86,26 @@ export default function MiCuenta() {
 
   return (
     <main className='flex w-full gap-x-10  overflow-hidden'>
-      <section className='w-[90%] lg:w-[60%] m-auto py-10 lg:p-10'>
+      <section className='w-[90%] lg:w-[60%] m-auto py-5 lg:p-10'>
         <article className='flex flex-col gap-y-2'>
           <div
-            className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
+            className=' flex justify-start items-center w-56 gap-x-2 text-blanco cursor-pointer text-lg font-medium uppercase'
             onClick={() => navigate(- 1)}
           >
             <ion-icon name="arrow-back-sharp"></ion-icon>
             <p>volver</p>
           </div>
 
-          <div className='flex gap-x-5 justify-start mt-10'>
+          <div className='flex gap-x-5 justify-start mt-3'>
             <button
               onClick={() => setForm('register')}
-              className={`p-2 bg-transparent text-base md:text-2xl ${form === 'register' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
+              className={`p-2 bg-transparent text-base md:text-2xl ${form === 'register' ? 'border-b-2 border-amarillo text-blanco font-bold' : 'font-medium text-gray-400'}`}
             >
               Registrarse
             </button>
             <button
               onClick={() => setForm('login')}
-              className={`p-2 bg-transparent  text-base md:text-2xl ${form === 'login' ? 'border-b-2 border-[#2d2d2d] text-[#2d2d2d] font-bold' : 'font-medium text-gray-400'}`}
+              className={`p-2 bg-transparent  text-base md:text-2xl ${form === 'login' ? 'border-b-2 border-amarillo text-blanco font-bold' : 'font-medium text-gray-400'}`}
             >
               Iniciar Sesion
             </button>
@@ -131,11 +131,11 @@ export default function MiCuenta() {
         <PantallaCargando isLoading={isLoading} />
 
       </section>
-      <section className='hidden w-[40%] h-screen lg:flex flex-col items-center justify-center bg-gray-200 rounded-xl'>
+      <section className='hidden w-[40%] h-screen lg:flex flex-col items-center justify-center rounded-xl'>
         <img
-          className='w-[135px]'
-          src="https://i.ibb.co/68ZDtsm/Vector-1.png"
-          alt="Logo de la empresa"
+          className='w-full h-full object-cover'
+          src="https://i.ibb.co/gTZRmYM/ae2b7f7f-30a2-4a80-ac6a-0a5c8b6f6250-min.jpg"
+          alt="foto barber"
         />
       </section>
     </main>

@@ -67,7 +67,7 @@ export default function Footer() {
     }
 
     return (
-        <footer className='bg-[#676B6C] w-full mt-20'>
+        <footer className='bg-negroSecundario w-full mt-20'>
             <div className='flex flex-col items-center py-10'>
                 <img className='w-[131px]' src="https://i.ibb.co/BBM0tyC/a6ae29a7-1496-4c0f-9a09-c2a18b4540c7-removebg-preview.png" alt="logo" />
                 <div className='flex flex-col text-white md:flex-row md:gap-x-8 lg:gap-x-12 items-center text-center gap-y-5 pt-10'>

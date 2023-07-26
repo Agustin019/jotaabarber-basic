@@ -100,7 +100,7 @@
 
 /* Enlaces del navbar */
 .navegacion .link{
-  @apply inline-block p-2 relative text-lg
+  @apply inline-block p-2 relative text-lg  hover:text-amarillo
 }
 .navegacion .link:hover{
   @apply  duration-300
@@ -115,7 +115,7 @@
   height: 2px;
   left: 50%;
   position: absolute;
-  background: #1e1e1e;
+  background: #F2AF29;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
 } 
 
@@ -124,19 +124,19 @@
 }
 
 .navegacion .activo {
-  @apply inline-block py-2 px-[10px] relative text-[#1e1e1e]
+  @apply inline-block py-2 px-[10px] relative text-amarillo
 }
 
 .navegacion .activo::after {
   background: none repeat scroll 0 0 transparent;
-  color:#1e1e1e;
+  color:#F2AF29;
   bottom: 0;
   content: "";
   display: block;
   height: 2px;
   left: 0;
   position: absolute;
-  background: #1e1e1e;
+  background:#F2AF29;
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 100%;
 }
@@ -149,7 +149,7 @@
 }
 
 .bars__menu span{
-  @apply block w-full h-[2px] bg-black  mt-[6px] origin-bottom-left  transition-all duration-500
+  @apply block w-full h-[2px] bg-blanco  mt-[6px] origin-bottom-left  transition-all duration-500
 } 
 .bars__menu .line1__bars-menu{
   @apply rotate-45 translate-x-[-2px] translate-y-[-3px]   
@@ -170,7 +170,7 @@
 
 .form__group {
   position: relative;
-  padding: 15px 0 0;
+  padding: 20px 0 0;
   margin-top: 10px;
   width: 100%;
 }
@@ -179,11 +179,11 @@
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid #9b9b9b;
+  border-bottom: 2px solid #F2AF29;
   outline: 0;
   font-size: 20px;
   font-weight: 500;
-  color: #474747;
+  color: #F4EEF4;
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -194,7 +194,7 @@
 }
 
 .form__field:placeholder-shown ~ .form__label {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   cursor: text;
   top: 20px;
 }
@@ -205,8 +205,8 @@
   display: block;
   transition: 0.2s;
   font-weight: 400;
-  font-size: 20px;
-  color: #9b9b9b;
+  font-size: 17px;
+  color: #F2AF29;
 }
 
 .form__field:focus ~ .form__label {
@@ -215,7 +215,7 @@
   display: block;
   transition: 0.2s;
   font-size: 12px;
-  color: #1e1e1e;
+  color: #F2AF29;
   font-weight: 700;
 }
 
@@ -223,7 +223,7 @@
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 2px;
-  border-color: #1e1e1e;
+  border-color: #F2AF29;
   border-image-slice: 1;
 }
 
@@ -232,3 +232,27 @@
 .form__field:invalid {
   box-shadow: none;
 }
+
+
+
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #1C1B1E inset !important; /* Cambia el color del fondo a blanco */
+  -webkit-text-fill-color: #F4EEF4 !important;
+  outline:none;
+ /* Establece el borde del campo como transparente */
+   
+}
+
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus {
+  outline-color: transparent;
+}
+
+

@@ -9,7 +9,7 @@ export default function Contacto() {
     <section className=' '>
       <article className='md:min-h-[95vh] md:flex flex-col justify-center items-center relative'>
         <div className='
-            w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-[#676B6C] 
+            w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-negroSecundario 
             px-2 pb-10 pt-60  md:p-9 xl:py-14 xl:px-16
             rounded-3xl flex flex-col md:flex-row items-center
            '>
@@ -27,7 +27,7 @@ export default function Contacto() {
             <p className='font-light text-sm text-white md:w-[90%]'>No pierdas más tiempo, reserva tu turno ahora mismo. En caso de poder asistir cancela tu turno desde la misma pagina con anticipacion.</p>
             <Link
               to={user ? '/nuevoturno' : '/micuenta'}
-              className='w-[296px] h-[55px] flex justify-center items-center p-[10px] bg-black font-medium text-lg lg:text-base text-white'
+              className='w-[296px] h-[55px] flex justify-center items-center p-[10px] bg-amarillo font-medium text-lg lg:text-base text-negroPrincipal'
             >
               Reservar turno
             </Link>
@@ -37,23 +37,25 @@ export default function Contacto() {
 
      <article id='contacto' className='pt-10 h-auto max-h-full' >
         <div  className='flex flex-col gap-y-5 items-center px-10'>
-          <h2 className='text-center font-bold text-[32px]'>Contacto</h2>
+          <h2 className='text-center font-bold text-[32px] text-blanco'>Contacto</h2>
           <div className='flex flex-col gap-y-5 items-center '>
 
-            <h3  className='font-semobold text-xl py-4'>Encontranos en</h3>
+            <h3  className='font-semobold text-xl py-4 text-blanco'>Encontranos en</h3>
 
-            <div className='flex flex-col md:flex-row md:gap-x-10 lg:gap-x-20 xl:gap-x-40 gap-y-3 md:mb-5'>
-              <div className='text-xl font-light flex items-center gap-x-2'>
+            <div className='flex flex-col md:flex-row md:gap-x-10 lg:gap-x-20 xl:gap-x-40 gap-y-3 mb-5'>
+              <div className='text-xl font-light flex items-center gap-x-2 text-amarillo'>
                 <ion-icon name="location"></ion-icon>
-                <p className='text-base font-medium '> Pirán 624</p>
+                <p className='text-base font-medium text-blanco'> Pirán 624</p>
               </div>
-              <div className='text-xl font-light flex items-center gap-2'>
+              <div className='text-xl font-light flex items-center gap-2 text-amarillo'>
                 <ion-icon name="logo-instagram"></ion-icon>
-                <a href='https://www.instagram.com/jotaa_barberr/' target='__blank' className='text-base font-medium underline'>@jotaa_barberr</a>
+                <a href='https://www.instagram.com/jotaa_barberr/' target='__blank' 
+                className='text-base font-medium underline text-blanco'>@jotaa_barberr</a>
               </div>
-              <div className='text-xl font-light flex items-center gap-x-2'>
+              <div className='text-xl font-light flex items-center gap-x-2 text-amarillo'>
                 <ion-icon name="logo-whatsapp"></ion-icon>
-                <a href="https://wa.me/+5492235808853"  target='__blank' className='text-base font-medium underline'>2235808853</a>
+                <a href="https://wa.me/+5492235808853"  target='__blank' 
+                className='text-base font-medium underline text-blanco'>2235808853</a>
               </div>
             </div>
             <iframe

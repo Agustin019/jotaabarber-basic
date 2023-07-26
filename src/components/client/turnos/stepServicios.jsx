@@ -28,10 +28,9 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
   const settings = {
     infinite: true,
     speed: 500,
-    dots: true,
+    dots: false,
     slidesToShow: 3,
     slidesToScroll: 1,
-   
     initialSlide: 0,
     nextArrow: <CustomNextArrow />,
     prevArrow: <CustomPrevArrow />,
@@ -83,11 +82,11 @@ export default function StepServicios({ servicioSeleccionado, setServicioSelecci
             >
               <img className={`  w-[235px] h-[235px]  lg:w-[180px] xl:w-[200px]
               rounded-3xl  md:h-[200px]  md:w-[200px] object-cover hover:outline outline-2 outline-[#1e1e1e] hover:shadow-lg hover:shadow-[#1e1e1e]
-              ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-2 outline-[#1e1e1e] shadow-lg shadow-[#1e1e1e]' : ''}`}
+              ${servicioSeleccionado.nombre === servicio.nombre ? 'outline outline-2 outline-amarillo shadow-lg shadow-[#1e1e1e]' : ''}`}
                 src={servicio.img}
                 alt={servicio.nombre}
               />
-              <div className='w-full flex flex-col py-3 my-2 justify-center items-center  '>
+              <div className='w-full flex flex-col py-3 my-2 justify-center items-center text-blanco '>
                 <p className='text-base md:text-lg font-semibold uppercase text-center'>{servicio.nombre}</p>
                 <p className="text-base font-normal ">${servicio.precio}</p>
               </div>
@@ -110,7 +109,7 @@ const CustomPrevArrow = (props) => {
       <button 
         type="button"
         onClick={onClick} 
-        className="absolute top-[118px] left-5 md:left-0 lg:top-[100px]">
+        className="absolute text-blanco top-[118px] left-5 md:left-0 lg:top-[100px]">
         <ion-icon name="arrow-back-sharp"></ion-icon>
       </button>
     </div>
@@ -126,7 +125,7 @@ const CustomNextArrow = (props) => {
         <button 
           type="button" 
           onClick={onClick}
-          className="absolute -top-[215px] lg:-top-[225px] xl:-top-[250px] lg:bottom-[177px] xl:bottom-[154px] right-5  md:right-0"
+          className="absolute text-blanco -top-[215px] lg:-top-[225px] xl:-top-[250px] lg:bottom-[177px] xl:bottom-[154px] right-5  md:right-0"
           >
         <ion-icon name="arrow-forward-sharp"></ion-icon>
       </button>

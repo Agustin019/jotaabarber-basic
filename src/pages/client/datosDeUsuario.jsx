@@ -51,16 +51,16 @@ export default function DatosDeUsuario() {
             <main className='flex flex-col md:flex-row gap-x-5 my-20 w-full'>
                 <section className='md:w-[20%]'>
                     <article>
-                        <h2 className='font-bold text-2xl p-8'>¡Bienvenido, {datosUsuarioActual?.fullName?.split(' ')[0]}!</h2>
+                        <h2 className='font-bold text-2xl p-8 text-blancoSecundario'>¡Bienvenido, {datosUsuarioActual?.fullName?.split(' ')[0]}!</h2>
                     </article>
                     <article className="flex md:flex-col gap-x-4 justify-center px-5 ">
-                        <Link
+                    <Link
                             to="/datos"
                             className={`
-                            w-[164px] h-[52px] p-4 text-base font-semibold
+                            w-[164px] h-[52px] p-4 text-lg text-center font-semibold text-blancoSecundario
                             
                             ${location.pathname === '/datos'
-                                    ? 'font-semibold border-l-[5px] border-black bg-[#676B6C] text-white'
+                                    ? 'font-semibold border-b-[5px] md:border-b-0 md:border-l-[5px] border-amarillo '
                                     : 'font-light'
                                 }`}
                         >
@@ -69,9 +69,9 @@ export default function DatosDeUsuario() {
                         <Link
                             to="/turnos"
                             className={`
-                            w-[164px] h-[52px] p-4 text-base font-semibold
+                            w-[164px] h-[52px] p-4 text-lg font-semibold text-center text-blancoSecundario
                             ${location.pathname === '/turnos'
-                                    ? 'font-semibold border-l-[5px] border-black  bg-[#676B6C]'
+                                    ? 'font-semibold border-b-[5px] md:border-b-0 md:border-l-[5px] border-amarillo '
                                     : 'font-light'
                                 }`}
                         >
@@ -98,7 +98,7 @@ export default function DatosDeUsuario() {
                         </div>
 
                         <div className="flex flex-col items-start justify-around">
-                            <h2 className="text-2xl font-bold text-center">
+                            <h2 className="text-2xl font-bold text-center text-blancoSecundario">
                                 {datosUsuarioActual?.fullName}
                             </h2>
                             <div className="relative">
@@ -112,82 +112,84 @@ export default function DatosDeUsuario() {
                                     onClick={handleButtonClick}
                                     className="
                                     bw-[214px] h-[48px] py-3 px-6 flex justify-center items-center gap-[10px]
-                                    bg-black text-white font-bold text-base uppercase
+                                    bg-amarillo text-negroPrincipal rounded-lg font-bold text-base uppercase
                                     "
                                 >
-                                    <img src="https://i.ibb.co/R4LzjhG/photo-camera.png" alt="" />
+                                    <span className='text-2xl pt-1'>
+                                        <ion-icon name="camera-outline"></ion-icon>
+                                    </span>
                                     Cambiar foto
                                 </button>
                             </div>
                         </div>
                     </article>
                     <article>
-                        <div className='w-[90%] mx-auto flex flex-col justify-start gap-y-3 '>
+                        <div className='w-[90%] mx-auto flex flex-col justify-start gap-y-3 text-blancoSecundario'>
                             <p className='font-bold text-[20px]'>Mis Datos</p>
                             <p className='font-light text-base'>Información de tu cuenta</p>
                         </div>
                         <form className='w-[90%] mx-auto flex flex-col gap-y-6 pt-5'>
-                            <div className='flex flex-col gap-y-2'>
+                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
                                 <label htmlFor="fullname">Nombre y apellido</label>
                                 <input
                                     id="fullname"
                                     type="text"
                                     name="Nombre y apellido"
                                     placeholder='Nombre y apellido'
-                                    className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4 outline-[#1e1e1e]'
+                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
                                 />
                             </div>
-                            <div className='flex flex-col gap-y-2'>
+                            <div className='flex flex-col gap-y-2  text-blancoSecundario'>
                                 <label htmlFor="Email">Email</label>
                                 <input
                                     id="Email"
                                     type="email"
                                     name="Email"
                                     placeholder='Email'
-                                    className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4 outline-[#1e1e1e]'
+                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
                                 />
                             </div>
-                            <div className='flex flex-col gap-y-2'>
+                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
                                 <label htmlFor="Telefono">Telefono</label>
                                 <input
                                     id="Telefono"
                                     type="text"
                                     name="Telefono"
                                     placeholder='Telefono'
-                                    className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4 outline-[#1e1e1e]'
+                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
                                 />
                             </div>
 
                                 {/* Contraseña  */}
-                            <div className='flex flex-col gap-y-3 pt-10 pb-5'>
+                            <div className='flex flex-col gap-y-3 pt-10 pb-5 text-blancoSecundario'>
                                 <h3 className='font-bold text-[20px]'> Contraseña</h3>
                                 <p className='font-light text-base'>Si no deseas cambiar la contraseña, mantene los campos en blanco</p>
                             </div>
-                            <div className='flex flex-col gap-y-2'>
+                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
                                 <label htmlFor="Contraseña">Contraseña</label>
                                 <input
                                     id="Contraseña"
                                     type="password"
                                     name="Contraseña"
                                     placeholder='Contraseña'
-                                    className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4 outline-[#1e1e1e]'
+                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
                                 />
                             </div>
-                            <div className='flex flex-col gap-y-2'>
+                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
                                 <label htmlFor="Repetir contraseña">Repetir contraseña</label>
                                 <input
                                     id="Repetir contraseña"
                                     type="password"
                                     name="Repetir contraseña"
                                     placeholder='Repetir contraseña'
-                                    className='w-full h-[46px] border border-[#2d2d2d] rounded-lg py-3 px-4 outline-[#1e1e1e]'
+                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
                                 />
                             </div>
 
                             <input 
                                 type="submit" 
                                 value="Guardar cambios" 
-                                className='w-[197px] py-3 px-6 text-white font-bold text-base bg-black cursor-pointer uppercase flex justify-center items-center'
+                                className='w-[197px] py-3 px-6 text-negroPrincipal font-bold text-base bg-amarillo rounded-lg cursor-pointer uppercase flex justify-center items-center'
                                 />
                         </form>
                     </article>

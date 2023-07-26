@@ -30,18 +30,18 @@ export default function Horario({ horario, horariosModificados, setHorariosModif
   return (
     <div  className={`
     h-[45px] w-[158px] flex justify-between items-center gap-3 px-2 py-3 
-    border border-l-[5px] border-black
+    border border-l-[5px] border-amarilloSecundario text-blancoSecundario
 `}>
       <p className="text-sm font-normal">{horario.hora}</p>
       <Switch
         onChange={handleToggle}
         checked={isActive }
-        onColor="#CCCCCC"
-        offColor="#CCCCCC"
+        onColor="#1C1B1E"
+        offColor="#1C1B1E"
         handleDiameter={20}
         uncheckedIcon={false}
         checkedIcon={false}
-        onHandleColor="#000"
+        onHandleColor="#F2AF29"
         offHandleColor="#837e7e"
       />
     </div>

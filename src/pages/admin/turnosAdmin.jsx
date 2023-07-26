@@ -161,7 +161,7 @@ export default function TurnosAdmin() {
     return (
         <>
             <DashBoard />
-            <main className='lg:ml-[250px] '>
+            <main className='lg:ml-[250px] bg-negroSecundario min-h-screen'>
             <PantallaCargando isLoading={isLoading} />
             {
             Object.keys(modalDatosDeTurno).length !== 0  && 
@@ -175,7 +175,7 @@ export default function TurnosAdmin() {
                 setModalEliminarTurno={setModalEliminarTurno}
                 /> 
             }
-                <section className='flex justify-start p-10 text-[#1e1e1e] '>
+                <section className='flex justify-start p-10 text-blancoSecundario '>
                     <article className='flex flex-col gap-y-5 z-20'>
                         <h2 className='text-2xl font-semibold'>Agenda del dia</h2>
                         <Calendar
@@ -189,7 +189,7 @@ export default function TurnosAdmin() {
                 </section>
                 <section>
 
-                    <article className='
+                    <article className=' text-blancoSecundario
                      grid grid-cols-[3fr,3fr,1fr,1fr]  
                      sm:grid-cols-[2fr,2fr,2fr,1fr]
                      md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]

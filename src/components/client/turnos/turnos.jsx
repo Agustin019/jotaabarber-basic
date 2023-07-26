@@ -51,7 +51,7 @@ export default function Turnos({
         turnos.length !== 0
           ? (
             <div >
-              <p className='text-center'>Turnos del día <span className='capitalize font-medium text-xl'>{fechaFormateada}</span></p>
+              <p className='text-center text-blanco'>Turnos del día <span className='capitalize font-medium text-xl'>{fechaFormateada}</span></p>
               <div className='flex flex-col md:flex-row items-center justify-center gap-y-4'>
                 <div className=' mx-auto md:w-[20%] flex md:flex-col '>
                   <button
@@ -60,7 +60,7 @@ export default function Turnos({
                       setFechaSeleccionada({})
                       setPeriodoTurno('mañana')
                     }}
-                    className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'mañana' ? 'font-semibold border-b-[2px] md:border-b-0 md:border-l-[5px] border-black' : 'font-light'}`}
+                    className={`w-[120px] h-[44px] py-3 px-2 text-base text-blanco ${periodoTurno === 'mañana' ? 'font-semibold border-b-[2px] md:border-b-0 md:border-l-[5px] border-amarillo' : 'font-light'}`}
                   >
                     Mañana
                   </button>
@@ -70,14 +70,16 @@ export default function Turnos({
                       setFechaSeleccionada({})
                       setPeriodoTurno('tarde')
                     }}
-                    className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoTurno === 'tarde' ? 'font-semibold border-b-[2px] md:border-b-0 md:border-l-[5px] border-black' : 'font-light'}`}
+                    className={`w-[120px] h-[44px] text-blanco py-3 px-2 text-base ${periodoTurno === 'tarde' ? 'font-semibold border-b-[2px] md:border-b-0 md:border-l-[5px] border-amarillo' : 'font-light'}`}
                   >
                     Tarde
                   </button>
                 </div>
 
               
-                 <div className={` w-[95%] px-1 mx-auto flex flex-wrap justify-center items-center last:justify-start gap-3 xl:gap-2 h-[184px] pb-2 md:py-4 
+                 <div className={` w-[92%] sm:w-[70%] lg:w-[80%] xl:px-10  mx-auto 
+                 grid grid-cols-2 place-items-center sm:grid-cols-3 
+                 gap-y-3 xl:gap-2 h-[184px] pb-2 md:py-4 
                  ${servicioSeleccionado.nombre === 'Corte' || servicioSeleccionado.nombre === 'Corte y barba'
                  ? 'overflow-y-auto' : 'overflow-hidden'}
                  `}
@@ -101,7 +103,7 @@ export default function Turnos({
                         )
                       :
                       <div className='h-[183px] overflow-hidden flex flex-col items-center justify-center w-full col-span-2'>
-                        <p className='text-lg md:text-2xl text-[#1e1e1e] text-center'>No hay turnos para este servicio en este dia </p>
+                        <p className='text-lg md:text-2xl text-blanco text-center'>No hay turnos para este servicio en este dia </p>
                        </div>
                    }
                  </div>

@@ -116,7 +116,7 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
             <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[630px] rounded-xl py-8 px-6 bg-[#1e1e1e] flex flex-col gap-y-6 mb-20 md:mb-0'>
                 {/* Contenido del modal */}
                 <article className='flex justify-between items-center '>
-                    <h2 className='font-bold text-2xl text-[#FDFFFC]'>Editar servicio</h2>
+                    <h2 className='font-bold text-2xl text-blancoSecundario'>Editar servicio</h2>
                     <button onClick={() => {
                         setServicioAEditar({})
                     }}>
@@ -129,7 +129,7 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                     <div className='flex flex-col max-h-[452px] overflow-y-scroll px-2  gap-y-5 justify-between'>
                         <div className=''>
                             {/* Contenedor campo imagen */}
-                            <p className='text-[#FDFFFC] font-semibold text-base py-4 '>Foto del servicio</p>
+                            <p className='text-blancoSecundario font-semibold text-base py-4 '>Foto del servicio</p>
                             <div
                                 className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
                                 onDragEnter={handleDragEnter}
@@ -139,7 +139,7 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                             >
                                 {!selectedImage ? (
                                     <div className='flex items-center'>
-                                        <label htmlFor="imageInput" className="cursor-pointer text-[#FDFFFC] font-light text-[10px] flex flex-col gap-y-4 items-center ">
+                                        <label htmlFor="imageInput" className="cursor-pointer text-blancoSecundario font-light text-[10px] flex flex-col gap-y-4 items-center ">
                                         <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
                                             Sube o arrastra el archivo. Puede ser .jpg o .png
                                         </label>
@@ -148,7 +148,7 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                                     <div className='flex flex-col items-center  mt-16'>
                                         <img src={selectedImage} alt="Imagen seleccionada" className="max-h-[100px] max-w-[170px]" />
                                         <button
-                                            className="mt-5 bg-[#FDFFFC] text-[#1e1e1e] font-medium   py-2 px-4 rounded-md"
+                                            className="mt-5 bg-amarillo text-negroPrincipal font-medium   py-2 px-4 rounded-md"
                                             onClick={handleImageChange}
                                         >
                                             Cambiar imagen
@@ -162,19 +162,19 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                                     onChange={handleImageUpload}
                                 />
                             </div>
-                            <p className='text-sm font-light text-[#FDFFFC] text-center py-4'> {!selectedImage && 'Sin archivo seleccionado'}</p>
+                            <p className='text-sm font-light text-blancoSecundario text-center py-4'> {!selectedImage && 'Sin archivo seleccionado'}</p>
 
                         </div>
 
                         {/* Campo Nombre */}
                         <div className='flex flex-col gap-y-3'>
-                            <label className='font-semibold text-base text-[#FDFFFC]' htmlFor='nombre'>
+                            <label className='font-semibold text-base text-blancoSecundario' htmlFor='nombre'>
                                 Nombre
                             </label>
                             <input
                                 type='text'
                                 id='nombre'
-                                className='p-4 rounded-xl border border-[#d9d9d9] bg-transparent  font-light text-[#FDFFFC] outline-none'
+                                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
                                 placeholder='Nombre del servicio'
                                 value={nombreSercivio}
                                 onChange={(e) => setNombreServicio(e.target.value)}
@@ -182,13 +182,13 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                         </div>
                         {/** Campo Precio */}
                         <div className='flex flex-col gap-y-3'>
-                            <label className='font-semibold text-base text-[#FDFFFC]' htmlFor='precio'>
+                            <label className='font-semibold text-base text-blancoSecundario' htmlFor='precio'>
                                 Precio
                             </label>
                             <input
                                 type='number'
                                 id='precio'
-                                className='p-4 rounded-xl border border-[#d9d9d9] bg-transparent  font-light text-[#FDFFFC] outline-none'
+                                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
                                 placeholder='Precio del servicio'
                                 value={precio}
                                 onChange={(e) => setPrecio(e.target.value)}
@@ -197,11 +197,11 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
 
                         {/* Campo de serviicos a cargo */}
                         {/* <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-[#FDFFFC]'>profesionales a cargo</label>
+              <label className='font-semibold text-base text-blancoSecundario'>profesionales a cargo</label>
               <div className='flex justify-between'>
                 {profesionales?.map((servicio) => (
                   <div key={servicio.nombre} className='flex gap-2'>
-                    <label className='font-light text-sm text-[#FDFFFC]'>
+                    <label className='font-light text-sm text-blancoSecundario'>
                       <input type='checkbox' name={servicio.nombre} className='mr-1' />
                       {servicio.nombre}
                     </label>
@@ -216,7 +216,7 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                     <div className='flex justify-center '>
                         <button
                             type='submit'
-                            className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
+                            className='w-[282px] rounded-lg bg-amarillo py-[15px] px-6 font-semibold text-negroPrincipal text-base'>
                             Guardar cambios
                         </button>
 

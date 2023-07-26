@@ -58,7 +58,7 @@ export default function ServiciosAdmin() {
     return (
         <>
         <DashBoard/>
-            <main className='lg:ml-[250px]'>
+            <main className='lg:ml-[250px] min-h-screen bg-negroSecundario'>
                 { isLoading && <PantallaCargando isLoading={isLoading}/> }
                 {modal && <ModalServicios handleModal={handleModal} setIsLoading={setIsLoading}/>}
                 {Object.keys(servicioAEditar).length !== 0 && <ModalEditarServicio servicioAEditar={servicioAEditar} setServicioAEditar={setServicioAEditar} setIsLoading={setIsLoading}/>}
@@ -67,8 +67,8 @@ export default function ServiciosAdmin() {
                     titulo='Eliminar Servicio'
                     texto={(
                         <p>
-                          ¿Estás seguro de eliminar al profesional
-                          <span className="font-bold"> {''} {modalEliminar} {''} </span>
+                          ¿Estás seguro de eliminar el servicio
+                          <span className="font-bold"> {''} {`"${modalEliminar}"`} {''} </span>
                           del sistema? Una vez realizada esta acción, no podrá revertirse.
                         </p>
                       )}
@@ -77,14 +77,14 @@ export default function ServiciosAdmin() {
                     confirmar={() => eliminarServicio(modalEliminar)}
                     cancelar={() => setModalEliminar(null)}
                 />}
-                <section className='flex justify-start p-10 text-[#1e1e1e]'>
+                <section className='flex justify-start p-10 text-blancoSecundario'>
                     <article className='flex flex-col gap-y-5'>
                         <h2 className='text-2xl font-semibold'>servicios</h2>
                         <p className='text-base font-light '>En este panel tienes la posibilidad de administrar los servicios de tu negocio. ¡Puedes agregar nuevos, editar los que ya tienes o eliminarlos!</p>
                         <div className='flex justify-end'>
                             <button
                                 onClick={handleModal}
-                                className='w-[209px] h-[48px] p-3 flex justify-center items-center bg-[#1e1e1e] text-white font-medium text-base '
+                                className='w-[209px] h-[48px] p-3 flex justify-center items-center bg-amarillo text-negroPrincipal font-semibold text-base rounded-lg'
                             >
                                 <ion-icon name="add"></ion-icon>
                                 Nuevo servicio
@@ -93,7 +93,7 @@ export default function ServiciosAdmin() {
                     </article>
                 </section>
                 <section>
-                    <article className='w-full grid grid-cols-4 place-items-start px-2 sm:px-10 sm:text-base text-sm'>
+                    <article className='w-full grid grid-cols-4 place-items-start px-2 sm:px-10 sm:text-base text-sm text-blancoSecundario'>
                         <p className='font-normal '>Foto</p>
                         <p className='font-normal '>Descripcion</p>
                         <p className='font-normal '>Precio</p>
@@ -104,7 +104,10 @@ export default function ServiciosAdmin() {
                             servicios?.map((servicio, index) => (
                                 <div
                                     key={servicio.id}
-                                    className={`grid grid-cols-4 place-items-start items-center py-[11px] px-2 sm:px-10 text-[#2d2d2d] ${index % 2 === 0 ? 'bg-white' : 'bg-[#2d2d2d]/10'
+                                    className={`
+                                    grid grid-cols-4 place-items-start items-center 
+                                    py-[11px] px-2 sm:px-10 text-blancoSecundario
+                                    ${index % 2 === 0 ? 'bg-[#48464A]' : ''
                                         }`}
                                 >
                                     {
@@ -122,12 +125,12 @@ export default function ServiciosAdmin() {
                                     <p className='font-normal text-sm'>$ {servicio.precio}</p>
                                    <div className='flex justify-between gap-x-8 '>
                                     <button onClick={() => setModalEliminar(servicio.nombre)}>
-                                         <img src="https://i.ibb.co/VC2sk8c/delete-2.png" alt="icono eliminar" />
+                                         <img src="https://i.ibb.co/Tr456LC/delete-5.png" alt="icono eliminar" />
                                     </button>
                                     <button onClick={() => { 
                                         setServicioAEditar(servicio)
                                     }}>
-                                         <img src="https://i.ibb.co/7gbLxGS/edit.png" alt="icono editar" />
+                                         <img src="https://i.ibb.co/GpWv4s7/edit-1.png" alt="icono editar" />
                                     </button>
                                    </div>
                                 </div>

@@ -52,8 +52,8 @@ export default function Servicios() {
     return (
         <section id='servicios' className='h-auto '>
             <article className='flex flex-col items-center  py-10 gap-y-5 '>
-                <h2 className='font-bold text-[32px] text-center'>Servicios </h2>
-                <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto'>
+                <h2 className='font-bold text-[32px] text-center text-blanco'>Servicios </h2>
+                <p className='font-light text-sm text-center lg:w-[80%] lg:mx-auto text-blanco'>
                   Los servicios de corte y corte con barba incluyen el perfilado de cejas. 
                   Tanto los claritos como los colores completos vienen acompañados de un corte de pelo. 
                   Si estás interesado en colores personalizados, no dudes en contactarme a través de

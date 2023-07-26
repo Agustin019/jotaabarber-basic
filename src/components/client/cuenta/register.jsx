@@ -13,15 +13,15 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
     
 
     return (
-        <article>
-            <div className='flex flex-col  mt-8'>
-                <h2 className='font-semibold text-3xl '>Registrarse </h2>
-                <div className=' flex flex-col lg:flex-row gap-10 py-10 items-center'>
+        <article className='min-h-[899px]'>
+            <div className='flex flex-col  mt-5'>
+                <h2 className='font-semibold text-2xl text-blanco'>Registrarse </h2>
+                <div className=' flex flex-col lg:flex-row gap-10 py-5 items-center'>
                     <button
                         onClick={handleGoogle}
                         className='
-                     w-full bg-white border border-zinc-800 rounded-xl py-4 px-[10px] 
-                     flex items-center justify-center gap-x-2 font-semibold text-base
+                     w-full bg-transparent border border-blanco rounded-xl py-4 px-[10px] 
+                     flex items-center justify-center gap-x-2 font-semibold text-base text-blanco
                      '
                     >
                         <img src="https://i.ibb.co/bsKnZYq/buscar.png" alt="Logo google" />
@@ -39,7 +39,7 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
                 </div>
                 <div className='w-full flex justify-center items-center gap-x-2'>
                     <div className='w-[32px] border border-gray-400'></div>
-                    <p className='text-2xl font-medium text-gray-400'>O</p>
+                    <p className='text-2xl font-medium text-gray-400'>ó</p>
                     <div className='w-[32px] border border-gray-400'></div>
                 </div>
             </div>
@@ -107,7 +107,7 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
                         value="Registrarse"
                         className='
                         w-[292px] h-[52px] flex justify-center items-center py-4 px-[10px] 
-                        bg-[#1E1E1E] text-white text-base font-bold rounded-xl mx-auto'
+                        bg-amarillo text-negroPrincipal text-base font-bold rounded-xl mx-auto'
                     />
                 </div>
             </form>

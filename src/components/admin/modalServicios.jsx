@@ -115,10 +115,10 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
   return (
     <main className='h-screen w-screen fixed left-0 lg:pl-[250px] bg-[#474747]/40 flex flex-col items-center justify-center z-50'>
       {/* Modal */}
-      <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[630px] rounded-xl py-8 px-6 gap-y-6 bg-[#1e1e1e] flex flex-col mb-20 md:mb-0'>
+      <form onSubmit={handleSubmit} className='w-[328px] md:w-[636px] h-[630px] rounded-xl py-8 px-6 gap-y-6 bg-negroPrincipal flex flex-col mb-20 md:mb-0'>
         {/* Contenido del modal */}
         <article className='flex justify-between items-center '>
-          <h2 className='font-bold text-2xl text-[#FDFFFC]'>Nuevo servicio</h2>
+          <h2 className='font-bold text-2xl text-blancoSecundario'>Nuevo servicio</h2>
           <button onClick={() => {
             handleModal()
           }}>
@@ -150,7 +150,7 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
                   <div className='flex flex-col items-center gap-y-1 mt-16'>
                     <img src={selectedImage} alt="Selected" className="max-h-[100px] max-w-[170px]" />
                     <button
-                      className="mt-4 bg-[#FDFFFC] text-[#1e1e1e] font-medium hover:bg-blue-600  py-2 px-4 rounded-md"
+                      className="mt-4 bg-amarillo text-negroPrincipal font-medium hover:bg-blue-600  py-2 px-4 rounded-md"
                       onClick={handleImageChange}
                     >
                       Cambiar imagen
@@ -164,19 +164,19 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
                   onChange={handleImageUpload}
                 />
               </div>
-              <p className='text-sm font-light text-[#FDFFFC] text-center py-4'> {!selectedImage && 'Sin archivo seleccionado'}</p>
+              <p className='text-sm font-light text-blancoSecundario text-center py-4'> {!selectedImage && 'Sin archivo seleccionado'}</p>
 
             </div>
 
             {/* Campo Nombre */}
             <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-[#FDFFFC]' htmlFor='nombre'>
+              <label className='font-semibold text-base text-blancoSecundario' htmlFor='nombre'>
                 Nombre
               </label>
               <input
                 type='text'
                 id='nombre'
-                className='p-4 rounded-xl border border-[#d9d9d9] bg-transparent  font-light text-[#FDFFFC] outline-none'
+                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
                 placeholder='Nombre del servicio'
                 value={nombreSercivio}
                 onChange={(e) => setNombreServicio(e.target.value)}
@@ -184,13 +184,13 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
             </div>
             {/** Campo Precio */}
             <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-[#FDFFFC]' htmlFor='precio'>
+              <label className='font-semibold text-base text-blancoSecundario' htmlFor='precio'>
                 Precio
               </label>
               <input
                 type='number'
                 id='precio'
-                className='p-4 rounded-xl border border-[#d9d9d9] bg-transparent  font-light text-[#FDFFFC] outline-none'
+                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
                 placeholder='Precio del servicio'
                 value={precio}
                 onChange={(e) => setPrecio(e.target.value)}
@@ -199,11 +199,11 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
 
             {/* Campo de profesionales a cargo */}
             {/* <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-[#FDFFFC]'>profesionales a cargo</label>
+              <label className='font-semibold text-base text-blancoSecundario'>profesionales a cargo</label>
               <div className='flex justify-between'>
                 {profesionales?.map((servicio) => (
                   <div key={servicio.nombre} className='flex gap-2'>
-                    <label className='font-light text-sm text-[#FDFFFC]'>
+                    <label className='font-light text-sm text-blancoSecundario'>
                       <input type='checkbox' name={servicio.nombre} className='mr-1' />
                       {servicio.nombre}
                     </label>
@@ -215,10 +215,10 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
 
           {/* Botón enviar */}
         </article>
-          <div className=' '>
+          <div className=' flex justify-center'>
             <button
               type='submit'
-              className='w-[282px] rounded-lg bg-[#ffffff] py-[15px] px-6 font-semibold text-[#1E1E1E] text-base'>
+              className='w-[282px] rounded-lg bg-amarillo py-[15px] px-6 font-semibold text-negroPrincipal text-base'>
               Agregar servicio
             </button>
 

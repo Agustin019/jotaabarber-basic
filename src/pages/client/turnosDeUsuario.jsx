@@ -16,16 +16,16 @@ export default function TurnosDeUsuario() {
             <main className='flex flex-col md:flex-row mt-20 '>
                 <section>
                     <article>
-                    <h2 className='font-bold text-2xl p-8'>¡Bienvenido, {datosUsuarioActual?.fullName?.split(' ')[0]}!</h2>
+                        <h2 className='font-bold text-2xl p-8 text-blanco'>¡Bienvenido, {datosUsuarioActual?.fullName?.split(' ')[0]}!</h2>
                     </article>
                     <article className="flex md:flex-col gap-x-4 justify-center px-5">
                         <Link
                             to="/datos"
                             className={`
-                            w-[164px] h-[52px] p-4 text-base font-semibold
+                            w-[164px] h-[52px] p-4 text-lg font-semibold text-blanco text-center
                             
                             ${location.pathname === '/datos'
-                                    ? 'font-semibold border-l-[5px] border-black bg-[#676B6C] text-white'
+                                    ? 'font-semibold border-b-[5px] md:border-b-0 md:border-l-[5px] border-amarillo  '
                                     : 'font-light'
                                 }`}
                         >
@@ -34,9 +34,9 @@ export default function TurnosDeUsuario() {
                         <Link
                             to="/turnos"
                             className={`
-                            w-[164px] h-[52px] p-4 text-base font-semibold
+                            w-[164px] h-[52px] p-4 text-lg font-semibold text-center text-blanco box-border
                             ${location.pathname === '/turnos'
-                                    ? 'font-semibold border-l-[5px] border-black  bg-[#676B6C] text-white'
+                                    ? 'font-semibold border-b-[5px] md:border-b-0 md:border-l-[5px] border-amarillo '
                                     : 'font-light'
                                 }`}
                         >
@@ -46,7 +46,7 @@ export default function TurnosDeUsuario() {
                 </section>
                 <section className="flex flex-col gap-y-5 w-[100%] mx-auto">
                     <article className='flex items-start mx-auto lg:mx-0 mt-12 py-5 border-b border-gray-400 w-[90%] '>
-                        <h2 className='font-bold text-2xl  '>Proximos turnos</h2>
+                        <h2 className='font-bold text-2xl text-blanco'>Proximos turnos</h2>
                     </article>
                     <article className=''>
                         {
@@ -61,10 +61,10 @@ export default function TurnosDeUsuario() {
                                 : <div className='flex flex-col  gap-y-8 '>
 
                                     <div className='flex flex-col gap-y-3 items-center'>
-                                        <p className='text-neutral-500 font-medium text-sm sm:text-lg py-8'>Aún no cuentas con turnos programados</p>
+                                        <p className='text-neutral-500 font-medium text-sm  sm:text-lg py-8'>Aún no cuentas con turnos programados</p>
                                         <Link
                                             to='/nuevoturno'
-                                            className='w-[209px] h-[48px] py-3 px-6 flex justify-center items-center bg-black text-white font-bold text-base uppercase'
+                                            className='w-[209px] h-[48px] py-3 px-6 flex justify-center items-center bg-amarillo rounded-lg text-negroPrincipal font-bold text-base uppercase'
                                         >
                                             <ion-icon name="add-sharp"></ion-icon>
                                             Nuevo turno
@@ -75,7 +75,7 @@ export default function TurnosDeUsuario() {
                     </article>
                 </section>
             </main>
-            <Footer/>
+            <Footer />
         </>
     )
 }

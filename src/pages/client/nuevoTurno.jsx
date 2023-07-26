@@ -47,6 +47,7 @@ export default function NuevoTurno() {
 
   console.log(fechaSeleccionada)
   const navigate = useNavigate()
+
   const pasoActual = () => {
     switch (step) {
       case 0:
@@ -176,7 +177,7 @@ export default function NuevoTurno() {
       
             <div className='flex justify-between'>
               <div
-                className=' flex justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
+                className=' flex text-blanco justify-start items-center w-56 gap-x-2  cursor-pointer text-lg font-medium uppercase'
                 onClick={step === 0 ? () => navigate(- 1) : () => setStep(step - 1)}
               >
                 <ion-icon name="arrow-back-sharp"></ion-icon>
@@ -184,8 +185,8 @@ export default function NuevoTurno() {
               </div>
               <button
                 onClick={handleResumen} 
-                className='bg-[#1e1e1e] py-[10px] px-[11px] rounded-lg lg:hidden'>
-                <img src="https://i.ibb.co/92rcnBj/receipt-long.png" alt="resumen turno" />
+                className='bg-amarillo py-[10px] px-[11px] rounded-lg lg:hidden text-negroPrincipal text-2xl flex items-center'>
+                <ion-icon name="newspaper"></ion-icon>
               </button>
             </div>
             <BarraProgresiva step={step} />

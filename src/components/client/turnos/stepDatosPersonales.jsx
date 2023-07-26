@@ -1,30 +1,38 @@
 import React from 'react'
 
 export default function StepDatosPersonales({ nombre, setNombre, telefono, setTelefono }) {
-  
+
   return (
-    <div className=' w-[90%] sm:w-[93%]  mx-auto flex flex-col justify-center  '>
-      <div className='flex flex-col items-start gap-y-2 pt-28 lg:pt-20'>
-        <label htmlFor="nombre">Nombre Completo</label>
+    <div className=' w-[90%] sm:w-[93%]  mx-auto flex flex-col justify-center pt-20 gap-y-8 '>
+      <div className="form__group  ">
         <input
-          id='nombre'
           type="text"
-          placeholder='Nombre completo'
-          value={nombre} 
+          value={nombre}
+          className="form__field"
           onChange={e => setNombre(e.target.value)}
-          className='w-full py-3 px-4 rounded-lg border border-[#1e1e1e] outline-[#1e1e1e]'       
-          />
+          placeholder="Input"
+          id='fullname'
+          autocomplete= "off"
+          required
+        />
+        <label className="form__label "  htmlFor='fullname'>
+          Nombre Completo
+        </label>
       </div>
-      <div className='flex flex-col items-start gap-y-2 pt-10'>
-        <label htmlFor="telefono">Telefono</label>
+      <div className="form__group  ">
         <input
-          id='telefono'
           type="number"
-          placeholder=' ej: 223 633 4422'
           value={telefono}
           onChange={e => setTelefono(e.target.value)}
-          className='w-full py-3 px-4 rounded-lg border border-[#1e1e1e] outline-[#1e1e1e]'       
-          />
+          className="form__field"
+          placeholder="Input"
+          id='telefono'
+          autocomplete= "off"
+          required
+        />
+        <label className="form__label " htmlFor='telefono'>
+          Telefono
+        </label>
       </div>
     </div>
   )

@@ -104,7 +104,6 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
 
 
 
-
     return (
         <>
             {modal &&
@@ -120,42 +119,42 @@ export default function TurnoActivo({ turno, datosUsuarioActual }) {
                 </Transition>
 
             }
-            <div className=' grid grid-cols-2 mx-auto lg:mx-0 w-[328px] lg:w-[923px] lg:flex justify-between rounded-lg bg-[#1e1e1e] my-8 '>
+            <div className=' grid grid-cols-2 mx-auto lg:mx-0 w-[328px] lg:w-[923px] lg:flex justify-between rounded-lg bg-negroSecundario my-8 '>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-semibold'>Usuario</p>
-                    <p className='text-white text-sm font-normal'>{datosUsuarioActual.fullName}</p>
-                    <p className='text-white text-sm font-normal'>+54 {turno.telefono}</p>
+                    <p className='text-blancoSecundario text-sm font-semibold'>Usuario</p>
+                    <p className='text-blancoSecundario text-sm font-normal'>{datosUsuarioActual.fullName}</p>
+                    <p className='text-blancoSecundario text-sm font-normal'>+54 {turno.telefono}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-semibold'>Dia y horario</p>
-                    <p className='text-white text-sm font-normal'>{`${turno.nombreDia} - ${turno.dia}`} <br /> {turno.hora} hs</p>
+                    <p className='text-blancoSecundario text-sm font-semibold'>Dia y horario</p>
+                    <p className='text-blancoSecundario text-sm font-normal'>{`${turno.nombreDia} - ${turno.dia}`} <br /> {turno.hora} hs</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-semibold'>Servicio</p>
-                    <p className='text-white text-sm font-normal'>{turno.servicio}</p>
+                    <p className='text-blancoSecundario text-sm font-semibold'>Servicio</p>
+                    <p className='text-blancoSecundario text-sm font-normal'>{turno.servicio}</p>
                 </div>
                 <div className='flex flex-col gap-y-2 p-[20px]'>
-                    <p className='text-white text-sm font-semibold'>Estado</p>
+                    <p className='text-blancoSecundario text-sm font-semibold'>Estado</p>
                     {
                         turno.estado === 'confirmado'
-                            ? <p className='text-white text-sm font-semibold p-[10px] bg-[#474747] rounded-xl'>Confirmado</p>
-                            : <p className='text-white text-sm font-semibold p-[10px] bg-[#802a2a] rounded-xl'>Cancelado</p>
+                            ? <p className='text-blancoSecundario text-sm font-semibold p-[10px] bg-verde rounded-xl'>Confirmado</p>
+                            : <p className='text-blancoSecundario text-sm font-semibold p-[10px] bg-rojo rounded-xl'>Cancelado</p>
                     }
                 </div>
-                <div className='flex justify-end items-end py-5  lg:py-0 md:pr-0 col-span-2'>
+                <div className='flex  justify-end items-end py-5  lg:py-0 md:pr-0 col-span-2'>
                     {
                         turno.estado === 'confirmado'
                             ? <button
                                 type='button'
                                 onClick={handleModal}
-                                className='lg:w-[40px] mx-5 w-full lg:h-full bg-gray-300 rounded-lg lg:rounded-none md:rounded-r-lg  flex lg:flex-col justify-center items-center '
+                                className='lg:w-[40px] mx-5 lg:mx-0 w-full lg:h-full bg-rojo rounded-lg lg:rounded-none lg:rounded-r-lg  flex lg:flex-col justify-center  items-center '
                             >
                                 <img
-                                    src="https://i.ibb.co/6W6fcfJ/delete-1.png"
+                                    src="https://i.ibb.co/B2KNRy3/delete-4.png"
                                     alt="icono eliminar"
                                     className='p-2 cursor-pointer '    
                                     />
-                                <span className='font-semibold lg:hidden'>
+                                <span className='font-semibold lg:hidden text-blancoSecundario'>
                                 Cancelar reserva
                                 </span>
                             </button>

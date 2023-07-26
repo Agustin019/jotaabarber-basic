@@ -28,17 +28,17 @@ export default function BarraProgresiva({ step }) {
   }
 
   return (
-    <article className='flex  justify-center w-full '>
+    <article className='flex  justify-center w-full text-blanco'>
      <div className='w-full'>
-      <p className='text-[#2D2D2D] font-semibold text-lg'>Paso {step + 1} de 3 : <span className='font-medium text-base sm:text-lg'>{pasosNombres()}</span></p>
-       <div className="w-full h-2 bg-gray-200 rounded overflow-hidden">
+      <p className=' font-semibold text-lg'>Paso {step + 1} de 3 : <span className='font-light text-base sm:text-lg'>{pasosNombres()}</span></p>
+       <div className="w-full h-2 bg-negroSecundario rounded overflow-hidden">
          {barraSteps.map((barStep, i) => (
            <div
              key={i}
              className="h-full transition-width duration-500"
              style={{
                width: `${((step - 1) >= i ? (step - 1) + 1 : step) * 33.3 + 33.3}%`,
-               backgroundColor: step  >= i ? '#1C1B1F' : '#D9D9D9',
+               backgroundColor: step  >= i ? '#F2AF29' : '#313033',
              }}
            ></div>
          ))}
