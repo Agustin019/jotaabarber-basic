@@ -41,7 +41,7 @@ export default function Turno({
                 md:grid-cols-[2fr,2fr,2fr,2fr,2fr,2fr,1fr]
                 lg:grid-cols-7
                 place-items-start  content-center justify-center items-center 
-                py-4 px-2 xl:px-10 text-negroPrincipal my-[2px] border-l-[5px]
+                py-4 px-2 xl:px-10  my-[2px] border-l-[5px]
                 text-blanco
         ${estado === 'cancelado' ? 'border-rojo' : 'border-verde'}
         ${index % 2 ? 'bg-[#48464A]': 'bg-negroSecundario'}
