@@ -3,6 +3,7 @@ import Alerta from '../utils/alerta';
 
 export default function Turno({
     turno,
+    index,
     handleModal,
     modal,
     setModalDatosDeTurno,
@@ -10,11 +11,11 @@ export default function Turno({
     cancelarTurno,
     modalEliminarTurno,
     setModalEliminarTurno,
-    eliminarTurno
+    eliminarTurno,
 }) {
 
 
-    const { cliente, telefono, hora, servicio, estado, userId, turnoId } = turno;
+    const { cliente, telefono, hora, servicio, estado, userId, turnoId, fechaCreacion } = turno;
 
     const verificarEstadoDelTurno = () => {
         if (estado === 'cancelado') {
@@ -26,16 +27,24 @@ export default function Turno({
         }
     }
 
+
+    const formatDate = (fecha) => {
+        const date = new Date(fecha);
+        return date.toLocaleString(); // Utilizar el método toLocaleString para formatear la fecha como desees
+      };
+
     return (
         <div
             className={
                 `grid grid-cols-[3fr,3fr,1fr,1fr] 
                 sm:grid-cols-[2fr,2fr,2fr,1fr]
-                md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
-                lg:grid-cols-6
+                md:grid-cols-[2fr,2fr,2fr,2fr,2fr,2fr,1fr]
+                lg:grid-cols-7
                 place-items-start  content-center justify-center items-center 
-                py-4 px-2 xl:px-10 text-negroPrincipal my-2
-        ${estado === 'cancelado' ? 'bg-rojo' : 'bg-verde'}
+                py-4 px-2 xl:px-10 text-negroPrincipal my-[2px] border-l-[5px]
+                text-blanco
+        ${estado === 'cancelado' ? 'border-rojo' : 'border-verde'}
+        ${index % 2 ? 'bg-[#48464A]': 'bg-negroSecundario'}
         `}
         >
             <p className='font-light text-sm'>{cliente}</p>
@@ -45,6 +54,7 @@ export default function Turno({
             </div>
             <p className='font-light text-sm'>{hora}</p>
             <p className='font-light text-sm hidden md:block'>{servicio}</p>
+            <p className='font-light text-sm hidden md:block'>{formatDate(fechaCreacion)}</p>
             <p className={`font-medium text-sm hidden md:block `}>{estado}</p>
             <button
                 className='lg:mx-7 hidden md:block'

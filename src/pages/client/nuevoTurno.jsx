@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '../../context/authContext'
 import { db } from '../../utils/firebaseconfig'
-import { doc, updateDoc, getDoc } from 'firebase/firestore'
+import { doc, updateDoc, getDoc, serverTimestamp } from 'firebase/firestore'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
@@ -44,6 +44,7 @@ export default function NuevoTurno() {
 
   // Generar un UUID
   const turnoId = uuidv4(); 
+  const fechaDeLaCreacionDelTurno = serverTimestamp()
 
   console.log(fechaSeleccionada)
   const navigate = useNavigate()
@@ -114,7 +115,8 @@ export default function NuevoTurno() {
       const turnoSnapshot = await getDoc(docRefTurno);
       const turnos = turnoSnapshot.data();
       console.log(turnos);
-  
+      
+      const fechaCreacionDelTurno = new Date()
       turnos.turnos.push({
         id: fechaSeleccionada.id,
         userId: datosUsuarioActual.uid,
@@ -127,6 +129,7 @@ export default function NuevoTurno() {
         telefono: telefono,
         servicio: servicioSeleccionado.nombre,
         estado: 'confirmado',
+        fechaCreacion: fechaCreacionDelTurno.toISOString()
       });
   
       await updateDoc(docRefTurno, turnos);

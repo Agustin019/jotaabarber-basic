@@ -192,14 +192,15 @@ export default function TurnosAdmin() {
                     <article className=' text-blancoSecundario
                      grid grid-cols-[3fr,3fr,1fr,1fr]  
                      sm:grid-cols-[2fr,2fr,2fr,1fr]
-                     md:grid-cols-[2fr,2fr,2fr,2fr,2fr,1fr]
-                     lg:grid-cols-6 
+                     md:grid-cols-[2fr,2fr,2fr,2fr,2fr,2fr,1fr]
+                     lg:grid-cols-7 
                      place-items-start  px-2 xl:px-10 text-sm xl:text-base '
                     >
                         <p className='font-normal '>Cliente</p>
                         <p className='font-normal '>Telefono</p>
                         <p className='font-normal '>Hora</p>
                         <p className='font-normal hidden md:block'>Servicio</p>
+                        <p className='font-normal hidden md:block'>Reservado el</p>
                         <p className='font-normal hidden md:block'>Estado</p>
                         <p className='font-normal hidden md:block'>Cancelar</p>
                         <p className='font-normal md:hidden block place-items-end place-self-end'> más</p>
@@ -209,6 +210,7 @@ export default function TurnosAdmin() {
                             turnos.map((turno, index) => (
                                 <Turno 
                                 key={turno.turnoId} 
+                                index={index}
                                 turno={turno}
                                 setTurnoACancelar={setTurnoACancelar} 
                                 modal={modal}

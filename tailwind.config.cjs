@@ -12,7 +12,8 @@ module.exports = {
         'barber':'url(https://i.ibb.co/gTZRmYM/ae2b7f7f-30a2-4a80-ac6a-0a5c8b6f6250-min.jpg)'
       },
       fontFamily:{
-        monsterrat:[ 'Montserrat', 'sans-serif']
+        Exo:[ 'Exo', 'sans-serif'],
+        OpenSans:['Open Sans', 'sans-serif']
       },
       colors:{
         negroPrincipal:'#1C1B1E',
