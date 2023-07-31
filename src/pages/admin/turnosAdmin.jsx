@@ -189,7 +189,7 @@ export default function TurnosAdmin() {
                 </section>
                 <section>
 
-                    <article className=' text-blancoSecundario
+                    <article className=' text-blancoSecundario font-OpenSans
                      grid grid-cols-[3fr,3fr,1fr,1fr]  
                      sm:grid-cols-[2fr,2fr,2fr,1fr]
                      md:grid-cols-[2fr,2fr,2fr,2fr,2fr,2fr,1fr]
@@ -223,7 +223,7 @@ export default function TurnosAdmin() {
                                 />
                             ))
                         ) : (
-                            <p className='text-center pt-20 text-lg'>No hay turnos para este día aún</p>
+                            <p className='text-center pt-20 text-lg text-blanco font-OpenSans'>No hay turnos para este día aún</p>
                         )}
                     </article>
                 </section>

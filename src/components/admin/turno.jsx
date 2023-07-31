@@ -42,7 +42,7 @@ export default function Turno({
                 lg:grid-cols-7
                 place-items-start  content-center justify-center items-center 
                 py-4 px-2 xl:px-10  my-[2px] border-l-[5px]
-                text-blanco
+                text-blanco font-OpenSans
         ${estado === 'cancelado' ? 'border-rojo' : 'border-verde'}
         ${index % 2 ? 'bg-[#48464A]': 'bg-negroSecundario'}
         `}
@@ -60,7 +60,7 @@ export default function Turno({
                 className='lg:mx-7 hidden md:block'
                 onClick={verificarEstadoDelTurno}
             >
-                <img src="https://i.ibb.co/KwQGXF8/delete-3.png" alt="icono cancelar turno" />
+                <img src="https://i.ibb.co/Tr456LC/delete-5.png" alt="icono cancelar turno" />
             </button>
 
             <button

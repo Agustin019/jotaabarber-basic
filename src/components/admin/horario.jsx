@@ -30,7 +30,7 @@ export default function Horario({ horario, horariosModificados, setHorariosModif
   return (
     <div  className={`
     h-[45px] w-[158px] flex justify-between items-center gap-3 px-2 py-3 
-    border border-l-[5px] border-amarilloSecundario text-blancoSecundario
+    border border-l-[5px] border-amarilloSecundario text-blancoSecundario font-OpenSans
 `}>
       <p className="text-sm font-normal">{horario.hora}</p>
       <Switch

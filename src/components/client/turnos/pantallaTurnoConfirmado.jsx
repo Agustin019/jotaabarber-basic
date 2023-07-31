@@ -15,7 +15,7 @@ export default function PantallaTurnoConfirmado({ modal }) {
                 </svg>
 
                 <p className='font-bold  text-2xl text-blanco'>¡Reserva Confirmada!</p>
-                <p className='font-light text-sm sm:text-base text-center px-2 text-blanco'>Puedes revisar el estado de tu reserva o cancelarla si lo deseas desde tu perfil.</p>
+                <p className='font-light text-sm sm:text-base text-center px-2 text-blanco font-OpenSans'>Puedes revisar el estado de tu reserva o cancelarla si lo deseas desde tu perfil.</p>
                 <Link
                     to='/turnos'
                     className='w-[209px] h-[48px] py-3 px-6 flex justify-center items-center bg-amarillo text-negroPrincipal rounded-lg font-bold text-base uppercase'

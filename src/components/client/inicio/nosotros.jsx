@@ -59,7 +59,7 @@ export default function Nosotros() {
         <section id='trabajos' className='  mx-auto  '>
             <article className=' h-auto p-9  relative'>
                 <h2 className='font-bold text-[32px] text-blanco text-center py-5'>Mis trabajos</h2>
-                <p className='font-light text-sm text-blanco py-3 md:py-1 text-center lg:w-[80%] lg:mx-auto'>
+                <p className='font-light font-OpenSans text-sm text-blanco py-3 md:py-1 text-center lg:w-[80%] lg:mx-auto'>
                 Estos son algunos de mis trabajos realizados a lo largo de mis 4 años de experiencia como barbero. Cada corte de pelo y color realizado refleja mi dedicación, pasión y compromiso por brindar resultados excepcionales.
                 </p>
                 <Slider {...settings}>

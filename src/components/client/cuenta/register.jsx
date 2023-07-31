@@ -53,7 +53,7 @@ export default function Register({ setEmailRegister, setPasswordRegister, handle
                     <div className="form__group  ">
                         <input
                             type="text"
-                            className="form__field"
+                            className="form__field "
                             onChange={e => setFullName(e.target.value)}
                             placeholder="Input"
                             id='fullname'

@@ -54,7 +54,7 @@ export default function DatosDeUsuario() {
                         <h2 className='font-bold text-2xl p-8 text-blancoSecundario'>¡Bienvenido, {datosUsuarioActual?.fullName?.split(' ')[0]}!</h2>
                     </article>
                     <article className="flex md:flex-col gap-x-4 justify-center px-5 ">
-                    <Link
+                        <Link
                             to="/datos"
                             className={`
                             w-[164px] h-[52px] p-4 text-lg text-center font-semibold text-blancoSecundario
@@ -126,71 +126,86 @@ export default function DatosDeUsuario() {
                     <article>
                         <div className='w-[90%] mx-auto flex flex-col justify-start gap-y-3 text-blancoSecundario'>
                             <p className='font-bold text-[20px]'>Mis Datos</p>
-                            <p className='font-light text-base'>Información de tu cuenta</p>
+                            <p className='font-light font-OpenSans text-base'>Información de tu cuenta</p>
                         </div>
                         <form className='w-[90%] mx-auto flex flex-col gap-y-6 pt-5'>
-                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
-                                <label htmlFor="fullname">Nombre y apellido</label>
+                            <div className="form__group  ">
                                 <input
-                                    id="fullname"
                                     type="text"
-                                    name="Nombre y apellido"
-                                    placeholder='Nombre y apellido'
-                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
+                                    className="form__field "
+                                    //onChange={e => setFullName(e.target.value)}
+                                    placeholder="Input"
+                                    id='fullname'
+                                    required
                                 />
+                                <label className="form__label " htmlFor='fullname'>
+                                    Nombre y apellido
+                                </label>
                             </div>
-                            <div className='flex flex-col gap-y-2  text-blancoSecundario'>
-                                <label htmlFor="Email">Email</label>
+                            <div className="form__group  ">
                                 <input
-                                    id="Email"
-                                    type="email"
-                                    name="Email"
-                                    placeholder='Email'
-                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
-                                />
-                            </div>
-                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
-                                <label htmlFor="Telefono">Telefono</label>
-                                <input
-                                    id="Telefono"
                                     type="text"
-                                    name="Telefono"
-                                    placeholder='Telefono'
-                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
+                                    className="form__field "
+                                    //onChange={e => setFullName(e.target.value)}
+                                    placeholder="Input"
+                                    id='fullname'
+                                    required
                                 />
+                                <label className="form__label " htmlFor='fullname'>
+                                    Email
+                                </label>
+                            </div>
+                            <div className="form__group  ">
+                                <input
+                                    type="number"
+                                    className="form__field "
+                                    // onChange={e => setFullName(e.target.value)}
+                                    placeholder="Input"
+                                    id='fullname'
+                                    required
+                                />
+                                <label className="form__label " htmlFor='fullname'>
+                                    Telefono
+                                </label>
                             </div>
 
-                                {/* Contraseña  */}
+                            {/* Contraseña  */}
                             <div className='flex flex-col gap-y-3 pt-10 pb-5 text-blancoSecundario'>
                                 <h3 className='font-bold text-[20px]'> Contraseña</h3>
                                 <p className='font-light text-base'>Si no deseas cambiar la contraseña, mantene los campos en blanco</p>
                             </div>
-                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
-                                <label htmlFor="Contraseña">Contraseña</label>
+                            <div className="form__group  ">
                                 <input
-                                    id="Contraseña"
-                                    type="password"
-                                    name="Contraseña"
-                                    placeholder='Contraseña'
-                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
+                                    type="text"
+                                    className="form__field "
+                                    // onChange={e => setFullName(e.target.value)}
+                                    placeholder="Input"
+                                    id='fullname'
+                                    required
                                 />
+                                <label className="form__label " htmlFor='fullname'>
+                                    contraseñs
+                                </label>
                             </div>
-                            <div className='flex flex-col gap-y-2 text-blancoSecundario'>
-                                <label htmlFor="Repetir contraseña">Repetir contraseña</label>
+                            <div className="form__group  ">
                                 <input
-                                    id="Repetir contraseña"
-                                    type="password"
-                                    name="Repetir contraseña"
-                                    placeholder='Repetir contraseña'
-                                    className='w-full h-[46px] bg-transparent text-blancoSecundario border border-blancoSecundario rounded-lg py-3 px-4 outline-none'
+                                    type="text"
+                                    className="form__field "
+                                    //  onChange={e => setFullName(e.target.value)}
+                                    placeholder="Input"
+                                    id='fullname'
+                                    required
                                 />
+                                <label className="form__label " htmlFor='fullname'>
+                                    Repetir contraseña
+                                </label>
                             </div>
 
-                            <input 
-                                type="submit" 
-                                value="Guardar cambios" 
+                            <input
+                                type="submit"
+                                value="Guardar cambios"
                                 className='w-[197px] py-3 px-6 text-negroPrincipal font-bold text-base bg-amarillo rounded-lg cursor-pointer uppercase flex justify-center items-center'
-                                />
+                            />
                         </form>
                     </article>
                 </section>

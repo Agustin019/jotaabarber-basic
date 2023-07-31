@@ -145,7 +145,7 @@ export default function HorariosAdmin() {
         <section>
           <article className='flex flex-col gap-y-5 items-start text-blancoSecundario'>
             <h1 className='font-semibold text-2xl'>Horarios</h1>
-            <p className='font-ligh text-lg'>¡Administra tus horarios a tu manera!</p>
+            <p className='font-ligh text-lg font-OpenSans'>¡Administra tus horarios a tu manera!</p>
           </article>
           <article className='flex flex-col gap-y-5 items-start mt-10 text-blancoSecundario'>
             <h2 className='font-semibold text-xl'>Horarios del día {''}</h2>
@@ -193,13 +193,13 @@ export default function HorariosAdmin() {
                   <div className='w-full md:w-[20%] flex justify-center md:flex-col text-blancoSecundario'>
                     <button
                       onClick={() => setPeriodoHorario('mañana')}
-                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'mañana' ? 'font-semibold border-b-[5px] md:border-l-[5px] md:border-b-0 border-amarilloSecundario' : 'font-light'}`}
+                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'mañana' ? 'font-semibold border-b-[5px] md:border-l-[5px] md:border-b-0 border-amarillo' : 'font-light'}`}
                     >
                       Mañana
                     </button>
                     <button
                       onClick={() => setPeriodoHorario('tarde')}
-                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'tarde' ? 'font-semibold border-b-[5px] md:border-l-[5px] md:border-b-0 border-amarilloSecundario' : 'font-light'}`}
+                      className={`w-[120px] h-[44px] py-3 px-2 text-base ${periodoHorario === 'tarde' ? 'font-semibold border-b-[5px] md:border-l-[5px] md:border-b-0 border-amarillo' : 'font-light'}`}
                     >
                       Tarde
                     </button>

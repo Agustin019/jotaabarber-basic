@@ -16,10 +16,10 @@ export default function Inicio() {
        <section id="inicio" className="inicio h-screen bg-inicio bg-cover bg-center">
          <article className="w-full h-full bg-gradient-to-b from-black/80 to-black/50  pt-[72px]">
            <div className="flex flex-col justify-center items-center gap-y-8 pt-20">
-             <h1 className="font-bold text-[64px] leading-[78px] text-center text-white">Tu estilo, mi <br />
+             <h1 className="font-bold text-[64px] leading-[78px] text-center text-blanco">Tu estilo, mi <br />
                <span className="text-[96px] leading-[117px]">Pasión</span>
              </h1>
-             <p className="w-[328px] md:w-[550px] lg:w-[846px] h-[52px] mx-auto font-light text-white text-base text-center ">¡Bienvenido a mi barbería, donde el estilo y la elegancia se unen en un solo lugar!</p>
+             <p className="w-[328px] md:w-[550px] lg:w-[846px] h-[52px] mx-auto font-light text-blanco font-OpenSans text-base text-center ">¡Bienvenido a mi barbería, donde el estilo y la elegancia se unen en un solo lugar!</p>
              <Link
                to='/nuevoturno'
                className="

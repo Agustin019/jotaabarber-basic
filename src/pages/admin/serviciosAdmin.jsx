@@ -79,8 +79,8 @@ export default function ServiciosAdmin() {
                 />}
                 <section className='flex justify-start p-10 text-blancoSecundario'>
                     <article className='flex flex-col gap-y-5'>
-                        <h2 className='text-2xl font-semibold'>servicios</h2>
-                        <p className='text-base font-light '>En este panel tienes la posibilidad de administrar los servicios de tu negocio. ¡Puedes agregar nuevos, editar los que ya tienes o eliminarlos!</p>
+                        <h2 className='text-2xl font-semibold'>Servicios</h2>
+                        <p className='text-base font-light font-OpenSans'>En este panel tienes la posibilidad de administrar los servicios de tu negocio. ¡Puedes agregar nuevos, editar los que ya tienes o eliminarlos!</p>
                         <div className='flex justify-end'>
                             <button
                                 onClick={handleModal}
@@ -93,7 +93,7 @@ export default function ServiciosAdmin() {
                     </article>
                 </section>
                 <section>
-                    <article className='w-full grid grid-cols-4 place-items-start px-2 sm:px-10 sm:text-base text-sm text-blancoSecundario'>
+                    <article className='w-full grid grid-cols-4 place-items-start px-2 sm:px-10 sm:text-base text-sm text-blancoSecundario font-OpenSans'>
                         <p className='font-normal '>Foto</p>
                         <p className='font-normal '>Descripcion</p>
                         <p className='font-normal '>Precio</p>
@@ -106,7 +106,7 @@ export default function ServiciosAdmin() {
                                     key={servicio.id}
                                     className={`
                                     grid grid-cols-4 place-items-start items-center 
-                                    py-[11px] px-2 sm:px-10 text-blancoSecundario
+                                    py-[11px] px-2 sm:px-10 text-blancoSecundario font-OpenSans
                                     ${index % 2 === 0 ? 'bg-[#48464A]' : ''
                                         }`}
                                 >

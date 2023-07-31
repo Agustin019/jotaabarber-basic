@@ -19,8 +19,8 @@ export default function ResumenTurno({
                     <h2 className='font-bold text-[#fdfffc] text-xl sm:text-2xl'>Resúmen de turno</h2>
                 </div>
                 <div className='flex flex-col gap-y-4'>
-                    <p className='font-medium  text-base sm:text-xl text-[#fdfffc]  '>Datos del cliente:</p>
-                    <div className='flex flex-col gap-y-2'>
+                    <p className='font-medium  text-base sm:text-xl text-[#fdfffc] pt-10 '>Datos del cliente:</p>
+                    <div className='flex flex-col gap-y-2 font-OpenSans'>
                         <div className='flex justify-between items-center'>
                             <p className='font-normal text-xs sm:text-lg text-[#fdfffc] '>Nombre</p>
                             <p className='font-light text-xs sm:text-lg text-[#fdfffc] '>{nombre === '' ? '-' : nombre} </p>
@@ -30,9 +30,9 @@ export default function ResumenTurno({
                             <p className='font-light text-xs sm:text-lg text-[#fdfffc] '>{telefono === 0 ? '-' : telefono}</p>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-y-2 '>
+                    <div className='flex flex-col gap-y-2 pt-10'>
                         <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Servicio</p>
-                        <div className='flex justify-start items-center'>
+                        <div className='flex justify-start items-center font-OpenSans'>
                             {
                                 !servicioSeleccionado?.img
                                     ? <div className='w-[66px] h-[90px] bg-gray-300 rounded-lg flex flex-col justify-center items-center'>
@@ -51,9 +51,9 @@ export default function ResumenTurno({
                         </div>
                     </div>
 
-                    <div className='flex flex-col gap-y-2 '>
+                    <div className='flex flex-col gap-y-2 pt-16'>
                         <p className='font-medium text-base sm:text-xl text-[#fdfffc]  '>Datos del turno</p>
-                        <div className='flex flex-col gap-y-2'>
+                        <div className='flex flex-col gap-y-2 font-OpenSans'>
                             <div className='flex justify-between items-center'>
                                 <p className='font-normal text-base sm:text-lg text-[#fdfffc] '>Dia </p>
                                 <p className='font-light text-base sm:text-lg text-[#fdfffc] '>{fechaSeleccionada?.dia ? fechaSeleccionada.dia : '-'}</p>
@@ -85,9 +85,9 @@ export default function ResumenTurno({
                         <img src="https://i.ibb.co/DVsQG6m/close-1.png" alt="cerrar resumen" />
                     </button>
                 </div>
-                   <div className='pt-6'>
+                   <div className='pt-6 '>
                      <p className='font-medium text-base text-white py-4'>Datos del cliente:</p>
-                     <div className='flex flex-col gap-y-5'>
+                     <div className='flex flex-col gap-y-5 font-OpenSans'>
                          <div className='flex justify-between items-center'>
                              <p className='font-normal text-xs text-white'>Nombre</p>
                              <p className='font-light text-xs text-white'>{nombre === '' ? '-' : nombre} </p>
@@ -98,9 +98,9 @@ export default function ResumenTurno({
                          </div>
                      </div>
                    </div>
-                    <div className='flex flex-col gap-y-4 pt-10'>
+                    <div className='flex flex-col gap-y-4 pt-10 '>
                         <p className='font-medium text-base text-white '>Servicio</p>
-                        <div className='flex justify-start items-center'>
+                        <div className='flex justify-start font-OpenSans items-center'>
                             {
                                 !servicioSeleccionado?.img
                                     ? <div className='w-[66px] h-[90px] bg-gray-300 rounded-lg flex flex-col justify-center items-center'>
@@ -118,9 +118,9 @@ export default function ResumenTurno({
                             </div>
                         </div>
                     </div>
-                    <div className='flex flex-col gap-y-4 pt-14'>
+                    <div className='flex flex-col gap-y-4 pt-14 '>
                         <p className='font-medium text-base text-white '>Datos del turno</p>
-                        <div className='flex flex-col gap-y-5'>
+                        <div className='flex flex-col gap-y-5 font-OpenSans'>
                             <div className='flex justify-between items-center'>
                                 <p className='font-normal text-xs text-white'>Dia </p>
                                 <p className='font-light text-xs text-white'>{fechaSeleccionada?.dia ? fechaSeleccionada.dia : '-'}</p>
@@ -132,7 +132,7 @@ export default function ResumenTurno({
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col pb-10'>
+                <div className='flex flex-col pb-10 font-OpenSans'>
                     <div className='w-full border border-[#F2F2F2]'></div>
                     <div className='flex justify-between items-center'>
                         <p className='font-medium text-base text-[#F2F2F2]'>Total</p>

@@ -6,7 +6,7 @@ export default function Contacto() {
 
   const { user } = useAuth()
   return (
-    <section className=' '>
+    <section className=' mt-20 md:mt-0'>
       <article className='md:min-h-[95vh] md:flex flex-col justify-center items-center relative'>
         <div className='
             w-[328px] md:w-[720px] lg:w-[970px] xl:w-[1244px]  mx-auto bg-negroSecundario 
@@ -24,7 +24,7 @@ export default function Contacto() {
             <h2 className='font-bold text-2xl lg:text-5xl text-white '>
               ¿Te interesa alguno de nuestros servicios?
             </h2>  
-            <p className='font-light text-sm text-white md:w-[90%]'>No pierdas más tiempo, reserva tu turno ahora mismo. En caso de poder asistir cancela tu turno desde la misma pagina con anticipacion.</p>
+            <p className='font-light font-OpenSans text-sm text-white md:w-[90%]'>No pierdas más tiempo, reserva tu turno ahora mismo. En caso de poder asistir cancela tu turno desde la misma pagina con anticipacion.</p>
             <Link
               to={user ? '/nuevoturno' : '/micuenta'}
               className='w-[296px] h-[55px] flex justify-center font-semibold items-center p-[10px] bg-amarillo  text-lg lg:text-base text-negroPrincipal rounded-lg'
