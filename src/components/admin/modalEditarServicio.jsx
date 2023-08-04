@@ -4,7 +4,7 @@ import { uploadBytes, ref, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../../utils/firebaseconfig';
 import { toast } from 'react-toastify';
 
-export default function ModalEditarServicio({  servicioAEditar, setServicioAEditar, setIsLoading }) {
+export default function ModalEditarServicio({ servicioAEditar, setServicioAEditar, setIsLoading }) {
     // Estado para almacenar la imagen seleccionada
     const [selectedImage, setSelectedImage] = useState(servicioAEditar.img);
     // Estado para almacenar el nombre de la imagen seleccionada
@@ -126,12 +126,12 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
 
                 {/* contenedor campos */}
                 <article className='flex flex-col'>
-                    <div className='flex flex-col max-h-[452px] overflow-y-scroll px-2  gap-y-5 justify-between'>
+                    <div className='flex flex-col max-h-[452px]  px-2  gap-y-5 justify-between'>
                         <div className=''>
                             {/* Contenedor campo imagen */}
-                            <p className='text-blancoSecundario font-semibold text-base py-4 '>Foto del servicio</p>
+                            <p className='text-amarillo font-semibold text-base py-4 '>Foto del servicio</p>
                             <div
-                                className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
+                                className={`w-full h-[120px] rounded-lg bg-negroSecundario border-amarillo border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
                                 onDragEnter={handleDragEnter}
                                 onDragLeave={handleDragLeave}
                                 onDragOver={(e) => e.preventDefault()}
@@ -140,7 +140,7 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                                 {!selectedImage ? (
                                     <div className='flex items-center'>
                                         <label htmlFor="imageInput" className="cursor-pointer text-blancoSecundario font-light text-[10px] flex flex-col gap-y-4 items-center ">
-                                        <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
+                                            <img src="https://i.ibb.co/s6yHR7K/Vector-2.png" alt="Icono imagen" />
                                             Sube o arrastra el archivo. Puede ser .jpg o .png
                                         </label>
                                     </div>
@@ -167,32 +167,34 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                         </div>
 
                         {/* Campo Nombre */}
-                        <div className='flex flex-col gap-y-3'>
-                            <label className='font-semibold text-base text-blancoSecundario' htmlFor='nombre'>
-                                Nombre
-                            </label>
+                        <div className="form__group  ">
                             <input
-                                type='text'
-                                id='nombre'
-                                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
-                                placeholder='Nombre del servicio'
+                                type="text"
+                                className="form__field "
+                                onChange={e => setNombreServicio(e.target.value)}
                                 value={nombreSercivio}
-                                onChange={(e) => setNombreServicio(e.target.value)}
+                                placeholder="Input"
+                                id='nombreServicio'
+                                required
                             />
+                            <label className="form__label " htmlFor='nombreServicio'>
+                                Nombre del servicio
+                            </label>
                         </div>
                         {/** Campo Precio */}
-                        <div className='flex flex-col gap-y-3'>
-                            <label className='font-semibold text-base text-blancoSecundario' htmlFor='precio'>
+                        <div className="form__group  ">
+                            <input
+                                type="numer"
+                                className="form__field "
+                                value={precio}
+                                onChange={e => setPrecio(e.target.value)}
+                                placeholder="Input"
+                                id='precio'
+                                required
+                            />
+                            <label className="form__label " htmlFor='precio'>
                                 Precio
                             </label>
-                            <input
-                                type='number'
-                                id='precio'
-                                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
-                                placeholder='Precio del servicio'
-                                value={precio}
-                                onChange={(e) => setPrecio(e.target.value)}
-                            />
                         </div>
 
                         {/* Campo de serviicos a cargo */}
@@ -212,15 +214,15 @@ export default function ModalEditarServicio({  servicioAEditar, setServicioAEdit
                     </div>
 
                 </article>
-                    {/* Botón enviar */}
-                    <div className='flex justify-center '>
-                        <button
-                            type='submit'
-                            className='w-[282px] rounded-lg bg-amarillo py-[15px] px-6 font-semibold text-negroPrincipal text-base'>
-                            Guardar cambios
-                        </button>
+                {/* Botón enviar */}
+                <div className='flex justify-center '>
+                    <button
+                        type='submit'
+                        className='w-[282px] rounded-lg bg-amarillo py-[15px] px-6 font-semibold text-negroPrincipal text-base'>
+                        Guardar cambios
+                    </button>
 
-                    </div>
+                </div>
             </form>
         </main>
     );

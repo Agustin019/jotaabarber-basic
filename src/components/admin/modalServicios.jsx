@@ -15,7 +15,7 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
   const [nombreSercivio, setNombreServicio] = useState('');
   const [precio, setPrecio] = useState('')
 
-  
+
 
   // Manejar la subida de imágenes desde el input file
   const handleImageUpload = async (e) => {
@@ -70,7 +70,7 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
     if (!selectedImage || precio === '' || nombreSercivio === '') {
       toast.error('Todos los campos son obligatorios', 'error')
       return;
-  }
+    }
 
     try {
       setIsLoading(true)
@@ -128,12 +128,12 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
 
         {/* contenedor campos */}
         <article className='flex flex-col'>
-          <div className='flex flex-col max-h-[452px] overflow-y-scroll  gap-y-5 justify-between'>
+          <div className='flex flex-col max-h-[452px]  gap-y-5 justify-between'>
             <div className=''>
               {/* Contenedor campo imagen */}
-              <p className='text-[#FDFFFC] font-semibold text-base py-3 '>Foto del servicio</p>
+              <p className='text-amarillo font-semibold text-base py-3 '>Foto del servicio</p>
               <div
-                className={`w-full h-[120px] rounded-lg bg-[#474747] border-[#CAC7C7] border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
+                className={`w-full h-[120px] rounded-lg bg-negroSecundario border-amarillo border flex items-center justify-center ${dragging ? 'border-4 border-blue-500' : ''}`}
                 onDragEnter={handleDragEnter}
                 onDragLeave={handleDragLeave}
                 onDragOver={(e) => e.preventDefault()}
@@ -169,32 +169,34 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
             </div>
 
             {/* Campo Nombre */}
-            <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-blancoSecundario' htmlFor='nombre'>
-                Nombre
-              </label>
+            <div className="form__group  ">
               <input
-                type='text'
-                id='nombre'
-                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
-                placeholder='Nombre del servicio'
+                type="text"
+                className="form__field "
+                onChange={e => setNombreServicio(e.target.value)}
                 value={nombreSercivio}
-                onChange={(e) => setNombreServicio(e.target.value)}
+                placeholder="Input"
+                id='nombreServicio'
+                required
               />
+              <label className="form__label " htmlFor='nombreServicio'>
+                Nombre del servicio
+              </label>
             </div>
             {/** Campo Precio */}
-            <div className='flex flex-col gap-y-3'>
-              <label className='font-semibold text-base text-blancoSecundario' htmlFor='precio'>
+            <div className="form__group  ">
+              <input
+                type="numer"
+                className="form__field "
+                value={precio}
+                onChange={e => setPrecio(e.target.value)}
+                placeholder="Input"
+                id='precio'
+                required
+              />
+              <label className="form__label " htmlFor='precio'>
                 Precio
               </label>
-              <input
-                type='number'
-                id='precio'
-                className='p-4 rounded-xl border border-blancoSecundario bg-transparent  font-light text-blancoSecundario outline-none'
-                placeholder='Precio del servicio'
-                value={precio}
-                onChange={(e) => setPrecio(e.target.value)}
-              />
             </div>
 
             {/* Campo de profesionales a cargo */}
@@ -215,14 +217,14 @@ export default function ModalProfesionales({ handleModal, setIsLoading }) {
 
           {/* Botón enviar */}
         </article>
-          <div className=' flex justify-center'>
-            <button
-              type='submit'
-              className='w-[282px] rounded-lg bg-amarillo py-[15px] px-6 font-semibold text-negroPrincipal text-base'>
-              Agregar servicio
-            </button>
+        <div className=' flex justify-center'>
+          <button
+            type='submit'
+            className='w-[282px] rounded-lg bg-amarillo py-[15px] px-6 font-semibold text-negroPrincipal text-base'>
+            Agregar servicio
+          </button>
 
-          </div>
+        </div>
       </form>
     </main>
   );

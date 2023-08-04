@@ -184,7 +184,7 @@ export default function DatosDeUsuario() {
                                     required
                                 />
                                 <label className="form__label " htmlFor='fullname'>
-                                    contraseñs
+                                    Contraseña
                                 </label>
                             </div>
                             <div className="form__group  ">
