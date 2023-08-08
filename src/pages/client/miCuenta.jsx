@@ -10,7 +10,7 @@ import PantallaCargando from '../../components/utils/pantallaCargando';
 export default function MiCuenta() {
   // Hooks Registro
   const [emailRegister, setEmailRegister] = useState('');
-  const [passwordRegister, setPasswordRegister] = useState('');
+  
 
   // Hook para el formulario
   const [form, setForm] = useState('register');
@@ -24,7 +24,8 @@ export default function MiCuenta() {
     setDatosUsuarioActual,
     datosUsuarioActual,
     traerDatosDeUsuarioActual,
-
+    passwordRegister,
+    setPasswordRegister,
     isLoading,
     setIsLoading
   } = useAuth();

@@ -1,19 +1,25 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useAuth } from '../../context/authContext';
 
-import { db, storage } from '../../utils/firebaseconfig';
 import { getDownloadURL, uploadBytes, ref } from 'firebase/storage';
+import { db, storage } from '../../utils/firebaseconfig';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth'
+
 import { Link } from 'react-router-dom';
 
 import Navbar from '../../components/layout/navbar';
 import Footer from '../../components/layout/footer'
+import FormDatosUsuario from '../../components/client/cuenta/formDatosUsuario';
 
 export default function DatosDeUsuario() {
 
-    const { datosUsuarioActual } = useAuth()
+    const { datosUsuarioActual, user, traerDatosDeUsuarioActual } = useAuth()
+    console.log(user)
 
     const inputRef = useRef(null);
+
+    const [datosUsuario, setDatosUsuario] = useState({})
 
     const handleFileChange = async (e) => {
         const file = e.target.files[0];
@@ -43,6 +49,20 @@ export default function DatosDeUsuario() {
     const handleButtonClick = () => {
         inputRef.current.click();
     };
+
+   const consutarDatosDeUsurio = async () => {
+    const docRef = doc(db, 'usuarios', user?.uid);
+    const docSnap = await getDoc(docRef);
+    const datos = docSnap.data()
+    setDatosUsuario(datos)
+   }
+
+   useEffect(()=>{
+    setTimeout(() => {
+        
+        consutarDatosDeUsurio()
+    }, 2000);
+   },[])
 
     return (
         <>
@@ -128,85 +148,11 @@ export default function DatosDeUsuario() {
                             <p className='font-bold text-[20px]'>Mis Datos</p>
                             <p className='font-light font-OpenSans text-base'>Información de tu cuenta</p>
                         </div>
-                        <form className='w-[90%] mx-auto flex flex-col gap-y-6 pt-5'>
-                            <div className="form__group  ">
-                                <input
-                                    type="text"
-                                    className="form__field "
-                                    //onChange={e => setFullName(e.target.value)}
-                                    placeholder="Input"
-                                    id='fullname'
-                                    required
-                                />
-                                <label className="form__label " htmlFor='fullname'>
-                                    Nombre y apellido
-                                </label>
-                            </div>
-                            <div className="form__group  ">
-                                <input
-                                    type="text"
-                                    className="form__field "
-                                    //onChange={e => setFullName(e.target.value)}
-                                    placeholder="Input"
-                                    id='fullname'
-                                    required
-                                />
-                                <label className="form__label " htmlFor='fullname'>
-                                    Email
-                                </label>
-                            </div>
-                            <div className="form__group  ">
-                                <input
-                                    type="number"
-                                    className="form__field "
-                                    // onChange={e => setFullName(e.target.value)}
-                                    placeholder="Input"
-                                    id='fullname'
-                                    required
-                                />
-                                <label className="form__label " htmlFor='fullname'>
-                                    Telefono
-                                </label>
-                            </div>
-
-                            {/* Contraseña  */}
-                            <div className='flex flex-col gap-y-3 pt-10 pb-5 text-blancoSecundario'>
-                                <h3 className='font-bold text-[20px]'> Contraseña</h3>
-                                <p className='font-light text-base'>Si no deseas cambiar la contraseña, mantene los campos en blanco</p>
-                            </div>
-                            <div className="form__group  ">
-                                <input
-                                    type="text"
-                                    className="form__field "
-                                    // onChange={e => setFullName(e.target.value)}
-                                    placeholder="Input"
-                                    id='fullname'
-                                    required
-                                />
-                                <label className="form__label " htmlFor='fullname'>
-                                    Contraseña
-                                </label>
-                            </div>
-                            <div className="form__group  ">
-                                <input
-                                    type="text"
-                                    className="form__field "
-                                    //  onChange={e => setFullName(e.target.value)}
-                                    placeholder="Input"
-                                    id='fullname'
-                                    required
-                                />
-                                <label className="form__label " htmlFor='fullname'>
-                                    Repetir contraseña
-                                </label>
-                            </div>
-
-                            <input
-                                type="submit"
-                                value="Guardar cambios"
-                                className='w-[197px] py-3 px-6 text-negroPrincipal font-bold text-base bg-amarillo rounded-lg cursor-pointer uppercase flex justify-center items-center'
-                            />
-                        </form>
+                        <FormDatosUsuario
+                           datosUsuarioActual={datosUsuarioActual}
+                           datosUsuario={datosUsuario}
+                           traerDatosDeUsuarioActual={traerDatosDeUsuarioActual}
+                        />
                     </article>
                 </section>
             </main>

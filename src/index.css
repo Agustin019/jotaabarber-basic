@@ -189,6 +189,11 @@
   transition: border-color 0.2s;
 }
 
+ .field-disabled{
+  color: #c0bec0;
+  background: #313033;
+}
+
 .form__field::placeholder {
   color: transparent;
 }

@@ -32,8 +32,9 @@ export const AuthProvider = ({ children }) => {
   
   // estado para el nombre completo en el registro comun de firebase
   const [fullName, setFullName] = useState('')
+  const [passwordRegister, setPasswordRegister] = useState('');
   
-  // Estado para la pantalla de carga
+  // Estado para la pantalla de cargas
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true)
   
@@ -68,6 +69,7 @@ export const AuthProvider = ({ children }) => {
         await setDoc(docRef, {
           uid: user.uid,
           email: user.email,
+          password:passwordRegister,
           role: 'cliente',
           fullName: user.displayName !== null ? user.displayName : fullName,
           turnosActivos: [],
@@ -218,13 +220,17 @@ export const AuthProvider = ({ children }) => {
         loginWithGoogle,
         loginWithFacebook,
         logOut,
+
         user,
         datosUsuarioActual,
         setDatosUsuarioActual,
         traerDatosDeUsuarioActual,
         crearDocumentoDeUsuario,
+
         fullName,
         setFullName,
+        passwordRegister,
+        setPasswordRegister,
 
         isLoading,
         setIsLoading,
